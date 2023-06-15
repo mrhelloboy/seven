@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
   {{- partial "head.html" . -}}
-  <body class="bg-gray-100">
+  <body class="flex h-screen flex-col bg-gray-100">
     {{- partial "header.html" . -}}
-    {{- block "main" . }}{{- end }}
+    <div class="grow">
+      {{- block "main" . }}{{- end }}
+    </div>
     {{- partial "footer.html" . -}}
     <script src="/js/script.js" defer></script>
     {{- block "script" . }}{{- end }}
