@@ -8,6 +8,8 @@ let currentLevel = 1;
 let allLevel = 1;
 let hasInitActive = false;
 let catalogText = [];
+let hadClick = false;
+let lastActiveInScroll = null;
 
 liEleList.forEach((ele) => {
   const aNode = ele.querySelector("a");
@@ -32,6 +34,9 @@ liEleList.forEach((ele) => {
       disableActive(node);
     });
     onActive(aNode);
+    
+    hadClick = true;
+    lastActiveInScroll = aNode;
   });
 });
 
@@ -47,8 +52,11 @@ HEles.forEach((ele) => {
 });
 
 // 随页面滚动，激活目录选中状态
-let lastActiveInScroll = null;
 document.addEventListener("scroll", function (e) {
+  if (hadClick) {
+    hadClick = false;
+    return
+  };
   if (this.documentElement.getBoundingClientRect().top === 0 && lastActiveInScroll) {
     disableActive(lastActiveInScroll);
   }
