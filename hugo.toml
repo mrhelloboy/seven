@@ -39,6 +39,9 @@ home = ["HTML"]
 #    endLevel = 3
 #    startLevel = 2
 
+[frontmatter]
+  lastmod = ['lastmod', ':fileModTime', ':default']
+
 [menu]
   [[menu.main]]
     name = "Home"
