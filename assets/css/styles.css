@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* social icon */
+.ficon:hover {
+  filter: invert(53%) sepia(38%) saturate(3303%) hue-rotate(326deg) brightness(101%) contrast(96%);
+}
+
+/* HAMBURGER MENU */
+.hamburger {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  transition: all 0.25s;
+  position: relative;
+}
+
+.hamburger-top,
+.hamburger-middle,
+.hamburger-bottom {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 3px;
+  top: 0;
+  left: 0;
+  background: #000;
+  transform: rotate(0);
+  transition: all 0.5s;
+}
+
+.hamburger-middle {
+  transform: translateY(7px);
+}
+
+.hamburger-bottom {
+  transform: translateY(14px);
+  background: #000;
+}
+
+.open {
+  transform: rotate(90deg);
+  transform: translateY(0px);
+  position: fixed;
+  top: 50px;
+  right: 25px;
+}
+
+.open .hamburger-top {
+  transform: rotate(45deg) translateY(6px) translateX(6px);
+  background-color: #fff;
+}
+
+.open .hamburger-middle {
+  display: none;
+}
+
+.open .hamburger-bottom {
+  transform: rotate(-45deg) translateY(6px) translateX(-6px);
+  background-color: #fff;
+}
+
+/* toc */
+/* 
+
+#TableOfContents > ul > li {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  text-align: 0.75rem;
+  line-height: 1.75rem;
+}
+
+#TableOfContents > ul > li > a {
+  padding: 0.25rem;
+}
+
+#TableOfContents > ul > li > a:hover {
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  color: #0085a1;
+  width: 100%;
+}
+
+#TableOfContents > ul > li > ul > li {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 0.5rem;
+
+  text-align: 0.75rem;
+  line-height: 1.75rem;
+}
+
+#TableOfContents > ul > li > ul > li > a {
+  padding: 0.25rem;
+}
+
+#TableOfContents > ul > li > ul > li > a::before {
+  content: "· ";
+}
+
+#TableOfContents > ul > li > ul > li > a:hover {
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  color: #0085a1;
+}
+ */
+
+/* .toc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  padding: 0.25rem;
+  text-align: 0.75rem;
+  line-height: 2rem;
+}
+
+.toc-hover {
+  display: block;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  color: #0085a1;
+} */
+
+.theme-aside {
+  @apply px-2 py-0.5 text-sm hover:rounded-md hover:border-0 hover:bg-gray-100 hover:text-cyan-600;
+}
+
+.theme-toc {
+  @apply block truncate px-2 py-1 text-xs hover:text-cyan-600;
+}
+
+.theme-toc-active {
+  @apply block truncate rounded-md border-0 bg-gray-100 px-2 py-1 text-xs text-cyan-600;
+}
+
+.theme-toc-nest {
+  @apply pl-4 pr-2;
+}
+
+.theme-toc-nest::before {
+  content: "· ";
+}

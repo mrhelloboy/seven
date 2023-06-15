@@ -1,0 +1,40 @@
+{{ range $.Paginator.Pages }}
+  <ul>
+    {{/* {{ printf "%#v" .Params.image }} */}}
+    <div class="mx-auto flex w-full flex-col bg-white">
+      {{/* Item Title */}}
+      <a href="{{ .Permalink }}" class="px-4 py-10 text-center text-xl font-bold text-black hover:text-cyan-700"
+        >{{ .Title }}</a
+      >
+      {{/* Item Preview image */}}
+      <img
+        class="h-120 w-full object-cover"
+        src="{{ if .Params.image }}
+          {{- .Params.image  | relURL -}}
+        {{ else }}
+          {{- .Site.Params.hero.img | relURL -}}
+        {{ end }}"
+        alt="preview image"
+        srcset=""
+      />
+      {{/* Item Description */}}
+      <div class="line-clamp-3 px-10 pt-5 text-left text-lg text-gray-400 md:line-clamp-4">
+        {{ with .Description }}
+          {{ . }}
+        {{ else }}
+          {{ .Summary }}
+        {{ end }}
+      </div>
+      {{/* Read More */}}
+      <div class="mx-auto">
+        <a
+          href="{{ .Permalink }}"
+          class="mt-7 inline-flex transform border border-gray-400 px-7 py-3 text-center font-semibold text-gray-700 duration-500 hover:border hover:border-cyan-700 hover:bg-cyan-700 hover:text-white"
+          >READ MORE</a
+        >
+      </div>
+      {{/* Posted Date */}}
+      <div class="px-10 py-5 pb-5 text-left text-xs text-gray-400">Posted on {{ .Date.Format "2006-01-02" }}</div>
+    </div>
+  </ul>
+{{ end }}

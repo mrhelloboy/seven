@@ -1,0 +1,16 @@
+{{ $isHeader := .Scratch.Get "isHeader" }}
+{{ printf "%#v" $isHeader }}
+<a href="/">
+  {{ $logoInfo := .Site.Params.logo }}
+  {{ $logoImg := or ($logoInfo.img) ($logoInfo.img_footer) }}
+  {{ $logoFooterImg := or ($logoInfo.img_footer) ($logoInfo.img) }}
+  {{ printf "%#v" $logoFooterImg }}
+
+  {{ if $logoInfo.img }}
+    <img src="{{ $logoInfo.img }}" alt="logo" id="logo" />
+  {{ else if $logoInfo.str }}
+    <div class="text-3xl font-bold">{{ $logoInfo.str }}</div>
+  {{ else }}
+    <div class="text-3xl font-bold">{{ .Title }}</div>
+  {{ end }}
+</a>

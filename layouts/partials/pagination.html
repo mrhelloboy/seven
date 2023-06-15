@@ -1,0 +1,28 @@
+{{/* Pagination */}}
+{{ $pag := .Paginator }}
+{{ if gt $pag.TotalPages 1 }}
+  <div class="flex flex-row justify-between space-x-2">
+    {{/* Previous */}}
+    {{ if $pag.HasPrev }}
+      <div class="my-6 flex w-full justify-start">
+        <a
+          href="{{ $pag.Prev.URL }}"
+          class="w-48 transform border border-gray-400 px-7 py-3 text-center font-semibold text-gray-700 duration-500 hover:border hover:border-cyan-700 hover:bg-cyan-700 hover:text-white"
+        >
+          &larr; NEWER POSTS</a
+        >
+      </div>
+    {{ end }}
+
+    {{/* Next */}}
+    {{ if $pag.HasNext }}
+      <div class="my-6 flex w-full justify-end">
+        <a
+          href="{{ $pag.Next.URL }}"
+          class="w-48 transform border border-gray-400 px-7 py-3 text-center font-semibold text-gray-700 duration-500 hover:border hover:border-cyan-700 hover:bg-cyan-700 hover:text-white"
+          >NEXT POSTS &rarr;</a
+        >
+      </div>
+    {{ end }}
+  </div>
+{{ end }}

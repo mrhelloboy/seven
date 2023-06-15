@@ -1,0 +1,62 @@
+<section id="menu-section" class="sticky top-0 bg-white">
+  <nav class="container mx-auto max-w-7xl p-4">
+    <!-- Flex Container For Nav Items -->
+    <div class="my-3 flex max-h-10 items-center justify-between space-x-20">
+      <!-- Logo -->
+
+      <div class="z-30">
+        {{/* {{ .Scratch.Set "isHeader" true }} */}}
+        <a href="{{ "/" | relLangURL }}">
+          {{ $logoInfo := .Site.Params.logo }}
+          {{ if $logoInfo }}
+            {{ if $logoInfo.img }}
+              <img src="{{ $logoInfo.img }}" alt="logo" id="logo" class="max-h-16" />
+            {{ else if $logoInfo.str }}
+              <div class="text-3xl font-bold">{{ $logoInfo.str }}</div>
+            {{ else }}
+              <div class="text-3xl font-bold">{{ .Title }}</div>
+            {{ end }}
+          {{ else }}
+            <img src="/images/default/logo.svg" alt="logo" id="logo" class="-ml-3 max-h-16" />
+          {{ end }}
+        </a>
+      </div>
+
+      <!-- Menu Items -->
+      <div class="hidden items-center space-x-10 font-bold uppercase text-gray-900 md:flex">
+        {{ range .Site.Menus.main }}
+          <a class="tracking-widest hover:text-cyan-700" href="{{ .URL }}">
+            {{ if .Pre }}
+              {{ $icon := printf "<i data-feather=\"%s\"></i> " .Pre | safeHTML }}
+              {{ $icon }}
+            {{ end }}
+            {{ $text := print .Name | safeHTML }}
+            {{ $text }}
+          </a>
+        {{ end }}
+      </div>
+
+      <!-- Hamburger Button -->
+      <button id="menu-btn" class="hamburger z-30 block focus:outline-none md:hidden">
+        <span class="hamburger-top"></span>
+        <span class="hamburger-middle"></span>
+        <span class="hamburger-bottom"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+      id="menu"
+      class="m-h-screen fixed inset-0 z-20 hidden h-full w-full flex-col items-center self-end bg-gray-800 px-6 py-1 pb-4 pt-32 font-bold uppercase tracking-widest text-white opacity-90"
+    >
+      <div class="w-full py-3 text-center">
+        {{ range .Site.Menus.main }}
+          <a class="block py-2 hover:text-cyan-700" href="{{ .URL }}">
+            {{ $text := print .Name | safeHTML }}
+            {{ $text }}
+          </a>
+        {{ end }}
+      </div>
+    </div>
+  </nav>
+</section>

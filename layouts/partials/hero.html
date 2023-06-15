@@ -1,0 +1,13 @@
+{{/* Hero Section */}}
+<section id="hero">
+  {{ $defaultHeroImg := "/images/1-1.jpg" }}
+  <div
+    class="flex h-128 w-full flex-col justify-center bg-cover"
+    style="background-image: url({{ .Site.Params.hero.img | default $defaultHeroImg | relURL }})"
+  >
+    {{/* {{ printf "%#v" .Site.Params.slogan }} */}}
+    {{ with .Site.Params.hero.slogan }}
+      <p class="text-center text-2xl font-bold text-white md:text-4xl lg:text-5xl">{{ . | default "" | safeHTML }}</p>
+    {{ end }}
+  </div>
+</section>

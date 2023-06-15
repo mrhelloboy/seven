@@ -1,0 +1,92 @@
+{{ define "main" }}
+  <div class="mx-auto my-5 max-w-7xl bg-white px-5">
+    {{ $metaInfo := .Site.Params.articleMeta }}
+    {{ $maxW := "max-w-[58.5rem]" }}
+    {{ if $metaInfo.disableToc }}
+      {{ $maxW = "max-w-7xl" }}
+    {{ end }}
+    <div class="{{ $maxW }} left-0">
+      {{/* Title */}}
+      <div class="px-3 py-10 text-center text-xl font-bold text-black">{{ .Title }}</div>
+
+      {{/* Article Meta Info：Publication time, word count, reading time */}}
+      <div class="flex flex-row items-center justify-center space-x-4 px-3 pb-3 text-xs text-gray-500 md:text-sm">
+        {{/* Author */}}
+        {{ if and ($metaInfo.enableAuthor) .Params.author }}
+          <div class="flex flex-row items-center space-x-1">
+            <img src="/images/default/icon-author.svg" alt="" class="h-4 w-4" />
+            <p>{{- .Params.author -}}</p>
+          </div>
+        {{ end }}
+        {{/* Publish Date */}}
+        {{ if not $metaInfo.disabledate }}
+          <div class="flex flex-row items-center space-x-1">
+            <img src="/images/default/icon-date.svg" alt="" class="h-4 w-4" />
+            <p>{{- .Date.Format "2006-01-02" -}}</p>
+          </div>
+        {{ end }}
+        {{/* Word Count */}}
+        {{ if not $metaInfo.disableCountWords }}
+          <div class="flex flex-row items-center space-x-1">
+            <img src="/images/default/icon-word.svg" alt="" class="h-4 w-4" />
+            <p>{{- .WordCount | printf "%d words" -}}</p>
+          </div>
+        {{ end }}
+        {{/* Read Time */}}
+        {{ if not $metaInfo.disableReadTime }}
+          <div class="flex flex-row items-center space-x-1">
+            <img src="/images/default/icon-read-time.svg" alt="" class="h-4 w-4" />
+            <p>{{- .ReadingTime| printf "%d minutes" -}}</p>
+          </div>
+        {{ end }}
+      </div>
+
+      {{/* Image */}}
+      {{ if not $metaInfo.disableHero }}
+        <img
+          class="h-120 w-full object-cover"
+          src="{{ if .Params.image }}
+            {{- .Params.image  | relURL -}}
+          {{ else }}
+            {{- .Site.Params.hero.img | relURL -}}
+          {{ end }}"
+          alt="preview image"
+          srcset=""
+        />
+      {{ else }}
+        <div class="mx-10 mb-4 mt-0 border-b border-gray-400"></div>
+      {{ end }}
+
+      {{/* Content */}}
+      <div class="prose prose-sm prose-cyan mx-auto max-w-none px-10 py-5 dark:prose-invert md:prose-base">
+        {{ .Content }}
+      </div>
+
+      {{/* recommend article */}}
+      {{/* <div class="h-96 w-full bg-white"></div> */}}
+      {{/* comment */}}
+      {{/* <div class="h-96 w-full bg-white"></div> */}}
+    </div>
+
+    {{/* toc */}}
+    {{ if not $metaInfo.disableToc }}
+      <div
+        id="catalog"
+        class="fixed bottom-0 right-[max(0px,calc(50%-38.7rem))] top-24 z-20 mt-5 hidden w-72 overflow-y-auto xl:block"
+      >
+        <aside class="bg-white px-5 pb-5">
+          <div class="bottom-3 mt-7 border-gray-400 py-3 text-left text-sm font-semibold uppercase">
+            <a href="#" class="px-2">Catalog</a>
+          </div>
+          <div class="mb-4 mt-0 border-b border-gray-400"></div>
+          {{ .TableOfContents }}
+        </aside>
+      </div>
+    {{ end }}
+
+  </div>
+{{ end }}
+
+{{ define "script" }}
+  <script src="/js/toc.js" defer></script>
+{{ end }}
