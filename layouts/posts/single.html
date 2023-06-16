@@ -83,7 +83,7 @@
       </div>
 
       {{/* horizontal rule */}}
-      <hr class="mx-10 my-1">
+      <hr class="mx-10 my-1" />
 
       {{/* categories && tags */}}
       <div class="flex flex-col justify-start px-10 pb-5 lg:flex-row lg:justify-between">
@@ -133,7 +133,7 @@
       {{/* <div class="h-96 w-full bg-white"></div> */}}
       {{/* comment */}}
       {{/* <div class="h-96 w-full bg-white"></div> */}}
-    </dr>
+    </div>
 
     {{/* toc */}}
     {{ if not $metaInfo.disableToc }}
@@ -142,9 +142,7 @@
         class="fixed bottom-0 right-[max(0px,calc(50%-38.7rem))] top-24 z-20 mt-5 hidden w-72 overflow-y-auto xl:block"
       >
         <aside class="bg-white px-5 pb-5">
-          <div class="bottom-3 mt-7 border-gray-400 py-3 text-left text-sm font-semibold uppercase">
-            <a href="#" class="px-2">Catalog</a>
-          </div>
+          <div class="bottom-3 mt-7 border-gray-400 px-2 py-3 text-left text-sm font-semibold uppercase">Catalog</div>
           <div class="mb-4 mt-0 border-b border-gray-400"></div>
           {{ .TableOfContents }}
         </aside>
