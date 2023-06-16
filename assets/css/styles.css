@@ -43,8 +43,8 @@
   transform: rotate(90deg);
   transform: translateY(0px);
   position: fixed;
-  top: 50px;
-  right: 25px;
+  top: 35px;
+  right: 17px;
 }
 
 .open .hamburger-top {
