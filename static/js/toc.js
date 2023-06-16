@@ -110,8 +110,11 @@ document.addEventListener("scroll", function (e) {
     if (lastActiveInScroll) {
       disableActive(lastActiveInScroll);
     }
-    onActive(minTopOfHead);
-    lastActiveInScroll = minTopOfHead; 
+
+    if (minTopOfHead) {
+      onActive(minTopOfHead);
+      lastActiveInScroll = minTopOfHead; 
+    } 
   }
 });
 
