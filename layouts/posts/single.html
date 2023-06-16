@@ -150,6 +150,11 @@
     {{ end }}
 
   </div>
+
+  {{ if .Site.Params.enableToTop }}
+    {{- partial "to_top.html" . -}}
+  {{ end }}
+
 {{ end }}
 
 {{ define "script" }}

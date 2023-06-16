@@ -5,6 +5,10 @@
       {{- partial "post_list.html" . -}}
 
       {{- partial "pagination.html" . -}}
+
+      {{ if .Site.Params.enableToTop }}
+        {{- partial "to_top.html" . -}}
+      {{ end }}
     </div>
 
     {{/* Sidebar */}}

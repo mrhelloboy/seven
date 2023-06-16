@@ -8,7 +8,7 @@ hasCJKLanguage = true
 home = ["HTML"]
 
 [Params]
-  toc = true
+  # enableToTop = false
   [Params.hero]
     img = "/images/1-2.jpg"
     slogan = "ONE THING I KNOW, THAT IS I KNOW NOTHING"
