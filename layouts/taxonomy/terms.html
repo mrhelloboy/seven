@@ -1,3 +1,6 @@
-{{ define "main" }}
-  <p>This is terms.html</p>
-{{ end }}
+{{- define "main" -}}
+  <div class="mx-auto max-w-5xl px-3">
+    {{- partial "terms.html" . -}}
+    {{- partial "pagination.html" . -}}
+  </div>
+{{- end }}
