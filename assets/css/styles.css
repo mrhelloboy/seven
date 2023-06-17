@@ -80,3 +80,47 @@
 .theme-toc-nest::before {
   content: "· ";
 }
+
+/* Scrollbar */
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(60, 60, 67, 0.4);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #425aef;
+  opacity: 1;
+  display: block !important;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: #00000000;
+}
+
+/* Fix jumping scrollbar issue */
+/* :root {
+  scrollbar-gutter: stable;
+} */
+
+html {
+  overflow-y: scroll;
+}
+
+:root {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+:root body {
+  position: absolute;
+}
+
+body {
+  width: 100vw;
+}
