@@ -1,0 +1,44 @@
+{{ define "main" }}
+  {{ $pages := (where (where .Site.Pages "Type" "posts") "IsPage" true) }}
+
+  {{ $paginator := .Paginate (where .Site.Pages "Type" "posts") 5 }}
+  {{ printf "%#v" (where .Site.Pages "Type" "posts") }}
+
+
+  <div data-pagefind-ignore="all" class="container">
+    <div class="row">
+      <div
+        class="
+        "
+      >
+        <div class="archive-list">
+          {{ range ($pages.GroupByDate "2006") }}
+            {{ if gt .Key 1 }}
+              {{ $.Scratch.Set "count" 1 }}
+              {{ range .Pages }}
+                {{ if (eq ($.Scratch.Get "count") 1) }}
+                  {{ $.Scratch.Set "count" 0 }}
+                  <h1 class="title is-4 has-text-weight-normal">{{ .Date.Format "2006" }}</h1>
+                {{ end }}
+              {{ end }}
+
+
+              <ul>
+                {{ range .Pages }}
+                  <li>
+                    <span>{{ .Date.Format "01/02" }}</span> —
+                    <a href="{{ .RelPermalink }}">
+                      {{ .Title }}
+                    </a>
+                  </li>
+                {{ end }}
+              </ul>
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+{{ end }}

@@ -9,6 +9,7 @@ published: true
 hide-in-home: true
 tags:
   - Travel
+  - service Mesh
 categories: [Life]
 URL: "/2018/05/01/may-day-jiulonghu"
 ---

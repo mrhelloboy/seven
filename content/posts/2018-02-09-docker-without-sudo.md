@@ -12,8 +12,9 @@ showtoc: false
 tags:
   - Tips
   - Docker
+  - service Mesh
 URL: "/2018/02/09/docker-without-sudo/"
-categories: [Tips]
+categories: [Tips, test8]
 ---
 
 ### Add the docker group if it doesn't already exist:

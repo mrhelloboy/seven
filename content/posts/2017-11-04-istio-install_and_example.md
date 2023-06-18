@@ -10,7 +10,7 @@ image: "/images/1-1.jpg"
 tags:
   - Istio
 URL: "/2017/11/04/istio-install_and_example/"
-categories: [Tech]
+categories: ["Tech", "test2"]
 ---
 
 ## 服务网格简介

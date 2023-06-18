@@ -12,6 +12,7 @@ published: true
 tags:
   - Kubernetes
   - Istio
+  - service Mesh
 URL: "/2018/05/23/istio-auto-injection-with-webhook/"
 categories: [Tech]
 ---

@@ -9,6 +9,7 @@ author:     "赵化冰"
 published: true
 tags:
   - ubuntu
+  - service Mesh
 URL: "/2018/05/24/set_up_my_ubuntu_desktop/"
 categories: ["Tips"]
 ---

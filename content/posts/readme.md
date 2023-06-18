@@ -4,7 +4,7 @@ title: "Clean White Theme for Hugo"
 subtitle: "How to set up this theme"
 date: 2019-01-09
 author: "赵化冰"
-image: "images/1-3.jpg"
+image: "images/1-2.jpg"
 ---
 
 # Clean White Theme for Hugo
