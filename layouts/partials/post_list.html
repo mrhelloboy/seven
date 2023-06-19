@@ -1,40 +1,82 @@
-{{ range $.Paginator.Pages }}
-  <ul>
-    {{/* {{ printf "%#v" .Params.image }} */}}
-    <div class="mx-auto flex w-full flex-col bg-white">
-      {{/* Item Title */}}
-      <a href="{{ .Permalink }}" class="px-4 py-10 text-center text-xl font-bold text-black hover:text-cyan-700"
-        >{{ .Title }}</a
-      >
+<div class="grid grid-cols-1 gap-x-4 gap-y-4 lg:grid-cols-2">
+  {{ range .Paginator.Pages }}
+    <div class="group relative mx-auto h-[26rem] w-full border bg-white shadow-sm hover:border-blue-700">
       {{/* Item Preview image */}}
-      <img
-        class="h-120 w-full object-cover"
-        src="{{ if .Params.image }}
-          {{- .Params.image  | relURL -}}
-        {{ else }}
-          {{- .Site.Params.hero.img | relURL -}}
-        {{ end }}"
-        alt="preview image"
-        srcset=""
-      />
-      {{/* Item Description */}}
-      <div class="line-clamp-3 px-10 pt-5 text-left text-lg text-gray-400 md:line-clamp-4">
-        {{ with .Description }}
-          {{ . }}
-        {{ else }}
-          {{ .Summary }}
+      <div class="h-52 w-full overflow-hidden">
+        <img
+          class="object-cover group-hover:scale-110 group-hover:brightness-75 group-hover:transition-transform group-hover:duration-700 group-hover:ease-in-out"
+          src="{{ if .Params.image }}
+            {{- .Params.image  | relURL -}}
+          {{ else }}
+            {{- .Site.Params.hero.img | relURL -}}
+          {{ end }}"
+          alt="preview image"
+          srcset=""
+        />
+      </div>
+
+      <div class="flex flex-row justify-between px-4 pb-1 pt-4 ">
+        {{ $categories := (.GetTerms "categories") }}
+        {{ $cateNums := len $categories }}
+        {{ if ge $cateNums 1 }}
+          <div class="flex flex-row">
+            <svg class="icon" width="16px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+              <path
+                fill="#D1D5DB"
+                d="M170.666667 469.333333h256a42.666667 42.666667 0 0 0 42.666666-42.666666V170.666667a42.666667 42.666667 0 0 0-42.666666-42.666667H170.666667a42.666667 42.666667 0 0 0-42.666667 42.666667v256a42.666667 42.666667 0 0 0 42.666667 42.666666z m426.666666 0h256a42.666667 42.666667 0 0 0 42.666667-42.666666V170.666667a42.666667 42.666667 0 0 0-42.666667-42.666667h-256a42.666667 42.666667 0 0 0-42.666666 42.666667v256a42.666667 42.666667 0 0 0 42.666666 42.666666zM170.666667 896h256a42.666667 42.666667 0 0 0 42.666666-42.666667v-256a42.666667 42.666667 0 0 0-42.666666-42.666666H170.666667a42.666667 42.666667 0 0 0-42.666667 42.666666v256a42.666667 42.666667 0 0 0 42.666667 42.666667z m554.666666 0c94.122667 0 170.666667-76.544 170.666667-170.666667s-76.544-170.666667-170.666667-170.666666-170.666667 76.544-170.666666 170.666666 76.544 170.666667 170.666666 170.666667z"
+              />
+            </svg>
+            {{ range $categories }}
+              <a
+                class="mx-1 my-0.5 rounded-xl bg-gray-200 bg-opacity-30 px-1.5 py-0.5 text-center text-xs text-gray-500 hover:bg-opacity-80 hover:text-cyan-600"
+                href="{{ .Permalink }}"
+                >{{ .LinkTitle }}</a
+              >
+            {{ end }}
+          </div>
+
+          {{/* Posted Date */}}
+          <div class="text-xs tracking-wide text-gray-400">{{ .Date.Format "2006/01/02" }}</div>
         {{ end }}
+
       </div>
-      {{/* Read More */}}
-      <div class="mx-auto">
-        <a
-          href="{{ .Permalink }}"
-          class="mt-7 inline-flex transform border border-gray-400 px-7 py-3 text-center font-semibold text-gray-700 duration-500 hover:border hover:border-cyan-700 hover:bg-cyan-700 hover:text-white"
-          >READ MORE</a
-        >
+
+      {{/* Item Title */}}
+      <div class="px-4 py-2">
+        <a href="{{ .Permalink }}" class="text-center text-xl font-bold text-black hover:text-blue-700">{{ .Title }}</a>
       </div>
-      {{/* Posted Date */}}
-      <div class="px-10 py-5 pb-5 text-left text-xs text-gray-400">Posted on {{ .Date.Format "2006-01-02" }}</div>
+
+      {{/* Item Description */}}
+      <div class="px-4 py-1">
+        <span class="line-clamp-2 text-xs text-gray-400">
+          {{ with .Description }}
+            {{- . -}}
+          {{ else }}
+            {{- .Summary -}}
+          {{ end }}
+        </span>
+      </div>
+
+      {{/* tags */}}
+      {{ $tags := (.GetTerms "tags") }}
+      {{ $tagsNums := len $tags }}
+      {{ if ge $tagsNums 1 }}
+        <div class="absolute bottom-3 flex flex-row px-4">
+          <svg class="icon" width="16px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill="#D1D5DB"
+              d="M690 78.2l255.6 258.6c104.8 106 104.8 276.4 0 382.4l-224 226.6c-18.6 18.8-49 19-67.8 0.4s-19-49-0.4-67.8l223.8-226.6c67.8-68.6 67.8-178.8 0-247.4L621.8 145.8c-18.6-18.8-18.4-49.2 0.4-67.8s49.2-18.4 67.8 0.4zM0 459V160c0-53 43-96 96-96h299c34 0 66.6 13.4 90.6 37.4l336 336c50 50 50 131 0 181L554.6 885.4c-50 50-131 50-181 0l-336-336C13.4 525.4 0 493 0 459zM288 288a64 64 0 1 0-128 0 64 64 0 1 0 128 0z"
+            />
+          </svg>
+          {{ range $tags }}
+            <a
+              class="mx-1 my-0.5 rounded-xl bg-gray-200 bg-opacity-30 px-1.5 py-0.5 text-center text-xs text-gray-500 hover:bg-opacity-80 hover:text-cyan-600"
+              href="{{ .Permalink }}"
+              >{{ .LinkTitle }}</a
+            >
+          {{ end }}
+        </div>
+      {{ end }}
     </div>
-  </ul>
-{{ end }}
+  {{ end }}
+</div>
