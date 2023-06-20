@@ -1,5 +1,5 @@
 {{/* Pagination */}}
-<div class="mx-auto w-11/12">
+<div class="mx-auto my-5 w-11/12">
   {{ $pag := .Paginator }}
   {{ if gt $pag.TotalPages 1 }}
     <div class="flex flex-row items-center justify-between space-x-2">
@@ -7,7 +7,7 @@
       <div class="{{ if not $pag.HasPrev }}pointer-events-none opacity-40{{ end }} my-3 items-center">
         <a
           href="{{ if $pag.HasPrev }}{{ $pag.Prev.URL }}{{ end }}"
-          class="transform border border-gray-900 bg-black px-7 py-2 font-bold text-white duration-500 hover:border hover:border-black hover:bg-white hover:text-black"
+          class="transform rounded-md border border-gray-900 bg-black px-7 py-2 font-bold text-white duration-500 hover:border hover:border-black hover:bg-white hover:text-black"
         >
           &larr; Prev</a
         >
@@ -17,7 +17,7 @@
       <div class="{{ if not $pag.HasNext }}pointer-events-none opacity-40{{ end }} my-3 items-center">
         <a
           href="{{ if $pag.HasNext }}{{ $pag.Next.URL }}{{ end }}"
-          class="transform border border-gray-900 bg-black px-7 py-2 font-bold text-white duration-500 hover:border hover:border-black hover:bg-white hover:text-black"
+          class="transform rounded-md border border-gray-900 bg-black px-7 py-2 font-bold text-white duration-500 hover:border hover:border-black hover:bg-white hover:text-black"
           >Next &rarr;</a
         >
       </div>
