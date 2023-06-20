@@ -2,27 +2,25 @@
 <aside class="hidden space-y-6 text-gray-900 md:flex md:flex-col">
   {{/* @todo 文章列表缩略图 */}}
   {{/* category */}}
-  <div class="flex w-72 flex-col bg-white px-5">
-    <div class="bottom-3 py-3 text-left text-sm font-semibold uppercase">- category</div>
+  <div class="flex w-[17rem] flex-col rounded-md bg-white px-5">
+    <div class="bottom-3 py-3 text-left text-sm font-semibold uppercase">category</div>
 
     <div class="mb-4 mt-0 border-b border-gray-400"></div>
 
-    <ul class="mb-4 flex flex-col space-y-1">
+    <ul class="mb-4 flex flex-col space-y-1 text-xs">
       {{ range .Site.Taxonomies.categories }}
-        <li class="theme-aside flex flex-row items-center justify-between">
-          <a class="text-xs before:content-['·_']" href="{{ .Page.Permalink }}">{{ .Page.Title }}</a>
-          {{ $w4 := "w-4" }}
-          <p class="{{ or (gt .Count 100) ($w4) }} h-4 rounded-full bg-gray-600 text-center text-xs text-white">
-            {{- .Count -}}
-          </p>
+        <li
+          class="my-0.5 rounded-md bg-gray-200 bg-opacity-30 px-2 py-1 text-center text-gray-900 hover:bg-opacity-80 hover:text-blue-700"
+        >
+          <a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a>
         </li>
       {{ end }}
     </ul>
   </div>
 
   {{/* tag cloud */}}
-  <div class="flex w-72 flex-col bg-white px-4">
-    <div class="bottom-3 py-3 text-left text-sm font-semibold uppercase">- tag cloud</div>
+  <div class="flex w-[17rem] flex-col rounded-md bg-white px-4">
+    <div class="bottom-3 py-3 text-left text-sm font-semibold uppercase">tags</div>
 
     <div class="mb-4 mt-0 border-b border-gray-400"></div>
 
@@ -54,7 +52,7 @@
     <ul class="mb-5 flex flex-wrap justify-center gap-3 text-xs">
       {{ range .Site.Taxonomies.tags }}
         <li
-          class="my-0.5 rounded-md bg-gray-200 bg-opacity-30 px-2 py-1 text-center text-gray-900 hover:bg-opacity-80 hover:text-cyan-600"
+          class="my-0.5 rounded-md bg-gray-200 bg-opacity-30 px-2 py-1 text-center text-gray-900 hover:bg-opacity-80 hover:text-blue-700"
         >
           <a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a>
         </li>

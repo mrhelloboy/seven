@@ -1,8 +1,8 @@
 <div class="grid grid-cols-1 gap-x-4 gap-y-4 lg:grid-cols-2">
   {{ range .Paginator.Pages }}
-    <div class="group relative mx-auto h-[26rem] w-full border bg-white shadow-sm hover:border-blue-700">
+    <div class="group relative mx-auto h-[25rem] w-full rounded-md border bg-white shadow-sm hover:border-blue-700">
       {{/* Item Preview image */}}
-      <div class="h-52 w-full overflow-hidden">
+      <div class="h-52 w-full overflow-hidden rounded-t-[4.5px]">
         <img
           class="object-cover group-hover:scale-110 group-hover:brightness-75 group-hover:transition-transform group-hover:duration-700 group-hover:ease-in-out"
           src="{{ if .Params.image }}
@@ -15,7 +15,7 @@
         />
       </div>
 
-      <div class="flex flex-row justify-between px-4 pb-1 pt-4 ">
+      <div class="flex flex-row justify-between px-4 pb-1 pt-3 ">
         {{ $categories := (.GetTerms "categories") }}
         {{ $cateNums := len $categories }}
         {{ if ge $cateNums 1 }}
@@ -28,7 +28,7 @@
             </svg>
             {{ range $categories }}
               <a
-                class="mx-1 my-0.5 rounded-xl bg-gray-200 bg-opacity-30 px-1.5 py-0.5 text-center text-xs text-gray-500 hover:bg-opacity-80 hover:text-cyan-600"
+                class="mx-1 my-0.5 rounded-md bg-gray-200 bg-opacity-30 px-1.5 py-0.5 text-center text-xs text-gray-500 hover:bg-opacity-80 hover:text-blue-700"
                 href="{{ .Permalink }}"
                 >{{ .LinkTitle }}</a
               >
@@ -42,7 +42,7 @@
       </div>
 
       {{/* Item Title */}}
-      <div class="px-4 py-2">
+      <div class="px-4 py-1">
         <a href="{{ .Permalink }}" class="text-center text-xl font-bold text-black hover:text-blue-700">{{ .Title }}</a>
       </div>
 
@@ -70,7 +70,7 @@
           </svg>
           {{ range $tags }}
             <a
-              class="mx-1 my-0.5 rounded-xl bg-gray-200 bg-opacity-30 px-1.5 py-0.5 text-center text-xs text-gray-500 hover:bg-opacity-80 hover:text-cyan-600"
+              class="mx-1 my-0.5 rounded-md bg-gray-200 bg-opacity-30 px-1.5 py-0.5 text-center text-xs text-gray-500 hover:bg-opacity-80 hover:text-blue-700"
               href="{{ .Permalink }}"
               >{{ .LinkTitle }}</a
             >
