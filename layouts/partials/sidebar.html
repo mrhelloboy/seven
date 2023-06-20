@@ -24,37 +24,38 @@
 
     <div class="mb-4 mt-0 border-b border-gray-400"></div>
 
-    <!--
-      <section>
-      <ul id="all-taxonomies">
-        {{ range $taxonomy_term, $taxonomy := .Site.Taxonomies }}
-      {{ with $.Site.GetPage (printf "/%s" $taxonomy_term) }}
-        <li>
-          <a href="{{ .Permalink }}">{{ $taxonomy_term }}</a>
-          <ul>
-            {{ range $key, $value := $taxonomy }}
-              <li>{{ $key }}</li>
-              <ul>
-                {{ range $value.Pages }}
-                  <li hugo-nav="{{ .RelPermalink }}">
-                    <a href="{{ .Permalink }}">{{ .LinkTitle }}</a>
-                  </li>
-                {{ end }}
-              </ul>
-            {{ end }}
-          </ul>
-        </li>
-      {{ end }}
-    {{ end }}
-      </ul>
-    </section>-->
-
     <ul class="mb-5 flex flex-wrap justify-center gap-3 text-xs">
       {{ range .Site.Taxonomies.tags }}
         <li
           class="my-0.5 rounded-md bg-gray-200 bg-opacity-30 px-2 py-1 text-center text-gray-900 hover:bg-opacity-80 hover:text-blue-700"
         >
           <a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+
+  {{/* recommend posts */}}
+  <div class="flex w-[17rem] flex-col rounded-md bg-white px-4">
+    <div class="bottom-3 py-3 text-left text-sm font-semibold uppercase">Recommend Posts</div>
+    <div class="mb-4 mt-0 border-b border-gray-400"></div>
+    <ul class="mb-4 flex flex-col space-y-1 text-xs">
+      {{ range first 10 (where (where (where .Site.Pages "Type" "posts") "IsPage" true ) "Params.is_recommend" true) }}
+        <li class="my-0.5 truncate py-1 hover:text-blue-700">
+          <a class="before:content-['·_']" href="{{ .Permalink }}">{{ .Title }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+
+  {{/* Latest Posts */}}
+  <div class="flex w-[17rem] flex-col rounded-md bg-white px-4">
+    <div class="bottom-3 py-3 text-left text-sm font-semibold uppercase">Latest Posts</div>
+    <div class="mb-4 mt-0 border-b border-gray-400"></div>
+    <ul class="mb-4 flex flex-col space-y-1 text-xs">
+      {{ range first 10 (where (where .Site.Pages "Type" "posts") "IsPage" true) }}
+        <li class="my-0.5 truncate py-1 hover:text-blue-700">
+          <a class="before:content-['·_']" href="{{ .Permalink }}">{{ .Title }}</a>
         </li>
       {{ end }}
     </ul>
