@@ -1,5 +1,76 @@
 {{ define "main" }}
   {{- partial "hero.html" . -}}
-  {{ $paginator := .Paginate (where (where .Site.Pages "Type" "posts") "IsPage" true) }}
-  {{- partial "posts.html" . -}}
+  <section id="index-content" class="mx-auto max-w-[88rem] px-3 py-8 md:px-6">
+    {{/* Lastest Posts */}}
+    {{ $lastestPosts := first 3 (where (where .Site.Pages "Type" "posts") "IsPage" true) }}
+
+
+    <div class="grid grid-cols-1 gap-7 overflow-y-hidden lg:grid-cols-7 lg:gap-x-6">
+      {{/* 第一篇文章布局 */}}
+      {{ $firstPost := index $lastestPosts 0 }}
+      {{ if $firstPost }}
+        <div class="col-span-1 flex flex-col lg:col-span-4 lg:row-span-2">
+          {{/* Title */}}
+          <div class="py-5 text-6xl font-extrabold">{{ $firstPost.Title }}</div>
+
+          {{/* Date and Read time */}}
+          <p class="pb-5 tracking-wide">
+            Published on {{ $firstPost.Date.Format "January 2 2006" }} · {{ $firstPost.ReadingTime }} min read
+          </p>
+
+          {{/* Image */}}
+          <div class="shrink-0 overflow-hidden rounded-2xl">
+            <img
+              class="h-96 w-full rounded-2xl object-cover hover:scale-110 hover:brightness-75 hover:transition-transform hover:duration-700"
+              src="{{ if .Params.image }}
+                {{- .Params.image  | relURL -}}
+              {{ else }}
+                {{- .Site.Params.hero.img | relURL -}}
+              {{ end }}"
+              alt="preview image"
+              srcset=""
+            />
+          </div>
+
+          {{/* Content */}}
+          <div class="prose max-w-none grow overflow-hidden px-1 py-5 text-base">
+            {{ $firstPost.Summary }}
+          </div>
+
+          <div class="px-1 py-4 font-semibold text-blue-700">
+            <a href="{{ $firstPost.Permalink }}">Read more &rarr;</a>
+          </div>
+        </div>
+      {{ end }}
+
+      {{/* 第二篇文章布局 */}}
+      {{ $secondPost := index $lastestPosts 1 }}
+      <div class="col-span-1 flex flex-col lg:col-span-3 lg:row-span-1">
+        {{ with $secondPost }}
+          {{ partial "index_card.html" . }}
+        {{ end }}
+      </div>
+
+      {{/* 第三篇文章布局 */}}
+      {{ $thirdPost := index $lastestPosts 2 }}
+      <div class="col-span-1 flex flex-col lg:col-span-3 lg:row-span-1">
+        {{ with $thirdPost }}
+          {{ partial "index_card.html" . }}
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <section id="index-recommend" class="mx-auto max-w-[88rem] px-3 py-8 md:px-6">
+    <div class="pb-10 pt-2  text-5xl">Recommend Posts for you</div>
+    {{ $recommendPosts := first 6 (where (where (where .Site.Pages "Type" "posts") "IsPage" true ) "Params.is_recommend" true) }}
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:grid-rows-2">
+      {{ range $recommendPosts }}
+        <div class="flex flex-col">
+          {{ partial "index_card.html" . }}
+        </div>
+      {{ end }}
+
+    </div>
+  </section>
 {{ end }}

@@ -1,0 +1,39 @@
+{{/* Image */}}
+<div class="mb-5 shrink-0 overflow-hidden rounded-2xl">
+  <img
+    class="h-80 w-full rounded-2xl object-cover hover:scale-110 hover:brightness-75 hover:transition-transform hover:duration-700"
+    src="{{ if .Params.image }}
+      {{- .Params.image  | relURL -}}
+    {{ else }}
+      {{- .Site.Params.hero.img | relURL -}}
+    {{ end }}"
+    alt="preview image"
+    srcset=""
+  />
+</div>
+
+{{/* categories and Read time */}}
+{{ $categories := (.GetTerms "categories") }}
+{{ $cate := index $categories 0 }}
+<div>
+  <span
+    ><a class="inline-flex" href="{{ $cate.Permalink }}">{{ $cate.LinkTitle }}</a> ·
+    {{ .ReadingTime }}
+    min read</span
+  >
+</div>
+
+{{/* Title */}}
+<div class="py-5 text-4xl font-bold">{{ .Title }}</div>
+
+{{/* Sumary */}}
+<div
+  class="prose prose-base line-clamp-6 max-w-none overflow-hidden px-1 text-base prose-h2:text-base prose-code:text-black prose-pre:bg-transparent prose-img:hidden prose-video:hidden"
+>
+  {{ .Summary }}
+</div>
+
+{{/* Read more */}}
+<div class="px-1 py-4 font-semibold text-blue-700">
+  <a href="{{ .Permalink }}">Read more &rarr;</a>
+</div>
