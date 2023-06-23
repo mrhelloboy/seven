@@ -1,16 +1,13 @@
 {{/* Taxonomy */}}
-<aside class="hidden space-y-6 text-gray-900 md:flex md:flex-col">
+<aside class="hidden space-y-2 text-gray-900 md:flex md:flex-col">
   {{/* @todo 文章列表缩略图 */}}
   {{/* category */}}
-  <div class="flex w-[17rem] flex-col rounded-md bg-white px-5">
-    <div class="bottom-3 py-3 text-left text-sm font-semibold uppercase">category</div>
-
-    <div class="mb-4 mt-0 border-b border-gray-400"></div>
-
-    <ul class="mb-4 flex flex-col space-y-1 text-xs">
+  <div class="flex w-[17rem] flex-col px-5">
+    <div class="bottom-3 border-b-[0.5px] border-black py-3 text-left font-semibold capitalize">categories</div>
+    <ul class="my-5 flex flex-wrap justify-center gap-3 text-xs">
       {{ range .Site.Taxonomies.categories }}
         <li
-          class="my-0.5 rounded-md bg-gray-200 bg-opacity-30 px-2 py-1 text-center text-gray-900 hover:bg-opacity-80 hover:text-blue-700"
+          class="my-0.5 rounded-md px-2 py-1 text-center font-medium text-gray-900 hover:bg-blue-700 hover:text-white hover:duration-500"
         >
           <a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a>
         </li>
@@ -19,15 +16,12 @@
   </div>
 
   {{/* tag cloud */}}
-  <div class="flex w-[17rem] flex-col rounded-md bg-white px-4">
-    <div class="bottom-3 py-3 text-left text-sm font-semibold uppercase">tags</div>
-
-    <div class="mb-4 mt-0 border-b border-gray-400"></div>
-
-    <ul class="mb-5 flex flex-wrap justify-center gap-3 text-xs">
+  <div class="flex w-[17rem] flex-col px-4">
+    <div class="bottom-3 border-b-[0.5px] border-black py-3 text-left font-semibold capitalize">tags</div>
+    <ul class="my-5 flex flex-wrap justify-center gap-3 text-xs">
       {{ range .Site.Taxonomies.tags }}
         <li
-          class="my-0.5 rounded-md bg-gray-200 bg-opacity-30 px-2 py-1 text-center text-gray-900 hover:bg-opacity-80 hover:text-blue-700"
+          class="my-0.5 rounded-md px-2 py-1 text-center font-medium text-gray-900 hover:bg-blue-700 hover:text-white hover:duration-500"
         >
           <a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a>
         </li>
@@ -36,12 +30,11 @@
   </div>
 
   {{/* recommend posts */}}
-  <div class="flex w-[17rem] flex-col rounded-md bg-white px-4">
-    <div class="bottom-3 py-3 text-left text-sm font-semibold uppercase">Recommend Posts</div>
-    <div class="mb-4 mt-0 border-b border-gray-400"></div>
-    <ul class="mb-4 flex flex-col space-y-1 text-xs">
+  <div class="flex w-[17rem] flex-col px-4">
+    <div class="bottom-3 border-b-[0.5px] border-black py-3 text-left font-semibold capitalize">Recommend Posts</div>
+    <ul class="my-4 flex flex-col space-y-1 text-xs">
       {{ range first 10 (where (where (where .Site.Pages "Type" "posts") "IsPage" true ) "Params.is_recommend" true) }}
-        <li class="my-0.5 truncate py-1 hover:text-blue-700">
+        <li class="my-0.5 truncate py-1 font-medium hover:text-blue-700">
           <a class="before:content-['·_']" href="{{ .Permalink }}">{{ .Title }}</a>
         </li>
       {{ end }}
@@ -49,12 +42,11 @@
   </div>
 
   {{/* Latest Posts */}}
-  <div class="flex w-[17rem] flex-col rounded-md bg-white px-4">
-    <div class="bottom-3 py-3 text-left text-sm font-semibold uppercase">Latest Posts</div>
-    <div class="mb-4 mt-0 border-b border-gray-400"></div>
-    <ul class="mb-4 flex flex-col space-y-1 text-xs">
+  <div class="flex w-[17rem] flex-col px-4">
+    <div class="bottom-3 border-b-[0.5px] border-black py-3 text-left font-semibold capitalize">Latest Posts</div>
+    <ul class="my-4 flex flex-col space-y-1 text-xs">
       {{ range first 10 (where (where .Site.Pages "Type" "posts") "IsPage" true) }}
-        <li class="my-0.5 truncate py-1 hover:text-blue-700">
+        <li class="my-0.5 truncate py-1 font-medium hover:text-blue-700">
           <a class="before:content-['·_']" href="{{ .Permalink }}">{{ .Title }}</a>
         </li>
       {{ end }}
