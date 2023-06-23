@@ -5,7 +5,7 @@
     {{ $lastestPosts := first 3 (where (where .Site.Pages "Type" "posts") "IsPage" true) }}
 
 
-    <div class="grid grid-cols-1 gap-7 overflow-y-hidden lg:grid-cols-7 lg:gap-x-6">
+    <div class="grid grid-cols-1 gap-7 overflow-y-hidden lg:grid-cols-7 lg:gap-x-8">
       {{/* 第一篇文章布局 */}}
       {{ $firstPost := index $lastestPosts 0 }}
       {{ if $firstPost }}
@@ -19,9 +19,9 @@
           </p>
 
           {{/* Image */}}
-          <div class="shrink-0 overflow-hidden rounded-2xl">
+          <div class="shrink-0 overflow-hidden">
             <img
-              class="h-96 w-full rounded-2xl object-cover hover:scale-110 hover:brightness-75 hover:transition-transform hover:duration-700"
+              class="h-96 w-full object-cover hover:scale-110 hover:brightness-75 hover:transition-transform hover:duration-700"
               src="{{ if .Params.image }}
                 {{- .Params.image  | relURL -}}
               {{ else }}
@@ -33,7 +33,7 @@
           </div>
 
           {{/* Content */}}
-          <div class="prose max-w-none grow overflow-hidden px-1 py-5 text-base">
+          <div class="prose max-w-none grow overflow-hidden px-1 py-5 text-base prose-headings:text-[#374151]">
             {{ $firstPost.Summary }}
           </div>
 
