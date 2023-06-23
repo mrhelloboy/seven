@@ -33,7 +33,9 @@
           </div>
 
           {{/* Content */}}
-          <div class="prose max-w-none grow overflow-hidden px-1 py-5 text-base prose-headings:text-[#374151]">
+          <div
+            class="prose max-w-none grow overflow-hidden px-1 py-5 prose-headings:my-5 prose-headings:font-normal prose-headings:leading-3 prose-headings:text-gray-700 prose-code:text-gray-700 prose-pre:bg-transparent"
+          >
             {{ $firstPost.Summary }}
           </div>
 
@@ -64,7 +66,7 @@
   <section id="index-recommend" class="mx-auto max-w-[88rem] px-3 py-8 md:px-6">
     <div class="pb-10 pt-2  text-5xl">Recommend Posts for you</div>
     {{ $recommendPosts := first 6 (where (where (where .Site.Pages "Type" "posts") "IsPage" true ) "Params.is_recommend" true) }}
-    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:grid-rows-2">
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:grid-rows-2 lg:gap-x-8">
       {{ range $recommendPosts }}
         <div class="flex flex-col">
           {{ partial "index_card.html" . }}
