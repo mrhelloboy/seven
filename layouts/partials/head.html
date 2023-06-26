@@ -4,6 +4,14 @@
     {{ .Title }}
   </title>
   <meta name="description" content="{{ .Description }}" />
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.0.0/themes/reset-min.css"
+    integrity="sha256-2AeJLzExpZvqLUxMfcs+4DWcMwNfpnjUeAAvEtPr0wU="
+    crossorigin="anonymous"
+  />
+
   {{ $options := dict "inlineImports" true }}
   {{ $styles := resources.Get "css/styles.css" }}
   {{ $styles = $styles | resources.PostCSS $options }}
@@ -11,4 +19,11 @@
     {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
   {{ end }}
   <link href="{{ $styles.RelPermalink }}" rel="stylesheet" />
+
+  {{ $search_styles := resources.Get "/css/search.css" }}
+  {{ $search_styles = $search_styles | resources.PostCSS $options }}
+  {{ if hugo.IsProduction }}
+    {{ $search_styles = $search_styles | minify | fingerprint | resources.PostProcess }}
+  {{ end }}
+  <link href="{{ $search_styles.RelPermalink }}" rel="stylesheet" />
 </head>

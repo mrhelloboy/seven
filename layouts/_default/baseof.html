@@ -6,6 +6,7 @@
     <div class="grow">
       {{- block "main" . }}{{- end }}
     </div>
+    {{- partial "search.html" . -}}
     {{- partial "footer.html" . -}}
     <script src="/js/script.js" defer></script>
     {{- block "script" . }}{{- end }}

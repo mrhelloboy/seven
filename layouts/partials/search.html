@@ -1,0 +1,80 @@
+{{/* Search */}}
+<section class="m-h-screen fixed inset-0 top-0 z-30 h-full w-full bg-gray-800 opacity-90">
+  <div class="mx-auto mt-20 flex max-w-2xl flex-col rounded-xl bg-white pb-4 pt-1">
+    <div id="searchBox" class="my-4 flex w-full flex-row items-center px-6"></div>
+
+    <div class="border-b-[0.5px] border-gray-400"></div>
+    <div id="searchResults" class="my-3 px-6"></div>
+    <div id="NotSearchResults" class="hidden px-6 py-10 text-center text-lg text-gray-500">No recent searches</div>
+    <div class="mb-3 border-b-[0.5px] border-gray-400 px-6 "></div>
+    <div id="powered-by" class="px-6"></div>
+  </div>
+</section>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/algoliasearch@4.17.2/dist/algoliasearch-lite.umd.js"
+  integrity="sha256-X2G+vjV8i6Jj2NSGFTvy6Z4q2AlmF5aH0HiIpWJ8eU4="
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.56.3/dist/instantsearch.production.min.js"
+  integrity="sha256-mWvjWAfZylKMOg+S3HLq+wng1HHRnl2Idr2r8NsUzIU="
+  crossorigin="anonymous"
+></script>
+<script>
+  {{/*  const searchClient = algoliasearch("995JRM5ZAU", "4a1095e4b8c96d2baee42d4c64b16afa");  */}}
+  const searchClient = algoliasearch("{{ .Site.Params.algolia.app_id }}", "{{.Site.Params.algolia.api_key}}");
+  const search = instantsearch({
+    searchClient,
+    indexName: "{{ .Site.Params.algolia.index }}",
+    insights: true,
+    searchFunction(helper) {
+      const container = document.querySelector("#searchResults");
+      const notSearch = document.querySelector("#NotSearchResults");
+      if (helper.state.query === "") {
+        container.style.display = "none";
+        notSearch.classList.remove("hidden");
+      } else {
+        container.style.display = "";
+        notSearch.classList.add("hidden");
+      }
+      helper.search();
+    },
+  });
+
+  const { searchBox } = instantsearch.widgets;
+  const { configure } = instantsearch.widgets;
+  const { hits } = instantsearch.widgets;
+  const { poweredBy } = instantsearch.widgets;
+
+  search.addWidgets([
+    configure({
+      hitsPerPage: 10,
+      enablePersonalization: false,
+    }),
+    searchBox({
+      container: "#searchBox",
+      placeholder: "Search",
+      showReset: false,
+      showLoadingIndicator: false,
+      showSubmit: true,
+      autofocus: true,
+    }),
+    hits({
+      container: "#searchResults",
+      templates: {
+        item(hit, { html, components }) {
+          return html` <a href="${hit.permalink}">${components.Highlight({ attribute: "title", hit })}</a> `;
+        },
+        empty(results, { html }) {
+          return html`No results for <q>${results.query}</q>`;
+        },
+      },
+    }),
+    poweredBy({
+      container: "#powered-by",
+    }),
+  ]);
+
+  search.start();
+</script>
