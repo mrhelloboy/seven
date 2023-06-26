@@ -1,7 +1,18 @@
 {{/* Search */}}
-<section class="m-h-screen fixed inset-0 top-0 z-30 h-full w-full bg-gray-800 opacity-90">
+<section id="search-section" class="m-h-screen inset-0 top-0 z-30 hidden h-full w-full bg-gray-800 opacity-90">
   <div class="mx-auto mt-20 flex max-w-2xl flex-col rounded-xl bg-white pb-4 pt-1">
-    <div id="searchBox" class="my-4 flex w-full flex-row items-center px-6"></div>
+    <div class="flex flex-row justify-between px-6">
+      <div id="searchBox" class="my-4 flex w-full flex-row items-center"></div>
+      <div class="flex flex-row items-center pl-2">
+        <div class="border-l-1 mr-2 h-6 border border-gray-100"></div>
+        <button
+          id="cancel-search"
+          class="rounded-md bg-gray-50 p-1 text-gray-500 hover:bg-gray-300 hover:text-blue-700"
+        >
+          Esc
+        </button>
+      </div>
+    </div>
 
     <div class="border-b-[0.5px] border-gray-400"></div>
     <div id="searchResults" class="my-3 px-6"></div>
@@ -22,7 +33,27 @@
   crossorigin="anonymous"
 ></script>
 <script>
-  {{/*  const searchClient = algoliasearch("995JRM5ZAU", "4a1095e4b8c96d2baee42d4c64b16afa");  */}}
+  const searchIcon = document.getElementById("search-icon");
+  const searchSection = document.getElementById("search-section");
+  const cancelSearch = document.getElementById("cancel-search");
+  searchIcon.addEventListener("click", (e)=> {
+    showOrHiddenSearch();
+  });
+  cancelSearch.addEventListener("click", (e)=> {
+    showOrHiddenSearch();
+  });
+  document.addEventListener("keydown", function(event) {
+    if (event.code === "Escape") {
+      showOrHiddenSearch();
+    }
+  });
+
+  function showOrHiddenSearch() {
+    searchSection.classList.toggle("hidden");
+    searchSection.classList.toggle("fixed");
+    document.body.classList.toggle("overflow-hidden")
+  }
+
   const searchClient = algoliasearch("{{ .Site.Params.algolia.app_id }}", "{{.Site.Params.algolia.api_key}}");
   const search = instantsearch({
     searchClient,
