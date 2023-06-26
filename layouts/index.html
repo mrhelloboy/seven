@@ -1,5 +1,4 @@
 {{ define "main" }}
-  {{- partial "hero.html" . -}}
   <section id="index-content" class="mx-auto max-w-[88rem] px-3 py-8 md:px-6">
     {{/* Lastest Posts */}}
     {{ $lastestPosts := first 3 (where (where .Site.Pages "Type" "posts") "IsPage" true) }}

@@ -1,9 +1,12 @@
-<section id="menu-section" class="bg-white">
-  <nav class="container mx-auto max-w-[85rem] p-4">
+<section
+  id="menu-section"
+  class="{{ if .IsHome }}h-[560px] shrink-0 bg-cover{{ end }} bg-white "
+  {{ if .IsHome }}style="background-image: url(/images/1-2.jpg);"{{ end }}
+>
+  <nav class="container mx-auto max-w-[85rem] p-2">
     <!-- Flex Container For Nav Items -->
     <div class="my-3 flex max-h-10 items-center justify-between space-x-20">
       <!-- Logo -->
-
       <div class="z-30">
         {{/* {{ .Scratch.Set "isHeader" true }} */}}
         <a href="{{ "/" | relLangURL }}">
