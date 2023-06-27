@@ -1,5 +1,5 @@
 {{ define "main" }}
-  <div class="mx-auto my-5 max-w-7xl bg-white px-5">
+  <div class="mx-auto my-5 max-w-7xl bg-slate-50 px-5">
     {{ $metaInfo := .Site.Params.articleMeta }}
     {{ $maxW := "max-w-[58.5rem]" }}
     {{ if $metaInfo.disableToc }}
@@ -141,7 +141,7 @@
         id="catalog"
         class="fixed bottom-0 right-[max(0px,calc(50%-38.7rem))] top-24 z-20 mt-5 hidden w-72 overflow-y-auto xl:block"
       >
-        <aside class="bg-white px-5 pb-5">
+        <aside class="bg-slate-50 px-5 pb-5">
           <div class="bottom-3 mt-7 border-gray-400 px-2 py-3 text-left text-sm font-semibold uppercase">Catalog</div>
           <div class="mb-4 mt-0 border-b border-gray-400"></div>
           {{ .TableOfContents }}
