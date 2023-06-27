@@ -10,7 +10,9 @@
       {{ if $firstPost }}
         <div class="col-span-1 flex flex-col lg:col-span-4 lg:row-span-2">
           {{/* Title */}}
-          <div class="py-5 text-6xl font-extrabold">{{ $firstPost.Title }}</div>
+          <div class="py-5 text-6xl font-extrabold hover:text-blue-700">
+            <a href="{{ $firstPost.Permalink }}">{{ $firstPost.Title }}</a>
+          </div>
 
           {{/* Date and Read time */}}
           <p class="pb-5 font-postmeta text-lg font-bold tracking-wider">
@@ -63,7 +65,7 @@
   </section>
 
   <section id="index-recommend" class="mx-auto max-w-[88rem] px-3 py-8 md:px-6">
-    <div class="pb-10 pt-2  text-5xl">Recommend Posts for you</div>
+    <div class="pb-10 pt-2 text-5xl font-bold">Recommend Posts for you</div>
     {{ $recommendPosts := first 6 (where (where (where .Site.Pages "Type" "posts") "IsPage" true ) "Params.is_recommend" true) }}
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:grid-rows-2 lg:gap-x-8">
       {{ range $recommendPosts }}
