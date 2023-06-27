@@ -43,7 +43,7 @@
     showOrHiddenSearch();
   });
   document.addEventListener("keydown", function(event) {
-    if (event.code === "Escape") {
+    if (event.code === "Escape" && searchSection.classList.contains("fixed")) {
       showOrHiddenSearch();
     }
   });
