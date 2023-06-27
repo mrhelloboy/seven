@@ -1,7 +1,12 @@
 <section
   id="menu-section"
   class="{{ if .IsHome }}h-[560px] shrink-0 bg-cover{{ end }} bg-white "
-  {{ if .IsHome }}style="background-image: url(/images/1-2.jpg);"{{ end }}
+  {{ if .IsHome }}
+    {{ $image := resources.Get .Site.Params.hero.img }}
+    {{ with $image }}
+      style="background-image: url('{{ .Permalink }}');"
+    {{ end }}
+  {{ end }}
 >
   <nav class="container mx-auto max-w-[85rem] p-2">
     <!-- Flex Container For Nav Items -->
