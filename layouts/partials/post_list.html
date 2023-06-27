@@ -3,13 +3,15 @@
     <div class="group relative mx-auto h-[23rem] w-full bg-slate-50">
       {{/* Item Preview image */}}
       <div class="h-52 w-full overflow-hidden">
+        {{ $image := resources.Get .Params.image }}
+        {{ if lt $image.Height $image.Width }}
+          {{ $image = $image.Resize "x400 q100" }}
+        {{ else }}
+          {{ $image = $image.Resize "500x q100" }}
+        {{ end }}
         <img
           class="object-cover group-hover:scale-105 group-hover:brightness-75 group-hover:transition-transform group-hover:duration-700 group-hover:ease-in-out"
-          src="{{ if .Params.image }}
-            {{- .Params.image  | relURL -}}
-          {{ else }}
-            {{- .Site.Params.hero.img | relURL -}}
-          {{ end }}"
+          src="{{ $image.Permalink }}"
           alt="preview image"
           srcset=""
         />

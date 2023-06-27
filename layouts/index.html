@@ -21,13 +21,11 @@
 
           {{/* Image */}}
           <div class="shrink-0 overflow-hidden">
+            {{ $image := resources.Get $firstPost.Params.image }}
+            {{ $image := $image.Resize "x700 q100" }}
             <img
               class="h-96 w-full object-cover hover:scale-110 hover:brightness-75 hover:transition-transform hover:duration-700"
-              src="{{ if .Params.image }}
-                {{- .Params.image  | relURL -}}
-              {{ else }}
-                {{- .Site.Params.hero.img | relURL -}}
-              {{ end }}"
+              src="{{ $image.Permalink }}"
               alt="preview image"
               srcset=""
             />
