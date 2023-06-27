@@ -1,7 +1,7 @@
 {{/* Image */}}
-<div class="mb-5 shrink-0 overflow-hidden">
+<div class="shrink-0 overflow-hidden">
   <img
-    class="h-80 w-full object-cover hover:scale-110 hover:brightness-75 hover:transition-transform hover:duration-700"
+    class="mb-2 h-80 w-full object-cover hover:scale-110 hover:brightness-75 hover:transition-transform hover:duration-700"
     src="{{ if .Params.image }}
       {{- .Params.image  | relURL -}}
     {{ else }}
@@ -12,28 +12,24 @@
   />
 </div>
 
-{{/* categories and Read time */}}
-{{ $categories := (.GetTerms "categories") }}
-{{ $cate := index $categories 0 }}
-<div>
-  <span
-    ><a class="inline-flex" href="{{ $cate.Permalink }}">{{ $cate.LinkTitle }}</a> ·
-    {{ .ReadingTime }}
-    min read</span
-  >
+{{/* Date and Read time */}}
+<div class="py-1">
+  <p class="font-postmeta tracking-wider">
+    Published on {{ .Date.Format "January 2 2006" }} · {{ .ReadingTime }} min read
+  </p>
 </div>
 
 {{/* Title */}}
-<div class="py-5 text-4xl font-bold">{{ .Title }}</div>
+<div class="py-2 text-4xl font-bold">{{ .Title }}</div>
 
 {{/* Sumary */}}
 <div
-  class="prose prose-base line-clamp-6 max-w-none overflow-hidden px-1 prose-headings:my-5 prose-headings:font-normal prose-headings:leading-3 prose-headings:text-gray-700 prose-code:text-gray-700 prose-pre:bg-transparent prose-img:hidden prose-video:hidden"
+  class="prose prose-base line-clamp-6 max-w-none overflow-hidden px-1 py-2 prose-headings:my-5 prose-headings:font-normal prose-headings:leading-3 prose-headings:text-gray-700 prose-code:text-gray-700 prose-pre:bg-transparent prose-img:hidden prose-video:hidden"
 >
   {{ .Summary }}
 </div>
 
 {{/* Read more */}}
-<div class="px-1 py-4 font-semibold text-blue-700">
+<div class="px-1 py-3 font-semibold text-blue-700">
   <a href="{{ .Permalink }}">Read more &rarr;</a>
 </div>

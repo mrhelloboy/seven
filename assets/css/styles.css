@@ -125,3 +125,8 @@ html {
 body {
   width: 100vw;
 }
+
+@font-face {
+  font-family: "post-meta";
+  src: url("/font/BigShouldersText-Regular.ttf");
+}
