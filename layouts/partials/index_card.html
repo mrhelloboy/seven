@@ -1,7 +1,7 @@
 {{/* Image */}}
-<div class="shrink-0 overflow-hidden">
+<div class="mb-2 shrink-0 overflow-hidden">
   <img
-    class="mb-2 h-80 w-full object-cover hover:scale-110 hover:brightness-75 hover:transition-transform hover:duration-700"
+    class="h-80 w-full object-cover hover:scale-110 hover:brightness-75 hover:transition-transform hover:duration-700"
     src="{{ if .Params.image }}
       {{- .Params.image  | relURL -}}
     {{ else }}
@@ -20,11 +20,11 @@
 </div>
 
 {{/* Title */}}
-<div class="py-2 text-4xl font-bold">{{ .Title }}</div>
+<div class="mb-2 py-2 text-4xl font-bold">{{ .Title }}</div>
 
 {{/* Sumary */}}
 <div
-  class="prose prose-base line-clamp-6 max-w-none overflow-hidden px-1 py-2 prose-headings:my-5 prose-headings:font-normal prose-headings:leading-3 prose-headings:text-gray-700 prose-code:text-gray-700 prose-pre:bg-transparent prose-img:hidden prose-video:hidden"
+  class="prose prose-base line-clamp-6 max-w-none overflow-hidden prose-headings:my-5 prose-headings:font-normal prose-headings:leading-3 prose-headings:text-gray-700 prose-code:text-gray-700 prose-pre:bg-transparent prose-img:hidden prose-video:hidden"
 >
   {{ .Summary }}
 </div>
