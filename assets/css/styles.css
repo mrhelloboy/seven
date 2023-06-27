@@ -12,6 +12,7 @@
   cursor: pointer;
   width: 24px;
   height: 24px;
+  right: 10px;
   transition: all 0.25s;
   position: relative;
 }
@@ -23,7 +24,7 @@
   position: absolute;
   width: 24px;
   height: 3px;
-  top: 0;
+  top: 4px;
   left: 0;
   background: #000;
   transform: rotate(0);
@@ -43,7 +44,7 @@
   transform: rotate(90deg);
   transform: translateY(0px);
   position: fixed;
-  top: 35px;
+  top: 26px;
   right: 17px;
 }
 
