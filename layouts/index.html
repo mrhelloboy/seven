@@ -10,12 +10,12 @@
       {{ if $firstPost }}
         <div class="col-span-1 flex flex-col lg:col-span-4 lg:row-span-2">
           {{/* Title */}}
-          <div class="py-5 text-6xl font-extrabold hover:text-blue-700">
+          <div class="py-5 text-4xl font-extrabold hover:text-blue-700 lg:text-6xl">
             <a href="{{ $firstPost.Permalink }}">{{ $firstPost.Title }}</a>
           </div>
 
           {{/* Date and Read time */}}
-          <p class="pb-5 font-postmeta text-lg font-bold tracking-wider">
+          <p class="pb-5 font-postmeta tracking-wider lg:text-lg lg:font-bold">
             Published on {{ $firstPost.Date.Format "January 2 2006" }} · {{ $firstPost.ReadingTime }} min read
           </p>
 
@@ -33,7 +33,7 @@
 
           {{/* Content */}}
           <div
-            class="prose max-w-none grow overflow-hidden py-5 prose-headings:my-5 prose-headings:font-normal prose-headings:leading-3 prose-headings:text-gray-700 prose-code:text-gray-700 prose-pre:bg-transparent"
+            class="prose line-clamp-6 max-w-none grow overflow-hidden py-5 prose-headings:my-5 prose-headings:font-normal prose-headings:leading-3 prose-headings:text-gray-700 prose-code:text-gray-700 prose-pre:bg-transparent lg:line-clamp-none"
           >
             {{ $firstPost.Summary }}
           </div>
