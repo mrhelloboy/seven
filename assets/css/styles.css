@@ -63,15 +63,15 @@
 }
 
 .theme-aside {
-  @apply px-2 py-0.5 text-sm hover:rounded-md hover:border-0 hover:bg-gray-100 hover:text-cyan-600;
+  @apply px-2 py-0.5 text-sm hover:rounded-md hover:border-0 hover:bg-gray-100 hover:text-blue-700;
 }
 
 .theme-toc {
-  @apply block truncate px-2 py-1 text-xs hover:text-cyan-600;
+  @apply block truncate px-2 py-1 text-xs hover:text-blue-700;
 }
 
 .theme-toc-active {
-  @apply block truncate rounded-md border-0 bg-gray-100 px-2 py-1 text-xs text-cyan-600;
+  @apply block truncate rounded-md border-0 bg-gray-100 px-2 py-1 text-xs text-blue-700;
 }
 
 .theme-toc-nest {
@@ -80,6 +80,15 @@
 
 .theme-toc-nest::before {
   content: "· ";
+}
+
+/* Image zoom */
+.zoomIn {
+  @apply animate-zoomIn;
+}
+
+.zoomOut {
+  @apply animate-zoomOut;
 }
 
 /* Scrollbar */

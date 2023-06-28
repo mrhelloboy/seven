@@ -51,6 +51,7 @@
 
       {{/* Content */}}
       <div
+        id="single-content"
         class="prose mx-auto max-w-none px-10 py-5 dark:prose-invert md:prose-base prose-figure:flex prose-figure:flex-col prose-figure:items-center prose-img:cursor-zoom-in"
       >
         {{ .Content }}
@@ -93,7 +94,7 @@
             </svg>
             {{ range $categories }}
               <a
-                class="mx-1 my-0.5 rounded-xl bg-gray-200 bg-opacity-30 px-1.5 py-0.5 text-center text-xs text-gray-900 hover:bg-opacity-80 hover:text-cyan-600"
+                class="mx-1 my-0.5 rounded-xl bg-gray-200 bg-opacity-30 px-1.5 py-0.5 text-center text-xs text-gray-900 hover:bg-opacity-80 hover:text-blue-700"
                 href="{{ .Permalink }}"
                 >{{ .LinkTitle }}</a
               >
@@ -113,7 +114,7 @@
             </svg>
             {{ range $tags }}
               <a
-                class="mx-1 my-0.5 rounded-xl bg-gray-200 bg-opacity-30 px-1.5 py-0.5 text-center text-xs text-gray-900 hover:bg-opacity-80 hover:text-cyan-600"
+                class="mx-1 my-0.5 rounded-xl bg-gray-200 bg-opacity-30 px-1.5 py-0.5 text-center text-xs text-gray-900 hover:bg-opacity-80 hover:text-blue-700"
                 href="{{ .Permalink }}"
                 >{{ .LinkTitle }}</a
               >
@@ -122,11 +123,6 @@
         {{ end }}
 
       </div>
-
-      {{/* recommend article */}}
-      {{/* <div class="h-96 w-full bg-white"></div> */}}
-      {{/* comment */}}
-      {{/* <div class="h-96 w-full bg-white"></div> */}}
     </div>
 
     {{/* toc */}}
@@ -145,6 +141,9 @@
 
   </div>
 
+  {{/* image zoom in content */}}
+  {{- partial "img_zoom.html" . -}}
+
   {{ if .Site.Params.enableToTop }}
     {{- partial "to_top.html" . -}}
   {{ end }}
@@ -153,4 +152,5 @@
 
 {{ define "script" }}
   <script src="/js/toc.js" defer></script>
+  <script src="/js/zoom-img.js" defer></script>
 {{ end }}
