@@ -43,22 +43,16 @@
 
       {{/* Image */}}
       {{ if not $metaInfo.disableHero }}
-        <img
-          class="h-120 w-full object-cover"
-          src="{{ if .Params.image }}
-            {{- .Params.image  | relURL -}}
-          {{ else }}
-            {{- .Site.Params.hero.img | relURL -}}
-          {{ end }}"
-          alt="preview image"
-          srcset=""
-        />
+        {{ $image := resources.Get .Params.image }}
+        <img class="h-120 w-full object-cover" src="{{ $image.Permalink }}" alt="preview image" srcset="" />
       {{ else }}
         <div class="mx-10 mb-4 mt-0 border-b border-gray-400"></div>
       {{ end }}
 
       {{/* Content */}}
-      <div class="prose prose-sm prose-cyan mx-auto max-w-none px-10 py-5 dark:prose-invert md:prose-base">
+      <div
+        class="prose mx-auto max-w-none px-10 py-5 dark:prose-invert md:prose-base prose-figure:flex prose-figure:flex-col prose-figure:items-center prose-img:cursor-zoom-in"
+      >
         {{ .Content }}
       </div>
 
