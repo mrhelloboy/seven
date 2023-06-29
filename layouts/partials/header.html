@@ -32,7 +32,7 @@
 
       <div class="flex flex-row items-center space-x-10">
         <!-- Menu Items -->
-        <div class="hidden items-center space-x-10 font-bold uppercase text-gray-900 md:flex">
+        <div class="hidden items-center space-x-10 font-bold uppercase text-gray-900 lg:flex">
           {{ range .Site.Menus.main }}
             <a class="tracking-widest hover:text-blue-700" href="{{ .URL }}">
               {{ if .Pre }}
@@ -65,7 +65,7 @@
         </div>
 
         <!-- Hamburger Button -->
-        <button id="menu-btn" class="hamburger z-30 block focus:outline-none md:hidden">
+        <button id="menu-btn" class="hamburger z-30 block focus:outline-none lg:hidden">
           <span class="hamburger-top"></span>
           <span class="hamburger-middle"></span>
           <span class="hamburger-bottom"></span>
