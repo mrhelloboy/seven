@@ -10,10 +10,8 @@
 <script>
   var toTopButton = document.getElementById("to-top-button");
   toTopButton.addEventListener("click", goToTop);
-  console.log("hello   ...");
   // When the user scrolls down 200px from the top of the document, show the button
   window.onscroll = function () {
-    console.log("xxxxxxxxxxxx");
     if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
       toTopButton.classList.remove("hidden");
     } else {
