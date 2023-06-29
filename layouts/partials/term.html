@@ -12,11 +12,7 @@
       {{ range .Pages }}
         <div class="flex flex-row items-center space-x-6">
           {{ $image := resources.Get .Params.image }}
-          {{ if lt $image.Height $image.Width }}
-            {{ $image = $image.Resize "x300 q100" }}
-          {{ else }}
-            {{ $image = $image.Resize "400x q100" }}
-          {{ end }}
+          {{ $image = $image.Resize "x300 q100" }}
           <img
             class="h-20 w-20 max-w-full shrink-0 transform md:w-36"
             src="{{ $image.Permalink }}"
