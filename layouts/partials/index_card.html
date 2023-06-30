@@ -12,22 +12,20 @@
 
 {{/* Date and Read time */}}
 <div class="py-1">
-  <p class="font-postmeta tracking-wider">
-    Published on {{ .Date.Format "January 2 2006" }} · {{ .ReadingTime }} min read
-  </p>
+  {{ partial "index_post_meta.html" . }}
 </div>
 
 {{/* Title */}}
 <div class="mb-2 py-2 text-4xl font-bold hover:text-blue-700"><a href="{{ .Permalink }}">{{ .Title }}</a></div>
 
 {{/* Sumary */}}
-<div
-  class="prose prose-base line-clamp-6 max-w-none overflow-hidden prose-headings:my-5 prose-headings:font-normal prose-headings:leading-3 prose-headings:text-gray-700 prose-code:text-gray-700 prose-pre:bg-transparent prose-img:hidden prose-video:hidden"
->
-  {{ .Summary }}
+<div class="line-clamp-6 tracking-wide text-gray-600">
+  {{ with .Description }}
+    {{- . -}}
+  {{ else }}
+    {{- .Summary -}}
+  {{ end }}
 </div>
 
 {{/* Read more */}}
-<div class="px-1 py-3 font-semibold text-blue-700">
-  <a href="{{ .Permalink }}">Read more &rarr;</a>
-</div>
+{{ partial "read_more.html" . }}

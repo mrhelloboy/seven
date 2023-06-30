@@ -7,21 +7,21 @@
     <div class="grid grid-cols-1 gap-7 overflow-y-hidden lg:grid-cols-7 lg:gap-x-8">
       {{/* 第一篇文章布局 */}}
       {{ $firstPost := index $lastestPosts 0 }}
-      {{ if $firstPost }}
+      {{ with $firstPost }}
         <div class="col-span-1 flex flex-col lg:col-span-4 lg:row-span-2">
           {{/* Title */}}
           <div class="py-5 text-4xl font-extrabold hover:text-blue-700 lg:text-6xl">
-            <a href="{{ $firstPost.Permalink }}">{{ $firstPost.Title }}</a>
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
           </div>
 
           {{/* Date and Read time */}}
-          <p class="pb-5 font-postmeta tracking-wider lg:text-lg lg:font-bold">
-            Published on {{ $firstPost.Date.Format "January 2 2006" }} · {{ $firstPost.ReadingTime }} min read
-          </p>
+          <div class="pb-5 lg:text-lg lg:font-bold">
+            {{ partial "index_post_meta.html" . }}
+          </div>
 
           {{/* Image */}}
           <div class="shrink-0 overflow-hidden">
-            {{ $image := resources.Get $firstPost.Params.image }}
+            {{ $image := resources.Get .Params.image }}
             {{ $image := $image.Resize "x700 q100" }}
             <img
               class="h-96 w-full object-cover hover:scale-110 hover:brightness-75 hover:transition-transform hover:duration-700"
@@ -32,15 +32,12 @@
           </div>
 
           {{/* Content */}}
-          <div
-            class="prose line-clamp-6 max-w-none grow overflow-hidden py-5 prose-headings:my-5 prose-headings:font-normal prose-headings:leading-3 prose-headings:text-gray-700 prose-pre:bg-transparent lg:line-clamp-none"
-          >
-            {{ $firstPost.Summary }}
+          <div class="prose line-clamp-6 max-w-none overflow-hidden py-5 lg:line-clamp-none lg:grow">
+            {{ .Summary }}
           </div>
 
-          <div class="px-1 py-4 font-semibold text-blue-700">
-            <a href="{{ $firstPost.Permalink }}">Read more &rarr;</a>
-          </div>
+          {{/* Read more */}}
+          {{ partial "read_more.html" . }}
         </div>
       {{ end }}
 
