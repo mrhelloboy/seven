@@ -8,48 +8,8 @@
 }
 
 /* HAMBURGER MENU */
-.hamburger {
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-  right: 10px;
-  transition: all 0.25s;
-  position: relative;
-}
-
-.hamburger-top,
-.hamburger-middle,
-.hamburger-bottom {
-  content: "";
-  position: absolute;
-  width: 24px;
-  height: 3px;
-  top: 4px;
-  left: 0;
-  background: #000;
-  transform: rotate(0);
-  transition: all 0.5s;
-}
-
-.hamburger-middle {
-  transform: translateY(7px);
-}
-
-.hamburger-bottom {
-  transform: translateY(14px);
-  background: #000;
-}
-
-.open {
-  transform: rotate(90deg);
-  transform: translateY(0px);
-  position: fixed;
-  top: 26px;
-  right: 17px;
-}
-
 .open .hamburger-top {
-  transform: rotate(45deg) translateY(6px) translateX(6px);
+  transform: rotate(45deg) translateY(4px) translateX(4px);
   background-color: #fff;
 }
 
@@ -58,7 +18,7 @@
 }
 
 .open .hamburger-bottom {
-  transform: rotate(-45deg) translateY(6px) translateX(-6px);
+  transform: rotate(-45deg) translateY(-4px) translateX(4px);
   background-color: #fff;
 }
 
