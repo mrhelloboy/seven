@@ -50,9 +50,9 @@
             {{ with $value }}
               <div class="group h-8">
                 {{ if eq $name "email" }}
-                  {{ . = printf "mailto:%s" . }}
+                  {{ $value = printf "mailto:%s" . }}
                 {{ end }}
-                <a href="{{ . }}">
+                <a href="{{ $value }}">
                   <img src="/images/default/icon-{{ $name }}.svg" alt="" class="ficon h-6 w-6" />
                 </a>
               </div>
