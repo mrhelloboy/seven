@@ -52,7 +52,7 @@
                 {{ if eq $name "email" }}
                   {{ $value = printf "mailto:%s" . }}
                 {{ end }}
-                <a href="{{ $value }}">
+                <a href="{{ $value }}" aria-label="{{ $name }} social icon ">
                   <img src="/images/default/icon-{{ $name }}.svg" alt="" class="ficon h-6 w-6" />
                 </a>
               </div>
@@ -63,16 +63,16 @@
         {{/* Theme Info */}}
         <div class="flex flex-row items-center font-bold">
           <span>Powered By</span>
-          <a href="https://gohugo.io/">
+          <a href="https://gohugo.io/" aria-label="hugo link">
             <img
               src="https://d33wubrfki0l68.cloudfront.net/c38c7334cc3f23585738e40334284fddcaf03d5e/2e17c/images/hugo-logo-wide.svg"
-              alt=""
+              alt="hugo logo"
               class="mx-1 h-4"
             />
           </a>
           <span> &#8739; Based on Theme</span>
-          <a href="" class="">
-            <img src="/images/default/seven-logo-dark.svg" alt="" class="mx-1 h-6" />
+          <a href="https://github.com/mrhelloboy/seven" aria-label="The github address of seven theme" class="">
+            <img src="/images/default/seven-logo-dark.svg" alt="seven theme logo" class="mx-1 h-6" />
           </a>
         </div>
 
