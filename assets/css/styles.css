@@ -137,5 +137,6 @@ body {
 
 @font-face {
   font-family: "post-meta";
-  src: url("/font/BigShouldersText-Regular.ttf");
+  src: url("/font/BigShouldersText-Regular.woff2");
+  font-display: swap;
 }
