@@ -1,0 +1,42 @@
+<!-- favicon -->
+{{- if not .Site.Params.app.noFavicon -}}
+  {{- with .Site.Params.app.svgFavicon -}}
+    <link rel="icon" href="{{ . }}" />
+  {{- else -}}
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  {{- end -}}
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  {{- with .Site.Params.app.iconColor -}}
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="{{ . }}" />
+  {{- end -}}
+  {{- if eq .Site.Params.enablePWA true -}}
+    <link rel="manifest" href="/site.webmanifest" />
+  {{- end -}}
+{{- end -}}
+
+
+<!-- theme css -->
+{{ $options := dict "inlineImports" true }}
+{{ $styles := resources.Get "css/styles.css" }}
+{{ $styles = $styles | resources.PostCSS $options }}
+{{ if hugo.IsProduction }}
+  {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
+{{ end }}
+<link href="{{ $styles.RelPermalink }}" rel="stylesheet" />
+
+<!-- algoria css -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.0.0/themes/reset-min.css"
+  integrity="sha256-2AeJLzExpZvqLUxMfcs+4DWcMwNfpnjUeAAvEtPr0wU="
+  crossorigin="anonymous"
+/>
+
+{{ $search_styles := resources.Get "/css/search.css" }}
+{{ $search_styles = $search_styles | resources.PostCSS $options }}
+{{ if hugo.IsProduction }}
+  {{ $search_styles = $search_styles | minify | fingerprint | resources.PostProcess }}
+{{ end }}
+<link href="{{ $search_styles.RelPermalink }}" rel="stylesheet" />
