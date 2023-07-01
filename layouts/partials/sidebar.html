@@ -1,13 +1,16 @@
 {{/* Taxonomy */}}
-<aside class="hidden space-y-2 text-gray-900 md:flex md:flex-col">
+<aside
+  class="hidden grow space-y-2 bg-[#0B9B8A] px-8 py-[2.3rem] text-gray-900 lg:flex lg:flex-col lg:justify-items-center"
+>
   {{/* @todo 文章列表缩略图 */}}
   {{/* category */}}
-  <div class="flex w-[17rem] flex-col px-5">
-    <div class="bottom-3 border-b-[0.5px] border-black py-3 text-left font-semibold capitalize">categories</div>
+  <div class="flex flex-col text-slate-100">
+    {{ .Scratch.Set "title" "categories" }}
+    {{ partial "sidebar_title.html" . }}
     <ul class="my-5 flex flex-wrap justify-center gap-3 text-xs">
       {{ range .Site.Taxonomies.categories }}
         <li
-          class="my-0.5 rounded-md px-2 py-1 text-center font-medium text-gray-900 hover:bg-blue-700 hover:text-white hover:duration-500"
+          class="my-0.5 rounded-md px-2 py-1 text-center font-medium hover:bg-blue-700 hover:text-white hover:duration-500"
         >
           <a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a>
         </li>
@@ -16,12 +19,13 @@
   </div>
 
   {{/* tag cloud */}}
-  <div class="flex w-[17rem] flex-col px-4">
-    <div class="bottom-3 border-b-[0.5px] border-black py-3 text-left font-semibold capitalize">tags</div>
+  <div class="flex flex-col text-slate-100">
+    {{ .Scratch.Set "title" "tags" }}
+    {{ partial "sidebar_title.html" . }}
     <ul class="my-5 flex flex-wrap justify-center gap-3 text-xs">
       {{ range .Site.Taxonomies.tags }}
         <li
-          class="my-0.5 rounded-md px-2 py-1 text-center font-medium text-gray-900 hover:bg-blue-700 hover:text-white hover:duration-500"
+          class="my-0.5 rounded-md px-2 py-1 text-center font-medium hover:bg-blue-700 hover:text-white hover:duration-500"
         >
           <a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a>
         </li>
@@ -30,8 +34,9 @@
   </div>
 
   {{/* recommend posts */}}
-  <div class="flex w-[17rem] flex-col px-4">
-    <div class="bottom-3 border-b-[0.5px] border-black py-3 text-left font-semibold capitalize">Recommend Posts</div>
+  <div class="flex flex-col text-slate-100">
+    {{ .Scratch.Set "title" "Recommend Posts" }}
+    {{ partial "sidebar_title.html" . }}
     <ul class="my-4 flex flex-col space-y-1 text-xs">
       {{ range first 10 (where (where (where .Site.Pages "Type" "posts") "IsPage" true ) "Params.is_recommend" true) }}
         <li class="my-0.5 truncate py-1 font-medium hover:text-blue-700">
@@ -42,8 +47,9 @@
   </div>
 
   {{/* Latest Posts */}}
-  <div class="flex w-[17rem] flex-col px-4">
-    <div class="bottom-3 border-b-[0.5px] border-black py-3 text-left font-semibold capitalize">Latest Posts</div>
+  <div class="flex flex-col text-slate-100">
+    {{ .Scratch.Set "title" "Latest Posts" }}
+    {{ partial "sidebar_title.html" . }}
     <ul class="my-4 flex flex-col space-y-1 text-xs">
       {{ range first 10 (where (where .Site.Pages "Type" "posts") "IsPage" true) }}
         <li class="my-0.5 truncate py-1 font-medium hover:text-blue-700">
