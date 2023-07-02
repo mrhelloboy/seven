@@ -28,28 +28,18 @@
       <span class="text-xl font-bold">{{ .Key }}</span>
 
       {{ range .Pages }}
-        <div class="flex flex-row items-center space-x-6">
+        <div class="hvr-sweep-to-right flex h-24 flex-row items-center space-x-2 bg-white md:space-x-4">
           {{ $image := resources.Get .Params.image }}
           {{ $image = $image.Resize "x300 q100" }}
           <img
-            class="h-20 w-20 max-w-full shrink-0 transform md:w-36"
+            class="h-24 w-24 max-w-full shrink-0 transform object-cover md:w-36"
             src="{{ $image.Permalink }}"
             alt="preview image"
             srcset=""
           />
-          <div class="mx-4 flex flex-col content-center py-1.5">
-            <a class="text-lg font-medium hover:text-blue-700" href="{{ .Permalink }}">{{ .Title }}</a>
-            <div class="text-gray-500">
-              {{ $tags := (.GetTerms "tags") }}
-              {{ range $tags }}
-                <a
-                  class="my-0.5 rounded-xl bg-gray-200 bg-opacity-30 px-1.5 py-0.5 text-center text-xs before:content-['#_'] hover:bg-opacity-90 hover:text-blue-700"
-                  href="{{ .Permalink }}"
-                  >{{ .LinkTitle }}</a
-                >
-              {{ end }}
-            </div>
-          </div>
+          <a class="px-2 font-medium hover:text-blue-700 sm:text-base md:text-lg" href="{{ .Permalink }}"
+            >{{ .Title }}</a
+          >
         </div>
       {{ end }}
 
