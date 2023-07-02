@@ -67,7 +67,9 @@
         </div>
 
         <div class="relative mx-3 mb-2 flex flex-row items-end justify-between space-x-1">
-          <p class="basis-3/4 text-lg font-bold">{{ .LinkTitle }}</p>
+          <a href="{{ .RelPermalink }}" class="hover:text-blue-700"
+            ><p class="basis-3/4 text-lg font-bold">{{ .LinkTitle }}</p></a
+          >
           <a
             class="{{ if eq $idx 1 }}
               {{ $svgBgColor }}
