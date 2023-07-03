@@ -1,12 +1,12 @@
 {{/* Search */}}
 <section id="search-section" class="m-h-screen inset-0 top-0 z-30 hidden h-full w-full bg-black/70">
-  <div class="mx-auto mt-20 flex max-w-2xl flex-col rounded-xl bg-white pb-4 pt-1 opacity-100">
+  <div class="mx-3 mt-20 flex flex-col rounded-xl bg-white pb-4 pt-1 opacity-100 md:mx-auto md:w-2/3 lg:max-w-2xl">
     <div class="flex flex-row justify-between px-6">
       <div id="searchBox" class="my-4 flex w-full flex-row items-center"></div>
     </div>
 
     <div class="border-b-[0.5px] border-gray-400"></div>
-    <div id="searchResults" class="my-3 px-6"></div>
+    <div id="searchResults" class="my-3 max-h-96 overflow-auto px-6"></div>
     <div id="NotSearchResults" class="hidden px-6 py-10 text-center text-lg text-gray-500">No recent searches</div>
     <div class="mb-3 border-b-[0.5px] border-gray-400 px-6 "></div>
     <div id="powered-by" class="px-6"></div>
@@ -83,8 +83,9 @@
 
   search.addWidgets([
     configure({
-      hitsPerPage: 10,
+      // hitsPerPage: 5,
       enablePersonalization: false,
+      attributesToSnippet: ["summary"],
     }),
     searchBox({
       container: "#searchBox",
@@ -105,7 +106,12 @@
       container: "#searchResults",
       templates: {
         item(hit, { html, components }) {
-          return html` <a href="${hit.permalink}">${components.Highlight({ attribute: "title", hit })}</a> `;
+          return html`
+          <a href="${hit.permalink}" class="flex flex-col space-y-2 hover:text-white">
+            <p class="text-lg">${components.Snippet({ hit, attribute: 'summary' })}</p>
+            <p class="text-sm">${components.Highlight({ hit, attribute: 'title' })}</p>
+          </a>
+          `;
         },
         empty(results, { html }) {
           return html`No results for <q>${results.query}</q>`;

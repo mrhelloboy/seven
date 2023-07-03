@@ -105,3 +105,17 @@
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
+
+.ais-Snippet-highlighted,
+.ais-Highlight-highlighted {
+  color: rgb(29 78 216);
+  background: unset;
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: #ec4899;
+}
+
+.ais-Hits-item:hover .ais-Snippet-highlighted,
+.ais-Hits-item:hover .ais-Highlight-highlighted {
+  color: rgb(255 255 255);
+}
