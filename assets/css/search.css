@@ -51,11 +51,25 @@
 }
 
 .ais-SearchBox-submitIcon {
-  height: 15px;
-  width: 15px;
+  height: 17px;
+  width: 17px;
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
   fill: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
+.ais-SearchBox-resetIcon {
+  height: 13px;
+  width: 13px;
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+  fill: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
+.ais-SearchBox-resetIcon:hover {
+  --tw-text-opacity: 1;
+  color: rgb(29 78 216 / var(--tw-text-opacity));
+  fill: rgb(29 78 216 / var(--tw-text-opacity));
 }
 
 .ais-PoweredBy {

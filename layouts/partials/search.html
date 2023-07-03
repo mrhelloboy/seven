@@ -3,16 +3,6 @@
   <div class="mx-auto mt-20 flex max-w-2xl flex-col rounded-xl bg-white pb-4 pt-1 opacity-100">
     <div class="flex flex-row justify-between px-6">
       <div id="searchBox" class="my-4 flex w-full flex-row items-center"></div>
-      <div class="flex flex-row items-center pl-2">
-        <div class="border-l-1 mr-2 h-6 border border-gray-100"></div>
-        <button
-          id="cancel-search"
-          aria-label="cancel search"
-          class="rounded-md bg-gray-50 p-1 text-gray-500 hover:bg-gray-300 hover:text-blue-700"
-        >
-          Esc
-        </button>
-      </div>
     </div>
 
     <div class="border-b-[0.5px] border-gray-400"></div>
@@ -36,13 +26,25 @@
 <script>
   const searchIcon = document.getElementById("search-icon");
   const searchSection = document.getElementById("search-section");
-  const cancelSearch = document.getElementById("cancel-search");
+  let queryValue = "";
+
+  function cancelSearch(e) {
+    queryValue = document.querySelector(".ais-SearchBox-input").value;
+      if (!queryValue) {
+        showOrHiddenSearch();
+      }
+  }
+
   searchIcon.addEventListener("click", (e)=> {
     showOrHiddenSearch();
+    const resetButton = document.querySelector(".ais-SearchBox-reset");
+    if("hidden" in resetButton) {
+      resetButton.removeAttribute("hidden")
+    }
+    document.querySelector(".ais-SearchBox-resetIcon").removeEventListener("click", cancelSearch, false);
+    document.querySelector(".ais-SearchBox-resetIcon").addEventListener("click", cancelSearch, false);
   });
-  cancelSearch.addEventListener("click", (e)=> {
-    showOrHiddenSearch();
-  });
+
   document.addEventListener("keydown", function(event) {
     if (event.code === "Escape" && searchSection.classList.contains("fixed")) {
       showOrHiddenSearch();
@@ -91,6 +93,13 @@
       showLoadingIndicator: false,
       showSubmit: true,
       autofocus: true,
+      templates: {
+        submit({ cssClasses }, { html }) {
+          return html`<svg t="1687792593023" class="${cssClasses.submitIcon}" viewBox="0 0 1269 1024" version="1.1" width="10" height="10">
+            <path d="M990.28992 695.0912l254.19776 165.56032-83.39456 128.8192-246.784-160.768A511.09888 511.09888 0 0 1 512 1024C229.21216 1024 0 794.78784 0 512S229.21216 0 512 0 1024 229.21216 1024 512a510.7712 510.7712 0 0 1-33.71008 183.0912zM512 153.6a358.4 358.4 0 1 0 0 716.8 358.4 358.4 0 0 0 0-716.8z" p-id="12490"></path>
+          </svg>`
+        },
+      }
     }),
     hits({
       container: "#searchResults",
