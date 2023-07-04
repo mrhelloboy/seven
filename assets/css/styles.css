@@ -34,11 +34,21 @@
   @apply block truncate rounded-md border-0 bg-gray-100 px-2 py-1 text-xs text-blue-700;
 }
 
-.theme-toc-nest {
-  @apply pl-4 pr-2;
+.theme-toc-nest-1 {
+  @apply pl-3;
 }
 
-.theme-toc-nest::before {
+.theme-toc-nest-2 {
+  @apply pl-4;
+}
+
+.theme-toc-nest-3 {
+  @apply pl-5;
+}
+
+.theme-toc-nest-1::before,
+.theme-toc-nest-2::before,
+.theme-toc-nest-3::before {
   content: "· ";
 }
 
