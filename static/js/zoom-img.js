@@ -8,7 +8,7 @@ let zoomTimes = 0;
 
 function showOrHiddenImgZoomDiv() {
   imgZoomDiv.classList.toggle("hidden");
-  imgZoomDiv.classList.toggle("fixed");
+  imgZoomDiv.classList.toggle("flex");
 }
 
 function hiddenImgContent() {
@@ -16,7 +16,7 @@ function hiddenImgContent() {
   imgZoomDiv.classList.remove("zoomIn");
 
   setTimeout(()=>{
-    imgContent.src = "";
+    imgContent.style.backgroundImage = "";
     showOrHiddenImgZoomDiv();
     zoomTimes = 0;
   }, 900);
@@ -32,13 +32,6 @@ imgDoms.forEach((imgDom)=>{
     imgZoomDiv.classList.remove("zoomOut");
     showOrHiddenImgZoomDiv();
     
-    imgContent.src = imgDom.src;
+    imgContent.style.backgroundImage = `url(${imgDom.src})`;
   })
-})
-
-window.addEventListener("scroll", (e)=>{
-  if(imgZoomDiv.classList.contains("fixed") && zoomTimes === 0) {
-    zoomTimes += 1;
-    hiddenImgContent();
-  }
 })
