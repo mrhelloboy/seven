@@ -1,1 +1,1 @@
-<h{{ .Level }} id="{{ .Anchor | safeURL }}">{{ .Text | safeHTML }} <a href="#{{ .Anchor | safeURL }}"> &para</a></h{{ .Level }}>
+<h{{ .Level }} class="group" id="{{ .Anchor | safeURL }}">{{ .Text | safeHTML }}<a class="group-hover:after:content-['__#'] no-underline hover:text-blue-700" href="#{{ .Anchor | safeURL }}"></a></h{{ .Level }}>
