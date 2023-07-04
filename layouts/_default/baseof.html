@@ -17,7 +17,13 @@
     </div>
     {{- partial "search.html" . -}}
     {{- partial "footer.html" . -}}
-    <script src="/js/script.js" defer></script>
+
+    {{ $menuBtnJS := resources.Get "/js/menu-btn.js" }}
+    {{ if hugo.IsProduction }}
+      {{ $menuBtnJS = $menuBtnJS | minify | fingerprint }}
+    {{ end }}
+    <script src="{{ $menuBtnJS.RelPermalink }}" defer></script>
+
     {{- block "script" . }}{{- end }}
   </body>
 </html>

@@ -168,6 +168,15 @@
 {{ end }}
 
 {{ define "script" }}
-  <script src="/js/toc.js" defer></script>
-  <script src="/js/zoom-img.js" defer></script>
+  {{ $tocJS := resources.Get "/js/toc.js" }}
+  {{ if hugo.IsProduction }}
+    {{ $tocJS = $tocJS | minify | fingerprint }}
+  {{ end }}
+  <script src="{{ $tocJS.RelPermalink }}" defer></script>
+
+  {{ $zoomJS := resources.Get "/js/zoom-img.js" }}
+  {{ if hugo.IsProduction }}
+    {{ $zoomJS = $zoomJS| minify | fingerprint }}
+  {{ end }}
+  <script src="{{ $zoomJS.RelPermalink }}" defer></script>
 {{ end }}
