@@ -1,0 +1,6 @@
+{{ $colors := slice "#0b9b8a" "#144351" "#efd96f" "#f28e65" "#f18788" "#de903c" "#239dac" "#8ed7e3" "#c8484e" "#e8c5a9" }}
+{{ $shuffled := shuffle $colors }}
+{{ $random_color := index $shuffled 0 }}
+
+
+<div class="h-full w-full bg-[{{ $random_color }}] text-center"></div>

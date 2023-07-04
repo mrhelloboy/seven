@@ -4,17 +4,22 @@
       {{/* Item Preview image */}}
       <div class="h-52 w-full overflow-hidden">
         {{ $image := resources.Get .Params.image }}
-        {{ if lt $image.Height $image.Width }}
-          {{ $image = $image.Resize "x400 q100" }}
+        {{ with $image }}
+          {{ if lt $image.Height $image.Width }}
+            {{ $image = $image.Resize "x400 q100" }}
+          {{ else }}
+            {{ $image = $image.Resize "500x q100" }}
+          {{ end }}
+          <img
+            class="object-cover group-hover:scale-105 group-hover:brightness-75 group-hover:transition-transform group-hover:duration-700 group-hover:ease-in-out"
+            src="{{ $image.Permalink }}"
+            alt="preview image"
+            srcset=""
+          />
         {{ else }}
-          {{ $image = $image.Resize "500x q100" }}
+          {{ partial "default_bg.html" . }}
         {{ end }}
-        <img
-          class="object-cover group-hover:scale-105 group-hover:brightness-75 group-hover:transition-transform group-hover:duration-700 group-hover:ease-in-out"
-          src="{{ $image.Permalink }}"
-          alt="preview image"
-          srcset=""
-        />
+
       </div>
 
       {{/* Posted Date */}}

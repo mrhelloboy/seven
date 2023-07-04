@@ -30,13 +30,17 @@
       {{ range .Pages }}
         <div class="hvr-sweep-to-right flex h-24 flex-row items-center space-x-2 bg-white md:space-x-4">
           {{ $image := resources.Get .Params.image }}
-          {{ $image = $image.Resize "x300 q100" }}
-          <img
-            class="h-24 w-24 max-w-full shrink-0 transform object-cover md:w-36"
-            src="{{ $image.Permalink }}"
-            alt="preview image"
-            srcset=""
-          />
+          {{ with $image }}
+            {{ $image = $image.Resize "x300 q100" }}
+            <img
+              class="h-24 w-24 max-w-full shrink-0 transform object-cover md:w-36"
+              src="{{ $image.Permalink }}"
+              alt="preview image"
+              srcset=""
+            />
+          {{ else }}
+            <div class="h-24 w-24 shrink-0 md:w-36">{{ partial "default_bg.html" . }}</div>
+          {{ end }}
           <a class="px-2 font-medium hover:text-blue-700 sm:text-base md:text-lg" href="{{ .Permalink }}"
             >{{ .Title }}</a
           >

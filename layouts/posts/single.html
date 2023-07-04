@@ -44,7 +44,11 @@
       {{/* Image */}}
       {{ if not $metaInfo.disableHero }}
         {{ $image := resources.Get .Params.image }}
-        <img class="h-120 w-full object-cover" src="{{ $image.Permalink }}" alt="preview image" srcset="" />
+        {{ with $image }}
+          <img class="h-120 w-full object-cover" src="{{ $image.Permalink }}" alt="preview image" srcset="" />
+        {{ else }}
+          <div class="h-120 w-full">{{ partial "default_bg.html" . }}</div>
+        {{ end }}
       {{ else }}
         <div class="mx-1 mb-4 mt-0 border-b border-gray-400 md:mx-3 lg:mx-10"></div>
       {{ end }}

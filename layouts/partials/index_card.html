@@ -1,13 +1,18 @@
 {{/* Image */}}
 <div class="mb-2 shrink-0 overflow-hidden">
   {{ $image := resources.Get .Params.image }}
-  {{ $image := $image.Resize "x600 q100" }}
-  <img
-    class="h-80 w-full object-cover hover:scale-110 hover:brightness-75 hover:transition-transform hover:duration-700"
-    src="{{ $image.Permalink }}"
-    alt="preview image"
-    srcset=""
-  />
+  {{ with $image }}
+    {{ $image := $image.Resize "x600 q100" }}
+    <img
+      class="h-80 w-full object-cover hover:scale-110 hover:brightness-75 hover:transition-transform hover:duration-700"
+      src="{{ $image.Permalink }}"
+      alt="preview image"
+      srcset=""
+    />
+  {{ else }}
+    <div class="h-80 w-full">{{ partial "default_bg.html" . }}</div>
+  {{ end }}
+
 </div>
 
 {{/* Date and Read time */}}
