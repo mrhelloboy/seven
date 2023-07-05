@@ -4,7 +4,8 @@
 
 /* social icon */
 .ficon:hover {
-  filter: invert(17%) sepia(88%) saturate(4695%) hue-rotate(228deg) brightness(91%) contrast(85%);
+  /* filter: invert(64%) sepia(91%) saturate(7473%) hue-rotate(221deg) brightness(84%) contrast(103%); */
+  filter: invert(47%) sepia(69%) saturate(6446%) hue-rotate(217deg) brightness(81%) contrast(113%);
 }
 
 /* HAMBURGER MENU */
