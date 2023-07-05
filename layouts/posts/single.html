@@ -158,6 +158,12 @@
     </div>
   </div>
 
+  {{ if hugo.IsProduction }}
+    <div class="mx-auto my-5 max-w-7xl bg-slate-50 px-5">
+      {{ template "_internal/disqus.html" . }}
+    </div>
+  {{ end }}
+
   {{/* image zoom in content */}}
   {{- partial "img_zoom.html" . -}}
 
