@@ -101,7 +101,6 @@ let intersectionEles = [];
 const intersectionObserver = new IntersectionObserver((entries) => {
 
   entries.forEach(entry =>{
-    console.log(entry)
     if (entry.isIntersecting) {
       intersectionEles.push(entry.target)
       
