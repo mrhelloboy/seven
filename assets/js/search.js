@@ -69,6 +69,7 @@ search.addWidgets([
     showReset: false,
     showLoadingIndicator: false,
     showSubmit: true,
+    searchAsYouType: false,
     autofocus: true,
     templates: {
       submit({ cssClasses }, { html }) {
