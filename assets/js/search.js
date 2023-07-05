@@ -61,7 +61,7 @@ search.addWidgets([
   configure({
     // hitsPerPage: 5,
     enablePersonalization: false,
-    attributesToSnippet: ["summary"],
+    attributesToSnippet: [params.snippet],
   }),
   searchBox({
     container: "#searchBox",
@@ -84,9 +84,9 @@ search.addWidgets([
     templates: {
       item(hit, { html, components }) {
         return html`
-        <a href="${hit.permalink}" class="flex flex-col space-y-2 hover:text-white">
-          <p class="text-lg">${components.Snippet({ hit, attribute: 'summary' })}</p>
-          <p class="text-sm">${components.Highlight({ hit, attribute: 'title' })}</p>
+        <a href="${hit.permalink}" class="flex flex-col space-y-2 justify-around hover:text-white">
+          <p class="text-lg">${components.Snippet({ hit, attribute: params.snippet })}</p>
+          <p class="text-sm">${components.Highlight({ hit, attribute: params.highlight })}</p>
         </a>
         `;
       },

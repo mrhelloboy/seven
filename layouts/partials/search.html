@@ -26,7 +26,9 @@
 {{ $app_id := .Site.Params.algolia.app_id }}
 {{ $api_key := .Site.Params.algolia.api_key }}
 {{ $index := .Site.Params.algolia.index }}
-{{ $algoliaInfo := dict "api_id" $app_id "api_key" $api_key "index" $index }}
+{{ $snippet := .Site.Params.algolia.snippet_attr }}
+{{ $highlight := .Site.Params.algolia.highlight_attr }}
+{{ $algoliaInfo := dict "api_id" $app_id "api_key" $api_key "index" $index "snippet" $snippet "highlight" $highlight }}
 {{ $searchJS := resources.Get "/js/search.js" | js.Build (dict "params" $algoliaInfo) }}
 {{ if hugo.IsProduction }}
   {{ $searchJS = $searchJS | minify | fingerprint }}
