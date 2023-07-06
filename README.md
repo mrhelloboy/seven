@@ -15,13 +15,13 @@ English | [中文](./README_zh-CN.md)
 ## Prerequisites
 
 1. The Hugo Modules feature is required. So you need to download Go locally. Please refer to the document [Hugo Modules Prerequisite](https://gohugo.io/hugo-modules/use-modules/#prerequisite) for details.
-2. Hugo version should be at least `v0.112.0`. **It is recommended to use the latest version of Go and Hugo**.
+2. Hugo version should be at least `v0.112.0`. **It is recommended to use the latest version of Go and Hugo**. Reference documentation [configure-cache-busters](https://gohugo.io/getting-started/configuration/#configure-cache-busters)
 
 ## Usage
 
 1. There are already Hugo sites using this theme, you need to delete the themes directory and related files (if any)
 
-2. initialize the site to module and execute the command in the root directory of your site:
+2. Initialize the site to module and execute the command in the root directory of your site:
 
    ```bash
    hugo mod init github/[username]/[sitename]

@@ -21,7 +21,7 @@
 ## 前提条件
 
 1. 需要使用 Hugo Modules 功能。所以需要在本地下载 Go。具体细节请参考文档 [Hugo Modules Prerequisite](https://gohugo.io/hugo-modules/use-modules/#prerequisite)
-2. Hugo 版本至少需要 `v0.112.0`。**建议使用最新版本的 Go 和 Hugo**，
+2. Hugo 版本至少需要 `v0.112.0`。**建议使用最新版本的 Go 和 Hugo**。参考文档 [configure-cache-busters](https://gohugo.io/getting-started/configuration/#configure-cache-busters)
 
 ## 使用说明
 
