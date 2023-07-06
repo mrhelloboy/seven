@@ -74,14 +74,19 @@
    主题需要用到的其他配置参数请参考 Demo 的 `hugo.toml`
 
 4. 执行命令
+
    ```bash
    hugo mod npm pack
    ```
+
    会生成文件 `package.json`、`package.hugo.json` 并导入 module 及更新 `go.mod` 和 `go.sum` 文件等。
+
 5. 执行命令下载需要的依赖
+
    ```bash
    npm install
    ```
+
 6. 启动本地服务
 
    ```bash
@@ -94,15 +99,17 @@
    hugo server --disableLiveReload --minify --gc -D
    ```
 
-## Deployment
+## 部署
 
-Please refer to [Hugo Deployment Documentation](https://gohugo.io/hosting-and-deployment/)
+请参考 [Hugo 部署文档](https://gohugo.io/hosting-and-deployment/)
 
-### Deploy to `Netlify` as an example:
+### 部署到 `Netlify` 为例：
 
-1. Copy `netlify.toml` from the Demo repository to your own site and push it to Github
-2. Register and login to Netlify
-3. Import the GitHub project, Netlify will read the `netlify.toml` file and build it automatically
+1. 复制 Demo 仓库中的 `netlify.toml` 到自己站点及推送到 Github 上
+
+2. 注册并登录 Netlify
+
+3. 导入 GitHub 项目，Netlify 会读取 `netlify.toml` 文件自动构建
 
 ## 维护者
 

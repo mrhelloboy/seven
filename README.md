@@ -68,14 +68,19 @@ English | [中文](./README_zh-CN.md)
    Please refer to `hugo.toml` in the Demo for other configuration parameters required by the theme
 
 4. Execute the command
+
    ```bash
    hugo mod npm pack
    ```
+
    will generate the files `package.json` and `package.hugo.json` and import the module and update the `go.mod` and `go.sum` files, etc.
+
 5. Execute the command to download the required dependencies
+
    ```bash
    npm install
    ```
+
 6. Start local services
 
    ```bash
@@ -87,6 +92,18 @@ English | [中文](./README_zh-CN.md)
    ```bash
    hugo server --disableLiveReload --minify --gc -D
    ```
+
+## Deployment
+
+Please refer to [Hugo Deployment Documentation](https://gohugo.io/hosting-and-deployment/)
+
+### Deploy to `Netlify` as an example:
+
+1. Copy `netlify.toml` from the Demo repository to your own site and push it to Github
+
+2. Register and login to Netlify
+
+3. Import the GitHub project, Netlify will read the `netlify.toml` file and build it automatically
 
 ## Maintainers
 
