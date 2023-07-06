@@ -1,104 +1,97 @@
-# HUGO 主题：Seven
+<p align="center">
+  <a href="https://seven-demo.supcat.cn/" target="_blank">
+    <img alt="Seven Logo" src="https://seven-demo.supcat.cn/images/logo-footer.svg" width="350" height="70" style="max-width: 100%;">
+  </a>
+</p>
 
-Seven 是一款基于 Tailwind CSS 开发的简洁、美观 HUGO 主题。
+<p align="center">
+  A clean and beautiful Hugo theme, which built using Tailwind CSS.
+</p>
 
-## 示例
+---
 
-示例代码在另外一个 GitHub 仓库：[hugo-theme-seven-demo](https://github.com/mrhelloboy/hugo-theme-seven-demo)
+English | [中文](./README_zh-CN.md)
 
-直达示例链接：[demo](https://snazzy-jelly-839142.netlify.app/)
+## Prerequisites
 
-## 前提条件
+1. The Hugo Modules feature is required. So you need to download Go locally. Please refer to the document [Hugo Modules Prerequisite](https://gohugo.io/hugo-modules/use-modules/#prerequisite) for details.
+2. Hugo version should be at least `v0.112.0`. **It is recommended to use the latest version of Go and Hugo**.
 
-1. 主题需要使用 Hugo Modules。所以需要在本地下载 Go。具体情况文档 [Hugo Modules Prerequisite](https://gohugo.io/hugo-modules/use-modules/#prerequisite)
-2. 用到了 Hugo 一些新功能，建议 Hugo 的版本至少 `v0.112.0` 。
-3. 建议使用最新版本的 Go 和 Hugo
+## Usage
 
-## 使用说明
+1. There are already Hugo sites using this theme, you need to delete the themes directory and related files (if any)
 
-1. 如果在已有主题站点下使用本主题，需要删掉相关 themes 目录及相关文件（如果有的话）
-
-2. 将站点初始化为 module。在站点根目录下执行命令：
+2. initialize the site to module and execute the command in the root directory of your site:
 
    ```bash
    hugo mod init github/[username]/[sitename]
    ```
 
-   上面命令中的 `username` 和 `sitename` 替换成自己的
+   Replace `username` and `sitename` above with your own
 
-3. 建议从 [Demo 仓库](https://github.com/mrhelloboy/hugo-theme-seven-demo) 复制 `hugo.toml` 文件到自己站点根目录上。
+3. It is recommended to copy the `hugo.toml` file from the [hugo-theme-seven-demo repository](https://github.com/mrhelloboy/hugo-theme-seven-demo) to the root of your site.
 
-   如果不使用 Demo 的 `hugo.toml` 文件覆盖自己配置，请复制以下配置到自己的 `hugo.toml` 文件里：
+   If you are not using Demo's `hugo.toml` file, please copy the following configuration to your own `hugo.toml` file:
 
    ```toml
    [module]
-     # Recommend Chinese users to use this proxy configuration
-     # proxy = 'https://goproxy.cn,direct'
-     [[module.imports]]
-       path = 'github.com/mrhelloboy/seven'
-     [module.hugoVersion]
-       extended = false
-       min      = "0.112.0"
-     [[module.mounts]]
-       source = "assets"
-       target = "assets"
-     [[module.mounts]]
-       source = "hugo_stats.json"
-       target = "assets/watching/hugo_stats.json"
+    # Recommend Chinese users to use this proxy configuration
+    # proxy = 'https://goproxy.cn,direct'
+    [[module.imports]]
+      path = 'github.com/mrhelloboy/seven'
+    [module.hugoVersion]
+      extended = false
+      min      = "0.112.0"
+    [[module.mounts]]
+      source = "assets"
+      target = "assets"
+    [[module.mounts]]
+      source = "hugo_stats.json"
+      target = "assets/watching/hugo_stats.json"
 
    [build]
-     writeStats = true
-     [[build.cachebusters]]
-       source = "assets/watching/hugo_stats\\.json"
-       target = "styles\\.css"
-     [[build.cachebusters]]
-       source = "(postcss|tailwind)\\.config\\.js"
-       target = "css"
-     [[build.cachebusters]]
-       source = "assets/.*\\.(js|ts|jsx|tsx)"
-       target = "js"
-     [[build.cachebusters]]
-       source = "assets/.*\\.(.*)$"
-       target = "$1"
+    writeStats = true
+    [[build.cachebusters]]
+      source = "assets/watching/hugo_stats\\.json"
+      target = "styles\\.css"
+    [[build.cachebusters]]
+      source = "(postcss|tailwind)\\.config\\.js"
+      target = "css"
+    [[build.cachebusters]]
+      source = "assets/.*\\.(js|ts|jsx|tsx)"
+      target = "js"
+    [[build.cachebusters]]
+      source = "assets/.*\\.(.*)$"
+      target = "$1"
    ```
 
-   主题需要用到的其他配置参数请参考 Demo 的 `hugo.toml`
+   Please refer to `hugo.toml` in the Demo for other configuration parameters required by the theme
 
-4. 执行命令
+4. Execute the command
    ```bash
    hugo mod npm pack
    ```
-   该命令会生成文件 `package.json` `package.hugo.json` 并导入 module 及更新`go.mod`和`go.sum` 文件等。
-5. 继续执行命令，下载需要的依赖
+   will generate the files `package.json` and `package.hugo.json` and import the module and update the `go.mod` and `go.sum` files, etc.
+5. Execute the command to download the required dependencies
    ```bash
    npm install
    ```
-6. 本地启动服务
+6. Start local services
 
    ```bash
    hugo server
    ```
 
-   或者：
+   Or:
 
    ```bash
    hugo server --disableLiveReload --minify --gc -D
    ```
 
-## 部署
-
-请参考 [Hugo 部署文档](https://gohugo.io/hosting-and-deployment/)
-
-### 部署到 `Netlify` 为例：
-
-1. 复制 Demo 仓库中的 `netlify.toml` 到自己站点及推送到 Github 上
-2. 注册并登录 Netlify
-3. 导入 GitHub 项目，Netlify 会读取 `netlify.toml` 文件自动构建
-
-## 维护者
+## Maintainers
 
 [@mrhelloboy](https://github.com/mrhelloboy)
 
-## 使用许可
+## License
 
 [MIT © mrhelloboy.](./LICENSE)
