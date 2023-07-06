@@ -12,6 +12,12 @@
 
 English | [中文](./README_zh-CN.md)
 
+## Example
+
+Link: [Demo](https://snazzy-jelly-839142.netlify.app/)
+
+The Demo code is in another GitHub repository: [hugo-theme-seven-demo](https://github.com/mrhelloboy/hugo-theme-seven-demo)
+
 ## Prerequisites
 
 1. The Hugo Modules feature is required. So you need to download Go locally. Please refer to the document [Hugo Modules Prerequisite](https://gohugo.io/hugo-modules/use-modules/#prerequisite) for details.
