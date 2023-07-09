@@ -1,3 +1,186 @@
+{{- define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end -}}
 {{ define "main" }}
-  <p>This is default single layout</p>
+  {{ $metaInfo := .Site.Params.articleMeta }}
+  {{ $maxW := "w-full" }}
+  {{ if $metaInfo.disableToc }}
+    {{ $maxW = "w-3/4" }}
+  {{ end }}
+  <div class="mx-auto my-5 max-w-7xl bg-slate-50 px-5">
+    <div class="flex w-full justify-between">
+      <div class="w-full lg:w-[79%]">
+        {{/* Title */}}
+        <div class="px-3 py-10 text-center text-xl font-bold text-black">{{ .Title }}</div>
+
+        {{/* Article Meta Info：Publication time, word count, reading time */}}
+        <div class="flex flex-row items-center justify-center space-x-4 px-3 pb-3 text-xs text-gray-500 md:text-sm">
+          {{/* Author */}}
+          {{ if and ($metaInfo.enableAuthor) .Params.author }}
+            <div class="flex flex-row items-center space-x-1">
+              <img src="/images/default/icon-author.svg" alt="" class="h-4 w-4" />
+              <p>{{- .Params.author -}}</p>
+            </div>
+          {{ end }}
+          {{/* Publish Date */}}
+          {{ if not $metaInfo.disabledate }}
+            <div class="flex flex-row items-center space-x-1">
+              <img src="/images/default/icon-date.svg" alt="" class="h-4 w-4" />
+              <p>{{- .Date.Format "2006-01-02" -}}</p>
+            </div>
+          {{ end }}
+          {{/* Word Count */}}
+          {{ if not $metaInfo.disableCountWords }}
+            <div class="flex flex-row items-center space-x-1">
+              <img src="/images/default/icon-word.svg" alt="" class="h-4 w-4" />
+              <p>{{- .WordCount | printf "%d words" -}}</p>
+            </div>
+          {{ end }}
+          {{/* Read Time */}}
+          {{ if not $metaInfo.disableReadTime }}
+            <div class="flex flex-row items-center space-x-1">
+              <img src="/images/default/icon-read-time.svg" alt="" class="h-4 w-4" />
+              <p>{{- .ReadingTime| printf "%d minutes" -}}</p>
+            </div>
+          {{ end }}
+        </div>
+
+        {{/* Image */}}
+        {{ if not $metaInfo.disableHero }}
+          {{ $image := resources.Get .Params.image }}
+          {{ with $image }}
+            <img class="h-120 w-full object-cover" src="{{ $image.Permalink }}" alt="preview image" srcset="" />
+          {{ else }}
+            <div class="h-120 w-full">{{ partial "default_bg.html" . }}</div>
+          {{ end }}
+        {{ else }}
+          <div class="mx-1 mb-4 mt-0 border-b border-gray-400 md:mx-3 lg:mx-10"></div>
+        {{ end }}
+
+        {{/* Content */}}
+        <div
+          id="single-content"
+          class="prose mx-auto max-w-none px-1 py-5 dark:prose-invert md:prose-base prose-figure:flex prose-figure:flex-col prose-figure:items-center prose-img:cursor-zoom-in md:px-3 lg:px-10"
+        >
+          {{ .Content }}
+        </div>
+
+        {{/* Updated Date */}}
+        <div class="my-0.5 flex flex-row items-center space-x-1 px-1 py-0.5 md:px-3 lg:px-10">
+          <svg
+            t="1686815337104"
+            class="icon"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            p-id="60278"
+            width="16px"
+            height="16px"
+          >
+            <path
+              d="M534.016 342.016l0 180.010667 148.010667 89.984-29.994667 52.010667-182.016-109.994667 0-212.010667 64 0zM896 432l-290.005333 0 118.016-120.021333q-88.021333-88.021333-210.986667-89.002667t-210.986667 84.992q-86.016 88.021333-86.016 208t86.016 208 210.005333 88.021333 212.010667-88.021333q86.016-86.016 86.016-208l86.016 0q0 157.994667-112 267.989333-112 112-272 112t-272-112q-112-109.994667-112-267.008t112-269.013333 269.994667-112 269.994667 112l116.010667-120.021333 0 304z"
+              fill="#6B7280"
+              p-id="60279"
+            ></path>
+          </svg>
+          <span class="text-xs text-gray-500">Updated on {{ .Lastmod.Format "2006-01-02" }}</span>
+        </div>
+
+        {{/* horizontal rule */}}
+        <hr class="mx-1 my-1 md:mx-3 lg:mx-10" />
+
+        {{/* categories && tags */}}
+        <div class="flex flex-col justify-start px-1 pb-5 md:px-3 lg:flex-row lg:justify-between lg:px-10">
+          {{ $categories := (.GetTerms "categories") }}
+          {{ $cateNums := len $categories }}
+          {{ if ge $cateNums 1 }}
+            <div class="flex flex-row items-center">
+              <svg
+                class="icon"
+                width="16px"
+                height="16px"
+                viewBox="0 0 1024 1024"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="#6B7280"
+                  d="M170.666667 469.333333h256a42.666667 42.666667 0 0 0 42.666666-42.666666V170.666667a42.666667 42.666667 0 0 0-42.666666-42.666667H170.666667a42.666667 42.666667 0 0 0-42.666667 42.666667v256a42.666667 42.666667 0 0 0 42.666667 42.666666z m426.666666 0h256a42.666667 42.666667 0 0 0 42.666667-42.666666V170.666667a42.666667 42.666667 0 0 0-42.666667-42.666667h-256a42.666667 42.666667 0 0 0-42.666666 42.666667v256a42.666667 42.666667 0 0 0 42.666666 42.666666zM170.666667 896h256a42.666667 42.666667 0 0 0 42.666666-42.666667v-256a42.666667 42.666667 0 0 0-42.666666-42.666666H170.666667a42.666667 42.666667 0 0 0-42.666667 42.666666v256a42.666667 42.666667 0 0 0 42.666667 42.666667z m554.666666 0c94.122667 0 170.666667-76.544 170.666667-170.666667s-76.544-170.666667-170.666667-170.666666-170.666667 76.544-170.666666 170.666666 76.544 170.666667 170.666666 170.666667z"
+                />
+              </svg>
+              {{ range $categories }}
+                <a
+                  class="mx-1 my-0.5 rounded-xl bg-gray-200 bg-opacity-30 px-1.5 py-0.5 text-center text-xs text-gray-900 hover:bg-opacity-80 hover:text-blue-700"
+                  href="{{ .Permalink }}"
+                  >{{ .LinkTitle }}</a
+                >
+              {{ end }}
+            </div>
+          {{ end }}
+
+          {{ $tags := (.GetTerms "tags") }}
+          {{ $tagsNums := len $tags }}
+          {{ if ge $tagsNums 1 }}
+            <div class="flex flex-row items-center">
+              <svg
+                class="icon"
+                width="16px"
+                height="16px"
+                viewBox="0 0 1024 1024"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="#6B7280"
+                  d="M690 78.2l255.6 258.6c104.8 106 104.8 276.4 0 382.4l-224 226.6c-18.6 18.8-49 19-67.8 0.4s-19-49-0.4-67.8l223.8-226.6c67.8-68.6 67.8-178.8 0-247.4L621.8 145.8c-18.6-18.8-18.4-49.2 0.4-67.8s49.2-18.4 67.8 0.4zM0 459V160c0-53 43-96 96-96h299c34 0 66.6 13.4 90.6 37.4l336 336c50 50 50 131 0 181L554.6 885.4c-50 50-131 50-181 0l-336-336C13.4 525.4 0 493 0 459zM288 288a64 64 0 1 0-128 0 64 64 0 1 0 128 0z"
+                />
+              </svg>
+              {{ range $tags }}
+                <a
+                  class="mx-1 my-0.5 rounded-xl bg-gray-200 bg-opacity-30 px-1.5 py-0.5 text-center text-xs text-gray-900 hover:bg-opacity-80 hover:text-blue-700"
+                  href="{{ .Permalink }}"
+                  >{{ .LinkTitle }}</a
+                >
+              {{ end }}
+            </div>
+          {{ end }}
+
+        </div>
+      </div>
+
+      {{/* toc */}}
+      {{ if not $metaInfo.disableToc }}
+        <div id="catalog" class="sticky top-[167px] z-20 mt-5 hidden h-full w-[21%] pl-2 lg:inline">
+          <aside class="bg-slate-50 px-5 pb-5">
+            <div class="bottom-3 mt-7 border-gray-400 px-2 py-3 text-left text-sm font-semibold uppercase">Catalog</div>
+            <div class="mb-4 mt-0 border-b border-gray-400"></div>
+            {{ .TableOfContents }}
+          </aside>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+
+  {{/* comments */}}
+  {{- partial "comments.html" . -}}
+
+  {{/* image zoom in content */}}
+  {{- partial "img_zoom.html" . -}}
+
+  {{ if .Site.Params.enableToTop }}
+    {{- partial "to_top.html" . -}}
+  {{ end }}
+
+{{ end }}
+
+{{ define "script" }}
+  {{ $tocJS := resources.Get "/js/toc.js" }}
+  {{ if hugo.IsProduction }}
+    {{ $tocJS = $tocJS | minify | fingerprint }}
+  {{ end }}
+  <script src="{{ $tocJS.RelPermalink }}" defer></script>
+
+  {{ $zoomJS := resources.Get "/js/zoom-img.js" }}
+  {{ if hugo.IsProduction }}
+    {{ $zoomJS = $zoomJS| minify | fingerprint }}
+  {{ end }}
+  <script src="{{ $zoomJS.RelPermalink }}" defer></script>
 {{ end }}
