@@ -1,7 +1,12 @@
 {{ define "main" }}
   <section id="index-content" class="mx-auto max-w-[88rem] px-3 py-8 md:px-6">
     {{/* Lastest Posts */}}
-    {{ $lastestPosts := first 3 (where (where .Site.Pages "Type" "posts") "IsPage" true) }}
+    {{ $allPages := .Site.Pages }}
+    {{ with .Site.Params.home.showContentTypes }}
+      {{ $allPages = where $allPages "Type" "in" . }}
+    {{ end }}
+
+    {{ $lastestPosts := first 3 (where $allPages "IsPage" true) }}
 
 
     <div class="grid grid-cols-1 gap-7 overflow-y-hidden lg:grid-cols-7 lg:gap-x-8">
@@ -64,16 +69,22 @@
     </div>
   </section>
 
-  <section id="index-recommend" class="mx-auto max-w-[88rem] px-3 py-8 md:px-6">
-    <div class="pb-10 pt-2 text-5xl font-bold">Recommend Posts for you</div>
-    {{ $recommendPosts := first 6 (where (where (where .Site.Pages "Type" "posts") "IsPage" true ) "Params.is_recommend" true) }}
-    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:grid-rows-2 lg:gap-x-8">
-      {{ range $recommendPosts }}
-        <div class="flex flex-col">
-          {{ partial "index_card.html" . }}
-        </div>
-      {{ end }}
+  {{ $recommendPages := .Site.Pages }}
+  {{ with .Site.Params.home.recommendedTypes }}
+    {{ $recommendPages = where $recommendPages "Type" "in" . }}
+  {{ end }}
+  {{ $recommendPages = first 6 (where (where $recommendPages "IsPage" true ) "Params.is_recommend" true) }}
+  {{ if gt ($recommendPages | len) 0 }}
+    <section id="index-recommend" class="mx-auto max-w-[88rem] px-3 py-8 md:px-6">
+      <div class="pb-10 pt-2 text-5xl font-bold">Recommend Posts for you</div>
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:grid-rows-2 lg:gap-x-8">
+        {{ range $recommendPages }}
+          <div class="flex flex-col">
+            {{ partial "index_card.html" . }}
+          </div>
+        {{ end }}
+      </div>
+    </section>
+  {{ end }}
 
-    </div>
-  </section>
 {{ end }}
