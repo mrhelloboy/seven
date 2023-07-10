@@ -71,11 +71,11 @@
         <button
           id="menu-btn"
           aria-label="menu button"
-          class="hamburger z-30 flex h-6 w-6 flex-col justify-around lg:hidden"
+          class="hamburger group z-30 flex h-6 w-6 flex-col justify-around lg:hidden"
         >
-          <div class="hamburger-top h-[3px] w-6 bg-black transition duration-500"></div>
-          <div class="hamburger-middle h-[3px] w-6 bg-black transition duration-500"></div>
-          <div class="hamburger-bottom h-[3px] w-6 bg-black transition duration-500"></div>
+          <div class="hamburger-top h-[3px] w-6 bg-gray-900 transition duration-500 group-hover:bg-blue-700"></div>
+          <div class="hamburger-middle h-[3px] w-6 bg-gray-900 transition duration-500 group-hover:bg-blue-700"></div>
+          <div class="hamburger-bottom h-[3px] w-6 bg-gray-900 transition duration-500 group-hover:bg-blue-700"></div>
         </button>
       </div>
     </div>
@@ -87,7 +87,7 @@
     >
       <div class="w-full py-3 text-center">
         {{ range .Site.Menus.main }}
-          <a class="block py-2 hover:text-cyan-700" href="{{ .URL }}">
+          <a class="block py-2 hover:text-blue-700" href="{{ .URL }}">
             {{ $text := print .Name | safeHTML }}
             {{ $text }}
           </a>
