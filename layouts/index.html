@@ -53,19 +53,19 @@
 
       {{/* 第二篇文章布局 */}}
       {{ $secondPost := index $lastestPosts 1 }}
-      <div class="col-span-1 flex flex-col lg:col-span-3 lg:row-span-1">
-        {{ with $secondPost }}
+      {{ with $secondPost }}
+        <div class="col-span-1 flex flex-col lg:col-span-3 lg:row-span-1">
           {{ partial "index_card.html" . }}
-        {{ end }}
-      </div>
+        </div>
+      {{ end }}
 
       {{/* 第三篇文章布局 */}}
       {{ $thirdPost := index $lastestPosts 2 }}
-      <div class="col-span-1 flex flex-col lg:col-span-3 lg:row-span-1">
-        {{ with $thirdPost }}
+      {{ with $thirdPost }}
+        <div class="col-span-1 flex flex-col lg:col-span-3 lg:row-span-1">
           {{ partial "index_card.html" . }}
-        {{ end }}
-      </div>
+        </div>
+      {{ end }}
     </div>
   </section>
 
@@ -77,7 +77,7 @@
   {{ if gt ($recommendPages | len) 0 }}
     <section id="index-recommend" class="mx-auto max-w-[88rem] px-3 py-8 md:px-6">
       <div class="pb-10 pt-2 text-5xl font-bold">Recommend Posts for you</div>
-      <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:grid-rows-2 lg:gap-x-8">
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-x-8">
         {{ range $recommendPages }}
           <div class="flex flex-col">
             {{ partial "index_card.html" . }}
