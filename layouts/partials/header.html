@@ -8,18 +8,22 @@
     {{ end }}
   {{ end }}
 >
-  <nav class="container mx-auto h-20 max-w-[85rem] p-2">
+  <nav class="container mx-auto flex h-20 max-w-[85rem] flex-col justify-center px-2">
     <!-- Flex Container For Nav Items -->
-    <div class="my-3 flex max-h-10 items-center justify-between">
+    {{ $logoInfo := .Site.Params.logo }}
+    {{ $logoH := "h-16" }}
+    {{- with $logoInfo.img_height -}}
+      {{ $logoH = printf "h-[%s]" . }}
+    {{- end -}}
+    <div class="{{ $logoH }} flex w-full items-center justify-between">
       <!-- Logo -->
-      <div class="z-30 px-4 lg:px-0">
+      <div class="{{ $logoH }} z-30 px-4 lg:px-0">
         {{/* {{ .Scratch.Set "isHeader" true }} */}}
         <a href="{{ .Site.BaseURL }}">
-          {{ $logoInfo := .Site.Params.logo }}
           {{ with $logoInfo.img }}
-            <img src="{{ . }}" alt="header logo" id="logo" class="max-h-16" />
-            {{ with $logoInfo.img_footer }}
-              <img src="{{ . }}" alt="header logo" id="logo-toggle" class="hidden max-h-16" />
+            <img src="{{ . }}" alt="header logo" id="logo" class="{{ $logoH }}" />
+            {{ with $logoInfo.img_dark }}
+              <img src="{{ . }}" alt="header logo" id="logo-toggle" class="{{ $logoH }} hidden" />
             {{ end }}
           {{ else }}
             <span class="{{ with $logoInfo.textColor }}text-[{{ . }}]{{ end }} text-3xl font-bold">
