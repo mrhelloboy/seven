@@ -49,23 +49,26 @@
         </div>
 
         <!-- search -->
-        <div id="search-icon">
-          <svg
-            t="1687792593023"
-            class="fill-gray-900 hover:cursor-pointer hover:fill-blue-700 lg:mr-3 xl:mr-1"
-            viewBox="0 0 1269 1024"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            p-id="12489"
-            width="20"
-            height="20"
-          >
-            <path
-              d="M990.28992 695.0912l254.19776 165.56032-83.39456 128.8192-246.784-160.768A511.09888 511.09888 0 0 1 512 1024C229.21216 1024 0 794.78784 0 512S229.21216 0 512 0 1024 229.21216 1024 512a510.7712 510.7712 0 0 1-33.71008 183.0912zM512 153.6a358.4 358.4 0 1 0 0 716.8 358.4 358.4 0 0 0 0-716.8z"
-              p-id="12490"
-            ></path>
-          </svg>
-        </div>
+        {{ with .Site.Params.enableSearch }}
+          <div id="search-icon">
+            <svg
+              t="1687792593023"
+              class="fill-gray-900 hover:cursor-pointer hover:fill-blue-700 lg:mr-3 xl:mr-1"
+              viewBox="0 0 1269 1024"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              p-id="12489"
+              width="20"
+              height="20"
+            >
+              <path
+                d="M990.28992 695.0912l254.19776 165.56032-83.39456 128.8192-246.784-160.768A511.09888 511.09888 0 0 1 512 1024C229.21216 1024 0 794.78784 0 512S229.21216 0 512 0 1024 229.21216 1024 512a510.7712 510.7712 0 0 1-33.71008 183.0912zM512 153.6a358.4 358.4 0 1 0 0 716.8 358.4 358.4 0 0 0 0-716.8z"
+                p-id="12490"
+              ></path>
+            </svg>
+          </div>
+        {{ end }}
+
 
         <!-- Hamburger Button -->
         <button

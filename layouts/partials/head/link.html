@@ -26,17 +26,19 @@
 {{ end }}
 <link href="{{ $styles.RelPermalink }}" rel="stylesheet" />
 
-<!-- algoria css -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.0.0/themes/reset-min.css"
-  integrity="sha256-2AeJLzExpZvqLUxMfcs+4DWcMwNfpnjUeAAvEtPr0wU="
-  crossorigin="anonymous"
-/>
+{{ if and .Site.Params.enableSearch .Site.Params.algolia.app_id }}
+  <!-- algoria css -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.0.0/themes/reset-min.css"
+    integrity="sha256-2AeJLzExpZvqLUxMfcs+4DWcMwNfpnjUeAAvEtPr0wU="
+    crossorigin="anonymous"
+  />
 
-{{ $search_styles := resources.Get "/css/search.css" }}
-{{ $search_styles = $search_styles | resources.PostCSS $options }}
-{{ if hugo.IsProduction }}
-  {{ $search_styles = $search_styles | minify | fingerprint | resources.PostProcess }}
+  {{ $search_styles := resources.Get "/css/search.css" }}
+  {{ $search_styles = $search_styles | resources.PostCSS $options }}
+  {{ if hugo.IsProduction }}
+    {{ $search_styles = $search_styles | minify | fingerprint | resources.PostProcess }}
+  {{ end }}
+  <link href="{{ $search_styles.RelPermalink }}" rel="stylesheet" />
 {{ end }}
-<link href="{{ $search_styles.RelPermalink }}" rel="stylesheet" />

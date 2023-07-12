@@ -19,7 +19,9 @@
     <div class="grow">
       {{- block "main" . }}{{- end }}
     </div>
-    {{- partial "search.html" . -}}
+    {{ if .Site.Params.enableSearch }}
+      {{- partial "search.html" . -}}
+    {{ end }}
     {{- partial "footer.html" . -}}
 
     {{ $menuBtnJS := resources.Get "/js/menu-btn.js" }}
