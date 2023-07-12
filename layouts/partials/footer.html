@@ -10,8 +10,12 @@
         <!-- Logo -->
         <a href="{{ .Site.BaseURL }}">
           {{ $logoInfo := .Site.Params.logo }}
+          {{ $logoH := "h-10" }}
+          {{- with $logoInfo.footer_height -}}
+            {{ $logoH = printf "h-[%s]" . }}
+          {{- end -}}
           {{ with or $logoInfo.img_footer $logoInfo.img }}
-            <img src="{{ . }}" alt="footer logo" id="logo-footer" class="h-10" />
+            <img src="{{ . }}" alt="footer logo" id="logo-footer" class="{{ $logoH }}" />
           {{ else }}
             <span
               class="{{ with $logoInfo.textColor }}
