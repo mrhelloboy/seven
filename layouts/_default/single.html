@@ -9,10 +9,12 @@
     <div class="flex w-full justify-between">
       <div class="w-full lg:w-[79%]">
         {{/* Title */}}
-        <div class="px-3 py-10 text-center text-xl font-bold text-black">{{ .Title }}</div>
+        <div class="px-3 py-10 text-center text-3xl font-bold text-black">{{ .Title }}</div>
 
         {{/* Article Meta Info：Publication time, word count, reading time */}}
-        <div class="flex flex-row items-center justify-center space-x-4 px-3 pb-3 text-xs text-gray-500 md:text-sm">
+        <div
+          class="flex flex-row items-center justify-center space-x-4 px-3 pb-3 font-postmeta text-xs text-gray-700 md:text-sm"
+        >
           {{/* Author */}}
           {{ if and ($metaInfo.enableAuthor) .Params.author }}
             <div class="flex flex-row items-center space-x-1">
@@ -24,7 +26,7 @@
           {{ if not $metaInfo.disabledate }}
             <div class="flex flex-row items-center space-x-1">
               <img src="/images/default/icon-date.svg" alt="" class="h-4 w-4" />
-              <p>{{- .Date.Format "2006-01-02" -}}</p>
+              <p>{{- .Date.Format "2006/01/02" -}}</p>
             </div>
           {{ end }}
           {{/* Word Count */}}
@@ -81,7 +83,7 @@
               p-id="60279"
             ></path>
           </svg>
-          <span class="text-xs text-gray-500">Updated on {{ .Lastmod.Format "2006-01-02" }}</span>
+          <span class="font-postmeta text-xs text-gray-500">Updated on {{ .Lastmod.Format "January 2 2006" }}</span>
         </div>
 
         {{/* horizontal rule */}}
