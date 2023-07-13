@@ -2,6 +2,15 @@
  * 文章目录css样式、及状态（hover、active等）处理逻辑
  */
 
+// toc top
+const postImg = document.getElementById("post-feature");
+if (postImg) {
+  const imgOffsetTop = postImg.offsetTop;
+  let tocTop = imgOffsetTop -72;
+  const tocDom = document.getElementById("catalog");
+  tocDom.style.top = tocTop + "px";
+}
+
 let tocMapHeadTag = new Map();  // 目录跟文章的标题对应关系
 let headTagMapToc = new Map();  // 文章标题跟目录的对应关系
 

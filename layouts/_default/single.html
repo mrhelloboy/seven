@@ -1,13 +1,13 @@
 {{- define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end -}}
 {{ define "main" }}
   {{ $metaInfo := .Site.Params.articleMeta }}
-  {{ $maxW := "w-full" }}
+  {{ $maxW := "w-[79%]" }}
   {{ if $metaInfo.disableToc }}
-    {{ $maxW = "w-3/4" }}
+    {{ $maxW = "w-full" }}
   {{ end }}
   <div class="mx-auto my-5 max-w-7xl bg-slate-50 px-5">
     <div class="flex w-full justify-between">
-      <div class="w-full lg:w-[79%]">
+      <div class="lg:{{ $maxW }} w-full">
         {{/* Title */}}
         <div class="px-3 py-10 text-center text-3xl font-bold text-black">{{ .Title }}</div>
 
@@ -101,14 +101,16 @@
         {{ if not $metaInfo.disableHero }}
           {{ $image := resources.Get .Params.image }}
           {{ with $image }}
-            <div class="-mx-5 lg:-mr-0">
+            <div id="post-feature" class="{{ if not $metaInfo.disableToc }}lg:-mr-0{{ end }} -mx-5">
               <img class="h-120 w-full object-cover" src="{{ $image.Permalink }}" alt="preview image" srcset="" />
             </div>
           {{ else }}
-            <div class="h-120 w-full">{{ partial "default_bg.html" . }}</div>
+            <div id="post-feature" class="{{ if not $metaInfo.disableToc }}lg:-mr-0{{ end }} -mx-5 h-120">
+              {{ partial "default_bg.html" . }}
+            </div>
           {{ end }}
         {{ else }}
-          <div class="mx-1 mb-4 mt-0 border-b border-gray-400 md:mx-3 lg:mx-10"></div>
+          <div id="post-feature" class="mx-1 mb-4 mt-0 border-b border-gray-400 md:mx-3 lg:mx-10"></div>
         {{ end }}
 
         {{/* Content */}}
@@ -204,7 +206,7 @@
 
       {{/* toc */}}
       {{ if not $metaInfo.disableToc }}
-        <div id="catalog" class="sticky top-[167px] z-20 mt-5 hidden h-full w-[21%] pl-2 lg:inline">
+        <div id="catalog" class="sticky z-20 hidden h-full w-[21%] pl-2 lg:inline" style="top: 176px;">
           <aside class="bg-slate-50 px-5 pb-5">
             <div class="bottom-3 mt-7 border-gray-400 px-2 py-3 text-left text-sm font-semibold uppercase">Catalog</div>
             <div class="mb-4 mt-0 border-b border-gray-400"></div>
@@ -228,11 +230,13 @@
 {{ end }}
 
 {{ define "script" }}
-  {{ $tocJS := resources.Get "/js/toc.js" }}
-  {{ if hugo.IsProduction }}
-    {{ $tocJS = $tocJS | minify | fingerprint }}
+  {{ if not .Site.Params.articleMeta.disableToc }}
+    {{ $tocJS := resources.Get "/js/toc.js" }}
+    {{ if hugo.IsProduction }}
+      {{ $tocJS = $tocJS | minify | fingerprint }}
+    {{ end }}
+    <script src="{{ $tocJS.RelPermalink }}"></script>
   {{ end }}
-  <script src="{{ $tocJS.RelPermalink }}" defer></script>
 
   {{ $zoomJS := resources.Get "/js/zoom-img.js" }}
   {{ if hugo.IsProduction }}
