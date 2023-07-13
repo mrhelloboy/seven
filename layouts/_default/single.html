@@ -146,34 +146,7 @@
         <hr class="mx-1 my-1 md:mx-3 lg:mx-10" />
 
         {{/* categories && tags */}}
-        <div class="flex flex-col justify-start px-1 pb-5 md:px-3 lg:flex-row lg:justify-between lg:px-10">
-          {{ $categories := (.GetTerms "categories") }}
-          {{ $cateNums := len $categories }}
-          {{ if ge $cateNums 1 }}
-            <div class="flex flex-row items-center">
-              <svg
-                class="icon"
-                width="16px"
-                height="16px"
-                viewBox="0 0 1024 1024"
-                version="1.1"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill="#6B7280"
-                  d="M170.666667 469.333333h256a42.666667 42.666667 0 0 0 42.666666-42.666666V170.666667a42.666667 42.666667 0 0 0-42.666666-42.666667H170.666667a42.666667 42.666667 0 0 0-42.666667 42.666667v256a42.666667 42.666667 0 0 0 42.666667 42.666666z m426.666666 0h256a42.666667 42.666667 0 0 0 42.666667-42.666666V170.666667a42.666667 42.666667 0 0 0-42.666667-42.666667h-256a42.666667 42.666667 0 0 0-42.666666 42.666667v256a42.666667 42.666667 0 0 0 42.666666 42.666666zM170.666667 896h256a42.666667 42.666667 0 0 0 42.666666-42.666667v-256a42.666667 42.666667 0 0 0-42.666666-42.666666H170.666667a42.666667 42.666667 0 0 0-42.666667 42.666666v256a42.666667 42.666667 0 0 0 42.666667 42.666667z m554.666666 0c94.122667 0 170.666667-76.544 170.666667-170.666667s-76.544-170.666667-170.666667-170.666666-170.666667 76.544-170.666666 170.666666 76.544 170.666667 170.666666 170.666667z"
-                />
-              </svg>
-              {{ range $categories }}
-                <a
-                  class="mx-1 my-0.5 rounded-xl bg-gray-200 bg-opacity-30 px-1.5 py-0.5 text-center text-xs text-gray-900 hover:bg-opacity-80 hover:text-blue-700"
-                  href="{{ .Permalink }}"
-                  >{{ .LinkTitle }}</a
-                >
-              {{ end }}
-            </div>
-          {{ end }}
-
+        <div class="flex flex-col justify-start px-1 pb-5 pt-1 md:px-3 lg:flex-row lg:justify-between lg:px-10">
           {{ $tags := (.GetTerms "tags") }}
           {{ $tagsNums := len $tags }}
           {{ if ge $tagsNums 1 }}
@@ -192,6 +165,33 @@
                 />
               </svg>
               {{ range $tags }}
+                <a
+                  class="mx-1 my-0.5 rounded-xl bg-gray-200 bg-opacity-30 px-1.5 py-0.5 text-center text-xs text-gray-900 hover:bg-opacity-80 hover:text-blue-700"
+                  href="{{ .Permalink }}"
+                  >{{ .LinkTitle }}</a
+                >
+              {{ end }}
+            </div>
+          {{ end }}
+
+          {{ $categories := (.GetTerms "categories") }}
+          {{ $cateNums := len $categories }}
+          {{ if ge $cateNums 1 }}
+            <div class="flex flex-row items-center">
+              <svg
+                class="icon"
+                width="16px"
+                height="16px"
+                viewBox="0 0 1024 1024"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="#6B7280"
+                  d="M170.666667 469.333333h256a42.666667 42.666667 0 0 0 42.666666-42.666666V170.666667a42.666667 42.666667 0 0 0-42.666666-42.666667H170.666667a42.666667 42.666667 0 0 0-42.666667 42.666667v256a42.666667 42.666667 0 0 0 42.666667 42.666666z m426.666666 0h256a42.666667 42.666667 0 0 0 42.666667-42.666666V170.666667a42.666667 42.666667 0 0 0-42.666667-42.666667h-256a42.666667 42.666667 0 0 0-42.666666 42.666667v256a42.666667 42.666667 0 0 0 42.666666 42.666666zM170.666667 896h256a42.666667 42.666667 0 0 0 42.666666-42.666667v-256a42.666667 42.666667 0 0 0-42.666666-42.666666H170.666667a42.666667 42.666667 0 0 0-42.666667 42.666666v256a42.666667 42.666667 0 0 0 42.666667 42.666667z m554.666666 0c94.122667 0 170.666667-76.544 170.666667-170.666667s-76.544-170.666667-170.666667-170.666666-170.666667 76.544-170.666666 170.666666 76.544 170.666667 170.666666 170.666667z"
+                />
+              </svg>
+              {{ range $categories }}
                 <a
                   class="mx-1 my-0.5 rounded-xl bg-gray-200 bg-opacity-30 px-1.5 py-0.5 text-center text-xs text-gray-900 hover:bg-opacity-80 hover:text-blue-700"
                   href="{{ .Permalink }}"
