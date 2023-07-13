@@ -13,7 +13,7 @@
 
         {{/* Article Meta Info：Publication time, word count, reading time */}}
         <div
-          class="flex flex-row items-center justify-center space-x-4 px-3 pb-3 font-postmeta text-xs text-gray-700 md:text-sm"
+          class="flex flex-row flex-wrap items-center justify-center space-x-4 px-3 pb-3 font-postmeta text-xs text-gray-700 md:text-sm"
         >
           {{/* Author */}}
           {{ if and ($metaInfo.enableAuthor) .Params.author }}
@@ -95,6 +95,53 @@
               <p>{{- .ReadingTime| printf "%d minutes" -}}</p>
             </div>
           {{ end }}
+          {{/* Page view */}}
+          {{ if and .Site.Params.waline.serverURL (or .Site.Params.waline.alonePageview  .Site.Params.waline.pageview) }}
+            <div class="flex flex-row items-center space-x-1">
+              <svg
+                class="icon"
+                width="16"
+                height="16"
+                viewBox="0 0 1024 1024"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="#515151"
+                  d="M455.68 404.032l91.264 529.152s67.456-69.44 123.136-117.888L792.512 979.2c4.928 6.656 15.68 7.104 23.872 1.088l52.288-38.208c8.256-6.016 10.944-16.32 5.952-22.976L755.52 759.68c62.208-25.088 164.672-53.632 164.672-53.632L455.68 404.032zM308.352 648.384L172.48 747.712c-20.544 15.04-24.256 43.968-8 65.408 16.256 21.376 46.272 27.008 66.752 12.032l135.872-99.328c20.992-15.36 24.512-45.504 8.256-66.88-16.192-21.44-46.016-25.92-67.008-10.56z m641.344-409.408C933.44 217.6 904.064 212.8 882.624 228.48l-134.912 98.688c-21.44 15.68-25.152 44.672-8.896 66.048 16.256 21.376 46.272 27.008 67.712 11.328l134.912-98.688c21.44-15.68 24.512-45.504 8.256-66.88z m-630.4-102.144c-15.936-20.928-45.248-25.728-66.752-10.048-20.096 14.72-24.256 43.968-8.32 64.896L349.76 330.496c15.936 20.992 45.696 25.408 65.792 10.688 21.44-15.68 25.216-44.608 9.28-65.6L319.296 136.832zM585.792 301.76c26.176 4.224 50.24-13.376 53.632-39.232L660.608 94.72c3.392-25.792-14.976-49.984-41.536-54.656-26.176-4.224-50.24 13.376-53.632 39.168l-21.248 167.872c-3.264 25.856 15.104 49.984 41.6 54.656zM329.728 489.024c2.56-25.92-15.808-50.048-41.536-54.656L118.144 406.4c-27.072-3.584-50.688 13.696-53.632 39.232-3.904 26.944 14.464 51.072 41.536 54.656l170.048 27.968c25.728 4.48 49.408-12.8 53.632-39.232z"
+                />
+              </svg>
+              <p><span class="waline-pageview-count" data-path="{{ .RelPermalink }}">...</span> views</p>
+            </div>
+          {{ end }}
+
+          {{/* Comments count */}}
+          {{ if and .Site.Params.waline.serverURL .Site.Params.waline.comment }}
+            <div class="flex flex-row items-center space-x-1">
+              <svg
+                t="1689257719197"
+                class="icon"
+                viewBox="0 0 1024 1024"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                p-id="21488"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="16"
+                height="16"
+              >
+                <path
+                  d="M860.16 430.08c0-223.744-192-402.944-431.616-402.944C191.488 27.136 0 209.408 0 430.08c0 73.728 22.528 143.872 57.344 201.216l-41.472 140.8c-9.728 35.328 9.728 51.2 41.472 41.472l134.144-44.544c67.072 41.472 146.944 64 233.472 64 243.2 3.072 435.2-179.2 435.2-402.944z m-214.528-54.272c28.672 0 54.272 25.6 54.272 54.272s-25.6 54.272-54.272 54.272-54.272-25.6-54.272-54.272 25.6-54.272 54.272-54.272zM214.016 484.352c-28.672 0-54.272-25.6-54.272-54.272s25.6-54.272 54.272-54.272 54.272 25.6 54.272 54.272-22.016 54.272-54.272 54.272zM377.344 430.08c0-28.672 25.6-54.272 54.272-54.272s54.272 25.6 54.272 54.272-25.6 54.272-54.272 54.272S377.344 461.824 377.344 430.08z m0 0"
+                  p-id="21489"
+                ></path>
+                <path
+                  d="M965.632 794.624c35.328-60.928 57.344-128 57.344-201.216 0-112.128-48.128-210.944-124.928-284.672 12.8 38.4 18.944 79.872 18.944 124.928v35.328c18.944 38.4 28.672 82.944 28.672 128 0 57.344-15.872 112.128-44.544 159.744l-18.944 28.672 9.728 35.328 15.872 54.272-51.2-15.872-35.328-12.8-31.744 18.944c-57.344 35.328-124.928 54.272-192 54.272-51.2 0-99.328-9.728-140.8-28.672h-18.944c-54.272 0-108.544-9.728-156.672-25.6 79.872 79.872 192 131.072 320 131.072 86.528 0 166.4-25.6 233.472-64l143.872 48.128c28.672 9.728 44.544-6.144 35.328-35.328l-48.128-150.528z m0 0"
+                  p-id="21490"
+                ></path>
+              </svg>
+              <p><span class="waline-comment-count" data-path="{{ .RelPermalink }}">...</span> comments</p>
+            </div>
+          {{ end }}
+
         </div>
 
         {{/* Image */}}
@@ -239,6 +286,17 @@
       {{ $tocJS = $tocJS | minify | fingerprint }}
     {{ end }}
     <script src="{{ $tocJS.RelPermalink }}"></script>
+  {{ end }}
+
+  {{ if and .Site.Params.waline.serverURL .Site.Params.waline.alonePageview }}
+    <script src="https://unpkg.com/@waline/client@v2/dist/pageview.js"></script>
+    {{ $serverURL := .Site.Params.waline.serverURL }}
+    {{ $walineInfo := dict "serverURL" $serverURL }}
+    {{ $walinePageViewJS := resources.Get "/js/waline-pageview.js" | js.Build (dict "params" $walineInfo) }}
+    {{ if hugo.IsProduction }}
+      {{ $walinePageViewJS = $walinePageViewJS | minify | fingerprint }}
+    {{ end }}
+    <script src="{{ $walinePageViewJS.RelPermalink }}" defer></script>
   {{ end }}
 
   {{ $zoomJS := resources.Get "/js/zoom-img.js" }}

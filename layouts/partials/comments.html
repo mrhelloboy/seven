@@ -1,6 +1,6 @@
 {{ $smaxW := .Scratch.Get "maxW" }}
 {{/* Waline */}}
-{{ if .Site.Params.waline.serverURL }}
+{{ if and .Site.Params.waline.serverURL (not .Site.Params.waline.alonePageview) }}
   <div id="waline" class="lg:{{ $smaxW }} w-full px-0.5 py-5 md:px-2 lg:px-8"></div>
 
   <script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
