@@ -42,3 +42,9 @@
   {{ end }}
   <link href="{{ $search_styles.RelPermalink }}" rel="stylesheet" />
 {{ end }}
+
+
+<!-- comments -->
+{{ if and .Site.Params.enableComments .Site.Params.waline.serverURL }}
+  <link href="https://unpkg.com/@waline/client@v2/dist/waline.css" rel="stylesheet" />
+{{ end }}

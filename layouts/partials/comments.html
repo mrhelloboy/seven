@@ -1,6 +1,28 @@
+{{ $smaxW := .Scratch.Get "maxW" }}
+{{/* Waline */}}
+{{ if .Site.Params.waline.serverURL }}
+  <div id="waline" class="lg:{{ $smaxW }} w-full px-0.5 py-5 md:px-2 lg:px-8"></div>
+
+  <script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
+
+  {{ $serverURL := .Site.Params.waline.serverURL }}
+  {{ $lang := .Site.Params.waline.lang }}
+  {{ $reaction := .Site.Params.waline.reaction }}
+  {{ $search := .Site.Params.waline.search }}
+  {{ $comment := .Site.Params.waline.comment }}
+  {{ $pageview := .Site.Params.waline.pageview }}
+  {{ $walineInfo := dict "serverURL" $serverURL "lang" $lang "reaction" $reaction "search" $search "comment" $comment "pageview" $pageview }}
+  {{ $commentWalineJS := resources.Get "/js/comment-waline.js" | js.Build (dict "params" $walineInfo) }}
+  {{ if hugo.IsProduction }}
+    {{ $commentWalineJS = $commentWalineJS | minify | fingerprint }}
+  {{ end }}
+  <script type="module" src="{{ $commentWalineJS.RelPermalink }}"></script>
+{{ end }}
+
+{{/* Disque */}}
 {{ if hugo.IsProduction }}
   {{ if .Site.DisqusShortname }}
-    <div class="mx-auto my-5 max-w-7xl bg-slate-50 px-6 py-7 md:px-9 lg:px-16">
+    <div class="lg:{{ $smaxW }} w-full px-0.5 md:px-2 lg:px-8">
       {{ template "_internal/disqus.html" . }}
     </div>
   {{ end }}

@@ -215,10 +215,13 @@
         </div>
       {{ end }}
     </div>
-  </div>
 
-  {{/* comments */}}
-  {{- partial "comments.html" . -}}
+    {{/* comments */}}
+    {{ if .Site.Params.enableComments }}
+      {{ .Scratch.Set "maxW" $maxW }}
+      {{- partial "comments.html" . -}}
+    {{ end }}
+  </div>
 
   {{/* image zoom in content */}}
   {{- partial "img_zoom.html" . -}}
