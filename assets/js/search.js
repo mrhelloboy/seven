@@ -5,11 +5,6 @@ const searchSection = document.getElementById("search-section");
 let queryValue = "";
 
 function cancelSearch(e) {
-  const ErrorResult = document.getElementById("searchError");
-  if (!ErrorResult.classList.contains("hidden")) {
-    ErrorResult.classList.add("hidden");
-  }
-
   queryValue = document.querySelector(".ais-SearchBox-input").value;
   if (!queryValue) {
     showOrHiddenSearch();
@@ -28,6 +23,10 @@ searchIcon.addEventListener("click", (e)=> {
 
 document.addEventListener("keydown", function(event) {
   if (event.code === "Escape" && searchSection.classList.contains("fixed")) {
+    // hiddenResultError();
+    const f = document.querySelector(".ais-SearchBox-form");
+    f.reset();
+
     showOrHiddenSearch();
   }
 });
@@ -49,11 +48,17 @@ const search = instantsearch({
     if (helper.state.query === "") {
       container.style.display = "none";
       notSearch.classList.remove("hidden");
+      notSearch.classList.add("flex");
     } else {
       container.style.display = "";
       notSearch.classList.add("hidden");
+      notSearch.classList.remove("flex");
       helper.search();
     }
+  },
+  onStateChange({ uiState, setUiState }) {
+    hiddenResultError();
+    setUiState(uiState);
   },
 });
 
@@ -73,7 +78,7 @@ search.addWidgets([
     container: "#searchBox",
     placeholder: "Search",
     showReset: false,
-    showLoadingIndicator: false,
+    showLoadingIndicator: true,
     showSubmit: true,
     searchAsYouType: false,
     autofocus: true,
@@ -109,16 +114,37 @@ search.addWidgets([
 search.start();
 
 search.on('error', ({ error }) => {
+  const container = document.querySelector("#searchResults");
   const ErrorResult = document.getElementById("searchError");
+  container.style.display = "none";
   ErrorResult.classList.remove("hidden");
+  ErrorResult.classList.add("flex");
   console.log(error)
 });
 
+function hiddenResultError() {
+  const ErrorResult = document.getElementById("searchError");
+  if (!ErrorResult.classList.contains("hidden")) {
+    const container = document.querySelector("#searchResults");
+    container.style.display = "";
+    ErrorResult.classList.add("hidden");
+    ErrorResult.classList.remove("flex");
+  }
+}
+
 search.on('render', () => {
-  const loadingSearch = document.getElementById("searchLoading");
-  if (search.status === 'loading') {
-    loadingSearch.classList.remove("hidden");
+  const submitDom = document.querySelector(".ais-SearchBox-submit");
+  const loadingIndicator = document.querySelector(".ais-SearchBox-loadingIndicator");
+  const loadingDom = document.querySelector("#searchLoading");
+  if (search.status === 'stalled') {
+    submitDom.style.display = "none";
+    loadingIndicator.style.display = "flex";
+    loadingDom.classList.remove("hidden");
+    loadingDom.classList.add("flex");
   } else {
-    loadingSearch.classList.add("hidden")
+    submitDom.style.display = "flex";
+    loadingIndicator.style.display = "none";
+    loadingDom.classList.remove("flex");
+    loadingDom.classList.add("hidden");
   }
 });
