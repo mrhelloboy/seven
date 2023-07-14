@@ -50,8 +50,8 @@
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
   padding: 0.625rem;
   padding-left: 2.5rem /* 40px */;
-  font-size: 0.875rem /* 14px */;
-  line-height: 1.25rem /* 20px */;
+  font-size: 1rem /* 16px */;
+  line-height: 1.5rem /* 24px */;
 }
 
 .ais-SearchBox-input:focus {
