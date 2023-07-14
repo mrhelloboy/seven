@@ -5,10 +5,15 @@ const searchSection = document.getElementById("search-section");
 let queryValue = "";
 
 function cancelSearch(e) {
+  const ErrorResult = document.getElementById("searchError");
+  if (!ErrorResult.classList.contains("hidden")) {
+    ErrorResult.classList.add("hidden");
+  }
+
   queryValue = document.querySelector(".ais-SearchBox-input").value;
-    if (!queryValue) {
-      showOrHiddenSearch();
-    }
+  if (!queryValue) {
+    showOrHiddenSearch();
+  }
 }
 
 searchIcon.addEventListener("click", (e)=> {
@@ -102,3 +107,18 @@ search.addWidgets([
 ]);
 
 search.start();
+
+search.on('error', ({ error }) => {
+  const ErrorResult = document.getElementById("searchError");
+  ErrorResult.classList.remove("hidden");
+  console.log(error)
+});
+
+search.on('render', () => {
+  const loadingSearch = document.getElementById("searchLoading");
+  if (search.status === 'loading') {
+    loadingSearch.classList.remove("hidden");
+  } else {
+    loadingSearch.classList.add("hidden")
+  }
+});
