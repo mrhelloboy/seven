@@ -37,7 +37,7 @@ const searchClient = algoliasearch(params.api_id, params.api_key);
 const search = instantsearch({
   searchClient,
   indexName: params.index,
-  insights: true,
+  insights: false,
   searchFunction(helper) {
     const container = document.querySelector("#searchResults");
     const notSearch = document.querySelector("#NotSearchResults");
@@ -47,8 +47,8 @@ const search = instantsearch({
     } else {
       container.style.display = "";
       notSearch.classList.add("hidden");
+      helper.search();
     }
-    helper.search();
   },
 });
 
@@ -60,6 +60,7 @@ const { poweredBy } = instantsearch.widgets;
 search.addWidgets([
   configure({
     // hitsPerPage: 5,
+    clickAnalytics: false,
     enablePersonalization: false,
     attributesToSnippet: [params.snippet],
   }),
