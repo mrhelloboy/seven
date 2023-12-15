@@ -5,7 +5,8 @@
 /* social icon */
 .ficon:hover {
   /* filter: invert(64%) sepia(91%) saturate(7473%) hue-rotate(221deg) brightness(84%) contrast(103%); */
-  filter: invert(47%) sepia(69%) saturate(6446%) hue-rotate(217deg) brightness(81%) contrast(113%);
+  filter: invert(47%) sepia(69%) saturate(6446%) hue-rotate(217deg)
+    brightness(81%) contrast(113%);
 }
 
 /* HAMBURGER MENU */
@@ -63,7 +64,7 @@
 }
 
 /* Scrollbar */
-*::-webkit-scrollbar {
+/* *::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
@@ -82,7 +83,7 @@
 
 *::-webkit-scrollbar-track {
   background-color: #00000000;
-}
+} */
 
 /* Fix jumping scrollbar issue */
 /* :root {
