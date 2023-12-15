@@ -16,6 +16,8 @@
   {{- end -}}
 {{- end -}}
 
+<!-- flowbite css -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
 
 <!-- theme css -->
 {{ $options := dict "inlineImports" true }}
@@ -42,7 +44,6 @@
   {{ end }}
   <link href="{{ $search_styles.RelPermalink }}" rel="stylesheet" />
 {{ end }}
-
 
 <!-- comments -->
 {{ if and .Site.Params.enableComments .Site.Params.waline.serverURL }}

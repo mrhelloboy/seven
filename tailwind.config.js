@@ -1,8 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
-const typography = require('@tailwindcss/typography');
-
 module.exports = {
+  darkMode: 'class',
   content: ['./hugo_stats.json'],
   theme: {
     fontFamily: {
@@ -14,6 +13,11 @@ module.exports = {
       height: {
         '120': '30rem',
         '128': '32rem',
+      },
+      margin: {
+        // '18': '4.5rem',
+        '22': '5.5rem',
+        '38': '9.5rem',
       },
       animation: {
         zoomIn: 'zoomIn .8s ease-out 1',
@@ -43,5 +47,5 @@ module.exports = {
       },
     },
   },
-  plugins: [typography],
+  plugins: [require('@tailwindcss/typography')],
 }

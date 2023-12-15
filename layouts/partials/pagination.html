@@ -1,26 +1,28 @@
 {{/* Pagination */}}
-<div class="mx-auto my-5 w-11/12">
-  {{ $pag := .Paginator }}
-  {{ if gt $pag.TotalPages 1 }}
-    <div class="flex flex-row items-center justify-between space-x-2">
-      {{/* Previous */}}
-      <div class="{{ if not $pag.HasPrev }}pointer-events-none opacity-40{{ end }} my-3 items-center">
-        <a
-          href="{{ if $pag.HasPrev }}{{ $pag.Prev.URL }}{{ end }}"
-          class="transform border border-gray-900 bg-black px-7 py-2 font-bold text-white duration-500 hover:border hover:border-black hover:bg-white hover:text-black"
-        >
-          &larr; Prev</a
-        >
-      </div>
+{{ $pag := .Paginator }}
+{{ if gt $pag.TotalPages 1 }}
+  {{ $hadPageNumbers := sub $pag.PageNumber 1 }}
+  {{ $hadTotleOfEles := mul $pag.PageSize $hadPageNumbers }}
 
-      {{/* Next */}}
-      <div class="{{ if not $pag.HasNext }}pointer-events-none opacity-40{{ end }} my-3 items-center">
-        <a
-          href="{{ if $pag.HasNext }}{{ $pag.Next.URL }}{{ end }}"
-          class="transform border border-gray-900 bg-black px-7 py-2 font-bold text-white duration-500 hover:border hover:border-black hover:bg-white hover:text-black"
-          >Next &rarr;</a
-        >
-      </div>
+  <div class="mt-5 flex flex-col items-center">
+    <!-- Help text -->
+    <span class="text-sm text-gray-700 dark:text-gray-400">
+        Showing <span class="font-semibold text-gray-900 dark:text-white">{{ add 1 $hadTotleOfEles }}</span> to <span class="font-semibold text-gray-900 dark:text-white">{{ add $pag.NumberOfElements $hadTotleOfEles }}</span> of <span class="font-semibold text-gray-900 dark:text-white">{{ $pag.TotalNumberOfElements }}</span> Entries
+    </span>
+    <div class="inline-flex mt-2 xs:mt-0">
+      <!-- Buttons -->
+      <a href="{{ if $pag.HasPrev }}{{ $pag.Prev.URL }}{{ end }}" class="flex items-center justify-center px-4 h-10 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+          <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+          </svg>
+          Prev
+      </a>
+      <a href="{{ if $pag.HasNext }}{{ $pag.Next.URL }}{{ end }}" class="flex items-center justify-center px-4 h-10 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+          Next
+          <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+        </svg>
+      </a>
     </div>
-  {{ end }}
-</div>
+  </div>
+{{ end }}

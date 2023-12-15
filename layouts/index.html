@@ -1,90 +1,91 @@
 {{ define "main" }}
-  <section id="index-content" class="mx-auto max-w-[88rem] px-3 py-8 md:px-6">
-    {{/* Lastest Posts */}}
+  <section class="mt-22 flex h-full w-full grow md:mt-38">
     {{ $allPages := .Site.Pages }}
     {{ with .Site.Params.home.showContentTypes }}
       {{ $allPages = where $allPages "Type" "in" . }}
     {{ end }}
+    {{ $lastestPosts := first 4 (where $allPages "IsPage" true) }}
 
-    {{ $lastestPosts := first 3 (where $allPages "IsPage" true) }}
 
+    <div
+      class="mx-auto flex max-w-screen-xl flex-1 flex-col bg-white md:flex-row">
+      <div class="mb-4 flex justify-center dark:border-gray-700 md:w-1/6">
+        <ul
+          class="-mb-px flex flex-wrap items-end justify-center space-y-4 text-center text-sm font-medium md:flex-col md:items-center"
+          id="default-tab"
+          data-tabs-toggle="#default-tab-content"
+          role="tablist">
+          {{ range $k, $v := $lastestPosts }}
+            <li class="me-2" role="presentation">
+              <button
+                class="inline-block rounded-t-lg border-b-2 p-4"
+                id="home-{{ $k }}-tab"
+                data-tabs-target="#home-{{ $k }}"
+                type="button"
+                role="tab"
+                aria-controls="home-{{ $k }}"
+                aria-selected="false">
+                0{{ add $k 1 }}
+              </button>
+            </li>
+          {{ end }}
+        </ul>
+      </div>
 
-    <div class="grid grid-cols-1 gap-7 overflow-y-hidden lg:grid-cols-7 lg:gap-x-8">
-      {{/* 第一篇文章布局 */}}
-      {{ $firstPost := index $lastestPosts 0 }}
-      {{ with $firstPost }}
-        <div class="col-span-1 flex flex-col lg:col-span-4 lg:row-span-2">
-          {{/* Title */}}
-          <div class="py-5 text-4xl font-extrabold hover:text-blue-700 lg:text-6xl">
-            <a href="{{ .Permalink }}">{{ .Title }}</a>
-          </div>
+      {{/* Posts */}}
+      <div id="default-tab-content" class="md:w-5/6">
+        {{ range $k, $v := $lastestPosts }}
+          <div
+            class="flex hidden h-full grow flex-col justify-center dark:bg-gray-800 md:flex-row"
+            id="home-{{ $k }}"
+            role="tabpanel"
+            aria-labelledby="home-{{ $k }}">
+            {{/* Post data, Post Title, Post Image */}}
+            <div
+              class="flex flex-1 flex-col border-r border-gray-200 p-2 md:w-2/3">
+              <p
+                class="mt-1 py-1 text-sm text-gray-500 dark:text-gray-200 md:mt-12 md:py-3">
+                {{ $v.Date.Format "January 2 2006" }}
+                <span class="text-red-700">•</span>
+                {{ index $v.Params.categories 0 }}
+              </p>
 
-          {{/* Date and Read time */}}
-          <div class="pb-5 lg:text-lg lg:font-bold">
-            {{ partial "index_post_meta.html" . }}
-          </div>
+              <div
+                class="py-3 text-4xl font-extrabold hover:text-blue-700 md:py-8 lg:text-6xl">
+                <a href="{{ $v.Permalink }}">{{ $v.Title }}</a>
+              </div>
 
-          {{/* Image */}}
-          <div class="shrink-0 overflow-hidden">
-            {{ $image := resources.Get .Params.image }}
-            {{ with $image }}
-              {{ $image := $image.Resize "x700 q100" }}
-              <img
-                class="h-96 w-full object-cover hover:scale-110 hover:brightness-75 hover:transition-transform hover:duration-700"
-                src="{{ $image.Permalink }}"
-                alt="preview image"
-                srcset=""
-              />
-            {{ else }}
-              <div class="h-96 w-full">{{ partial "default_bg.html" . }}</div>
-            {{ end }}
+              <div class="mt-1 shrink-0 overflow-hidden">
+                {{ $image := resources.Get $v.Params.image }}
+                <img
+                  class="h-52 w-full object-cover hover:scale-110 hover:brightness-75 hover:transition-transform hover:duration-700 md:h-80"
+                  src="{{ $image.Permalink }}"
+                  alt="preview image"
+                  srcset="" />
+              </div>
+            </div>
 
-          </div>
+            {{/* summary */}}
+            <div
+              class="mx-auto flex flex-col justify-center p-4  md:w-1/3 md:p-6 lg:p-9">
+              <div class="hidden md:block">
+                <div class="h-2 w-2 rounded-full bg-green-600"></div>
+                <p class="py-2 text-lg">Summary</p>
+              </div>
 
-          {{/* Content */}}
-          <div class="prose max-w-none grow py-5">
-            {{ .Summary }}
-          </div>
-
-          {{/* Read more */}}
-          {{ partial "read_more.html" . }}
-        </div>
-      {{ end }}
-
-      {{/* 第二篇文章布局 */}}
-      {{ $secondPost := index $lastestPosts 1 }}
-      {{ with $secondPost }}
-        <div class="col-span-1 flex flex-col lg:col-span-3 lg:row-span-1">
-          {{ partial "index_card.html" . }}
-        </div>
-      {{ end }}
-
-      {{/* 第三篇文章布局 */}}
-      {{ $thirdPost := index $lastestPosts 2 }}
-      {{ with $thirdPost }}
-        <div class="col-span-1 flex flex-col lg:col-span-3 lg:row-span-1">
-          {{ partial "index_card.html" . }}
-        </div>
-      {{ end }}
-    </div>
-  </section>
-
-  {{ $recommendPages := .Site.Pages }}
-  {{ with .Site.Params.home.recommendedTypes }}
-    {{ $recommendPages = where $recommendPages "Type" "in" . }}
-  {{ end }}
-  {{ $recommendPages = first 6 (where (where $recommendPages "IsPage" true ) "Params.is_recommend" true) }}
-  {{ if gt ($recommendPages | len) 0 }}
-    <section id="index-recommend" class="mx-auto max-w-[88rem] px-3 py-8 md:px-6">
-      <div class="pb-10 pt-2 text-5xl font-bold">Recommend Posts for you</div>
-      <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-x-8">
-        {{ range $recommendPages }}
-          <div class="flex flex-col">
-            {{ partial "index_card.html" . }}
+              <p
+                class="font-serif line-clamp-[10] text-gray-500 dark:text-gray-200">
+                {{ with $v.Description }}
+                  {{- . -}}
+                {{ else }}
+                  {{- .Summary -}}
+                {{ end }}
+              </p>
+            </div>
           </div>
         {{ end }}
-      </div>
-    </section>
-  {{ end }}
 
+      </div>
+    </div>
+  </section>
 {{ end }}

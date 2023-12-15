@@ -1,0 +1,38 @@
+<nav class="fixed start-0 top-0 z-20 w-full border-b border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-900">
+    <div class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4 {{ if .IsHome }}md:p-12{{ end }}">
+        {{/* Logo */}}
+        {{ $logoInfo := .Site.Params.logo }}
+        <a href="{{ .Site.BaseURL }}" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="{{ $logoInfo.img }}" class="h-14" alt="Logo" />
+            {{- with $logoInfo.text -}}
+            <span class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">{{ . }}</span>
+            {{- end -}}
+        </a>
+
+        {{/* Search */}}
+        <div class="flex space-x-3 rtl:space-x-reverse md:order-2 md:space-x-0">
+            <button type="button"
+                class="bg-blue-700 p-3 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 md:p-5">
+                <svg t="1702210633165" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="4364" width="16" height="16">
+                    <path
+                        d="M426.666667 768a339.285333 339.285333 0 0 0 208.938666-72.021333l187.562667 187.562666 60.330667-60.330666-187.562667-187.562667A339.285333 339.285333 0 0 0 768 426.666667c0-188.202667-153.130667-341.333333-341.333333-341.333334s-341.333333 153.130667-341.333334 341.333334 153.130667 341.333333 341.333334 341.333333z m0-597.333333c141.184 0 256 114.816 256 256s-114.816 256-256 256-256-114.816-256-256 114.816-256 256-256z"
+                        fill="#ffffff" p-id="4365"></path>
+                </svg>
+            </button>
+            <button data-collapse-toggle="navbar-sticky" type="button"
+                class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden"
+                aria-controls="navbar-sticky" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M1 1h15M1 7h15M1 13h15" />
+                </svg>
+            </button>
+        </div>
+
+        {{/* Menu */}}
+        {{- partial "menu.html" . -}}
+    </div>
+</nav>

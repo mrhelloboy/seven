@@ -2,10 +2,18 @@
 <html class="scroll-smooth" lang="{{ .Site.LanguageCode }}">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      id="viewport"
+      content="width=device-width, initial-scale=1.0" />
     <title>
       {{ block "title" . }}
-        {{- if .IsHome -}}{{ .Site.Title }}{{- else -}}{{ .Type }} | {{ .Site.Title }}{{- end -}}
+        {{- if .IsHome -}}
+          {{ .Site.Title }}
+        {{- else -}}
+          {{ .Type }} |
+          {{ .Site.Title }}
+        {{- end -}}
       {{ end }}
     </title>
 
@@ -13,23 +21,12 @@
     {{- block "extra_meta" . }}{{- end }}
     {{- partial "head/link.html" . -}}
     {{- block "extra_link" . }}{{- end }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
   </head>
-  <body class="flex h-screen flex-col bg-slate-200">
-    {{- partial "header.html" . -}}
-    <div class="grow">
-      {{- block "main" . }}{{- end }}
-    </div>
-    {{ if .Site.Params.enableSearch }}
-      {{- partial "search.html" . -}}
-    {{ end }}
-    {{- partial "footer.html" . -}}
+  <body class="flex h-screen flex-col bg-white dark:bg-gray-900">
+    {{- partial "header_v2.html" . -}}
 
-    {{ $menuBtnJS := resources.Get "/js/menu-btn.js" }}
-    {{ if hugo.IsProduction }}
-      {{ $menuBtnJS = $menuBtnJS | minify | fingerprint }}
-    {{ end }}
-    <script src="{{ $menuBtnJS.RelPermalink }}" defer></script>
-
-    {{- block "script" . }}{{- end }}
+    {{- block "main" . }}{{- end }}
+    {{- partial "footer_v2.html" . -}}
   </body>
 </html>
