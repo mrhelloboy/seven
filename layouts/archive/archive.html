@@ -1,44 +1,41 @@
 {{ define "main" }}
-  {{ $pages := (where (where .Site.Pages "Type" "posts") "IsPage" true) }}
-
-  {{ $paginator := .Paginate (where .Site.Pages "Type" "posts") 5 }}
-  {{ printf "%#v" (where .Site.Pages "Type" "posts") }}
-
-
-  <div data-pagefind-ignore="all" class="container">
-    <div class="row">
-      <div
-        class="
-        "
-      >
-        <div class="archive-list">
-          {{ range ($pages.GroupByDate "2006") }}
-            {{ if gt .Key 1 }}
-              {{ $.Scratch.Set "count" 1 }}
-              {{ range .Pages }}
-                {{ if (eq ($.Scratch.Get "count") 1) }}
-                  {{ $.Scratch.Set "count" 0 }}
-                  <h1 class="title is-4 has-text-weight-normal">{{ .Date.Format "2006" }}</h1>
-                {{ end }}
+  <section class="mx-auto mt-22 w-full grow bg-white">
+    <div class="mt-4 p-4 mx-auto flex flex-col w-full md:max-w-screen-md">
+      {{ $pages := (where (where .Site.Pages "Type" "posts") "IsPage" true) }}
+      {{ range ($pages.GroupByDate "2006") }}
+        {{ if gt .Key 1 }}
+          <div
+            class="p-5 mb-4 border-2 border-gray-100 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+            {{ $.Scratch.Set "count" 1 }}
+            {{ range .Pages }}
+              {{ if (eq ($.Scratch.Get "count") 1) }}
+                {{ $.Scratch.Set "count" 0 }}
+                <span
+                  class="p-3 text-lg font-semibold text-gray-900 dark:text-white"
+                  >{{ .Date.Format "2006" }}</span
+                >
               {{ end }}
-
-
-              <ul>
-                {{ range .Pages }}
-                  <li>
-                    <span>{{ .Date.Format "01/02" }}</span> —
-                    <a href="{{ .RelPermalink }}">
-                      {{ .Title }}
-                    </a>
-                  </li>
-                {{ end }}
-              </ul>
             {{ end }}
-          {{ end }}
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <hr />
+
+            <ol
+              class="mt-3 divide-y rounded-lg divide-gray-200 dark:divide-gray-700">
+              {{ range .Pages }}
+                <li
+                  class="md:items-center flex-wrap p-3 flex flex-col justify-start md:flex-row hover:bg-gray-50">
+                  {{/* date and title */}}
+                  <span>{{ .Date.Format "01 / 02" }}</span>
+                  <a
+                    href="{{ .RelPermalink }}"
+                    class="md:pl-3 hover:text-blue-600">
+                    {{ .Title }}
+                  </a>
+                </li>
+              {{ end }}
+            </ol>
+          </div>
+        {{ end }}
+      {{ end }}
+    </div>
+  </section>
 {{ end }}
