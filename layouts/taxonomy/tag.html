@@ -1,7 +1,7 @@
-{{- define "title" }}{{ .Data.Singular }} - {{ .Title }} | {{ .Site.Title }}{{ end -}}
+{{- define "title" }}
+  {{ .Data.Singular }} - {{ .Title }} |
+  {{ .Site.Title }}
+{{ end -}}
 {{- define "main" -}}
-  <div class="mx-auto max-w-5xl px-3">
-    {{- partial "term.html" . -}}
-    {{- partial "pagination.html" . -}}
-  </div>
+  {{- partial "list_and_dial.html" . -}}
 {{- end }}

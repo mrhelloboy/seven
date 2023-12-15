@@ -1,0 +1,25 @@
+<li
+  class="relative pl-6 lg:pl-0 lg:flex lg:gap-12 before:absolute before:z-10 before:left-0 lg:before:left-[8.5rem] before:top-2 before:h-2 before:w-2 before:-translate-x-1/2 before:rounded-full before:bg-emerald-500 before:ring-2 before:ring-white">
+  <h4
+    class="hidden text-base leading-7 text-gray-500 lg:w-28 lg:text-right lg:block">
+    {{ .Date.Format "2006-01-02" }}
+  </h4>
+  <div
+    class="flex flex-col flex-1 gap-2 border rounded-lg p-4 hover:bg-gray-50">
+    <span class="font-normal lg:hidden text-gray-500"
+      >{{ .Date.Format "2006-01-02" }}</span
+    >
+    <a
+      href="{{ .Permalink }}"
+      class="text-base font-medium leading-7 text-gray-800 hover:text-blue-600"
+      >{{ .Title }}</a
+    >
+    <p class="line-clamp-3 flex-wrap text-gray-500 dark:text-gray-200">
+      {{ with .Description }}
+        {{- . -}}
+      {{ else }}
+        {{- .Summary -}}
+      {{ end }}
+    </p>
+  </div>
+</li>
