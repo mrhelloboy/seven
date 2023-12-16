@@ -27,6 +27,11 @@
     {{- partial "header_v2.html" . -}}
 
     {{- block "main" . }}{{- end }}
+
+    {{ if .Site.Params.enableSearch }}
+      {{- partial "search.html" . -}}
+    {{ end }}
+
     {{- partial "footer_v2.html" . -}}
   </body>
 </html>
