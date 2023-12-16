@@ -1,0 +1,195 @@
+<!-- drawer component for info of this page -->
+<div
+  id="drawer-body-scrolling-info-of-page"
+  class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-64 dark:bg-gray-800"
+  tabindex="-1"
+  aria-labelledby="drawer-body-scrolling-info-of-page-label">
+  <h5
+    id="drawer-body-scrolling-info-of-page-label"
+    class="text-base font-semibold text-gray-500 dark:text-gray-400">
+    Info of this page
+  </h5>
+  <button
+    type="button"
+    data-drawer-hide="drawer-body-scrolling-info-of-page"
+    aria-controls="drawer-body-scrolling-info-of-page"
+    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+    <svg
+      class="w-3 h-3"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 14 14">
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+    </svg>
+    <span class="sr-only">Close menu</span>
+  </button>
+  <div class="py-4 overflow-y-auto">
+    {{ $metaInfo := .Site.Params.articleMeta }}
+    <ul class="space-y-2 font-medium">
+      <li>
+        <div
+          class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+          <svg
+            class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 22 21">
+            <path
+              d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
+            <path
+              d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
+          </svg>
+          <span class="ms-3">Dashboard</span>
+        </div>
+      </li>
+
+      {{/* Author */}}
+      {{ if and ($metaInfo.enableAuthor) .Params.author }}
+        <li>
+          <div
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <svg
+              class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M501.937582 545.097053c147.891962 0 268.231366-118.534055 268.223274-264.288929 0-145.746783-120.330301-264.28994-268.222263-264.28994-147.890951 0-268.221252 118.584625-268.221252 264.28994C233.71633 426.520519 354.046631 545.097053 501.937582 545.097053zM612.471463 570.546911 411.497184 570.546911c-186.760063 0-338.664249 149.569875-338.664249 333.472733l0 19.794109c0 96.139636 149.47278 96.139636 338.664249 96.139636l200.974278 0c181.747565 0 338.694591 0 338.694591-96.139636l0-19.794109C951.164031 720.158252 799.235571 570.546911 612.471463 570.546911z" />
+            </svg>
+            <span class="ms-3">{{- .Params.author -}}</span>
+          </div>
+        </li>
+      {{ end }}
+
+      {{/* Publish Date */}}
+      {{ if not $metaInfo.disabledate }}
+        <li>
+          <div
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <svg
+              class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M773.2 178.1v91c0 49.5-40.3 89.8-89.8 89.8-24.1 0-46.7-9.4-63.7-26.5-16.8-17-26.1-39.4-26.1-63.2v-90.8-0.3H433.8v91.1c0 49.5-40.3 89.8-89.8 89.8-49.2 0-89.2-40.3-89.2-89.8v-90.8-0.2C163.6 180.2 90 255 90 346.7v379.9c0 93 75.6 168.6 168.6 168.6h510.7c93 0 168.6-75.6 168.6-168.6v-380c0-91.6-73.5-166.4-164.7-168.5zM408.7 739.4c0 24.6-19.8 44.4-44.4 44.4h-39.5c-24 0-43.8-19.8-44.4-44.4v-10.7c0-24.6 19.8-44.4 44.4-44.4h39.5c24.6 0 44.4 19.8 44.4 44.4v10.7z m0-140.6c0 24.6-19.8 44.4-44.4 44.4h-39.5c-24 0-43.8-19.8-44.4-44.4v-10.7c0-24.6 19.8-44.4 44.4-44.4h39.5c24.6 0 44.4 19.8 44.4 44.4v10.7z m0-141c0 24.6-19.8 44.4-44.4 44.4h-39.5c-24 0-43.8-19.8-44.4-44.4v-10.7c0-24.6 19.8-44.4 44.4-44.4h39.5c24.6 0 44.4 19.8 44.4 44.4v10.7z m169.4 281.6c0 24.6-19.8 44.4-44.4 44.4h-39.5c-24.6 0-43.8-19.8-44.4-44.4v-10.7c0-24.6 19.8-44.4 44.4-44.4h39.5c24.6 0 44.4 19.8 44.4 44.4v10.7z m0-140.6c0 24.6-19.8 44.4-44.4 44.4h-39.5c-24.6 0-43.8-19.8-44.4-44.4v-10.7c0-24.6 19.8-44.4 44.4-44.4h39.5c24.6 0 44.4 19.8 44.4 44.4v10.7z m0-141c0 24.6-19.8 44.4-44.4 44.4h-39.5c-24.6 0-43.8-19.8-44.4-44.4v-10.7c0-24.6 19.8-44.4 44.4-44.4h39.5c24.6 0 44.4 19.8 44.4 44.4v10.7z m169.4 281.6c0 24.6-19.8 44.4-44.4 44.4h-39.5c-24.6 0-44.4-19.8-44.4-44.4v-10.7c0-24.6 19.8-44.4 44.4-44.4h39.5c24.6 0 44.4 19.8 44.4 44.4v10.7z m0-140.6c0 24.6-19.8 44.4-44.4 44.4h-39.5c-24.6 0-44.4-19.8-44.4-44.4v-10.7c0-24.6 19.8-44.4 44.4-44.4h39.5c24.6 0 44.4 19.8 44.4 44.4v10.7z m0-140.5c0 24.6-19.8 44.4-44.4 44.4h-39.5c-24.6 0-44.4-19.8-44.4-44.4v-10.7c0-24.6 19.8-44.4 44.4-44.4h39.5c24.6 0 44.4 19.8 44.4 44.4v10.7z" />
+              <path
+                d="M344.1 316.2c25.6 0 47-20.8 47-47v-90.8c0.5-26.2-20.8-47-46.5-47s-47 20.8-47 47v90.8c0 25.6 20.8 47 46.5 47zM683.4 316.2c25.6 0 47-20.8 47-47v-90.8c-0.5-26.2-21.4-47-47-47s-47 20.8-47 47v90.8c0 25.6 20.8 47 47 47z" />
+            </svg>
+            <span class="ms-3">{{- .Date.Format "2006/01/02" -}}</span>
+          </div>
+        </li>
+      {{ end }}
+
+      {{/* Word Count */}}
+      {{ if not $metaInfo.disableCountWords }}
+        <li>
+          <div
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <svg
+              class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M760.744759 112.25055 267.815093 112.25055c-42.271756 0-76.659961 34.399461-76.659961 76.670194l0 91.080391 0 297.006438 0 232.745878c0 42.271756 34.388205 76.670194 76.659961 76.670194l401.851321 0c42.270732 0 76.658937-34.398438 76.658937-76.670194L746.325351 280.000112c0-42.271756-34.388205-76.671217-76.658937-76.671217L267.815093 203.328895c-11.085476 0-21.60404 2.424212-31.120788 6.670933l0-21.080108c0-17.165961 13.964036-31.131021 31.120788-31.131021l492.929666 0c17.156752 0 31.119765 13.96506 31.119765 31.131021l0 620.832707c0 12.586666 10.1952 22.77061 22.771633 22.77061 12.573363 0 22.76754-10.183943 22.76754-22.77061L837.403696 188.91972C837.403696 146.648988 803.018561 112.25055 760.744759 112.25055zM453.364043 397.762189l34.512025 0 83.119069 247.542886-39.646975 0-22.704095-72.100108-75.068719 0-21.225417 72.100108-37.279045 0L453.364043 397.762189zM479.225037 478.278991c-3.333932-10.773368-6.225795-20.557198-8.626471-29.262464-1.958608 8.516977-4.214998 16.98893-6.78145 25.360598l-19.790742 63.673182 53.589522 0L479.225037 478.278991z" />
+            </svg>
+            <span class="ms-3">{{- .WordCount | printf "%d words" -}}</span>
+          </div>
+        </li>
+      {{ end }}
+
+      {{/* Read Time */}}
+      {{ if not $metaInfo.disableReadTime }}
+        <li>
+          <div
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <svg
+              class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M502.784 75.264c-245.76 0-443.904 198.144-443.904 443.904S259.584 962.56 502.784 962.56c245.76 0 443.904-198.144 443.904-443.904s-200.192-443.392-443.904-443.392z m289.28 578.048c-6.656 13.824-18.432 20.48-31.744 20.48-4.608 0-9.216 0-13.824-2.048L484.864 552.96c-11.264-4.608-20.48-18.432-20.48-31.744v-245.76c0-18.432 15.872-34.304 34.304-34.304s34.304 15.872 34.304 34.304v225.28l241.152 109.056c17.92 6.656 24.576 25.088 17.92 43.52z" />
+            </svg>
+            <span class="ms-3">{{- .ReadingTime| printf "%d minutes" -}}</span>
+          </div>
+        </li>
+      {{ end }}
+
+      {{/* Page view */}}
+      {{ if and .Site.Params.waline.serverURL (or .Site.Params.waline.alonePageview  .Site.Params.waline.pageview) }}
+        <li>
+          <div
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <svg
+              class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M455.68 404.032l91.264 529.152s67.456-69.44 123.136-117.888L792.512 979.2c4.928 6.656 15.68 7.104 23.872 1.088l52.288-38.208c8.256-6.016 10.944-16.32 5.952-22.976L755.52 759.68c62.208-25.088 164.672-53.632 164.672-53.632L455.68 404.032zM308.352 648.384L172.48 747.712c-20.544 15.04-24.256 43.968-8 65.408 16.256 21.376 46.272 27.008 66.752 12.032l135.872-99.328c20.992-15.36 24.512-45.504 8.256-66.88-16.192-21.44-46.016-25.92-67.008-10.56z m641.344-409.408C933.44 217.6 904.064 212.8 882.624 228.48l-134.912 98.688c-21.44 15.68-25.152 44.672-8.896 66.048 16.256 21.376 46.272 27.008 67.712 11.328l134.912-98.688c21.44-15.68 24.512-45.504 8.256-66.88z m-630.4-102.144c-15.936-20.928-45.248-25.728-66.752-10.048-20.096 14.72-24.256 43.968-8.32 64.896L349.76 330.496c15.936 20.992 45.696 25.408 65.792 10.688 21.44-15.68 25.216-44.608 9.28-65.6L319.296 136.832zM585.792 301.76c26.176 4.224 50.24-13.376 53.632-39.232L660.608 94.72c3.392-25.792-14.976-49.984-41.536-54.656-26.176-4.224-50.24 13.376-53.632 39.168l-21.248 167.872c-3.264 25.856 15.104 49.984 41.6 54.656zM329.728 489.024c2.56-25.92-15.808-50.048-41.536-54.656L118.144 406.4c-27.072-3.584-50.688 13.696-53.632 39.232-3.904 26.944 14.464 51.072 41.536 54.656l170.048 27.968c25.728 4.48 49.408-12.8 53.632-39.232z" />
+            </svg>
+            <p>
+              <span
+                class="waline-pageview-count"
+                data-path="{{ .RelPermalink }}"
+                >...</span
+              >
+              views
+            </p>
+          </div>
+        </li>
+      {{ end }}
+
+      {{/* Comments count */}}
+      {{ if and .Site.Params.waline.serverURL .Site.Params.waline.comment }}
+        <li>
+          <div
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <svg
+              t="1689257719197"
+              class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              p-id="21488"
+              xmlns:xlink="http://www.w3.org/1999/xlink">
+              <path
+                d="M860.16 430.08c0-223.744-192-402.944-431.616-402.944C191.488 27.136 0 209.408 0 430.08c0 73.728 22.528 143.872 57.344 201.216l-41.472 140.8c-9.728 35.328 9.728 51.2 41.472 41.472l134.144-44.544c67.072 41.472 146.944 64 233.472 64 243.2 3.072 435.2-179.2 435.2-402.944z m-214.528-54.272c28.672 0 54.272 25.6 54.272 54.272s-25.6 54.272-54.272 54.272-54.272-25.6-54.272-54.272 25.6-54.272 54.272-54.272zM214.016 484.352c-28.672 0-54.272-25.6-54.272-54.272s25.6-54.272 54.272-54.272 54.272 25.6 54.272 54.272-22.016 54.272-54.272 54.272zM377.344 430.08c0-28.672 25.6-54.272 54.272-54.272s54.272 25.6 54.272 54.272-25.6 54.272-54.272 54.272S377.344 461.824 377.344 430.08z m0 0"
+                p-id="21489"></path>
+              <path
+                d="M965.632 794.624c35.328-60.928 57.344-128 57.344-201.216 0-112.128-48.128-210.944-124.928-284.672 12.8 38.4 18.944 79.872 18.944 124.928v35.328c18.944 38.4 28.672 82.944 28.672 128 0 57.344-15.872 112.128-44.544 159.744l-18.944 28.672 9.728 35.328 15.872 54.272-51.2-15.872-35.328-12.8-31.744 18.944c-57.344 35.328-124.928 54.272-192 54.272-51.2 0-99.328-9.728-140.8-28.672h-18.944c-54.272 0-108.544-9.728-156.672-25.6 79.872 79.872 192 131.072 320 131.072 86.528 0 166.4-25.6 233.472-64l143.872 48.128c28.672 9.728 44.544-6.144 35.328-35.328l-48.128-150.528z m0 0"
+                p-id="21490"></path>
+            </svg>
+            <p>
+              <span class="waline-comment-count" data-path="{{ .RelPermalink }}"
+                >...</span
+              >
+              comments
+            </p>
+          </div>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+</div>
