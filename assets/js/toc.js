@@ -2,61 +2,57 @@
  * 文章目录css样式、及状态（hover、active等）处理逻辑
  */
 
-// toc top
-const postImg = document.getElementById("post-feature");
-if (postImg) {
-  const imgOffsetTop = postImg.offsetTop;
-  let tocTop = imgOffsetTop -72;
-  const tocDom = document.getElementById("catalog");
-  tocDom.style.top = tocTop + "px";
-}
+let tocMapHeadTag = new Map(); // 目录跟文章的标题对应关系
+let headTagMapToc = new Map(); // 文章标题跟目录的对应关系
 
-let tocMapHeadTag = new Map();  // 目录跟文章的标题对应关系
-let headTagMapToc = new Map();  // 文章标题跟目录的对应关系
-
-// 获取文章所有的heading元素
+// 获取文章所有的 heading 元素
 const allHeads = document.querySelectorAll(".head-tag");
 
+// 开始监听目录的子元素
 const startNodeLists = document.querySelectorAll("#TableOfContents > ul > li");
+const nodeListsCache = [];
 
-// Add curstom css for ele of toc
-startNodeLists.forEach((node)=>{
-  findNextNodeLists(node, 0);
-})
+// Add custom css for ele of toc
+startNodeLists.forEach((node) => {
+  findNextNodeLists(node, 0, nodeListsCache);
+});
 
-function findNextNodeLists(node, level) {
+function findNextNodeLists(node, level, nodeListsCache) {
   if (level >= 10) return;
 
   const nextNodeLists = node.querySelectorAll("ul > li");
+  
+  if (nextNodeLists.length > 0) {
+    // Cache nextNodeLists for later use
+    nodeListsCache[level] = nextNodeLists;
+  }
 
   if (level === 0) {
     hyperLinkNodeAddClass(node, "theme-toc");
     hyperLinkNodeAddEvent(node);
     findTocMapHeadTag(node);
-
   } else if (nextNodeLists.length === 0 && level > 0) {
-    let paddingLeft = `theme-toc-nest-${level * 1}`
-    hyperLinkNodeAddClass(node, `theme-toc ${paddingLeft}`)
+    let paddingLeft = `theme-toc-nest-${level * 1}`;
+    hyperLinkNodeAddClass(node, `theme-toc ${paddingLeft}`);
     hyperLinkNodeAddEvent(node);
     findTocMapHeadTag(node);
   }
 
   level += 1;
-  nextNodeLists.forEach((nextNode)=>{
-    return findNextNodeLists(nextNode, level)}
-  )
-
+  nextNodeLists.forEach((nextNode) => {
+    return findNextNodeLists(nextNode, level, nodeListsCache);
+  });
 }
 
 // Add class for <a>
 function hyperLinkNodeAddClass(node, classNames) {
   const hyperLinkNode = node.querySelector("a");
-  classNames.split(" ").forEach((className)=>{
+  classNames.split(" ").forEach((className) => {
     hyperLinkNode.classList.add(className);
-  })
+  });
 }
 
-function hyperLinkNodeAddEvent(node){
+function hyperLinkNodeAddEvent(node) {
   const hyperLinkNode = node.querySelector("a");
   hyperLinkNode.href = "";
   hyperLinkNode.addEventListener("click", tocOnClick);
@@ -69,21 +65,21 @@ function findTocMapHeadTag(node) {
       tocMapHeadTag.set(hyperLinkNode, headNode);
       headTagMapToc.set(headNode, hyperLinkNode);
     }
-  })
+  });
 }
 
 function tocOnClick(e) {
   e.preventDefault();
 
-  // 移除所有active状态下的目录
+  // 移除所有 active 状态下的目录
   removeAllActive();
 
-  // 当前目录设置为active
+  // 当前目录设置为 active
   onActive(e.target);
 
   const _headNode = tocMapHeadTag.get(e.target);
-  const headNode = document.querySelector(`#${_headNode.id}`)
-  window.scrollTo({top: headNode.offsetTop - 80, behavior:"smooth"});
+  const headNode = document.querySelector(`#${_headNode.id}`);
+  window.scrollTo({top: headNode.offsetTop - 100, behavior: "smooth"});
 }
 
 // 选中状态
@@ -108,11 +104,9 @@ function removeAllActive() {
 
 let intersectionEles = [];
 const intersectionObserver = new IntersectionObserver((entries) => {
-
-  entries.forEach(entry =>{
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      intersectionEles.push(entry.target)
-      
+      intersectionEles.push(entry.target);
     }
 
     if (!entry.isIntersecting) {
@@ -121,27 +115,28 @@ const intersectionObserver = new IntersectionObserver((entries) => {
         intersectionEles.splice(idx, 1);
       }
     }
-  })
+  });
 
   let minTop = Number.MAX_VALUE;
   let targetEle = null;
   if (intersectionEles.length > 0) {
-    intersectionEles.forEach(element => {
+    intersectionEles.forEach((element) => {
       if (element.offsetTop <= minTop) {
+        console.log(element)
+        console.log("====> offsetTop: " + element.offsetTop)
         minTop = element.offsetTop;
         targetEle = element;
       }
-    })
+    });
   }
 
   if (targetEle && headTagMapToc.get(targetEle)) {
     removeAllActive();
     onActive(headTagMapToc.get(targetEle));
   }
-
-});
+}, { threshold: 1.0 });
 
 // 开始监听
-allHeads.forEach((head)=>{
+allHeads.forEach((head) => {
   intersectionObserver.observe(head);
-})
+});

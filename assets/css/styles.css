@@ -29,7 +29,7 @@
 }
 
 .theme-toc {
-  @apply block truncate px-2 py-1 text-xs hover:text-blue-700;
+  @apply block truncate text-gray-800 px-2 py-1 text-xs hover:text-blue-700;
 }
 
 .theme-toc-active {

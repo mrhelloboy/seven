@@ -31,31 +31,47 @@ more info: https://flowbite.com/docs/components/speed-dial/
       Top
       <div class="tooltip-arrow" data-popper-arrow></div>
     </div>
+    {{ if and ( .IsPage ) ( eq .Kind "page") }}
+      <button
+        type="button"
+        data-tooltip-target="tooltip-share"
+        data-tooltip-placement="left"
+        data-drawer-target="drawer-body-scrolling-toc"
+        data-drawer-show="drawer-body-scrolling-toc"
+        data-drawer-body-scrolling="true"
+        aria-controls="drawer-body-scrolling-toc"
+        class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+        <svg
+          class="w-5 h-5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 1024 1024"
+          version="1.1">
+          <path
+            d="M901.8 313.5H354.4c-32 0-58.2-26.2-58.2-58.2v-18.1c0-32 26.2-58.2 58.2-58.2h547.4c32 0 58.2 26.2 58.2 58.2v18.1c0 32-26.2 58.2-58.2 58.2z"></path>
+          <path
+            d="M131.3 246.2m-67.3 0a67.3 67.3 0 1 0 134.6 0 67.3 67.3 0 1 0-134.6 0Z"></path>
+          <path
+            d="M901.8 579.3H354.4c-32 0-58.2-26.2-58.2-58.2V503c0-32 26.2-58.2 58.2-58.2h547.4c32 0 58.2 26.2 58.2 58.2v18.1c0 32-26.2 58.2-58.2 58.2z"></path>
+          <path
+            d="M131.3 512m-67.3 0a67.3 67.3 0 1 0 134.6 0 67.3 67.3 0 1 0-134.6 0Z"></path>
+          <path
+            d="M901.8 845.1H354.4c-32 0-58.2-26.2-58.2-58.2v-18.1c0-32 26.2-58.2 58.2-58.2h547.4c32 0 58.2 26.2 58.2 58.2v18.1c0 32-26.2 58.2-58.2 58.2z"></path>
+          <path
+            d="M131.3 777.8m-67.3 0a67.3 67.3 0 1 0 134.6 0 67.3 67.3 0 1 0-134.6 0Z"></path>
+        </svg>
 
-    <button
-      type="button"
-      data-tooltip-target="tooltip-share"
-      data-tooltip-placement="left"
-      class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
-      <svg
-        class="w-5 h-5"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-        viewBox="0 0 18 18">
-        <path
-          d="M14.419 10.581a3.564 3.564 0 0 0-2.574 1.1l-4.756-2.49a3.54 3.54 0 0 0 .072-.71 3.55 3.55 0 0 0-.043-.428L11.67 6.1a3.56 3.56 0 1 0-.831-2.265c.006.143.02.286.043.428L6.33 6.218a3.573 3.573 0 1 0-.175 4.743l4.756 2.491a3.58 3.58 0 1 0 3.508-2.871Z" />
-      </svg>
-      <span class="sr-only">Share</span>
-    </button>
-    <div
-      id="tooltip-share"
-      role="tooltip"
-      class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-      Share
-      <div class="tooltip-arrow" data-popper-arrow></div>
-    </div>
-
+        <span class="sr-only">Catelog</span>
+      </button>
+      <div
+        id="tooltip-share"
+        role="tooltip"
+        class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+        Catelog
+        <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+    {{ end }}
     <button
       type="button"
       data-tooltip-target="tooltip-print"
@@ -189,3 +205,4 @@ more info: https://flowbite.com/docs/components/speed-dial/
 </div>
 
 {{- partial "drawer_tags.html" . -}}
+{{- partial "drawer_toc.html" . -}}

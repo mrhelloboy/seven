@@ -1,7 +1,9 @@
 {{ $smaxW := .Scratch.Get "maxW" }}
 {{/* Waline */}}
 {{ if and .Site.Params.waline.serverURL (not .Site.Params.waline.alonePageview) }}
-  <div id="waline" class="lg:{{ $smaxW }} w-full px-0.5 py-5 md:px-2 lg:px-8"></div>
+  <div
+    id="waline"
+    class="lg:max-w-5xl w-full px-0.5 py-5 md:px-2 lg:px-8"></div>
 
   <script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
 
@@ -22,7 +24,7 @@
 {{/* Disque */}}
 {{ if hugo.IsProduction }}
   {{ if .Site.DisqusShortname }}
-    <div class="lg:{{ $smaxW }} w-full px-0.5 md:px-2 lg:px-8">
+    <div class="lg:max-w-5xl w-full px-0.5 md:px-2 lg:px-8">
       {{ template "_internal/disqus.html" . }}
     </div>
   {{ end }}

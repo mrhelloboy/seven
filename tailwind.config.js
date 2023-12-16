@@ -8,6 +8,13 @@ module.exports = {
       'postmeta': ['post-meta'],
     },
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            color: '#374151',
+          },
+        },
+      },
       content: {
       },
       height: {
@@ -47,5 +54,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [require('flowbite-typography')],
 }
