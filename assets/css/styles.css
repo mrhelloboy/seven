@@ -113,6 +113,18 @@ body {
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Oswald";
+  src: url("/font/Oswald-VariableFont_wght.woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/font/Montserrat-VariableFont_wght.woff2");
+  font-display: swap;
+}
+
 /* Sweep To Right */
 .hvr-sweep-to-right {
   /* display: inline-block; */

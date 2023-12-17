@@ -6,6 +6,8 @@ module.exports = {
   theme: {
     fontFamily: {
       'postmeta': ['post-meta'],
+      'Oswald': ['Oswald'],
+      'Montserrat': ['Montserrat'],
     },
     extend: {
       typography: {
