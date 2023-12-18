@@ -1,7 +1,7 @@
 {{ define "main" }}
   <section class="mx-auto mt-22 w-full grow bg-white">
     <div class="p-4 mx-auto flex flex-col w-full md:max-w-screen-md">
-      {{ $pages := (where (where .Site.Pages "Type" "posts") "IsPage" true) }}
+      {{ $pages := (where .Site.Pages "IsPage" true) }}
       {{ range ($pages.GroupByDate "2006") }}
         {{ if gt .Key 1 }}
           <div
