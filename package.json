@@ -3,26 +3,20 @@
   "comments": {
     "dependencies": {},
     "devDependencies": {
-      "@tailwindcss/typography": "project",
       "autoprefixer": "project",
+      "flowbite-typography": "project",
       "postcss": "project",
       "postcss-cli": "project",
-      "prettier": "project",
-      "prettier-plugin-go-template": "project",
-      "prettier-plugin-tailwindcss": "project",
       "tailwindcss": "project"
     }
   },
+  "dependencies": {},
   "description": "Personal blog theme of Hugo",
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.9",
     "autoprefixer": "^10.4.14",
     "flowbite-typography": "^1.0.3",
     "postcss": "^8.4.24",
     "postcss-cli": "^11.0.0",
-    "prettier": "^3.1.1",
-    "prettier-plugin-go-template": "^0.0.15",
-    "prettier-plugin-tailwindcss": "^0.5.9",
     "tailwindcss": "^3.3.2"
   },
   "license": "MIT",

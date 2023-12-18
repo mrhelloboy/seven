@@ -18,7 +18,7 @@
           {{ range $k, $v := $lastestPosts }}
             <li class="me-2" role="presentation">
               <button
-                class="inline-block rounded-t-lg border-b-2 p-4 text-lg font-Oswald font-medium"
+                class="inline-block rounded-t-lg border-b-2 p-4 font-Oswald text-lg font-medium"
                 id="home-{{ $k }}-tab"
                 data-tabs-target="#home-{{ $k }}"
                 type="button"
@@ -44,7 +44,7 @@
             <div
               class="flex flex-1 flex-col border-r border-gray-200 p-2 md:w-2/3">
               <p
-                class="mt-1 py-1 text-sm font-Montserrat font-medium text-gray-500 dark:text-gray-200 md:mt-12 md:py-3">
+                class="mt-1 py-1 font-Montserrat text-sm font-medium text-gray-500 dark:text-gray-200 md:mt-12 md:py-3">
                 {{ $v.Date.Format "2 January 2006" }}
                 <span class="text-red-700">•</span>
                 {{ index $v.Params.categories 0 }}
@@ -67,14 +67,14 @@
 
             {{/* summary */}}
             <div
-              class="mx-auto flex flex-col justify-center p-4  md:w-1/3 md:p-6 lg:p-9">
+              class="mx-auto flex flex-col justify-center p-4 md:w-1/3 md:p-6 lg:p-9">
               <div class="hidden md:block">
                 <div class="h-2 w-2 rounded-full bg-green-600"></div>
-                <p class="py-2 text-lg font-Montserrat font-bold">Summary</p>
+                <p class="py-2 font-Montserrat text-lg font-bold">Summary</p>
               </div>
 
               <p
-                class="font-serif line-clamp-[7] lg:line-clamp-[10] text-gray-500 dark:text-gray-200">
+                class="font-serif line-clamp-[7] text-gray-500 dark:text-gray-200 lg:line-clamp-[10]">
                 {{ with $v.Description }}
                   {{- . -}}
                 {{ else }}
