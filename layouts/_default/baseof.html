@@ -24,7 +24,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
   </head>
   <body class="flex h-screen flex-col bg-white dark:bg-gray-900">
-    {{- partial "header_v2.html" . -}}
+    {{- partial "header.html" . -}}
 
     {{- block "main" . }}{{- end }}
 
@@ -32,7 +32,7 @@
       {{- partial "search.html" . -}}
     {{ end }}
 
-    {{- partial "footer_v2.html" . -}}
+    {{- partial "footer.html" . -}}
 
     {{- block "script" . }}{{- end }}
   </body>

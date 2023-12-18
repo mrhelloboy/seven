@@ -1,99 +1,166 @@
-<footer class="mt-auto w-full bg-black">
-  <!-- Container -->
-  <div class="container mx-auto max-w-[85rem] py-10">
-    <!-- Footer Flex Container -->
-    <div
-      class="mb-8 flex flex-col items-center space-y-6 px-4 lg:flex-row lg:items-start lg:justify-between lg:space-y-0"
-    >
-      <!-- Menu & Logo Container -->
-      <div class="flex flex-col items-center space-y-8 lg:items-start lg:space-y-4">
-        <!-- Logo -->
-        <a href="{{ .Site.BaseURL }}">
-          {{ $logoInfo := .Site.Params.logo }}
-          {{ $logoH := "h-10" }}
-          {{- with $logoInfo.footer_height -}}
-            {{ $logoH = printf "h-[%s]" . }}
-          {{- end -}}
-          {{ with or $logoInfo.img_footer $logoInfo.img }}
-            <img src="{{ . }}" alt="footer logo" id="logo-footer" class="{{ $logoH }}" />
-          {{ else }}
-            <span
-              class="{{ with $logoInfo.textColor }}
-                text-[{{ . }}]
-              {{ else }}
-                text-white
-              {{ end }} text-3xl font-bold"
-            >
-              {{ $logoInfo.text }}
-            </span>
-          {{ end }}
-        </a>
+<footer
+  class="mx-auto flex w-full gap-y-3 max-w-screen-xl flex-col-reverse items-center border-t border-gray-200 py-6 lg:flex-row lg:justify-between md:px-12">
+  <!-- Social & Theme & Copy Container -->
+  <div
+    class="dark:text-gray-200 lg:items-start flex flex-col items-center justify-between space-y-3 text-xs text-gray-500">
+    {{/* Copy */}}
+    <div class="items-center font-Montserrat font-thin">
+      &copy;
+      {{ $startYear := .Site.Params.copyright.start_year }}
+      {{ $currentYear := now.Format "2006" }}
+      {{ with eq $startYear $currentYear }}
+        {{ $currentYear }}
+      {{ else }}
+        {{ $startYear }} -
+        {{ $currentYear }}
+      {{ end }}
 
-        <!-- Menu Container -->
-        <div
-          class="flex flex-col items-center justify-around space-y-4 font-bold text-white md:flex-row md:justify-center md:space-x-6 md:space-y-0"
-        >
-          {{ range .Site.Menus.main }}
-            <div class="group h-10">
-              <a href="{{ .URL }}">
-                {{ $text := print .Name | safeHTML }}
-                {{ $text }}
-              </a>
-              <div class="mx-2 group-hover:border-b group-hover:border-blue-700"></div>
-            </div>
-          {{ end }}
-        </div>
-      </div>
-
-      <!-- Social & Theme & Copy Container -->
-      <div class="flex flex-col items-center justify-between space-y-3 text-gray-500 lg:items-start">
-        <!-- icons Container -->
-        <div class="mx-auto flex items-center justify-center space-x-4 md:mx-0 md:justify-end">
-          {{ range $name, $value := .Site.Params.society }}
-            {{ with $value }}
-              <div class="group h-8">
-                {{ if eq $name "email" }}
-                  {{ $value = printf "mailto:%s" . }}
-                {{ end }}
-                <a href="{{ $value }}" aria-label="{{ $name }} social icon ">
-                  <img src="/images/default/icon-{{ $name }}.svg" alt="" class="ficon h-6 w-6" />
-                </a>
-              </div>
-            {{ end }}
-          {{ end }}
-        </div>
-
-        {{/* Theme Info */}}
-        <div class="flex flex-row items-center font-bold">
-          <span>Powered By</span>
-          <a href="https://gohugo.io/" aria-label="hugo link">
-            <img
-              src="https://d33wubrfki0l68.cloudfront.net/c38c7334cc3f23585738e40334284fddcaf03d5e/2e17c/images/hugo-logo-wide.svg"
-              alt="hugo logo"
-              class="mx-1 h-4"
-            />
-          </a>
-          <span> &#8739; Based on Theme</span>
-          <a href="https://github.com/mrhelloboy/seven" aria-label="The github address of seven theme" class="">
-            <img src="/images/default/seven-logo-dark.svg" alt="seven theme logo" class="mx-1 h-6" />
-          </a>
-        </div>
-
-        {{/* Copy */}}
-        <div class="items-center">
-          &copy;
-          {{ $startYear := .Site.Params.copyright.start_year }}
-          {{ $currentYear := now.Format "2006" }}
-          {{ with eq $startYear $currentYear }}
-            {{ $currentYear }}
-          {{ else }}
-            {{ $startYear }} -
-            {{ $currentYear }}
-          {{ end }}
-
-          {{ .Site.Params.copyright.owner }}. All Rights Reserved
-        </div>
-      </div>
+      {{ .Site.Params.copyright.owner }}. All Rights Reserved
     </div>
+  </div>
+
+  {{/* Theme Info */}}
+  <div
+    class="flex flex-row items-center text-xs text-gray-500 dark:text-gray-200 font-Montserrat font-thin">
+    <span>Powered By</span>
+    <a href="https://gohugo.io/" aria-label="hugo link">
+      <img
+        src="/images/default/hugo-logo-wide.svg"
+        alt="Hugo"
+        class="mx-1 h-3" />
+    </a>
+    <span> &#8739; Based on Theme</span>
+    <a
+      href="https://github.com/mrhelloboy/seven"
+      aria-label="The github address of seven theme"
+      class="">
+      <img
+        src="/images/default/seven-logo.svg"
+        alt="seven theme logo"
+        class="mx-1 h-5" />
+    </a>
+  </div>
+
+  <!-- icons Container -->
+  <div
+    class="mt-4 flex space-x-5 rtl:space-x-reverse sm:justify-center md:mt-0">
+    {{ range $name, $value :=.Site.Params.society }}
+      {{ if and (eq $name "email") (eq $value.enable true) }}
+        <a
+          href="mailto:{{ $value.url }}"
+          class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+          <svg
+            class="h-4 w-4"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M513 583.8l448.5-448.5c-11.6-4.7-24.3-7.3-37.5-7.3H100c-12.7 0-24.9 2.4-36.1 6.7L513 583.8z"
+              p-id="88208"></path>
+            <path
+              d="M513 674.3L14.6 175.9C5.3 191.1 0 208.9 0 228v568c0 55.2 44.8 100 100 100h824c55.2 0 100-44.8 100-100V228c0-18.5-5.1-35.9-13.9-50.8L513 674.3z"
+              p-id="88209"></path>
+          </svg>
+          <span class="sr-only">Email page</span>
+        </a>
+      {{ end }}
+      {{ if and (eq $name "facebook") (eq $value.enable true) }}
+        <a
+          href="{{ $value.url }}"
+          class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+          <svg
+            class="h-4 w-4"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 8 19">
+            <path
+              fill-rule="evenodd"
+              d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+              clip-rule="evenodd" />
+          </svg>
+          <span class="sr-only">Facebook page</span>
+        </a>
+      {{ end }}
+
+      {{ if and (eq $name "x") (eq $value.enable true) }}
+        <a
+          href="{{ $value.url }}"
+          class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+          <svg
+            class="w-4 h-4"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 20 20">
+            <path
+              fill="currentColor"
+              d="M12.186 8.672 18.743.947h-2.927l-5.005 5.9-4.44-5.9H0l7.434 9.876-6.986 8.23h2.927l5.434-6.4 4.82 6.4H20L12.186 8.672Zm-2.267 2.671L8.544 9.515 3.2 2.42h2.2l4.312 5.719 1.375 1.828 5.731 7.613h-2.2l-4.699-6.237Z" />
+          </svg>
+
+          <span class="sr-only">X page</span>
+        </a>
+      {{ end }}
+
+      {{ if and (eq $name "github") (eq $value.enable true) }}
+        <a
+          href="{{ $value.url }}"
+          class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+          <svg
+            class="h-4 w-4"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 20 20">
+            <path
+              fill-rule="evenodd"
+              d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
+              clip-rule="evenodd" />
+          </svg>
+          <span class="sr-only">GitHub account</span>
+        </a>
+      {{ end }}
+
+      {{ if and (eq $name "wechat") (eq $value.enable true) }}
+        <button
+          data-popover-target="wechat-popover-no-arrow"
+          type="button"
+          class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+          <svg
+            class="h-4 w-4"
+            viewBox="0 0 1184 1024"
+            fill="currentColor"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            p-id="1495">
+            <path
+              d="M331.424 263.424q0-23.424-14.272-37.728t-37.728-14.272q-24.576 0-43.424 14.56t-18.848 37.44q0 22.272 18.848 36.864t43.424 14.56q23.424 0 37.728-14.016t14.272-37.44zM756 553.152q0-16-14.56-28.576t-37.44-12.576q-15.424 0-28.288 12.864t-12.864 28.288q0 16 12.864 28.864t28.288 12.864q22.848 0 37.44-12.576t14.56-29.152zM621.152 263.424q0-23.424-14.016-37.728t-37.44-14.272q-24.576 0-43.424 14.56t-18.848 37.44q0 22.272 18.848 36.864t43.424 14.56q23.424 0 37.44-14.016t14.016-37.44zM984 553.152q0-16-14.848-28.576t-37.152-12.576q-15.424 0-28.288 12.864t-12.864 28.288q0 16 12.864 28.864t28.288 12.864q22.272 0 37.152-12.576t14.848-29.152zM832 326.272q-17.728-2.272-40-2.272-96.576 0-177.728 44t-127.712 119.136-46.56 164.288q0 44.576 13.152 86.848-20 1.728-38.848 1.728-14.848 0-28.576-0.864t-31.424-3.712-25.44-4-31.136-6.016-28.576-6.016l-144.576 72.576 41.152-124.576q-165.728-116-165.728-280 0-96.576 55.712-177.728t150.848-127.712 207.712-46.56q100.576 0 190.016 37.728t149.728 104.288 78.016 148.864zM1170.272 646.848q0 66.848-39.136 127.712t-106.016 110.56l31.424 103.424-113.728-62.272q-85.728 21.152-124.576 21.152-96.576 0-177.728-40.288t-127.712-109.44-46.56-150.848 46.56-150.848 127.712-109.44 177.728-40.288q92 0 173.152 40.288t130.016 109.728 48.864 150.56z"
+              p-id="1496"></path>
+          </svg>
+        </button>
+
+        <div
+          data-popover
+          id="wechat-popover-no-arrow"
+          role="tooltip"
+          class="absolute z-10 invisible inline-block w-52 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+            {{ range .OrcodeUrl }}
+              <li>
+                <img src="{{ . }}" alt="" />
+              </li>
+            {{ end }}
+          </ul>
+        </div>
+      {{ end }}
+    {{ end }}
+
+    {{ $customSocialUrl :=.Site.Params.society.customSocial }}
+    {{ if $customSocialUrl }}
+      {{ partial $customSocialUrl . }}
+    {{ end }}
+
   </div>
 </footer>

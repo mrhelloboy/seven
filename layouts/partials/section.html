@@ -1,14 +1,1 @@
-<section id="content-section">
-  <div class="mx-auto flex max-w-[88rem] justify-between space-x-3 px-3 py-6 md:px-6 lg:mb-0 lg:flex-row">
-    {{/* Posts Container */}}
-    <div class="w-full space-y-6">
-      {{- partial "list.html" . -}}
-
-      {{- partial "pagination.html" . -}}
-
-      {{ if .Site.Params.enableToTop }}
-        {{- partial "to_top.html" . -}}
-      {{ end }}
-    </div>
-  </div>
-</section>
+{{ partial "list_and_dial.html" . }}
