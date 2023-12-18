@@ -108,12 +108,6 @@ body {
 }
 
 @font-face {
-  font-family: "post-meta";
-  src: url("/font/Montserrat-SemiBold.woff2");
-  font-display: swap;
-}
-
-@font-face {
   font-family: "Oswald";
   src: url("/font/Oswald-VariableFont_wght.woff2");
   font-display: swap;

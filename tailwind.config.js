@@ -5,7 +5,6 @@ module.exports = {
   content: ['./hugo_stats.json'],
   theme: {
     fontFamily: {
-      'postmeta': ['post-meta'],
       'Oswald': ['Oswald'],
       'Montserrat': ['Montserrat'],
     },

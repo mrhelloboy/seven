@@ -122,8 +122,6 @@ const intersectionObserver = new IntersectionObserver((entries) => {
   if (intersectionEles.length > 0) {
     intersectionEles.forEach((element) => {
       if (element.offsetTop <= minTop) {
-        console.log(element)
-        console.log("====> offsetTop: " + element.offsetTop)
         minTop = element.offsetTop;
         targetEle = element;
       }
