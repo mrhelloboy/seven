@@ -50,4 +50,12 @@
     {{- $.Scratch.SetInMap "hits" $hit.File.Path (.Scratch.Get $hit.File.Path) -}}
   {{- end -}}
 {{- end -}}
-{{- jsonify ($.Scratch.GetSortedMapValues "hits") -}}
+
+{{ $ndJSON := "" }}
+{{ range $k, $v := $.Scratch.GetSortedMapValues "hits" }}
+  {{ if $k }}
+    {{ $ndJSON = print $ndJSON "\n" }}
+  {{ end }}
+  {{ $ndJSON = print $ndJSON (jsonify $v) }}
+{{ end }}
+{{ return $ndJSON }}
