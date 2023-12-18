@@ -1,18 +1,12 @@
-<!-- Implement the Back Top Top Button -->
-<button
-  id="to-top-button"
-  title="Go To Top"
-  class="z-90 fixed bottom-32 right-2 hidden h-16 w-16 rounded-full border-0 bg-gray-500 text-3xl font-bold text-white drop-shadow-md hover:bg-cyan-700 focus:bg-cyan-900 md:right-5 xl:right-24"
->
-  &uarr;
-</button>
-
 <script>
   var toTopButton = document.getElementById("to-top-button");
   toTopButton.addEventListener("click", goToTop);
   // When the user scrolls down 200px from the top of the document, show the button
   window.onscroll = function () {
-    if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+    if (
+      document.body.scrollTop > 500 ||
+      document.documentElement.scrollTop > 500
+    ) {
       toTopButton.classList.remove("hidden");
     } else {
       toTopButton.classList.add("hidden");
