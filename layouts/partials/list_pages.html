@@ -1,19 +1,19 @@
-<div class="mx-auto p-4 flex flex-col w-full md:max-w-screen-md">
+<div class="mx-auto flex w-full flex-col p-4 md:max-w-screen-md">
   {{ if eq .Kind "term" }}
     <div
-      class="border mb-1 p-4 rounded-lg flex-wrap flex flew-row space-x-2 items-center text-2xl font-bold text-neutral-700 dark:text-neutral-300">
+      class="flew-row mb-1 flex flex-wrap items-center space-x-2 rounded-lg border p-4 text-2xl font-bold text-neutral-700 dark:border-gray-700 dark:text-neutral-300">
       <p>{{ .Data.Singular | title }}</p>
       <div class="h-2 w-2 rounded-full bg-green-600"></div>
       <p>{{ .Title | title }}</p>
     </div>
   {{ else }}
     <p
-      class="border mb-1 p-4 rounded-lg flex-wrap text-2xl font-bold text-neutral-700 dark:text-neutral-300">
+      class="mb-1 flex-wrap rounded-lg border p-4 text-2xl font-bold text-neutral-700 dark:border-gray-700 dark:text-neutral-300">
       {{ .Title }}
     </p>
   {{ end }}
   <ul
-    class="relative flex flex-col gap-12 py-12 pl-6 text-sm lg:pl-0 before:absolute before:top-0 before:left-6 lg:before:left-[8.5rem] before:h-full before:border before:-translate-x-1/2 before:border-slate-200 before:border-dashed after:absolute after:top-6 after:left-6 lg:after:left-[8.5rem] after:bottom-6 after:border after:-translate-x-1/2 after:border-slate-200">
+    class="relative flex flex-col gap-12 py-12 pl-6 text-sm before:absolute before:left-6 before:top-0 before:h-full before:-translate-x-1/2 before:border before:border-dashed before:border-slate-200 after:absolute after:bottom-6 after:left-6 after:top-6 after:-translate-x-1/2 after:border after:border-slate-200 lg:pl-0 lg:before:left-[8.5rem] lg:after:left-[8.5rem]">
     {{ range .Paginator.Pages }}
       {{ partial "li_page.html" . }}
     {{ end }}

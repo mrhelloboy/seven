@@ -25,15 +25,15 @@
 }
 
 .theme-aside {
-  @apply px-2 py-0.5 text-sm hover:rounded-md hover:border-0 hover:bg-gray-100 hover:text-blue-700;
+  @apply px-2 py-0.5 text-sm hover:rounded-lg hover:border-0 hover:bg-gray-100 hover:text-blue-700;
 }
 
 .theme-toc {
-  @apply block truncate text-gray-800 px-2 py-1 text-xs hover:text-blue-700;
+  @apply my-0.5 block truncate rounded-lg border border-white px-2 py-2 text-xs text-gray-800 hover:rounded-lg hover:border-gray-200 hover:text-blue-700 dark:border-gray-800 dark:text-gray-200 dark:hover:border-gray-700 dark:hover:text-blue-500;
 }
 
 .theme-toc-active {
-  @apply block truncate rounded-md border-0 bg-gray-100 px-2 py-1 text-xs text-blue-700;
+  @apply my-0.5 block truncate rounded-lg border bg-gray-100 px-2 py-2 text-xs text-blue-700 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-200 dark:hover:text-blue-500;
 }
 
 .theme-toc-nest-1 {
@@ -51,7 +51,7 @@
 .theme-toc-nest-1::before,
 .theme-toc-nest-2::before,
 .theme-toc-nest-3::before {
-  content: "· ";
+  content: "- ";
 }
 
 /* Image zoom */

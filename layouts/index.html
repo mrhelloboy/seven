@@ -8,7 +8,7 @@
 
 
     <div
-      class="mx-auto flex max-w-screen-xl flex-1 flex-col bg-white md:flex-row">
+      class="mx-auto flex max-w-screen-xl flex-1 flex-col bg-white dark:bg-gray-900 md:flex-row">
       <div class="mb-4 flex justify-center dark:border-gray-700 md:w-1/6">
         <ul
           class="-mb-px flex flex-wrap items-end justify-center space-y-4 text-center text-sm font-medium md:flex-col md:items-center"
@@ -36,13 +36,13 @@
       <div id="default-tab-content" class="md:w-5/6">
         {{ range $k, $v := $lastestPosts }}
           <div
-            class="flex hidden h-full grow flex-col justify-center dark:bg-gray-800 md:flex-row"
+            class="flex hidden h-full grow flex-col justify-center dark:bg-gray-900 md:flex-row"
             id="home-{{ $k }}"
             role="tabpanel"
             aria-labelledby="home-{{ $k }}">
             {{/* Post data, Post Title, Post Image */}}
             <div
-              class="flex flex-1 flex-col border-r border-gray-200 p-2 md:w-2/3">
+              class="flex flex-1 flex-col border-r border-gray-200 p-2 dark:border-gray-700 md:w-2/3">
               <p
                 class="mt-1 py-1 font-Montserrat text-sm font-medium text-gray-500 dark:text-gray-200 md:mt-12 md:py-3">
                 {{ $v.Date.Format "2 January 2006" }}
@@ -51,7 +51,7 @@
               </p>
 
               <div
-                class="py-3 text-4xl font-extrabold hover:text-blue-700 md:py-8 lg:text-6xl">
+                class="py-3 text-4xl font-extrabold hover:text-blue-700 dark:text-white md:py-8 lg:text-6xl">
                 <a href="{{ $v.Permalink }}">{{ $v.Title }}</a>
               </div>
 
@@ -70,7 +70,10 @@
               class="mx-auto flex flex-col justify-center p-4 md:w-1/3 md:p-6 lg:p-9">
               <div class="hidden md:block">
                 <div class="h-2 w-2 rounded-full bg-green-600"></div>
-                <p class="py-2 font-Montserrat text-lg font-bold">Summary</p>
+                <p
+                  class="py-2 font-Montserrat text-lg font-bold dark:text-white">
+                  Summary
+                </p>
               </div>
 
               <p

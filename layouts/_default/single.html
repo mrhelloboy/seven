@@ -1,11 +1,11 @@
 {{- define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end -}}
 {{ define "main" }}
   {{ $metaInfo := .Site.Params.articleMeta }}
-  <div class="mx-auto my-5 w-full md:max-w-5xl border rounded-b-lg px-5 mt-22">
+  <div class="mx-auto my-5 w-full md:max-w-5xl border dark:border-gray-700 rounded-b-lg px-5 mt-22">
     <div class="flex w-full justify-between">
       <div class="w-full">
         {{/* Title */}}
-        <div class="px-3 py-10 text-center text-3xl font-bold text-black">
+        <div class="px-3 py-10 text-center text-3xl font-bold text-black dark:text-white">
           {{ .Title }}
         </div>
 
@@ -32,13 +32,13 @@
         {{ else }}
           <div
             id="post-feature"
-            class="mx-1 mb-4 mt-0 border-b border-gray-400 md:mx-3 lg:mx-10"></div>
+            class="mx-1 mb-4 mt-0 border-b border-gray-400 dark:border-gray-700 md:mx-3 lg:mx-10"></div>
         {{ end }}
 
         {{/* Content */}}
         <div
           id="single-content"
-          class="format mx-auto max-w-none px-1 py-5 dark:format-invert md:format-base format-figure:flex format-figure:flex-col format-figure:items-center format-img:cursor-zoom-in md:px-3 lg:px-10">
+          class="format mx-auto max-w-none px-1 py-5 dark:text-gray-300 dark:format-invert md:format-base format-figure:flex format-figure:flex-col format-figure:items-center format-img:cursor-zoom-in md:px-3 lg:px-10">
           {{ .Content }}
         </div>
 

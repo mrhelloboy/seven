@@ -1,8 +1,8 @@
 <footer
-  class="mx-auto flex w-full gap-y-3 max-w-screen-xl flex-col-reverse items-center border-t border-gray-200 py-6 lg:flex-row lg:justify-between md:px-12">
+  class="mx-auto flex w-full max-w-screen-xl flex-col-reverse items-center gap-y-3 border-t border-gray-200 py-6 dark:border-gray-700 md:px-12 lg:flex-row lg:justify-between">
   <!-- Social & Theme & Copy Container -->
   <div
-    class="dark:text-gray-200 lg:items-start flex flex-col items-center justify-between space-y-3 text-xs text-gray-500">
+    class="flex flex-col items-center justify-between space-y-3 text-xs text-gray-500 dark:text-gray-200 lg:items-start">
     {{/* Copy */}}
     <div class="items-center font-Montserrat font-thin">
       &copy;
@@ -21,7 +21,7 @@
 
   {{/* Theme Info */}}
   <div
-    class="flex flex-row items-center text-xs text-gray-500 dark:text-gray-200 font-Montserrat font-thin">
+    class="flex flex-row items-center font-Montserrat text-xs font-thin text-gray-500 dark:text-gray-200">
     <span>Powered By</span>
     <a href="https://gohugo.io/" aria-label="hugo link">
       <img
@@ -90,7 +90,7 @@
           href="{{ $value.url }}"
           class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
           <svg
-            class="w-4 h-4"
+            class="h-4 w-4"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -145,7 +145,7 @@
           data-popover
           id="wechat-popover-no-arrow"
           role="tooltip"
-          class="absolute z-10 invisible inline-block w-52 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+          class="invisible absolute z-10 inline-block w-52 rounded-lg border border-gray-200 bg-white text-sm text-gray-500 opacity-0 shadow-sm transition-opacity duration-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400">
           <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
             {{ range .OrcodeUrl }}
               <li>

@@ -1,17 +1,17 @@
 {{ define "main" }}
-  <section class="mx-auto mt-22 w-full grow bg-white">
-    <div class="p-4 mx-auto flex flex-col w-full md:max-w-screen-md">
+  <section class="mx-auto mt-22 w-full grow bg-white dark:bg-gray-900">
+    <div class="mx-auto flex w-full flex-col p-4 md:max-w-screen-md">
       {{ $pages := (where .Site.Pages "IsPage" true) }}
       {{ range ($pages.GroupByDate "2006") }}
         {{ if gt .Key 1 }}
           <div
-            class="p-5 mb-4 border rounded-lg dark:bg-gray-800 dark:border-gray-700">
+            class="mb-4 rounded-lg border p-5 dark:border-gray-700 dark:bg-gray-900">
             {{ $.Scratch.Set "count" 1 }}
             {{ range .Pages }}
               {{ if (eq ($.Scratch.Get "count") 1) }}
                 {{ $.Scratch.Set "count" 0 }}
                 <span
-                  class="p-3 text-lg font-Oswald font-semibold text-gray-900 dark:text-white"
+                  class="p-3 font-Oswald text-lg font-semibold text-gray-900 dark:text-white"
                   >{{ .Date.Format "2006" }}</span
                 >
               {{ end }}
@@ -19,17 +19,17 @@
 
 
             <ol
-              class="mt-3 divide-y rounded-lg divide-gray-100 dark:divide-gray-700">
+              class="mt-3 divide-y divide-gray-100 rounded-lg dark:divide-gray-700">
               {{ range .Pages }}
                 <li
-                  class="md:items-center flex-wrap p-3 flex flex-col justify-start md:flex-row hover:bg-gray-50">
+                  class="flex flex-col flex-wrap justify-start p-3 hover:bg-gray-50 dark:hover:bg-gray-800 md:flex-row md:items-center">
                   {{/* date and title */}}
-                  <span class="font-Montserrat text-gray-500"
+                  <span class="font-Montserrat text-gray-500 dark:text-gray-300"
                     >{{ .Date.Format "01 / 02" }}</span
                   >
                   <a
                     href="{{ .RelPermalink }}"
-                    class="md:pl-3 text-gray-800 hover:text-blue-600">
+                    class="text-gray-800 hover:text-blue-600 dark:text-gray-100 dark:hover:text-blue-500 md:pl-3">
                     {{ .Title }}
                   </a>
                 </li>
