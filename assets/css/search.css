@@ -15,7 +15,7 @@
 }
 
 .ais-SearchBox-reset {
-  @apply absolute bottom-0 right-0 top-0 hidden items-center pr-3;
+  @apply absolute bottom-0 right-0 top-0 items-center pr-3;
 }
 
 .ais-SearchBox-loadingIndicator {
