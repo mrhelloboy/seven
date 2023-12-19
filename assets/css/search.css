@@ -1,132 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .ais-SearchBox {
-  position: relative;
-  width: 100%;
+  @apply relative w-full dark:bg-gray-700;
 }
 
 .ais-SearchBox-form {
-  display: flex;
-  align-items: center;
+  @apply flex items-center dark:bg-gray-700;
 }
 
 .ais-SearchBox-submit {
-  pointer-events: none;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  display: flex;
-  align-items: center;
-  padding-left: 12px;
+  @apply pointer-events-none absolute bottom-0 left-0 top-0 flex items-center pl-3;
 }
 
 .ais-SearchBox-reset {
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  display: hidden;
-  right: 0px;
-  align-items: center;
-  padding-right: 12px;
+  @apply absolute bottom-0 right-0 top-0 hidden items-center pr-3;
 }
 
 .ais-SearchBox-loadingIndicator {
-  pointer-events: none;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  display: none;
-  align-items: center;
-  padding-left: 12px;
+  @apply pointer-events-none absolute bottom-0 left-0 top-0 hidden items-center pl-3;
 }
 
 .ais-SearchBox-input {
-  --tw-border-opacity: 1;
-  display: block;
-  width: 100%;
-  border-radius: 0.5rem;
-  border-color: rgb(209 213 219 / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
-  padding: 0.625rem;
-  padding-left: 2.5rem /* 40px */;
-  font-size: 0.875rem /* 14px */;
-  line-height: 1.25rem /* 20px */;
-}
-
-.ais-SearchBox-input:focus {
-  --tw-border-opacity: 1;
-  border-color: rgb(59 130 246 / var(--tw-border-opacity));
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
+  @apply block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 pl-10 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:border-gray-800 dark:bg-gray-400 dark:text-gray-900 dark:ring-gray-800 dark:focus:border-blue-500 dark:focus:ring-blue-500;
 }
 
 .ais-SearchBox-submitIcon {
-  height: 17px;
-  width: 17px;
-  --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity));
-  fill: rgb(107 114 128 / var(--tw-text-opacity));
+  @apply h-4 w-4 fill-gray-500 dark:fill-gray-700;
 }
 
 .ais-SearchBox-resetIcon {
-  height: 13px;
-  width: 13px;
-  --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity));
-  fill: rgb(107 114 128 / var(--tw-text-opacity));
-}
-
-.ais-SearchBox-resetIcon:hover {
-  --tw-text-opacity: 1;
-  color: rgb(29 78 216 / var(--tw-text-opacity));
-  fill: rgb(29 78 216 / var(--tw-text-opacity));
+  @apply h-[13px] w-[13px] fill-gray-500 dark:fill-gray-700 dark:hover:fill-white;
 }
 
 .ais-PoweredBy {
-  width: 100%;
-  flex-direction: row;
-  justify-content: flex-end;
+  @apply flex w-full justify-end;
 }
 
 .ais-PoweredBy-logo {
-  height: 0.9rem;
+  @apply h-4;
 }
 
 .ais-Hits-list {
-  display: flex;
-  flex-direction: column;
+  @apply flex flex-col;
 }
 
 .ais-Hits-item {
-  border-radius: 0.5rem /* 8px */;
-  padding: 0.75rem /* 12px */;
-  /* bg-gray-100 */
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-  margin-top: 0.2rem;
-  margin-bottom: 0.2rem;
+  @apply my-1 rounded-lg border p-3 text-gray-900 hover:bg-gray-100 dark:border-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500 dark:hover:text-white;
 }
 
-.ais-Hits-item:hover {
-  /* bg-blue-700 */
-  --tw-bg-opacity: 1;
-  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
-  /* text-white */
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+.ais-Snippet-highlighted {
+  @apply underline decoration-blue-600 decoration-2 underline-offset-4;
 }
 
-.ais-Snippet-highlighted,
 .ais-Highlight-highlighted {
-  color: rgb(29 78 216);
-  background: unset;
-  text-decoration-line: underline;
-  text-decoration-thickness: 2px;
-  text-decoration-color: #ec4899;
-}
-
-.ais-Hits-item:hover .ais-Snippet-highlighted,
-.ais-Hits-item:hover .ais-Highlight-highlighted {
-  color: rgb(255 255 255);
+  @apply underline decoration-blue-600 decoration-2 underline-offset-4;
 }
