@@ -16,9 +16,15 @@ if (
     window.matchMedia("(prefers-color-scheme: dark)").matches)
 ) {
   themeToggleLightIcon.classList.remove("hidden");
+  if (!logoToggleLightIcon.classList.contains("hidden")) {
+    logoToggleLightIcon.classList.add("hidden");
+  }
   logoToggleDarkIcon.classList.remove("hidden");
+  if (!footerToggleLightIcon.classList.contains("hidden")) {
+    footerToggleLightIcon.classList.add("hidden");
+  }
   footerToggleDarkIcon.classList.remove("hidden");
-} else {
+} else { 
   themeToggleDarkIcon.classList.remove("hidden");
   logoToggleLightIcon.classList.remove("hidden");
   footerToggleLightIcon.classList.remove("hidden");
