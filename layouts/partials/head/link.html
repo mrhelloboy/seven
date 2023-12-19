@@ -16,8 +16,10 @@
   {{- end -}}
 {{- end -}}
 
+
 <!-- flowbite css -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+{{/* <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" /> */}}
+
 
 <!-- theme css -->
 {{ $options := dict "inlineImports" true }}
@@ -34,8 +36,7 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.0.0/themes/reset-min.css"
     integrity="sha256-2AeJLzExpZvqLUxMfcs+4DWcMwNfpnjUeAAvEtPr0wU="
-    crossorigin="anonymous"
-  />
+    crossorigin="anonymous" />
 
   {{ $search_styles := resources.Get "/css/search.css" }}
   {{ $search_styles = $search_styles | resources.PostCSS $options }}
@@ -45,7 +46,10 @@
   <link href="{{ $search_styles.RelPermalink }}" rel="stylesheet" />
 {{ end }}
 
+
 <!-- comments -->
 {{ if and .Site.Params.enableComments .Site.Params.waline.serverURL }}
-  <link href="https://unpkg.com/@waline/client@v2/dist/waline.css" rel="stylesheet" />
+  <link
+    href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+    rel="stylesheet" />
 {{ end }}
