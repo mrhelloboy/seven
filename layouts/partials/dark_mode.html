@@ -1,0 +1,5 @@
+{{ $darkModeJS := resources.Get "/js/dark-mode.js" }}
+{{ if hugo.IsProduction }}
+  {{ $darkModeJS = $darkModeJS | minify | fingerprint }}
+{{ end }}
+<script src="{{ $darkModeJS.RelPermalink }}" defer></script>
