@@ -64,11 +64,13 @@
 }
 
 /* Scrollbar */
-/* *::-webkit-scrollbar {
+/* 整个滚动条，可以设置任意的尺寸大小，包括 0，也就是滚动条不可见 */
+*::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
+/* 可拖拽的那个滑杆 */
 *::-webkit-scrollbar-thumb {
   background: rgba(60, 60, 67, 0.4);
   border-radius: 8px;
@@ -81,9 +83,10 @@
   display: block !important;
 }
 
+/* 滚动条的轨道 */
 *::-webkit-scrollbar-track {
   background-color: #00000000;
-} */
+}
 
 /* Fix jumping scrollbar issue */
 /* :root {
