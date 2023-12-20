@@ -147,4 +147,10 @@
     {{ $zoomJS = $zoomJS| minify | fingerprint }}
   {{ end }}
   <script src="{{ $zoomJS.RelPermalink }}" defer></script>
+
+  {{ $linkTopJS := resources.Get "/js/link-to-top.js" }}
+  {{ if hugo.IsProduction }}
+    {{ $linkTopJS = $linkTopJS | minify | fingerprint }}
+  {{ end }}
+  <script src="{{ $linkTopJS.RelPermalink }}" defer></script>
 {{ end }}
