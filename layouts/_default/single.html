@@ -1,21 +1,26 @@
 {{- define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end -}}
 {{ define "main" }}
   {{ $metaInfo := .Site.Params.articleMeta }}
-  <div class="mx-auto my-5 w-full md:max-w-5xl border dark:border-gray-700 rounded-b-lg px-5 mt-22">
+  <div
+    class="mx-auto my-5 mt-22 w-full rounded-b-lg border px-5 dark:border-gray-700 md:max-w-5xl">
     <div class="flex w-full justify-between">
       <div class="w-full">
         {{/* Title */}}
-        <div class="px-3 py-10 text-center text-3xl font-bold text-black dark:text-white">
+        <div
+          data-popover-target="popover-animation"
+          data-popover-offset="0"
+          data-popover-placement="bottom"
+          class="px-3 py-10 text-center text-3xl font-bold text-black dark:text-white">
           {{ .Title }}
         </div>
+
+        {{- partial "page_info.html" . -}}
 
         {{/* Image */}}
         {{ if not $metaInfo.disableHero }}
           {{ $image := resources.Get .Params.image }}
           {{ with $image }}
-            <div
-              id="post-feature"
-              class="-mx-5">
+            <div id="post-feature" class="-mx-5">
               <img
                 class="h-120 w-full object-cover"
                 src="{{ $image.Permalink }}"
@@ -23,9 +28,7 @@
                 srcset="" />
             </div>
           {{ else }}
-            <div
-              id="post-feature"
-              class="-mx-5 h-120">
+            <div id="post-feature" class="-mx-5 h-120">
               {{ partial "default_bg.html" . }}
             </div>
           {{ end }}
@@ -38,30 +41,8 @@
         {{/* Content */}}
         <div
           id="single-content"
-          class="format mx-auto max-w-none px-1 py-5 dark:text-gray-300 dark:format-invert md:format-base format-figure:flex format-figure:flex-col format-figure:items-center format-img:cursor-zoom-in md:px-3 lg:px-10">
+          class="format mx-auto max-w-none px-1 py-5 dark:format-invert md:format-base format-figure:flex format-figure:flex-col format-figure:items-center format-img:cursor-zoom-in dark:text-gray-300 md:px-3 lg:px-10">
           {{ .Content }}
-        </div>
-
-        {{/* Updated Date */}}
-        <div
-          class="my-0.5 flex flex-row items-center space-x-1 px-1 py-0.5 md:px-3 lg:px-10">
-          <svg
-            t="1686815337104"
-            class="icon"
-            viewBox="0 0 1024 1024"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            p-id="60278"
-            width="16px"
-            height="16px">
-            <path
-              d="M534.016 342.016l0 180.010667 148.010667 89.984-29.994667 52.010667-182.016-109.994667 0-212.010667 64 0zM896 432l-290.005333 0 118.016-120.021333q-88.021333-88.021333-210.986667-89.002667t-210.986667 84.992q-86.016 88.021333-86.016 208t86.016 208 210.005333 88.021333 212.010667-88.021333q86.016-86.016 86.016-208l86.016 0q0 157.994667-112 267.989333-112 112-272 112t-272-112q-112-109.994667-112-267.008t112-269.013333 269.994667-112 269.994667 112l116.010667-120.021333 0 304z"
-              fill="#515151"
-              p-id="60279"></path>
-          </svg>
-          <span class="font-Montserrat text-xs text-gray-500"
-            >Updated on {{ .Lastmod.Format "January 2 2006" }}</span
-          >
         </div>
 
         {{/* horizontal rule */}}
@@ -122,23 +103,6 @@
 
         </div>
       </div>
-
-      {{/* toc */}}
-      {{/*  {{ if not $metaInfo.disableToc }}
-        <div
-          id="catalog"
-          class="sticky z-20 hidden h-full w-[21%] pl-2 lg:inline"
-          style="top: 176px;">
-          <aside class="bg-slate-50 px-5 pb-5">
-            <div
-              class="bottom-3 mt-7 border-gray-400 px-2 py-3 text-left text-sm font-semibold uppercase">
-              Catalog
-            </div>
-            <div class="mb-4 mt-0 border-b border-gray-400"></div>
-            {{ .TableOfContents }}
-          </aside>
-        </div>
-      {{ end }}  */}}
     </div>
 
     {{/* comments */}}

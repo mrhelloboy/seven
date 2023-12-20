@@ -3,18 +3,18 @@ Speed Dial
 
 more info: https://flowbite.com/docs/components/speed-dial/
 -->
-<div data-dial-init class="fixed end-8 bottom-24 md:end-20 group">
+<div data-dial-init class="group fixed bottom-24 end-8 md:end-20">
   <div
     id="speed-dial-menu-bottom-right"
-    class="flex flex-col items-center hidden mb-4 space-y-2">
+    class="mb-4 flex hidden flex-col items-center space-y-2">
     <button
       id="to-top-button"
       type="button"
       data-tooltip-target="tooltip-top"
       data-tooltip-placement="left"
-      class="hidden flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+      class="flex hidden h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
       <svg
-        class="w-5 h-5"
+        class="h-5 w-5"
         aria-hidden="true"
         fill="currentColor"
         viewBox="0 0 1024 1024"
@@ -28,7 +28,7 @@ more info: https://flowbite.com/docs/components/speed-dial/
     <div
       id="tooltip-top"
       role="tooltip"
-      class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+      class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
       Top
       <div class="tooltip-arrow" data-popper-arrow></div>
     </div>
@@ -42,9 +42,9 @@ more info: https://flowbite.com/docs/components/speed-dial/
         data-drawer-show="drawer-body-scrolling-toc"
         data-drawer-body-scrolling="true"
         aria-controls="drawer-body-scrolling-toc"
-        class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+        class="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
         <svg
-          class="w-5 h-5"
+          class="h-5 w-5"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
@@ -69,36 +69,8 @@ more info: https://flowbite.com/docs/components/speed-dial/
       <div
         id="tooltip-toc"
         role="tooltip"
-        class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+        class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
         Catelog
-        <div class="tooltip-arrow" data-popper-arrow></div>
-      </div>
-
-      <button
-        type="button"
-        data-tooltip-target="tooltip-info"
-        data-tooltip-placement="left"
-        data-drawer-target="drawer-body-scrolling-info-of-page"
-        data-drawer-show="drawer-body-scrolling-info-of-page"
-        data-drawer-body-scrolling="true"
-        aria-controls="drawer-body-scrolling-info-of-page"
-        class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
-        <svg
-          class="w-5 h-5"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="currentColor"
-          viewBox="0 0 1024 1024">
-          <path
-            d="M360 848.458h40V559.542H360c-22.092 0-40-17.908-40-40V424c0-22.092 17.908-40 40-40h224c22.092 0 40 17.908 40 40v424.458h40c22.092 0 40 17.908 40 40V984c0 22.092-17.908 40-40 40H360c-22.092 0-40-17.908-40-40v-95.542c0-22.092 17.908-40 40-40zM512 0C432.47 0 368 64.47 368 144s64.47 144 144 144 144-64.47 144-144S591.528 0 512 0z"></path>
-        </svg>
-        <span class="sr-only">Info</span>
-      </button>
-      <div
-        id="tooltip-info"
-        role="tooltip"
-        class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-        Info
         <div class="tooltip-arrow" data-popper-arrow></div>
       </div>
     {{ end }}
@@ -113,9 +85,9 @@ more info: https://flowbite.com/docs/components/speed-dial/
       aria-controls="drawer-body-scrolling"
       data-tooltip-target="tooltip-tags"
       data-tooltip-placement="left"
-      class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 dark:hover:text-white shadow-sm dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+      class="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
       <svg
-        class="w-5 h-5"
+        class="h-5 w-5"
         aria-hidden="true"
         fill="currentColor"
         viewBox="0 0 1024 1024"
@@ -130,7 +102,7 @@ more info: https://flowbite.com/docs/components/speed-dial/
     <div
       id="tooltip-tags"
       role="tooltip"
-      class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+      class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
       Tags
       <div class="tooltip-arrow" data-popper-arrow></div>
     </div>
@@ -141,9 +113,9 @@ more info: https://flowbite.com/docs/components/speed-dial/
     data-dial-toggle="speed-dial-menu-bottom-right"
     aria-controls="speed-dial-menu-bottom-right"
     aria-expanded="false"
-    class="flex items-center justify-center text-white bg-blue-700 rounded-full w-14 h-14 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
+    class="flex h-14 w-14 items-center justify-center rounded-full bg-blue-700 text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
     <svg
-      class="w-5 h-5 transition-transform group-hover:rotate-45"
+      class="h-5 w-5 transition-transform group-hover:rotate-45"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -161,5 +133,4 @@ more info: https://flowbite.com/docs/components/speed-dial/
 
 {{- partial "drawer_tags.html" . -}}
 {{- partial "drawer_toc.html" . -}}
-{{- partial "drawer_page_info.html" . -}}
 {{- partial "to_top.html" . -}}
