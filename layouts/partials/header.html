@@ -1,8 +1,8 @@
 <nav
-  class="fixed start-0 top-0 z-20 w-full border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+  class="fixed start-0 top-0 z-20 w-full border-b border-gray-200 bg-white/95 backdrop-blur-md dark:border-gray-700 dark:bg-gray-900">
   <div
     class="{{ if .IsHome }}
-      md:p-12
+      md:py-12 md:px-4
     {{ end }} mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
     {{/* Logo */}}
     {{ $logoInfo := .Site.Params.logo }}
@@ -32,7 +32,7 @@
       <button
         id="theme-toggle"
         type="button"
-        class="rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700">
+        class="h-10 w-10 rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">
         <svg
           id="theme-toggle-dark-icon"
           class="hidden h-5 w-5"
