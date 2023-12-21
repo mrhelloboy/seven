@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://seven-demo.supcat.cn/" target="_blank">
-    <img alt="Seven Logo" src="https://seven-demo.supcat.cn/images/logo-footer.svg" width="350" height="70" style="max-width: 100%;">
+    <img alt="Seven Logo" src="./static/images/default/seven-logo-dark.svg" width="350" height="70" style="max-width: 100%;">
   </a>
 </p>
 
@@ -11,6 +11,8 @@
 ---
 
 English | [中文](./README_zh-CN.md)
+
+<img alt="Seven screenshot" src="./static/images/screenshot-xdr.webp" width="500">
 
 ## Example
 
