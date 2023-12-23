@@ -1,7 +1,7 @@
 <!-- drawer component for toc -->
 <div
   id="drawer-body-scrolling-toc"
-  class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-64 dark:bg-gray-800"
+  class="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full overflow-y-auto bg-white p-4 transition-transform dark:bg-gray-800"
   tabindex="-1"
   aria-labelledby="drawer-body-scrolling-toc-label">
   <h5
@@ -13,9 +13,9 @@
     type="button"
     data-drawer-hide="drawer-body-scrolling-toc"
     aria-controls="drawer-body-scrolling-toc"
-    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+    class="absolute end-2.5 top-2.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white">
     <svg
-      class="w-3 h-3"
+      class="h-3 w-3"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -29,7 +29,7 @@
     </svg>
     <span class="sr-only">Close menu</span>
   </button>
-  <div class="py-4 overflow-y-auto">
+  <div class="overflow-y-auto py-4">
     {{ .TableOfContents }}
   </div>
 </div>
