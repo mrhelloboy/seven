@@ -1,6 +1,10 @@
 <p align="center">
   <a href="https://seven-demo.supcat.cn/" target="_blank">
-    <img alt="Seven Logo" src="https://seven-demo.supcat.cn/images/logo-footer.svg" width="350" height="70" style="max-width: 100%;">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://seven-demo.supcat.cn/images/logo-footer.svg">
+      <source media="(prefers-color-scheme: light)" srcset="https://seven-demo.supcat.cn/images/logo.svg">
+      <img alt="Hugo theme Seven" src="https://seven-demo.supcat.cn/images/logo.svg" width="350" height="70" style="max-width: 100%;">
+    </picture>
   </a>
 </p>
 
