@@ -3,13 +3,38 @@
 
 name = "Seven"
 license = "MIT"
-licenselink = "https://github.com/yourname/yourtheme/blob/master/LICENSE"
-description = "Personal blog theme"
-homepage = "http://example.com/"
-tags = ["blog"]
-features = []
+licenselink = "https://github.com/mrhelloboy/seven/blob/main/LICENSE"
+description = "A clean and beautiful Hugo theme, which built using Tailwind CSS."
+homepage = "https://github.com/mrhelloboy/seven"
+demosite = "https://seven-demo.supcat.cn"
+
+tags = [
+  "archive",
+  "blog",
+  "beautiful",
+  "clean",
+  "light",
+  "dark mode",
+  "responsive",
+  "search",
+  "tailwindcss",
+  "personal"
+]
+features = [
+  "responsive",
+  "single-column",
+  "blog",
+  "table-of-contents",
+  "favicon",
+  "disqus",
+  "waline",
+  "archive",
+  "speed-dial",
+  "scroll-to-top",
+  "search"
+]
 min_version = "0.112.0"
 
 [author]
-  name = "linzhanqi"
-  homepage = "http://example.com/"
+  name = "mrhelloboy"
+  homepage = "https://github.com/mrhelloboy"
