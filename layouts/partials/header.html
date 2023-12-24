@@ -8,17 +8,24 @@
     {{ $logoInfo := .Site.Params.logo }}
     <a
       href="{{ .Site.BaseURL }}"
-      class="flex items-center space-x-3 rtl:space-x-reverse">
-      <img
-        id="logo-light-icon"
-        src="{{ $logoInfo.img }}"
-        class="h-14"
-        alt="Logo" />
-      <img
-        id="logo-dark-icon"
-        src="{{ $logoInfo.img_dark }}"
-        class="hidden h-14"
-        alt="Logo" />
+      class="flex items-center justify-start space-x-3 rtl:space-x-reverse">
+      <p>
+        {{ $logoH := $logoInfo.customLogoHeight | default 56 }}
+        {{ if ge $logoH 56 }}
+          {{ $logoH = 56 }}
+        {{ end }}
+        <img
+          id="logo-light-icon"
+          src="{{ $logoInfo.img }}"
+          class="h-[{{ $logoH }}px]"
+          alt="Logo" />
+        <img
+          id="logo-dark-icon"
+          src="{{ $logoInfo.img_dark }}"
+          class="hidden h-[{{ $logoH }}px]"
+          alt="Logo" />
+      </p>
+
       {{- with $logoInfo.text -}}
         <span
           class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white"

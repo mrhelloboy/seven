@@ -5,8 +5,8 @@ module.exports = {
   content: ['./hugo_stats.json'],
   theme: {
     fontFamily: {
-      'Oswald': ['Oswald'],
-      'Montserrat': ['Montserrat'],
+      Oswald: ['Oswald'],
+      Montserrat: ['Montserrat'],
     },
     extend: {
       typography: {
@@ -16,16 +16,15 @@ module.exports = {
           },
         },
       },
-      content: {
-      },
+      content: {},
       height: {
-        '120': '30rem',
-        '128': '32rem',
+        120: '30rem',
+        128: '32rem',
       },
       margin: {
         // '18': '4.5rem',
-        '22': '5.5rem',
-        '38': '9.5rem',
+        22: '5.5rem',
+        38: '9.5rem',
       },
       animation: {
         zoomIn: 'zoomIn .8s ease-out 1',
@@ -33,21 +32,21 @@ module.exports = {
       },
       keyframes: {
         zoomIn: {
-          from: { 
+          from: {
             transform: 'scale(0)',
             opacity: 0,
           },
-          to: { 
-            transform: 'scale(1)',
-            opacity: 1, 
-          },
-        },
-        zoomOut: {
-          from: { 
+          to: {
             transform: 'scale(1)',
             opacity: 1,
           },
-          to: { 
+        },
+        zoomOut: {
+          from: {
+            transform: 'scale(1)',
+            opacity: 1,
+          },
+          to: {
             transform: 'scale(0)',
             opacity: 0,
           },
@@ -56,4 +55,4 @@ module.exports = {
     },
   },
   plugins: [require('flowbite-typography')],
-}
+};
