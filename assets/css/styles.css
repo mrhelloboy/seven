@@ -166,3 +166,14 @@ body {
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
 }
+
+/* 导航栏高度滚动 */
+.navbar-init {
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+  -webkit-transition: all 0.5s ease;
+}
+
+.navbar-scroll {
+  height: 88px !important;
+}

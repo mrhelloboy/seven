@@ -1,5 +1,5 @@
 {{ define "main" }}
-  <section class="mx-auto mt-22 w-full grow bg-white dark:bg-gray-900">
+  <section class="mx-auto mt-22 w-full grow bg-white dark:bg-gray-900 md:mt-38">
     <div class="mx-auto flex w-full flex-col p-4 md:max-w-screen-md">
       {{ $pages := (where .Site.Pages "IsPage" true) }}
       {{ range ($pages.GroupByDate "2006") }}

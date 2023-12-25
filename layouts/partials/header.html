@@ -1,9 +1,8 @@
 <nav
-  class="fixed start-0 top-0 z-20 w-full border-b border-gray-200 bg-white/95 backdrop-blur-md dark:border-gray-700 dark:bg-gray-900">
+  id="navbar"
+  class="md:h-38 fixed start-0 top-0 z-20 flex w-full justify-center border-b border-gray-200 bg-white/95 backdrop-blur-md dark:border-gray-700 dark:bg-gray-900">
   <div
-    class="{{ if .IsHome }}
-      md:py-12 md:px-4
-    {{ end }} mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
+    class="mx-auto flex w-[1280px] flex-wrap items-center justify-between place-self-center object-center p-4">
     {{/* Logo */}}
     {{ $logoInfo := .Site.Params.logo }}
     <a
@@ -114,3 +113,30 @@
     {{- partial "menu.html" . -}}
   </div>
 </nav>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let navbarDom = document.getElementById("navbar");
+    let isNavScrolled = false;
+
+    if (window.innerWidth >= 768) {
+      navbarDom.classList.add("navbar-init");
+
+      var scrollTop = 0;
+
+      window.addEventListener("scroll", function () {
+        scrollTop = window.pageYOffset;
+
+        if (scrollTop >= 5 && !isNavScrolled) {
+          isNavScrolled = true;
+          navbarDom.classList.add("navbar-scroll");
+        } else if (scrollTop < 5 && isNavScrolled) {
+          isNavScrolled = false;
+          navbarDom.classList.remove("navbar-scroll");
+        }
+      });
+    } else {
+      navbarDom.classList.remove("navbar-init");
+    }
+  });
+</script>
