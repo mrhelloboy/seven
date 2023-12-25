@@ -71,27 +71,36 @@ function findTocMapHeadTag(node) {
 function tocOnClick(e) {
   e.preventDefault();
 
+  let targetNode = e.target;
+  if (targetNode.nodeName !== 'A') {
+    targetNode = targetNode.parentElement;
+  }
+
   // 移除所有 active 状态下的目录
   removeAllActive();
 
   // 当前目录设置为 active
-  onActive(e.target);
+  onActive(targetNode);
 
-  const _headNode = tocMapHeadTag.get(e.target);
-  const headNode = document.querySelector(`#${_headNode.id}`);
+  const _headNode = tocMapHeadTag.get(targetNode);
+  const headNode = document.getElementById(`${_headNode.id}`);
   window.scrollTo({ top: headNode.offsetTop - 100, behavior: 'smooth' });
 }
 
 // 选中状态
 function onActive(node) {
-  node.classList.remove('theme-toc');
-  node.classList.add('theme-toc-active');
+  if (node.nodeName === 'A') {
+    node.classList.remove('theme-toc');
+    node.classList.add('theme-toc-active');
+  }
 }
 
 // 移除选中状态
 function disableActive(node) {
-  node.classList.remove('theme-toc-active');
-  node.classList.add('theme-toc');
+  if (node.nodeName === 'A') {
+    node.classList.remove('theme-toc-active');
+    node.classList.add('theme-toc');
+  }
 }
 
 // 移除所有选中状态的目录
