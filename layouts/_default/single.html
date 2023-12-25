@@ -30,13 +30,13 @@
           {{ with $image }}
             <div id="post-feature" class="-mx-5">
               <img
-                class="h-120 w-full object-cover"
+                class="h-60 w-full object-cover md:h-120"
                 src="{{ $image.Permalink }}"
                 alt="preview image"
                 srcset="" />
             </div>
           {{ else }}
-            <div id="post-feature" class="-mx-5 h-120">
+            <div id="post-feature" class="-mx-5 h-60 md:h-120">
               {{ partial "default_bg.html" . }}
             </div>
           {{ end }}
