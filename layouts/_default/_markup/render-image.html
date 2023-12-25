@@ -1,6 +1,10 @@
 {{ if .IsBlock }}
-  <figure class="{{ .Attributes.class }}">
-    <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" loading="lazy" />
+  <figure class="data-image-info {{ .Attributes.class }}">
+    <img
+      class="data-image"
+      src="{{ .Destination | safeURL }}"
+      alt="{{ .Text }}"
+      loading="lazy" />
     <figcaption>{{ with .Title | safeHTML }}{{ . }}{{ end }}</figcaption>
   </figure>
 {{ else }}
