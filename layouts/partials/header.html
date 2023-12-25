@@ -9,7 +9,8 @@
     <a
       href="{{ .Site.BaseURL }}"
       class="flex items-center justify-start space-x-3 rtl:space-x-reverse">
-      <p>
+      {{ $logoW := $logoInfo.customLogoWidth | default 130 }}
+      <p class="w-[{{ $logoW }}px]">
         {{ $logoH := $logoInfo.customLogoHeight | default 56 }}
         {{ if ge $logoH 56 }}
           {{ $logoH = 56 }}
