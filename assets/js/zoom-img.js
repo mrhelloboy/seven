@@ -10,6 +10,8 @@ let lastDistance = 0;
 let lastScale = 1; // 记录下最后的缩放值
 let scaleOrigin = { x: 0, y: 0 };
 
+let isPreview = false;
+
 let { innerWidth: winWidth, innerHeight: winHeight } = window;
 
 let cloneEl = null;
@@ -29,6 +31,7 @@ for (let figureEle of document.getElementsByClassName('data-image-info')) {
 
 function openPreview() {
   scale = 1;
+  isPreview = true;
   const { offsetWidth, offsetHeight } = originalEl;
   const { top, left } = originalEl.getBoundingClientRect();
   // 创建蒙层
@@ -57,6 +60,7 @@ function openPreview() {
           originalEl.style.opacity = 1;
           mask.removeEventListener('click', clickFunc);
         }, 300);
+        isPreview = false;
       }
     }, 280);
   }
@@ -141,60 +145,66 @@ function getOffsetCorrection(x = 0, y = 0) {
 
 // 操作事件
 window.addEventListener('pointerdown', function (e) {
-  e.preventDefault();
-  touches.set(e.pointerId, e); // TODO: 点击存入触摸点
-  isTouching = true;
-  startPoint = { x: e.clientX, y: e.clientY };
-  if (touches.size === 2) {
-    // TODO: 判断双指触摸，并立即记录初始数据
-    lastDistance = getDistance();
-    lastScale = scale;
+  if (isPreview) {
+    e.preventDefault();
+    touches.set(e.pointerId, e); // TODO: 点击存入触摸点
+    isTouching = true;
+    startPoint = { x: e.clientX, y: e.clientY };
+    if (touches.size === 2) {
+      // TODO: 判断双指触摸，并立即记录初始数据
+      lastDistance = getDistance();
+      lastScale = scale;
+    }
   }
 });
 window.addEventListener('pointerup', function (e) {
-  touches.delete(e.pointerId); // TODO: 抬起移除触摸点
-  if (touches.size <= 0) {
-    isTouching = false;
-  } else {
-    const touchArr = Array.from(touches);
-    // 更新点位
-    startPoint = { x: touchArr[0][1].clientX, y: touchArr[0][1].clientY };
+  if (isPreview) {
+    touches.delete(e.pointerId); // TODO: 抬起移除触摸点
+    if (touches.size <= 0) {
+      isTouching = false;
+    } else {
+      const touchArr = Array.from(touches);
+      // 更新点位
+      startPoint = { x: touchArr[0][1].clientX, y: touchArr[0][1].clientY };
+    }
+    setTimeout(() => {
+      isMove = false;
+    }, 300);
   }
-  setTimeout(() => {
-    isMove = false;
-  }, 300);
 });
 window.addEventListener('pointermove', (e) => {
-  e.preventDefault();
-  if (isTouching) {
-    isMove = true;
-    if (touches.size < 2) {
-      // 单指滑动
-      offset = {
-        left: offset.left + (e.clientX - startPoint.x),
-        top: offset.top + (e.clientY - startPoint.y),
-      };
-      changeStyle(cloneEl, [
-        'transition: all 0s',
-        `transform: translate(${offset.left + 'px'}, ${offset.top + 'px'}) scale(${scale})`,
-        `transform-origin: ${origin}`,
-      ]);
-      // 更新点位
-      startPoint = { x: e.clientX, y: e.clientY };
-    } else {
-      // 双指缩放
-      touches.set(e.pointerId, e);
-      const ratio = getDistance() / lastDistance;
-      scale = ratio * lastScale;
-      offset = getOffsetCorrection();
-      if (scale < initialData.scale) {
-        reduction();
+  if (isPreview) {
+    e.preventDefault();
+    if (isTouching) {
+      isMove = true;
+      if (touches.size < 2) {
+        // 单指滑动
+        offset = {
+          left: offset.left + (e.clientX - startPoint.x),
+          top: offset.top + (e.clientY - startPoint.y),
+        };
+        changeStyle(cloneEl, [
+          'transition: all 0s',
+          `transform: translate(${offset.left + 'px'}, ${offset.top + 'px'}) scale(${scale})`,
+          `transform-origin: ${origin}`,
+        ]);
+        // 更新点位
+        startPoint = { x: e.clientX, y: e.clientY };
+      } else {
+        // 双指缩放
+        touches.set(e.pointerId, e);
+        const ratio = getDistance() / lastDistance;
+        scale = ratio * lastScale;
+        offset = getOffsetCorrection();
+        if (scale < initialData.scale) {
+          reduction();
+        }
+        changeStyle(cloneEl, [
+          'transition: all 0s',
+          `transform: translate(${offset.left + 'px'}, ${offset.top + 'px'}) scale(${scale})`,
+          `transform-origin: ${origin}`,
+        ]);
       }
-      changeStyle(cloneEl, [
-        'transition: all 0s',
-        `transform: translate(${offset.left + 'px'}, ${offset.top + 'px'}) scale(${scale})`,
-        `transform-origin: ${origin}`,
-      ]);
     }
   }
 });
