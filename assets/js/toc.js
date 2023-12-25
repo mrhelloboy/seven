@@ -2,6 +2,8 @@
  * 文章目录css样式、及状态（hover、active等）处理逻辑
  */
 
+let navHeight = document.querySelector('nav').offsetHeight || 89;
+
 let tocMapHeadTag = new Map(); // 目录跟文章的标题对应关系
 let headTagMapToc = new Map(); // 文章标题跟目录的对应关系
 
@@ -144,7 +146,7 @@ const intersectionObserver = new IntersectionObserver(
       onActive(headTagMapToc.get(targetEle));
     }
   },
-  { rootMargin: '-100px 0px 0px 0px', threshold: 1.0 },
+  { rootMargin: `-${navHeight}px 0px 0px 0px`, threshold: 1.0 },
 );
 
 // 开始监听
