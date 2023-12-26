@@ -57,11 +57,17 @@
 
               <div class="mt-1 shrink-0 overflow-hidden">
                 {{ $image := resources.Get $v.Params.image }}
-                <img
-                  class="h-52 w-full object-cover hover:scale-110 hover:brightness-75 hover:transition-transform hover:duration-700 md:h-80"
-                  src="{{ $image.Permalink }}"
-                  alt="preview image"
-                  srcset="" />
+                {{ with $image }}
+                  <img
+                    class="h-52 w-full object-cover hover:scale-110 hover:brightness-75 hover:transition-transform hover:duration-700 md:h-80"
+                    src="{{ .Permalink }}"
+                    alt="preview image"
+                    srcset="" />
+                {{ else }}
+                  <div class="h-52 w-full md:h-80">
+                    {{- partial "random_feature_img.html" . -}}
+                  </div>
+                {{ end }}
               </div>
             </div>
 
