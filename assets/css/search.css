@@ -47,13 +47,21 @@
 }
 
 .ais-Hits-item {
-  @apply my-1 rounded-lg border p-3 text-gray-900 hover:bg-gray-100 dark:border-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500 dark:hover:text-white;
+  @apply my-1 rounded-lg border p-3 text-gray-900 hover:bg-gray-100 dark:border-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500;
+}
+
+.ais-Snippet {
+  @apply text-gray-900 dark:text-gray-100;
+}
+
+.ais-Highlight {
+  @apply text-gray-900 dark:text-gray-100;
 }
 
 .ais-Snippet-highlighted {
-  @apply underline decoration-blue-600 decoration-2 underline-offset-4;
+  @apply bg-transparent text-gray-900 underline decoration-blue-600 decoration-2 underline-offset-4 dark:text-gray-100;
 }
 
 .ais-Highlight-highlighted {
-  @apply underline decoration-blue-600 decoration-2 underline-offset-4;
+  @apply bg-transparent text-gray-900 underline decoration-blue-600 decoration-2 underline-offset-4 dark:text-gray-100;
 }
