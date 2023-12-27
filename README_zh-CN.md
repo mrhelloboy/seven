@@ -105,6 +105,35 @@
    hugo server --disableLiveReload --minify --gc -D
    ```
 
+## 更新主题版本
+
+当主题版本有更新时，需要更新 `go.mod` 文件中的版本号：
+
+```bash
+# 清除本地模块缓存
+hugo mod clean
+```
+
+```bash
+hugo mod get
+```
+
+```bash
+hugo mod tidy
+```
+
+## 更新package.json
+
+当主题依赖的`npm`包有更新时，需要更新`package.json`文件中的版本号：
+
+```bash
+hugo mod npm pack
+```
+
+```bash
+npm install
+```
+
 ## 部署
 
 请参考 [Hugo 部署文档](https://gohugo.io/hosting-and-deployment/)

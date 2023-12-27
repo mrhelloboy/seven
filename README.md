@@ -105,6 +105,35 @@ The Demo code is in another GitHub repository: [hugo-theme-seven-demo](https://g
    hugo server --disableLiveReload --minify --gc -D
    ```
 
+## Update Theme Version
+
+When there is an update to the theme version, you need to update the version number in the `go.mod` file:
+
+```bash
+# Clear local module cache
+hugo mod clean
+```
+
+```bash
+hugo mod get
+```
+
+```bash
+hugo mod tidy
+```
+
+## Update package.json
+
+When there is an update to the `npm packages` that the theme depends on, you need to update the version number in the `package.json` file:
+
+```bash
+hugo mod npm pack
+```
+
+```bash
+npm install
+```
+
 ## Deployment
 
 Please refer to [Hugo Deployment Documentation](https://gohugo.io/hosting-and-deployment/)
