@@ -1,100 +1,167 @@
 {{ define "main" }}
-  <section class="mt-22 flex h-full w-full grow md:mt-38">
+  <section class="mt-22 flex w-full grow md:mt-38">
     {{ $allPages := .Site.Pages }}
     {{ with .Site.Params.home.showContentTypes }}
       {{ $allPages = where $allPages "Type" "in" . }}
     {{ end }}
     {{ $lastestPosts := first 4 (where $allPages "IsPage" true) }}
+    {{ $lastestPostsNums := len $lastestPosts }}
 
 
     <div
-      class="mx-auto flex max-w-screen-xl flex-1 flex-col bg-white dark:bg-gray-900 md:flex-row">
-      <div class="mb-4 flex justify-center dark:border-gray-700 md:w-1/6">
+      class="mx-auto flex max-w-screen-xl flex-col space-y-4 bg-white p-2 dark:bg-gray-900 md:grow md:flex-row md:space-y-0 md:p-0">
+      {{/* Tabs */}}
+      <div
+        id="home-tabs-container"
+        class="hidden md:flex md:max-h-full md:w-1/6 md:justify-center">
         <ul
-          class="-mb-px flex flex-wrap items-end justify-center space-y-4 text-center text-sm font-medium md:flex-col md:items-center"
-          id="default-tab"
-          data-tabs-toggle="#default-tab-content"
-          role="tablist">
-          {{ range $k, $v := $lastestPosts }}
-            <li class="me-2" role="presentation">
+          id="home-tabs"
+          class="flex flex-col items-center justify-center space-y-4">
+          {{ range seq 1 $lastestPostsNums }}
+            <li>
               <button
-                class="inline-block rounded-t-lg border-b-2 p-4 font-Oswald text-lg font-medium"
-                id="home-{{ $k }}-tab"
-                data-tabs-target="#home-{{ $k }}"
-                type="button"
-                role="tab"
-                aria-controls="home-{{ $k }}"
+                id="home-{{ . }}"
+                class="inline-block rounded-t-lg border-b-2 border-gray-100 p-4 font-Oswald text-lg font-medium text-gray-500
+                 hover:border-gray-300 
+                 hover:text-gray-600 
+                 aria-selected:border-blue-600 
+                 aria-selected:text-blue-600 
+                 aria-selected:hover:text-blue-600 
+                 dark:border-gray-700 
+                 dark:border-transparent 
+                 dark:text-gray-400 
+                 dark:hover:text-gray-300 
+                 aria-selected:dark:border-blue-500 
+                 aria-selected:dark:text-blue-500 
+                 aria-selected:dark:hover:text-blue-500"
+                data-tab-target="content-home-{{ . }}"
+                aria-controls="content-home-{{ . }}"
                 aria-selected="false">
-                0{{ add $k 1 }}
+                0{{ . }}
               </button>
             </li>
           {{ end }}
         </ul>
       </div>
 
-      {{/* Posts */}}
-      <div id="default-tab-content" class="md:w-5/6">
-        {{ range $k, $v := $lastestPosts }}
+      {{/* Content */}}
+      {{ range $idx, $post := $lastestPosts }}
+        {{ $idx = add $idx 1 }}
+        <div
+          id="content-home-{{ $idx }}"
+          aria-labelledby="content-home-{{ $idx }}"
+          class="flex w-full flex-col rounded-lg border border-gray-200 dark:border-gray-600 md:hidden md:w-5/6 md:flex-row md:border-none">
           <div
-            class="flex hidden h-full grow flex-col justify-center dark:bg-gray-900 md:flex-row"
-            id="home-{{ $k }}"
-            role="tabpanel"
-            aria-labelledby="home-{{ $k }}">
-            {{/* Post data, Post Title, Post Image */}}
+            class="h-full p-2 md:w-2/3 md:border-r md:border-gray-200 md:dark:border-gray-700">
+            <p
+              class="mt-1 py-1 font-Montserrat text-sm font-medium text-gray-500 dark:text-gray-200 md:mt-12 md:py-3">
+              {{ $post.Date.Format "January 2 2006" }}
+              <span class="text-red-700">/</span>
+              {{ index $post.Params.categories 0 }}
+            </p>
+
             <div
-              class="flex flex-1 flex-col border-r border-gray-200 p-2 dark:border-gray-700 md:w-2/3">
-              <p
-                class="mt-1 py-1 font-Montserrat text-sm font-medium text-gray-500 dark:text-gray-200 md:mt-12 md:py-3">
-                {{ $v.Date.Format "2 January 2006" }}
-                <span class="text-red-700">•</span>
-                {{ index $v.Params.categories 0 }}
-              </p>
-
-              <div
-                class="py-3 text-4xl font-extrabold hover:text-blue-700 dark:text-white md:py-8 lg:text-6xl">
-                <a href="{{ $v.Permalink }}">{{ $v.Title }}</a>
-              </div>
-
-              <div class="mt-1 shrink-0 overflow-hidden">
-                {{ $image := resources.Get $v.Params.image }}
-                {{ with $image }}
-                  <img
-                    class="h-52 w-full object-cover hover:scale-110 hover:brightness-75 hover:transition-transform hover:duration-700 md:h-80"
-                    src="{{ .Permalink }}"
-                    alt="preview image"
-                    srcset="" />
-                {{ else }}
-                  <div class="h-52 w-full md:h-80">
-                    {{- partial "random_feature_img.html" . -}}
-                  </div>
-                {{ end }}
-              </div>
+              class="py-3 text-4xl font-extrabold hover:text-blue-700 dark:text-white md:py-8 lg:text-6xl">
+              <a href="{{ $post.Permalink }}">{{ $post.Title }}</a>
             </div>
 
-            {{/* summary */}}
-            <div
-              class="mx-auto flex flex-col justify-center p-4 md:w-1/3 md:p-6 lg:p-9">
-              <div class="hidden md:block">
-                <div class="h-2 w-2 rounded-full bg-green-600"></div>
-                <p
-                  class="py-2 font-Montserrat text-lg font-bold dark:text-white">
-                  Summary
-                </p>
-              </div>
-
-              <p
-                class="font-serif line-clamp-[7] text-gray-500 dark:text-gray-200 lg:line-clamp-[10]">
-                {{ with $v.Description }}
-                  {{- . -}}
-                {{ else }}
-                  {{- .Summary -}}
-                {{ end }}
-              </p>
+            <div class="-mx-2 mt-1 shrink-0 overflow-hidden md:mx-0">
+              {{ $image := resources.Get $post.Params.image }}
+              {{ with $image }}
+                <img
+                  class="h-52 w-full object-cover hover:scale-110 hover:brightness-75 hover:transition-transform hover:duration-700 md:h-80"
+                  src="{{ .Permalink }}"
+                  alt="preview image"
+                  srcset="" />
+              {{ else }}
+                <div class="h-52 w-full md:h-80">
+                  {{- partial "random_feature_img.html" . -}}
+                </div>
+              {{ end }}
             </div>
           </div>
-        {{ end }}
+          <div
+            class="h-full p-3 md:flex md:w-1/3 md:flex-col md:justify-center md:p-6 lg:p-9">
+            <div class="hidden md:block">
+              <div class="h-2 w-2 rounded-full bg-green-600"></div>
+              <p class="py-2 font-Montserrat text-lg font-bold dark:text-white">
+                Summary
+              </p>
+            </div>
 
-      </div>
+            <div
+              class="text-pretty format line-clamp-[7] whitespace-pre-wrap text-gray-500 dark:format-invert dark:text-gray-200 lg:line-clamp-[10]">
+              {{ with $post.Description }}
+                <p>{{- . -}}</p>
+              {{ else }}
+                {{- .Summary -}}
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      {{ end }}
     </div>
   </section>
+{{ end }}
+
+{{ define "script" }}
+  <script>
+    let tabs = document.querySelectorAll("[data-tab-target]");
+    let activedTab = getActivedTab();
+    let oldContentId = null;
+
+    init();
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", function () {
+        activedTab = getActivedTab();
+        if (activedTab === this.id) return;
+
+        // 隐藏旧tab的内容
+        setTabAriaSelected(activedTab, "false");
+        oldContentId = document.getElementById(activedTab).dataset.tabTarget;
+        addHiddenClass(oldContentId);
+
+        // 显示新tab的内容
+        setActivedTab(this.id);
+        setTabAriaSelected(this.id, "true");
+        removeHiddenClass(this.dataset.tabTarget);
+      });
+    });
+
+    function init() {
+      if (!activedTab) {
+        activedTab = "home-1";
+        setActivedTab(activedTab);
+      }
+
+      setTabAriaSelected(activedTab, "true");
+      removeHiddenClass(document.getElementById(activedTab).dataset.tabTarget);
+    }
+
+    // 获取activedTab值
+    function getActivedTab() {
+      return localStorage.getItem("activedTab");
+    }
+
+    // 设置activedTab值
+    function setActivedTab(tabId) {
+      localStorage.setItem("activedTab", tabId);
+    }
+
+    // 设置tab的aria-selected
+    function setTabAriaSelected(tabId, value) {
+      document.getElementById(tabId).setAttribute("aria-selected", value);
+    }
+
+    // 隐藏内容
+    function addHiddenClass(contentID) {
+      document.getElementById(contentID).classList.add("md:hidden");
+    }
+
+    // 显示内容
+    function removeHiddenClass(contentID) {
+      document.getElementById(contentID).classList.remove("md:hidden");
+    }
+  </script>
 {{ end }}
