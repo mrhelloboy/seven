@@ -16,6 +16,13 @@ let { innerWidth: winWidth, innerHeight: winHeight } = window;
 
 let cloneEl = null;
 let originalEl = null;
+let mask = null;
+
+// 临时变量
+let originalOffsetWidth = 0;
+let originalOffsetHeight = 0;
+let originalTop = 0;
+let originalLeft = 0;
 
 for (let figureEle of document.getElementsByClassName('data-image-info')) {
   figureEle.addEventListener('click', function (e) {
@@ -23,7 +30,7 @@ for (let figureEle of document.getElementsByClassName('data-image-info')) {
     if (e.target.classList.contains('data-image')) {
       originalEl = e.target;
       cloneEl = originalEl.cloneNode(true);
-      originalEl.style.opacity = 0;
+      originalEl.style.opacity = 0.3;
       openPreview();
     }
   });
@@ -34,38 +41,23 @@ function openPreview() {
   isPreview = true;
   const { offsetWidth, offsetHeight } = originalEl;
   const { top, left } = originalEl.getBoundingClientRect();
+
+  originalOffsetWidth = offsetWidth;
+  originalOffsetHeight = offsetHeight;
+  originalTop = top;
+  originalLeft = left;
+
   // 创建蒙层
-  const mask = document.createElement('div');
+  mask = document.createElement('div');
   mask.classList.add('modal');
   // 添加在body下
   document.body.appendChild(mask);
   // 注册事件
   mask.addEventListener('click', clickFunc);
   mask.addEventListener('mousewheel', zoom, { passive: false });
-  // 遮罩点击事件
-  function clickFunc() {
-    setTimeout(() => {
-      if (isMove) {
-        isMove = false;
-      } else {
-        changeStyle(cloneEl, [
-          'transition: all .3s',
-          `left: ${left}px`,
-          `top: ${top}px`,
-          `transform: translate(0,0)`,
-          `width: ${offsetWidth}px`,
-        ]);
-        setTimeout(() => {
-          document.body.removeChild(this);
-          originalEl.style.opacity = 1;
-          mask.removeEventListener('click', clickFunc);
-        }, 300);
-        isPreview = false;
-      }
-    }, 280);
-  }
+
   // 添加图片
-  changeStyle(cloneEl, [`left: ${left}px`, `top: ${top}px`]);
+  changeStyle(cloneEl, [`left: ${left}px`, `top: ${top}px`, `position: absolute`, `width: ${offsetWidth}px`]);
   mask.appendChild(cloneEl);
   // 移动图片到屏幕中心位置
   const originalCenterPoint = {
@@ -101,6 +93,33 @@ function openPreview() {
     }; // 记录值
     record();
   }, 300);
+}
+
+// 遮罩点击事件
+function clickFunc() {
+  setTimeout(() => {
+    if (isMove) {
+      isMove = false;
+    } else {
+      changeStyle(cloneEl, [
+        'transition: all .3s',
+        `left: ${originalLeft}px`,
+        `top: ${originalTop}px`,
+        `transform: translate(0,0)`,
+        `width: ${originalOffsetWidth}px`,
+      ]);
+      setTimeout(() => {
+        try {
+          document.body.removeChild(mask);
+        } catch (e) {
+          console.log(e.message);
+        }
+        originalEl.style.opacity = 1;
+        mask.removeEventListener('click', clickFunc);
+      }, 300);
+      isPreview = false;
+    }
+  }, 280);
 }
 
 // 滚轮缩放
@@ -157,6 +176,7 @@ window.addEventListener('pointerdown', function (e) {
     }
   }
 });
+
 window.addEventListener('pointerup', function (e) {
   if (isPreview) {
     touches.delete(e.pointerId); // TODO: 抬起移除触摸点
@@ -172,6 +192,7 @@ window.addEventListener('pointerup', function (e) {
     }, 300);
   }
 });
+
 window.addEventListener('pointermove', (e) => {
   if (isPreview) {
     e.preventDefault();
@@ -210,6 +231,12 @@ window.addEventListener('pointermove', (e) => {
 });
 window.addEventListener('pointercancel', function (e) {
   touches.clear(); // 可能存在特定事件导致中断，真机操作时 pointerup 在某些边界情况下不会生效，所以需要清空
+});
+
+document.addEventListener('keydown', function (event) {
+  if (event.code === 'Escape' && isPreview) {
+    clickFunc();
+  }
 });
 
 // 修改样式，减少回流重绘
