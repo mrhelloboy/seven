@@ -9,7 +9,7 @@
 
 
     <div
-      class="mx-auto flex max-w-screen-xl flex-col space-y-4 bg-white p-2 dark:bg-gray-900 md:grow md:flex-row md:space-y-0 md:p-0">
+      class="mx-auto flex max-w-screen-xl flex-col space-y-4 bg-white p-2 md:grow md:flex-row md:space-y-0 md:p-0 dark:bg-gray-900">
       {{/* Tabs */}}
       <div
         id="home-tabs-container"
@@ -50,18 +50,18 @@
         <div
           id="content-home-{{ $idx }}"
           aria-labelledby="content-home-{{ $idx }}"
-          class="flex w-full flex-col rounded-lg border border-gray-200 dark:border-gray-600 md:hidden md:w-5/6 md:flex-row md:border-none">
+          class="flex w-full flex-col rounded-lg border border-gray-200 md:hidden md:w-5/6 md:flex-row md:border-none dark:border-gray-600">
           <div
             class="h-full p-2 md:w-2/3 md:border-r md:border-gray-200 md:dark:border-gray-700">
             <p
-              class="mt-1 py-1 font-Montserrat text-sm font-medium text-gray-500 dark:text-gray-200 md:mt-12 md:py-3">
+              class="mt-1 py-1 font-Montserrat text-sm font-medium text-gray-500 md:mt-12 md:py-3 dark:text-gray-200">
               {{ $post.Date.Format "January 2 2006" }}
               <span class="text-red-700">/</span>
               {{ index $post.Params.categories 0 }}
             </p>
 
             <div
-              class="py-3 text-4xl font-extrabold hover:text-blue-700 dark:text-white md:py-8 lg:text-6xl">
+              class="py-3 text-4xl font-extrabold hover:text-blue-700 md:py-8 lg:text-6xl dark:text-white">
               <a href="{{ $post.Permalink }}">{{ $post.Title }}</a>
             </div>
 
@@ -90,7 +90,7 @@
             </div>
 
             <div
-              class="text-pretty format line-clamp-[7] whitespace-pre-wrap text-gray-500 dark:format-invert dark:text-gray-200 lg:line-clamp-[10]">
+              class="format line-clamp-[7] whitespace-pre-wrap text-pretty px-2 text-gray-500 dark:format-invert md:px-0 lg:line-clamp-[10] dark:text-gray-200">
               {{ with $post.Description }}
                 <p>{{- . -}}</p>
               {{ else }}
