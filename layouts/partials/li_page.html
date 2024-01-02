@@ -1,13 +1,13 @@
 <li
   class="relative pl-6 before:absolute before:left-0 before:top-2 before:z-10 before:h-2 before:w-2 before:-translate-x-1/2 before:rounded-full before:bg-emerald-500 before:ring-2 before:ring-white lg:flex lg:gap-12 lg:pl-0 lg:before:left-[8.5rem]">
   <h4
-    class="hidden font-Oswald text-base font-light leading-7 text-gray-500 dark:text-gray-100 lg:block lg:w-28 lg:text-right">
+    class="hidden font-Oswald text-base font-light leading-7 text-gray-500 lg:block lg:w-28 lg:text-right dark:text-gray-100">
     {{ .Date.Format "2006-01-02" }}
   </h4>
   <div
     class="flex flex-1 flex-col gap-2 rounded-lg border p-4 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800">
     <span
-      class="font-Oswald font-light text-gray-500 dark:text-gray-100 lg:hidden"
+      class="font-Oswald font-light text-gray-500 lg:hidden dark:text-gray-100"
       >{{ .Date.Format "2006-01-02" }}</span
     >
     <a
@@ -15,12 +15,17 @@
       class="text-base font-medium leading-7 text-gray-800 hover:text-blue-600 dark:text-gray-50 dark:hover:text-blue-500"
       >{{ .Title }}</a
     >
-    <p class="line-clamp-3 flex-wrap text-gray-500 dark:text-gray-400">
-      {{ with .Description }}
+
+    {{ with .Description }}
+      <p class="line-clamp-3 flex-wrap text-gray-500 dark:text-gray-400">
         {{- . -}}
-      {{ else }}
+      </p>
+    {{ else }}
+      <div
+        class="line-clamp-3 flex-wrap text-gray-500 dark:format-invert dark:text-gray-400">
         {{- .Summary -}}
-      {{ end }}
-    </p>
+      </div>
+    {{ end }}
+
   </div>
 </li>
