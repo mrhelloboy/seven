@@ -55,3 +55,15 @@
   {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
 {{ end }}
 <link href="{{ $styles.RelPermalink }}" rel="stylesheet" />
+
+<!-- custom css -->
+{{- with .Site.Params.head.customCSS -}}
+  {{- $customCSS := resources.GetMatch . -}}
+  {{- if $customCSS -}}
+    {{- $customCSS = $customCSS | resources.PostCSS $options -}}
+    {{- if hugo.IsProduction -}}
+      {{- $customCSS = $customCSS | minify | fingerprint | resources.PostProcess -}}
+    {{- end -}}
+    <link href="{{ $customCSS.RelPermalink }}" rel="stylesheet" />
+  {{- end -}}
+{{- end -}}
