@@ -1,0 +1,17 @@
+{{- $bvid := cond .IsNamedParams (.Get "id") (.Get 0) -}}
+{{- $p := cond .IsNamedParams (.Get "p") (.Get 1) | default 1 -}}
+{{- $autoplay := .Get "autoplay" | default false -}}
+{{- $poster := .Get "poster" | default true -}}
+{{- $muted := .Get "muted" | default false -}}
+{{- $danmaku := .Get "danmaku" | default true -}}
+{{- $t := .Get "t" | default 0 -}}
+
+
+<div class="my-2 h-56 w-full md:h-120">
+  <iframe
+    class="h-full w-full"
+    src="//player.bilibili.com/player.html?bvid={{ $bvid }}&page={{ $p }}&autoplay={{ $autoplay }}&poster={{ $poster }}&muted={{ $muted }}&danmaku={{ $danmaku }}&t={{ $t }}"
+    border="0"
+    framespacing="0"
+    allowfullscreen="true"></iframe>
+</div>
