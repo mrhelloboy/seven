@@ -1,4 +1,8 @@
 import * as params from '@params';
+import * as data from 'data/waline.json';
+
+let locale = data.locale;
+
 Waline.init({
   el: '#waline',
   lang: params.lang,
@@ -8,5 +12,6 @@ Waline.init({
   pageview: params.pageview,
   serverURL: params.serverURL,
   dark: '.dark',
-  meta: [],
+  meta: data.meta || [],
+  locale,
 });
