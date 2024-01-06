@@ -36,7 +36,7 @@
 2. 将站点初始化为 module。在自己站点根目录下执行命令：
 
    ```bash
-   hugo mod init github/[username]/[sitename]
+   hugo mod init github.com/[username]/[sitename]
    ```
 
    请将上面中的 `username` 和 `sitename` 替换成自己的
@@ -124,7 +124,9 @@ hugo mod tidy
 
 ## 更新package.json
 
-当主题依赖的`npm`包有更新时，需要更新`package.json`文件中的版本号：
+当主题依赖的`npm`包有更新时，需要更新`package.json`文件中的版本号。
+
+先删除 `package-lock.json`、`package.json` 文件。
 
 ```bash
 hugo mod npm pack

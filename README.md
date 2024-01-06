@@ -36,7 +36,7 @@ The Demo code is in another GitHub repository: [hugo-theme-seven-demo](https://g
 2. Initialize the site to module and execute the command in the root directory of your site:
 
    ```bash
-   hugo mod init github/[username]/[sitename]
+   hugo mod init github.com/[username]/[sitename]
    ```
 
    Replace `username` and `sitename` above with your own
@@ -124,7 +124,9 @@ hugo mod tidy
 
 ## Update package.json
 
-When there is an update to the `npm packages` that the theme depends on, you need to update the version number in the `package.json` file:
+When there is an update to the `npm packages` that the theme depends on, you need to update the version number in the `package.json` file.
+
+Delete the `package-lock.json`, `package.json` files first.
 
 ```bash
 hugo mod npm pack
