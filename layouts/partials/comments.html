@@ -1,24 +1,45 @@
-{{ $smaxW := .Scratch.Get "maxW" }}
 {{/* Waline */}}
-{{ if and .Site.Params.waline.serverURL (not .Site.Params.waline.alonePageview) }}
+{{ if .Site.Params.comment.waline.enable }}
   <div
     id="waline"
     class="w-full px-0.5 py-5 md:px-2 lg:max-w-5xl lg:px-8 dark:text-gray-400"></div>
 
-  <script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
+  <script
+    src="https://unpkg.com/@waline/client@v2/dist/waline.js"
+    crossorigin="anonymous"></script>
 
-  {{ $serverURL := .Site.Params.waline.serverURL }}
-  {{ $lang := .Site.Params.waline.lang }}
-  {{ $reaction := .Site.Params.waline.reaction }}
-  {{ $search := .Site.Params.waline.search }}
-  {{ $comment := .Site.Params.waline.comment }}
-  {{ $pageview := .Site.Params.waline.pageview }}
-  {{ $walineInfo := dict "serverURL" $serverURL "lang" $lang "reaction" $reaction "search" $search "comment" $comment "pageview" $pageview }}
+  {{ $enableCounts := .Site.Params.comment.enableCounts }}
+
+  {{ $serverURL := .Site.Params.comment.waline.serverURL }}
+  {{ $lang := .Site.Params.comment.waline.lang }}
+  {{ $reaction := .Site.Params.comment.waline.reaction }}
+  {{ $search := .Site.Params.comment.waline.search }}
+  {{ $walineInfo := dict "serverURL" $serverURL "lang" $lang "reaction" $reaction "search" $search "enableCounts" $enableCounts }}
   {{ $commentWalineJS := resources.Get "/js/comment-waline.js" | js.Build (dict "params" $walineInfo) }}
   {{ if hugo.IsProduction }}
     {{ $commentWalineJS = $commentWalineJS | minify | fingerprint }}
   {{ end }}
   <script type="module" src="{{ $commentWalineJS.RelPermalink }}"></script>
+{{ end }}
+
+{{/* Twikoo */}}
+{{ if .Site.Params.comment.twikoo.enable }}
+  <div id="twikoo-comment"></div>
+  <script
+    src="https://cdn.staticfile.org/twikoo/1.6.29/twikoo.all.min.js"
+    crossorigin="anonymous"></script>
+
+  {{ $enableCounts := .Site.Params.comment.enableCounts }}
+
+  {{ $envId := .Site.Params.comment.twikoo.envID }}
+  {{ $lang := .Site.Params.comment.twikoo.lang }}
+  {{ $path := .Site.Params.comment.twikoo.path }}
+  {{ $twikooInfo := dict "envId" $envId "lang" $lang "path" $path "enableCounts" $enableCounts }}
+  {{ $commentTwikooJS := resources.Get "/js/comment-twikoo.js" | js.Build (dict "params" $twikooInfo ) }}
+  {{ if hugo.IsProduction }}
+    {{ $commentTwikooJS = $commentTwikooJS | minify | fingerprint }}
+  {{ end }}
+  <script type="module" src="{{ $commentTwikooJS.RelPermalink }}"></script>
 {{ end }}
 
 {{/* Disque */}}

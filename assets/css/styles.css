@@ -208,3 +208,24 @@ div.highlight:hover .copy-code,
 pre:hover .copy-code {
   display: block;
 }
+
+/* Twikoo comment */
+.twikoo {
+  @apply w-full px-0.5 py-5 md:px-2 lg:max-w-5xl lg:px-8 dark:text-gray-400;
+}
+
+.tk-submit .tk-row .tk-avatar {
+  @apply hidden;
+}
+
+.tk-row.actions {
+  @apply mx-0 !important;
+}
+
+.tk-input.el-textarea > textarea {
+  @apply h-28 min-h-28 !important;
+}
+
+.tk-expand {
+  @apply rounded-lg dark:hover:bg-gray-600;
+}

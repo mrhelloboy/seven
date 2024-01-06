@@ -1,0 +1,9 @@
+<script>
+  document.getElementById("to-comment-button").addEventListener("click", () => {
+    console.log("go to comments");
+    window.scrollTo({
+      top: document.getElementById("post-comment").offsetTop - 100,
+      behavior: "smooth",
+    });
+  });
+</script>

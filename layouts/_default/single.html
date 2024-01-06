@@ -78,7 +78,7 @@
     </div>
 
     {{/* comments */}}
-    {{ if .Site.Params.enableComments }}
+    {{ if and (not .Params.disableComment) .Site.Params.comment.enable }}
       <div id="post-comment">{{- partial "comments.html" . -}}</div>
     {{ end }}
   </div>
@@ -125,19 +125,6 @@
     {{ $linkTopJS = $linkTopJS | minify | fingerprint }}
   {{ end }}
   <script src="{{ $linkTopJS.RelPermalink }}" defer></script>
-
-  {{ if .Site.Params.enableComments }}
-    <script>
-      document
-        .getElementById("comments-button")
-        .addEventListener("click", () => {
-          window.scrollTo({
-            top: document.getElementById("post-comment").offsetTop - 100,
-            behavior: "smooth",
-          });
-        });
-    </script>
-  {{ end }}
 
   {{ if .Site.Params.showCodeCopyButton }}
     <script>

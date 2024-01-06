@@ -34,6 +34,7 @@ more info: https://flowbite.com/docs/components/speed-dial/
     </div>
 
     {{ if and ( .IsPage ) ( eq .Kind "page") }}
+      <!-- Catelog -->
       <button
         type="button"
         data-tooltip-target="tooltip-toc"
@@ -73,6 +74,44 @@ more info: https://flowbite.com/docs/components/speed-dial/
         Catelog
         <div class="tooltip-arrow" data-popper-arrow></div>
       </div>
+
+      <!-- Go to comment -->
+      {{ if and (not .Params.disableComment) .Site.Params.comment.enable }}
+        <button
+          id="to-comment-button"
+          type="button"
+          data-tooltip-target="tooltip-comment"
+          data-tooltip-placement="left"
+          class="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
+          <svg
+            class="h-5 w-5"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M940.373333 896H83.626667c-17.066667 0-32.426667 13.653333-32.426667 32.426667 0 17.066667 13.653333 32.426667 32.426667 32.426666h858.453333c17.066667 0 32.426667-13.653333 32.426667-32.426666-1.706667-17.066667-15.36-32.426667-34.133334-32.426667zM201.386667 752.64H341.333333c10.24 0 20.48-3.413333 27.306667-11.946667L839.68 273.066667c15.36-15.36 15.36-40.96 0-56.32L699.733333 75.093333c-6.826667-6.826667-17.066667-11.946667-27.306666-11.946666-10.24 0-20.48 3.413333-27.306667 11.946666L174.08 546.133333c-6.826667 6.826667-11.946667 17.066667-11.946667 27.306667v139.946667c0 22.186667 18.773333 39.253333 39.253334 39.253333z"></path>
+          </svg>
+          <span class="sr-only">Comment</span>
+        </button>
+        <div
+          id="tooltip-comment"
+          role="tooltip"
+          class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+          {{ if and .Site.Params.comment.enableCounts .Site.Params.comment.waline.enable }}
+            <p id="speed-comment-count-id" class="whitespace-nowrap">
+              <span class="waline-comment-count" data-path="{{ .RelPermalink }}"
+                >...</span
+              >
+              Comments
+            </p>
+          {{ else }}
+            <p id="speed-comment-count-id" class="whitespace-nowrap">Comment</p>
+          {{ end }}
+          <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+      {{ end }}
     {{ end }}
 
 
@@ -134,3 +173,6 @@ more info: https://flowbite.com/docs/components/speed-dial/
 {{- partial "drawer_tags.html" . -}}
 {{- partial "drawer_toc.html" . -}}
 {{- partial "to_top.html" . -}}
+{{ if and (not .Params.disableComment) .Site.Params.comment.enable }}
+  {{- partial "to_comment.html" . -}}
+{{ end }}

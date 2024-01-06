@@ -8,10 +8,18 @@ Waline.init({
   lang: params.lang,
   reaction: params.reaction,
   search: params.search,
-  comment: params.comment,
-  pageview: params.pageview,
   serverURL: params.serverURL,
+  path: window.location.pathname,
   dark: '.dark',
   meta: data.meta || [],
   locale,
 });
+
+// 评论数统计
+if (params.enableCounts) {
+  Waline.commentCount({
+    serverURL: params.serverURL,
+    path: window.location.pathname,
+    lang: params.lang,
+  });
+}
