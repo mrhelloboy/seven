@@ -10,11 +10,13 @@
 {{ define "main" }}
   {{ $metaInfo := .Site.Params.articleMeta }}
   <div
+    id="single-page-container"
     class="mx-auto my-5 mt-22 w-full rounded-b-lg border px-5 md:mt-[151px] md:max-w-5xl dark:border-gray-700">
     <div class="flex w-full justify-between">
-      <div class="w-full">
+      <div id="post-container" class="w-full">
         {{/* Title */}}
         <div
+          id="post-title"
           data-popover-target="popover-animation"
           data-popover-offset="0"
           data-popover-placement="bottom"
