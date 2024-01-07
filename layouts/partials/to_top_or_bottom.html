@@ -1,0 +1,6 @@
+{{ $topOrBottomInfo := dict "disableToTop" .Site.Params.disableToTop "disableToBottom" .Site.Params.disableToBottom }}
+{{ $topOrBottomJsJS := resources.Get "/js/to-top-or-bottom.js" | js.Build (dict "params" $topOrBottomInfo) }}
+{{ if hugo.IsProduction }}
+  {{ $topOrBottomJsJS = $topOrBottomJsJS | minify | fingerprint }}
+{{ end }}
+<script type="module" src="{{ $topOrBottomJsJS.RelPermalink }}"></script>

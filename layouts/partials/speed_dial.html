@@ -7,31 +7,34 @@ more info: https://flowbite.com/docs/components/speed-dial/
   <div
     id="speed-dial-menu-bottom-right"
     class="mb-4 flex hidden flex-col items-center space-y-2">
-    <button
-      id="to-top-button"
-      type="button"
-      data-tooltip-target="tooltip-top"
-      data-tooltip-placement="left"
-      class="flex hidden h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
-      <svg
-        class="h-5 w-5"
-        aria-hidden="true"
-        fill="currentColor"
-        viewBox="0 0 1024 1024"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M852.346 110H171.654c-15.54 0-28.696 4.952-39.462 14.856-10.768 9.904-16.164 22.62-16.192 38.152-0.028 15.532 5.148 28.47 15.528 38.814 10.38 10.346 23.756 15.518 40.126 15.518h680.692c15.54 0 28.696-4.952 39.462-14.856 10.768-9.904 16.164-22.84 16.192-38.814 0.028-15.972-5.37-28.91-16.192-38.814-10.82-9.904-23.976-14.856-39.462-14.856M510.716 325.962c-6.9 0-13.374 2.594-19.42 7.78l-280.8 266.404c-10.352 10.344-14.024 19.186-11.014 26.524 3.01 7.34 12.284 11.008 27.828 11.008h170.814v279.314c0 14.648 5.604 27.146 16.812 37.49 11.208 10.346 24.584 15.518 40.126 15.518h112.592c16.4 0 29.774-4.952 40.126-14.856 10.352-9.904 15.956-22.62 16.812-38.152V637.68h170.816c15.54 0 24.818-3.876 27.826-11.628 3.01-7.752-0.662-16.374-11.014-25.862L531.42 333.78c-6.044-5.186-12.946-7.78-20.704-7.78v-0.04z"></path>
-      </svg>
-      <span class="sr-only">Top</span>
-    </button>
-    <div
-      id="tooltip-top"
-      role="tooltip"
-      class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
-      Top
-      <div class="tooltip-arrow" data-popper-arrow></div>
-    </div>
+    <!-- to top -->
+    {{ if not .Site.Params.disableToTop }}
+      <button
+        id="to-top-button"
+        type="button"
+        data-tooltip-target="tooltip-top"
+        data-tooltip-placement="left"
+        class="flex hidden h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
+        <svg
+          class="h-5 w-5"
+          aria-hidden="true"
+          fill="currentColor"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M629.333333 853.333333h-234.666666c-17.066667 0-32 14.933333-32 32s14.933333 32 32 32h234.666666c17.066667 0 32-14.933333 32-32s-14.933333-32-32-32zM842.666667 360.533333L535.466667 113.066667c-12.8-8.533333-27.733333-8.533333-40.533334 0L183.466667 360.533333c-6.4 6.4-12.8 14.933333-12.8 23.466667 0 2.133333 0 6.4 2.133333 8.533333 2.133333 12.8 14.933333 21.333333 27.733333 21.333334h155.733334v236.8c0 19.2 12.8 29.866667 32 29.866666h249.6c21.333333 0 34.133333-12.8 34.133333-29.866666v-234.666667h151.466667c12.8 0 25.6-8.533333 27.733333-21.333333s0-25.6-8.533333-34.133334zM629.333333 746.666667h-234.666666c-17.066667 0-32 14.933333-32 32s14.933333 32 32 32h234.666666c17.066667 0 32-14.933333 32-32s-14.933333-32-32-32z"></path>
+        </svg>
+        <span class="sr-only">Top</span>
+      </button>
+      <div
+        id="tooltip-top"
+        role="tooltip"
+        class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+        Top
+        <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+    {{ end }}
 
     {{ if and ( .IsPage ) ( eq .Kind "page") }}
       <!-- Catelog -->
@@ -145,6 +148,35 @@ more info: https://flowbite.com/docs/components/speed-dial/
       Tags
       <div class="tooltip-arrow" data-popper-arrow></div>
     </div>
+
+    <!-- to bottom -->
+    {{ if not .Site.Params.disableToBottom }}
+      <button
+        id="to-bottom-button"
+        type="button"
+        data-tooltip-target="tooltip-bottom"
+        data-tooltip-placement="left"
+        class="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
+        <svg
+          class="h-5 w-5"
+          aria-hidden="true"
+          fill="currentColor"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M635.733333 341.333333c19.2 0 32 12.8 32 29.866667v236.8h155.733334c12.8 0 25.6 8.533333 27.733333 21.333333 2.133333 4.266667 2.133333 6.4 2.133333 10.666667 0 8.533333-6.4 19.2-12.8 25.6L529.066667 910.933333c-12.8 8.533333-27.733333 8.533333-40.533334 0L181.333333 663.466667c-8.533333-8.533333-12.8-21.333333-8.533333-34.133334 2.133333-12.8 14.933333-21.333333 27.733333-21.333333h151.466667V371.2c0-19.2 12.8-29.866667 34.133333-29.866667h249.6z m-6.4-128c17.066667 0 32 14.933333 32 32s-14.933333 32-32 32h-234.666666c-17.066667 0-32-14.933333-32-32s14.933333-32 32-32h234.666666z m0-106.666666c17.066667 0 32 14.933333 32 32S646.4 170.666667 629.333333 170.666667h-234.666666c-17.066667 0-32-14.933333-32-32S377.6 106.666667 394.666667 106.666667h234.666666z"></path>
+        </svg>
+        <span class="sr-only">Bottom</span>
+      </button>
+      <div
+        id="tooltip-bottom"
+        role="tooltip"
+        class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+        Bottom
+        <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+    {{ end }}
   </div>
 
   <button
@@ -172,7 +204,8 @@ more info: https://flowbite.com/docs/components/speed-dial/
 
 {{- partial "drawer_tags.html" . -}}
 {{- partial "drawer_toc.html" . -}}
-{{- partial "to_top.html" . -}}
+{{- partial "to_top_or_bottom.html" . -}}
+
 {{ if and (not .Params.disableComment) .Site.Params.comment.enable }}
   {{- partial "to_comment.html" . -}}
 {{ end }}
