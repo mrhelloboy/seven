@@ -230,7 +230,7 @@ pre:hover .copy-code {
   @apply rounded-lg dark:hover:bg-gray-600;
 }
 
-.goods-item {
+.goods-item-hidden {
   opacity: 0;
   transform: translateY(6%);
   transition:

@@ -127,10 +127,10 @@
       window.addEventListener("scroll", function () {
         scrollTop = window.pageYOffset;
 
-        if (scrollTop >= 5 && !isNavScrolled) {
+        if (scrollTop >= 10 && !isNavScrolled) {
           isNavScrolled = true;
           navbarDom.classList.add("navbar-scroll");
-        } else if (scrollTop < 5 && isNavScrolled) {
+        } else if (scrollTop < 10 && isNavScrolled) {
           isNavScrolled = false;
           navbarDom.classList.remove("navbar-scroll");
         }

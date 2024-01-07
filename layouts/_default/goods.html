@@ -1,0 +1,90 @@
+{{ define "main" }}
+  <section
+    class="mx-auto mt-22 w-full grow bg-white md:mt-38 md:max-w-5xl dark:bg-gray-900">
+    <div class="px-8 pb-1 pt-6">
+      <div
+        id="goods-title"
+        class="py-2 text-3xl text-gray-800 md:text-4xl dark:text-gray-100">
+        {{ .Params.title }}
+      </div>
+      <div
+        id="goods-summary"
+        class="whitespace-pre-wrap text-pretty pt-4 text-lg text-gray-500 dark:text-gray-400">
+        {{ .Params.description }}
+      </div>
+    </div>
+
+    <div
+      id="seven-goods"
+      class="mx-auto grid-cols-1 p-4 sm:grid md:grid-cols-3">
+      {{ $goods := getJSON .Params.data }}
+
+      {{ range $goods.good }}
+        <div
+          class="goods-item goods-item-hidden mx-3 mt-6 flex flex-col rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] sm:shrink-0 sm:grow sm:basis-0 dark:bg-gray-800/70">
+          <div class="flex justify-center">
+            <img
+              loading="lazy"
+              decoding="async"
+              class="goods-item-hidden h-52 w-52 transition-transform duration-100 ease-in-out hover:scale-105"
+              src="{{ .image }}"
+              alt="{{ .title }}" />
+          </div>
+          <div>
+            <h5
+              class="my-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+              {{ .title }}
+            </h5>
+            <p class="mb-4 text-base text-neutral-500 dark:text-neutral-200">
+              {{ .summary }}
+            </p>
+            {{ if .more_button }}
+              <a href="{{ .more_link }}"
+                ><button
+                  class="mb-2 me-2 rounded-full border border-gray-300 bg-white px-5 py-2.5 text-sm text-gray-500 hover:border-blue-600 hover:bg-blue-600 hover:text-white dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700">
+                  {{ .more_button }}
+                </button></a
+              >
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
+    </div>
+    {{/* comments */}}
+    {{ if and (not .Params.disableComment) .Site.Params.comment.enable }}
+      <div
+        class="mx-auto mt-3 border-t border-gray-200 md:max-w-5xl dark:border-gray-700"
+        id="post-comment">
+        {{- partial "comments.html" . -}}
+      </div>
+    {{ end }}
+  </section>
+  <script>
+    let options = {
+      rootMargin: "0px",
+      threshold: 0.2,
+    };
+
+    let goodsCallback = (entries, observer) => {
+      entries.forEach((entry) => {
+        const el = entry.target;
+        const intRatio = entry.intersectionRatio;
+        console.log(intRatio);
+        if (intRatio > 0.2 && intRatio <= 1) {
+          el.classList.add("slide-top");
+          el.querySelector("div>img.goods-item-hidden").classList.add(
+            "slide-top",
+          );
+          observerOfGoods.unobserve(el);
+        }
+      });
+    };
+
+    let observerOfGoods = new IntersectionObserver(goodsCallback, options);
+
+    let goodsTargets = document.querySelectorAll(".goods-item");
+    goodsTargets.forEach((item) => {
+      observerOfGoods.observe(item);
+    });
+  </script>
+{{ end }}
