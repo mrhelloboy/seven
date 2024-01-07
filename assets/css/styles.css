@@ -229,3 +229,37 @@ pre:hover .copy-code {
 .tk-expand {
   @apply rounded-lg dark:hover:bg-gray-600;
 }
+
+.goods-item {
+  opacity: 0;
+  transform: translateY(6%);
+  transition:
+    opacity 0.4s ease,
+    transform 0.8s ease;
+}
+
+.slide-top {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 下面的fixed、inset-0、z-30、bg-gray-900及dark:bg-gray-900是flowbite.css移除后兼容drawer的阴影效果 */
+.fixed {
+  position: fixed;
+}
+
+.inset-0 {
+  inset: 0px;
+}
+
+.z-30 {
+  z-index: 30;
+}
+
+.bg-gray-900\/50 {
+  background-color: rgb(17 24 39 / 0.5);
+}
+
+:is(:where(.dark) .dark\:bg-gray-900\/80) {
+  background-color: rgb(17 24 39 / 0.8);
+}
