@@ -10,12 +10,13 @@
     crossorigin="anonymous"></script>
 
   {{ $enableCounts := .Site.Params.comment.enableCounts }}
+  {{ $enablePageView := .Site.Params.articleMeta.enablePageView }}
 
   {{ $serverURL := .Site.Params.comment.waline.serverURL }}
   {{ $lang := .Site.Params.comment.waline.lang }}
   {{ $reaction := .Site.Params.comment.waline.reaction }}
   {{ $search := .Site.Params.comment.waline.search }}
-  {{ $walineInfo := dict "serverURL" $serverURL "lang" $lang "reaction" $reaction "search" $search "enableCounts" $enableCounts }}
+  {{ $walineInfo := dict "serverURL" $serverURL "lang" $lang "reaction" $reaction "search" $search "enableCounts" $enableCounts "enablePageView" $enablePageView }}
   {{ $commentWalineJS := resources.Get "/js/comment-waline.js" | js.Build (dict "params" $walineInfo) }}
   {{ if hugo.IsProduction }}
     {{ $commentWalineJS = $commentWalineJS | minify | fingerprint }}

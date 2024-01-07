@@ -23,3 +23,13 @@ if (params.enableCounts) {
     lang: params.lang,
   });
 }
+
+// page view
+if (params.enablePageView) {
+  console.log('page view');
+  Waline.pageviewCount({
+    serverURL: params.serverURL,
+    selector: '.page-info-pageview-count',
+    path: window.location.pathname,
+  });
+}
