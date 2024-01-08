@@ -54,7 +54,7 @@
           <div
             class="flex h-full flex-col-reverse md:w-2/3 md:flex-col md:justify-center md:border-r md:border-gray-200 md:p-2 md:dark:border-gray-700">
             <p
-              class="mt-6 hidden py-3 font-Montserrat text-sm font-medium text-gray-500 md:block dark:text-gray-200">
+              class="mt-6 hidden py-3 font-Oswald text-sm font-medium tracking-wide text-gray-500/90 md:block dark:text-gray-500">
               {{ $post.Date.Format "January 2 2006" }}
               <span class="text-red-700">/</span>
               {{ index $post.Params.categories 0 }}
@@ -81,16 +81,17 @@
             </div>
           </div>
           <div
-            class="h-full p-6 md:flex md:w-1/3 md:flex-col md:justify-center lg:p-9">
-            <div class="hidden md:block">
-              <div class="h-2 w-2 rounded-full bg-green-600"></div>
-              <p class="py-2 font-Montserrat text-lg font-bold dark:text-white">
-                Summary
-              </p>
+            class="h-full p-6 md:flex md:w-1/3 md:flex-col md:justify-center md:space-y-4 lg:p-9">
+            <div class="relative hidden items-center md:flex">
+              <div class="h-8 w-8 bg-blue-700 dark:bg-blue-600"></div>
+              <span
+                class="absolute inset-0 left-0 font-Oswald text-lg font-bold tracking-wide text-gray-900/90 dark:text-gray-400">
+                <span class="text-white">Sum</span>mary
+              </span>
             </div>
 
             <div
-              class="format line-clamp-5 whitespace-pre-wrap text-pretty text-gray-500 dark:format-invert lg:line-clamp-[10] dark:text-gray-200">
+              class="format line-clamp-5 whitespace-pre-wrap text-pretty text-gray-500/90 dark:format-invert lg:line-clamp-[10] dark:text-gray-500">
               {{ with $post.Description }}
                 <p>{{- . -}}</p>
               {{ else }}
