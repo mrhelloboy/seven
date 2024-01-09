@@ -21,7 +21,7 @@ searchIcon.addEventListener('click', (e) => {
   document.querySelector('.ais-SearchBox-resetIcon').removeEventListener('click', cancelSearch, false);
   document.querySelector('.ais-SearchBox-resetIcon').addEventListener('click', cancelSearch, false);
 
-  // document.querySelector('.ais-SearchBox-input').focus();
+  document.querySelector('.ais-SearchBox-input').focus();
 });
 
 document.addEventListener('keydown', function (event) {
