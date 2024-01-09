@@ -1,6 +1,7 @@
 import * as params from '@params';
 
 const searchIcon = document.getElementById('search-icon');
+const searchOverlay = document.getElementById('search-overlay');
 const searchSection = document.getElementById('search-section');
 let queryValue = '';
 
@@ -20,7 +21,7 @@ searchIcon.addEventListener('click', (e) => {
   document.querySelector('.ais-SearchBox-resetIcon').removeEventListener('click', cancelSearch, false);
   document.querySelector('.ais-SearchBox-resetIcon').addEventListener('click', cancelSearch, false);
 
-  document.querySelector('.ais-SearchBox-input').focus();
+  // document.querySelector('.ais-SearchBox-input').focus();
 });
 
 document.addEventListener('keydown', function (event) {
@@ -34,9 +35,11 @@ document.addEventListener('keydown', function (event) {
 });
 
 function showOrHiddenSearch() {
+  searchOverlay.classList.toggle('hidden');
   searchSection.classList.toggle('hidden');
   searchSection.classList.toggle('fixed');
   document.body.classList.toggle('overflow-hidden');
+  document.body.classList.toggle('fixed');
 }
 
 const searchClient = algoliasearch(params.api_id, params.api_key);

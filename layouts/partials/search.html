@@ -1,56 +1,60 @@
 {{/* Search */}}
-<section
-  id="search-section"
-  class="inset-0 top-0 z-50 flex hidden h-full w-full flex-col bg-gray-900/90 backdrop-blur-lg dark:bg-gray-900/80">
+<div
+  id="search-overlay"
+  class="fixed inset-0 z-50 hidden bg-gray-900/90 backdrop-blur-lg dark:bg-gray-900/80"></div>
+<section id="search-section" class="z-50 flex hidden h-dvh w-full flex-col">
+  {{/* Search div */}}
   <div
-    class="mt-22 flex grow flex-col overflow-y-auto md:mx-auto md:w-2/3 lg:max-w-2xl">
-    <div class="flex flex-row justify-between px-6">
+    class="flex h-dvh w-full flex-col overflow-auto md:mx-auto md:w-2/3 lg:max-w-2xl">
+    {{/* Search input */}}
+    <div
+      id="searchBoxDiv"
+      class="sticky top-[-88px] z-50 flex flex-row justify-between px-8 pt-[88px]">
       <div id="searchBox" class="my-6 flex w-full flex-row items-center"></div>
     </div>
 
-    <div id="searchResults" class="my-3 h-full overflow-y-auto px-6"></div>
-    <div
-      id="NotSearchResults"
-      class="hidden flex-col items-center justify-around space-y-4 px-6 py-10">
-      <p class="font-Oswald text-lg font-bold tracking-wide text-gray-500">
-        No search content
-      </p>
+    {{/* Search result */}}
+    <div class="h-[30rem] overflow-auto">
+      <div id="searchResults" class="my-3 px-6"></div>
+      <div
+        id="NotSearchResults"
+        class="hidden flex-col items-center justify-around space-y-4 px-6 py-10">
+        <p class="font-Oswald text-lg font-bold tracking-wide text-gray-500">
+          No search content
+        </p>
+      </div>
+      <div
+        id="searchError"
+        class="hidden flex-col items-center justify-around space-y-4 px-6 py-10 text-center ">
+        <p class="font-Oswald text-lg font-bold text-red-500">
+          Oop ! Error occur ...
+        </p>
+      </div>
+      <div
+        id="searchLoading"
+        class="hidden flex-col items-center justify-around px-6 py-10">
+        <svg
+          t="1689331200868"
+          class="icon animate-spin"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          p-id="51409"
+          width="128"
+          height="128">
+          <path
+            d="M512 170.666667v85.333333a256 256 0 1 1-223.573333 131.2L213.930667 345.6A341.333333 341.333333 0 1 0 512 170.666667z"
+            fill="#bfbfbf"
+            opacity=".3"
+            p-id="51410"></path>
+        </svg>
+      </div>
     </div>
-    <div
-      id="searchError"
-      class="hidden flex-col items-center justify-around space-y-4 px-6 py-10 text-center ">
-      <p class="font-Oswald text-lg font-bold text-red-500">
-        Oop ! Error occur ...
-      </p>
-    </div>
-    <div
-      id="searchLoading"
-      class="hidden flex-col items-center justify-around px-6 py-10">
-      <svg
-        t="1689331200868"
-        class="icon animate-spin"
-        viewBox="0 0 1024 1024"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        p-id="51409"
-        width="128"
-        height="128">
-        <path
-          d="M512 170.666667v85.333333a256 256 0 1 1-223.573333 131.2L213.930667 345.6A341.333333 341.333333 0 1 0 512 170.666667z"
-          fill="#bfbfbf"
-          opacity=".3"
-          p-id="51410"></path>
-      </svg>
-    </div>
-    <!--
-    <div class="px-6 py-3">
-      <div id="powered-by" class="text-gray-100"></div>
-    </div> -->
   </div>
-
+  {{/* logo */}}
   <div
-    class="bottom-0 flex flex-col items-center justify-center space-y-2 py-5 font-Oswald text-xs font-bold text-gray-600">
-    <div>Press ESC to cancle</div>
+    class="bottom-0 flex flex-col items-center justify-center space-y-2 py-8 font-Oswald text-xs font-bold text-gray-600">
+    <div class="hidden md:block">Press ESC to cancle</div>
     <div class="flex items-center">
       <span class="">Powered by &nbsp;</span>
       <img src="/images/default/algolia-logo.svg" alt="" class="h-4" />

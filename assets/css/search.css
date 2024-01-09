@@ -46,10 +46,6 @@
   @apply h-4;
 }
 
-.ais-Hits {
-  @apply overflow-auto;
-}
-
 .ais-Hits-list {
   @apply flex flex-col;
 }
