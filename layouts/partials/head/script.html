@@ -1,4 +1,5 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+{{ $flowbiteJS := resources.Get "js/third-party/flowbite/v2.2.1/flowbite.min.js" }}
+<script src="{{ $flowbiteJS.RelPermalink }}" defer></script>
 <script>
   // On page load or when changing themes, best to add inline in `head` to avoid FOUC
   if (

@@ -4,10 +4,8 @@
     id="waline"
     class="w-full px-0.5 py-5 md:px-2 lg:max-w-5xl lg:px-8 dark:text-gray-400"></div>
 
-  <script
-    defer
-    src="https://unpkg.com/@waline/client@v2/dist/waline.js"
-    crossorigin="anonymous"></script>
+  {{ $walineJS := resources.Get "js/third-party/waline/v2/waline.js" }}
+  <script src="{{ $walineJS.RelPermalink }}" defer></script>
 
   {{ $enableCounts := .Site.Params.comment.enableCounts }}
   {{ $enablePageView := .Site.Params.articleMeta.enablePageView }}
@@ -30,10 +28,8 @@
 {{/* Twikoo */}}
 {{ if .Site.Params.comment.twikoo.enable }}
   <div id="twikoo-comment"></div>
-  <script
-    defer
-    src="https://cdn.staticfile.org/twikoo/1.6.29/twikoo.all.min.js"
-    crossorigin="anonymous"></script>
+  {{ $twikooJS := resources.Get "js/third-party/twikoo/v1.6.29/twikoo.all.min.js" }}
+  <script src="{{ $twikooJS.RelPermalink }}" defer></script>
 
   {{ $enableCounts := .Site.Params.comment.enableCounts }}
 
