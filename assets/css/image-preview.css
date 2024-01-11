@@ -1,20 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* 图片预览 */
 .modal {
-  touch-action: none;
-  position: fixed;
-  z-index: 99;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.75);
-  user-select: none;
+  @apply fixed left-0 top-0 z-[99] h-full w-full touch-none select-none bg-black/75 backdrop-blur-md;
 }
 
 .modal > img {
-  position: absolute;
-  padding: 0;
-  margin: 0;
-  /* transition: all var(--delay_time); */
-  transform: translateZ(0);
+  @apply absolute m-0 p-0;
 }

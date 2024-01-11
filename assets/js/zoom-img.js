@@ -2,7 +2,7 @@ let scale = 1;
 let offset = { left: 0, top: 0 };
 let origin = 'center';
 let initialData = { offset: {}, origin: 'center', scale: 1 };
-let startPoint = { x: 0, y: 0 }; // 记录初始触摸点位
+let startPoint = { x: 0, y: 0 }; // 记录初始触摸点
 let isTouching = false; // 标记是否正在移动
 let isMove = false; // 正在移动中，与点击做区别
 let touches = new Map(); // 触摸点数组
@@ -12,7 +12,7 @@ let scaleOrigin = { x: 0, y: 0 };
 
 let isPreview = false;
 
-let { innerWidth: winWidth, innerHeight: winHeight } = window;
+const { innerWidth: winWidth, innerHeight: winHeight } = window;
 
 let cloneEl = null;
 let originalEl = null;
@@ -24,17 +24,19 @@ let originalOffsetHeight = 0;
 let originalTop = 0;
 let originalLeft = 0;
 
-for (let figureEle of document.getElementsByClassName('data-image-info')) {
-  figureEle.addEventListener('click', function (e) {
-    e.preventDefault();
-    if (e.target.classList.contains('data-image')) {
-      originalEl = e.target;
-      cloneEl = originalEl.cloneNode(true);
-      originalEl.style.opacity = 0.3;
-      openPreview();
-    }
+document.addEventListener('DOMContentLoaded', () => {
+  Array.from(document.getElementsByClassName('data-image-info')).forEach((element) => {
+    element.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (e.target.classList.contains('data-image')) {
+        originalEl = e.target;
+        cloneEl = originalEl.cloneNode(true);
+        originalEl.style.opacity = 0.3;
+        openPreview();
+      }
+    });
   });
-}
+});
 
 function openPreview() {
   scale = 1;
@@ -52,13 +54,19 @@ function openPreview() {
   mask.classList.add('modal');
   // 添加在body下
   document.body.appendChild(mask);
+
   // 注册事件
-  mask.addEventListener('click', clickFunc);
-  mask.addEventListener('mousewheel', zoom, { passive: false });
+  mask.addEventListener('click', () => {
+    if (!isMove) {
+      clickFunc();
+    }
+  });
+  mask.addEventListener('wheel', zoom, { passive: false });
 
   // 添加图片
   changeStyle(cloneEl, [`left: ${left}px`, `top: ${top}px`, `position: absolute`, `width: ${offsetWidth}px`]);
   mask.appendChild(cloneEl);
+
   // 移动图片到屏幕中心位置
   const originalCenterPoint = {
     x: offsetWidth / 2 + left,
@@ -75,14 +83,15 @@ function openPreview() {
   };
 
   changeStyle(cloneEl, [
-    'transition: all 0.3s',
+    'transition: all 0.3s ease-in-out',
     `width: ${offsetWidth * adaptScale() + 'px'}`,
     `transform: translate(${offsetDistance.left - left - diffs.left}px, ${offsetDistance.top - top - diffs.top}px)`,
   ]);
+
   // 消除偏差
   setTimeout(() => {
     changeStyle(cloneEl, [
-      'transition: all 0s',
+      'transition: all 0s ease-in-out',
       `left: 0`,
       `top: 0`,
       `transform: translate(${offsetDistance.left - diffs.left}px, ${offsetDistance.top - diffs.top}px)`,
@@ -102,29 +111,28 @@ function clickFunc() {
       isMove = false;
     } else {
       changeStyle(cloneEl, [
-        'transition: all .3s',
+        'transition: 0.3s ease-in-out',
         `left: ${originalLeft}px`,
         `top: ${originalTop}px`,
         `transform: translate(0,0)`,
-        `width: ${originalOffsetWidth}px`,
+        `width: ${originalOffsetWidth}px`, // 设置宽度
       ]);
+
       setTimeout(() => {
-        try {
-          document.body.removeChild(mask);
-        } catch (e) {
-          console.log(e.message);
+        if (mask.parentNode) {
+          mask.parentNode.removeChild(mask);
         }
         originalEl.style.opacity = 1;
         mask.removeEventListener('click', clickFunc);
+        isPreview = false;
       }, 300);
-      isPreview = false;
     }
   }, 280);
 }
 
 // 滚轮缩放
 const zoom = (event) => {
-  if (!event.deltaY) {
+  if (event.deltaY === undefined) {
     return;
   }
   event.preventDefault();
@@ -177,7 +185,7 @@ window.addEventListener('pointerdown', function (e) {
   }
 });
 
-window.addEventListener('pointerup', function (e) {
+window.addEventListener('pointerup', (e) => {
   if (isPreview) {
     touches.delete(e.pointerId); // TODO: 抬起移除触摸点
     if (touches.size <= 0) {
@@ -229,6 +237,7 @@ window.addEventListener('pointermove', (e) => {
     }
   }
 });
+
 window.addEventListener('pointercancel', function (e) {
   touches.clear(); // 可能存在特定事件导致中断，真机操作时 pointerup 在某些边界情况下不会生效，所以需要清空
 });
@@ -257,7 +266,7 @@ function adaptScale() {
   return scale;
 }
 
-// 获取距离
+// 计算距离
 function getDistance() {
   const touchArr = Array.from(touches);
   if (touchArr.length < 2) {
