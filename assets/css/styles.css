@@ -183,15 +183,15 @@ body {
 
 /* waline */
 .wl-panel {
-  @apply rounded-md border-2;
+  @apply rounded-md border;
 }
 
 .wl-header {
-  @apply rounded-tr-md border-b-2 border-solid p-0;
+  @apply rounded-tr-md border-b border-solid p-0;
 }
 
 .wl-header-item {
-  @apply border-solid border-r-[#ddd] p-0 last:border-r-0 md:border-r-2 dark:border-r-[#333];
+  @apply border-solid border-r-[#ddd] p-0 last:border-r-0 md:border-r dark:border-r-[#333];
 }
 /* .wl-header-item:not(:last-child) {
   @apply md:border-r-2;
@@ -199,7 +199,7 @@ body {
 
 @media (max-width: 580px) {
   .wl-header-item:not(:last-child) {
-    @apply border-solid;
+    @apply border-b border-solid;
   }
 }
 
@@ -212,7 +212,7 @@ body {
 }
 
 .wl-editor {
-  @apply rounded-none transition-none;
+  @apply min-h-16 rounded-none transition-none;
 }
 
 .wl-input {
