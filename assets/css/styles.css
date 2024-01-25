@@ -220,7 +220,7 @@ body {
 }
 
 .wl-panel > textarea {
-  @apply border-transparent ring-transparent;
+  @apply border-transparent ring-transparent placeholder:text-[#999] dark:placeholder:text-[#666];
 }
 
 /* Code copy button */
