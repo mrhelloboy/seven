@@ -207,9 +207,6 @@ body {
 .wl-header-item {
   @apply border-solid border-r-[#ddd] p-0 last:border-r-0 md:border-r dark:border-r-gray-700;
 }
-/* .wl-header-item:not(:last-child) {
-  @apply md:border-r-2;
-} */
 
 @media (max-width: 580px) {
   .wl-header-item:not(:last-child) {
@@ -273,6 +270,7 @@ pre:hover .copy-code {
   @apply rounded-lg dark:hover:bg-gray-600;
 }
 
+/* goods.html */
 .goods-item-hidden {
   opacity: 0;
   transform: translateY(6%);
@@ -286,7 +284,7 @@ pre:hover .copy-code {
   transform: translateY(0);
 }
 
-/* 下面的fixed、inset-0、z-30、bg-gray-900及dark:bg-gray-900是flowbite.css移除后兼容drawer的阴影效果 */
+/* 下面的 fixed、inset-0、z-30、bg-gray-900 及 dark:bg-gray-900 是 flowbite.css 移除后兼容 drawer 的阴影效果 */
 .fixed {
   position: fixed;
 }
@@ -305,4 +303,19 @@ pre:hover .copy-code {
 
 :is(:where(.dark) .dark\:bg-gray-900\/80) {
   background-color: rgb(17 24 39 / 0.8);
+}
+
+/* flowbite-typography 引用语法修改 */
+.format
+  :where(blockquote p:first-of-type):not(
+    :where([class~="not-format"] *)
+  )::before {
+  content: "" !important;
+}
+
+.format
+  :where(blockquote p:last-of-type):not(
+    :where([class~="not-format"] *)
+  )::after {
+  content: "" !important;
 }

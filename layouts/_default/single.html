@@ -19,9 +19,31 @@
 {{- end -}}
 {{ define "main" }}
   {{ $metaInfo := .Site.Params.articleMeta }}
+
+  {{/* Image */}}
+  {{ if not $metaInfo.disableHero }}
+    {{ $image := resources.Get .Params.image }}
+    {{ with $image }}
+      <div id="post-feature" class="mt-22 w-full md:mt-[151px]">
+        <img
+          class="h-60 w-full object-cover md:h-120"
+          src="{{ $image.Permalink }}"
+          alt="preview image"
+          srcset="" />
+      </div>
+    {{ else }}
+      <div id="post-feature" class="mt-22 h-60 w-full md:mt-[151px] md:h-120">
+        {{- partial "random_feature_img.html" . -}}
+      </div>
+    {{ end }}
+  {{ else }}
+    <div id="post-feature" class="mt-22 md:mt-[151px]"></div>
+  {{ end }}
+
+
   <div
     id="single-page-container"
-    class="mx-auto my-5 mt-22 w-full rounded-b-lg border px-5 md:mt-[151px] md:max-w-5xl dark:border-gray-700">
+    class="mx-auto my-5 w-full rounded-b-lg px-5 md:max-w-4xl">
     <div class="flex w-full justify-between">
       <div id="post-container" class="w-full">
         {{/* Title */}}
@@ -30,33 +52,31 @@
           data-popover-target="popover-animation"
           data-popover-offset="0"
           data-popover-placement="bottom"
-          class="px-3 py-10 text-center text-3xl font-bold tracking-wide text-black dark:text-white">
-          {{ .Title }}
-        </div>
-
-        {{- partial "page_info.html" . -}}
-
-        {{/* Image */}}
-        {{ if not $metaInfo.disableHero }}
-          {{ $image := resources.Get .Params.image }}
-          {{ with $image }}
-            <div id="post-feature" class="-mx-5">
-              <img
-                class="h-60 w-full object-cover md:h-120"
-                src="{{ $image.Permalink }}"
-                alt="preview image"
-                srcset="" />
-            </div>
-          {{ else }}
-            <div id="post-feature" class="-mx-5 h-60 md:h-120">
-              {{- partial "random_feature_img.html" . -}}
-            </div>
-          {{ end }}
-        {{ else }}
+          class="flex flex-col px-1 py-5 md:px-3 md:py-8 lg:px-10 lg:py-10">
           <div
-            id="post-feature"
-            class="mx-1 mb-4 mt-0 border-b border-gray-400 md:mx-3 lg:mx-10 dark:border-gray-700"></div>
-        {{ end }}
+            class="flex flex-row space-x-1 border-l-4 border-blue-700 pb-2 pl-2 pt-1 font-Oswald text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
+            <span>Posted by {{ .Date.Format "January 2 2006" }}</span>
+
+            {{ $categories := (.GetTerms "categories") }}
+            {{ $cateNums := len $categories }}
+            {{ if ge $cateNums 1 }}
+              <span class="flex flex-row space-x-1">
+                {{ range $categories }}
+                  <span class="text-red-700"> / </span>
+                  <a
+                    class="border-b-2 border-transparent hover:border-b-2 hover:border-blue-600 hover:text-blue-600"
+                    href="{{ .Permalink }}"
+                    >{{- .LinkTitle -}}</a
+                  >
+                {{ end }}
+              </span>
+            {{ end }}
+          </div>
+          <div
+            class="border-l-4 border-blue-700 py-1 pl-2 text-start text-3xl font-bold tracking-wide text-black lg:text-4xl dark:text-white">
+            {{ .Title }}
+          </div>
+        </div>
 
         {{/* Content */}}
         <div
