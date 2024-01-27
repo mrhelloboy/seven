@@ -109,6 +109,12 @@ html {
   position: absolute;
 }
 
+.dark {
+  --waline-bgcolor: rgb(17 24 39) !important;
+  --waline-info-bgcolor: rgb(31 41 55 / 0.5) !important;
+  --waline-bgcolor-light: rgb(55 65 81 / 0.2) !important;
+}
+
 body {
   width: 100vw;
 }
@@ -183,15 +189,23 @@ body {
 
 /* waline */
 .wl-panel {
-  @apply rounded-md border;
+  @apply rounded-md border dark:border-gray-700;
 }
 
 .wl-header {
-  @apply rounded-tr-md border-b border-solid p-0;
+  @apply rounded-tr-md border-b border-solid p-0 dark:border-gray-700;
+}
+
+.wl-meta-head {
+  @apply px-2;
+}
+
+.wl-cards {
+  @apply px-1;
 }
 
 .wl-header-item {
-  @apply border-solid border-r-[#ddd] p-0 last:border-r-0 md:border-r dark:border-r-[#333];
+  @apply border-solid border-r-[#ddd] p-0 last:border-r-0 md:border-r dark:border-r-gray-700;
 }
 /* .wl-header-item:not(:last-child) {
   @apply md:border-r-2;
@@ -199,7 +213,7 @@ body {
 
 @media (max-width: 580px) {
   .wl-header-item:not(:last-child) {
-    @apply border-b border-solid;
+    @apply border-b border-solid dark:border-b-gray-700;
   }
 }
 
