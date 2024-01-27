@@ -2,28 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* social icon */
-.ficon:hover {
-  /* filter: invert(64%) sepia(91%) saturate(7473%) hue-rotate(221deg) brightness(84%) contrast(103%); */
-  filter: invert(47%) sepia(69%) saturate(6446%) hue-rotate(217deg)
-    brightness(81%) contrast(113%);
-}
-
-/* HAMBURGER MENU */
-.open .hamburger-top {
-  transform: rotate(45deg) translateY(4px) translateX(4px);
-  background-color: #fff;
-}
-
-.open .hamburger-middle {
-  display: none;
-}
-
-.open .hamburger-bottom {
-  transform: rotate(-45deg) translateY(-4px) translateX(4px);
-  background-color: #fff;
-}
-
 .theme-aside {
   @apply px-2 py-0.5 text-sm hover:rounded-lg hover:border-0 hover:bg-gray-100 hover:text-blue-700;
 }
@@ -52,15 +30,6 @@
 .theme-toc-nest-2::before,
 .theme-toc-nest-3::before {
   content: "- ";
-}
-
-/* Image zoom */
-.zoomIn {
-  @apply animate-zoomIn;
-}
-
-.zoomOut {
-  @apply animate-zoomOut;
 }
 
 /* Scrollbar */
@@ -129,51 +98,6 @@ body {
   font-family: "Montserrat";
   src: url("/font/Montserrat-VariableFont_wght.woff2");
   font-display: swap;
-}
-
-/* Sweep To Right */
-.hvr-sweep-to-right {
-  /* display: inline-block; */
-  /* vertical-align: middle; */
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  position: relative;
-  -webkit-transition-property: color;
-  transition-property: color;
-  -webkit-transition-duration: 0.7s;
-  transition-duration: 0.7s;
-}
-.hvr-sweep-to-right:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #0b9b8a;
-  -webkit-transform: scaleX(0);
-  transform: scaleX(0);
-  -webkit-transform-origin: 0 50%;
-  transform-origin: 0 50%;
-  -webkit-transition-property: transform;
-  transition-property: transform;
-  -webkit-transition-duration: 0.7s;
-  transition-duration: 0.7s;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-}
-.hvr-sweep-to-right:hover,
-.hvr-sweep-to-right:focus,
-.hvr-sweep-to-right:active {
-  color: white;
-}
-.hvr-sweep-to-right:hover:before,
-.hvr-sweep-to-right:focus:before,
-.hvr-sweep-to-right:active:before {
-  -webkit-transform: scaleX(1);
-  transform: scaleX(1);
 }
 
 /* 导航栏高度滚动 */
