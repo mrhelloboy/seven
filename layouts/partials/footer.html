@@ -1,10 +1,10 @@
 <footer
-  class="mx-auto flex w-full max-w-screen-xl flex-col-reverse items-center gap-y-3 border-t border-gray-200 py-6 dark:border-gray-700 md:px-12 lg:flex-row lg:justify-between">
+  class="mx-auto flex w-full max-w-screen-xl flex-col-reverse items-center gap-y-3 border-t border-gray-200 py-6 md:px-12 lg:flex-row lg:justify-between dark:border-gray-700">
   <!-- Social & Theme & Copy Container -->
   <div
-    class="flex flex-col items-center justify-between space-y-3 text-xs text-gray-500 dark:text-gray-200 lg:items-start">
+    class="flex flex-col items-center justify-between space-y-3 text-xs text-gray-400 lg:items-start dark:text-gray-500">
     {{/* Copy */}}
-    <div class="items-center font-Montserrat font-thin">
+    <div class="items-center font-Montserrat font-light">
       &copy;
       {{ $startYear := .Site.Params.copyright.start_year }}
       {{ $currentYear := now.Format "2006" }}
@@ -21,7 +21,7 @@
 
   {{/* Theme Info */}}
   <div
-    class="flex flex-row items-center font-Montserrat text-xs font-thin text-gray-500 dark:text-gray-200">
+    class="flex flex-row items-center font-Montserrat text-xs font-light text-gray-400 dark:text-gray-500">
     <span>Powered By</span>
     <a href="https://gohugo.io/" aria-label="hugo link">
       <img
@@ -50,7 +50,7 @@
 
   <!-- icons Container -->
   <div
-    class="mt-4 flex space-x-5 rtl:space-x-reverse sm:justify-center md:mt-0">
+    class="mt-4 flex space-x-5 sm:justify-center md:mt-0 rtl:space-x-reverse">
     {{ range $name, $value :=.Site.Params.society }}
       {{ if and (eq $name "email") (eq $value.enable true) }}
         <a
