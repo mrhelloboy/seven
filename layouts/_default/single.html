@@ -6,6 +6,16 @@
     {{ $image_preview_styles = $image_preview_styles | minify | fingerprint | resources.PostProcess }}
   {{ end }}
   <link href="{{ $image_preview_styles.RelPermalink }}" rel="stylesheet" />
+
+  {{ if .Site.Params.enableHighlight }}
+    {{ $syntax := resources.Get "/css/syntax.css" }}
+    {{ $syntax = $syntax | resources.PostCSS (dict "inlineImports" true) }}
+    {{ if hugo.IsProduction }}
+      {{ $syntax = $syntax | minify | fingerprint | resources.PostProcess }}
+    {{ end }}
+    <link href="{{ $syntax.RelPermalink }}" rel="stylesheet" />
+  {{ end }}
+
 {{- end -}}
 {{ define "main" }}
   {{ $metaInfo := .Site.Params.articleMeta }}
