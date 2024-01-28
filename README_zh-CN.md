@@ -20,7 +20,7 @@
 
 ## 示例
 
-→ [示例网站](https://snazzy-jelly-839142.netlify.app/)
+→ [示例网站](https://seven-demo.supcat.cn/)
 
 → [示例代码仓库](https://github.com/mrhelloboy/hugo-theme-seven-demo)
 

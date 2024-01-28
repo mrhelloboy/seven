@@ -20,7 +20,7 @@ English | [中文](./README_zh-CN.md)
 
 ## Examples
 
-→ [Example Website](https://snazzy-jelly-839142.netlify.app/)
+→ [Example Website](https://seven-demo.supcat.cn/)
 
 → [Example Code Repository](https://github.com/mrhelloboy/hugo-theme-seven-demo)
 
