@@ -20,119 +20,95 @@
 
 ## 示例
 
-链接：[Demo](https://snazzy-jelly-839142.netlify.app/)
+→ [示例网站](https://snazzy-jelly-839142.netlify.app/)
 
-示例代码在另外一个 GitHub 仓库：[hugo-theme-seven-demo](https://github.com/mrhelloboy/hugo-theme-seven-demo)
+→ [示例代码仓库](https://github.com/mrhelloboy/hugo-theme-seven-demo)
 
 ## 前提条件
 
-1. 需要使用 Hugo Modules 功能。所以需要在本地下载 Go。具体细节请参考文档 [Hugo Modules Prerequisite](https://gohugo.io/hugo-modules/use-modules/#prerequisite)
-2. Hugo 版本至少需要 `v0.112.0`。**建议使用最新版本的 Go 和 Hugo**。参考文档 [configure-cache-busters](https://gohugo.io/getting-started/configuration/#configure-cache-busters)
+在开始使用本Hugo主题之前，请确保符合以下要求：
 
-## 使用说明
+1. 安装了 [Go](https://go.dev/dl/)。参考文档 [Hugo Modules Prerequisite](https://gohugo.io/hugo-modules/use-modules/#prerequisite)
+2. 确保 Hugo 版本为 **v0.112.0** 或更新版本。参考文档 [configure-cache-busters](https://gohugo.io/getting-started/configuration/#configure-cache-busters)
 
-1. 已有 Hugo 站点使用本主题，需要删掉 themes 目录及相关文件（如果有的话）
+## 快速体验
 
-2. 将站点初始化为 module。在自己站点根目录下执行命令：
-
-   ```bash
-   hugo mod init github.com/[username]/[sitename]
+1. 克隆 [示例代码](https://github.com/mrhelloboy/hugo-theme-seven-demo)
+   ```sh
+   git clone https://github.com/mrhelloboy/hugo-theme-seven-demo.git
    ```
+2. 执行命令
 
-   请将上面中的 `username` 和 `sitename` 替换成自己的
+   ```sh
+   cd hugo-theme-seven-demo
 
-3. 建议从 [hugo-theme-seven-demo 仓库](https://github.com/mrhelloboy/hugo-theme-seven-demo) 复制 `hugo.toml` 文件到自己站点根目录上。
-
-   如果不使用 Demo 的 `hugo.toml` 文件，请复制下面的配置到自己的 `hugo.toml` 文件里：
-
-   ```toml
-   [module]
-     # Recommend Chinese users to use this proxy configuration
-     # proxy = 'https://goproxy.cn,direct'
-     [[module.imports]]
-       path = 'github.com/mrhelloboy/seven'
-     [module.hugoVersion]
-       extended = false
-       min      = "0.112.0"
-     [[module.mounts]]
-       source = "assets"
-       target = "assets"
-     [[module.mounts]]
-       source = "hugo_stats.json"
-       target = "assets/watching/hugo_stats.json"
-
-   [build]
-     writeStats = true
-     [[build.cachebusters]]
-       source = "assets/watching/hugo_stats\\.json"
-       target = "styles\\.css"
-     [[build.cachebusters]]
-       source = "(postcss|tailwind)\\.config\\.js"
-       target = "css"
-     [[build.cachebusters]]
-       source = "assets/.*\\.(js|ts|jsx|tsx)"
-       target = "js"
-     [[build.cachebusters]]
-       source = "assets/.*\\.(.*)$"
-       target = "$1"
-   ```
-
-   主题需要用到的其他配置参数请参考 Demo 的 `hugo.toml`
-
-4. 执行命令
-
-   ```bash
    hugo mod npm pack
-   ```
 
-   会生成文件 `package.json`、`package.hugo.json` 并导入 module 及更新 `go.mod` 和 `go.sum` 文件等。
-
-5. 执行命令下载需要的依赖
-
-   ```bash
    npm install
-   ```
 
-6. 启动本地服务
-
-   ```bash
    hugo server
    ```
 
-   或者：
+## 从零开始
 
-   ```bash
-   hugo server --disableLiveReload --minify --gc -D
+0. 安装 Go 和 Hugo
+
+1. 创建站点
+
+   ```sh
+   hugo new site [sitename]
+   cd [sitename]
+   # 删除站点的 themes 目录
+   rm -rf themes
    ```
 
-## 更新主题版本
+2. 初始化 Hugo 模块
 
-当主题版本有更新时，需要更新 `go.mod` 文件中的版本号：
+   ```sh
+   hugo mod init github.com/[username]/[sitename]
+   ```
+
+3. 导入主题模块
+
+   在 hugo.toml 中配置主题
+
+   ```toml
+   [module]
+   [[module.imports]]
+     path = 'github.com/mrhelloboy/seven'
+   ```
+
+   > 因为主题需要额外的配置参数，为了避免出错，建议先使用示例的 [hugo.toml](https://github.com/mrhelloboy/hugo-theme-seven-demo/blob/main/hugo.toml) ，再按需修改。
+
+   **注意：**
+   如使用了示例的 hugo.toml。需注释掉 `customSocial = "extra_social.html"`，否则启动时将会出错。
+
+   > 更多 hugo 模块的说明及使用，请参考 [Hugo Modules](https://gohugo.io/hugo-modules/)
+
+4. 安装依赖及启动
+
+   ```sh
+   hugo mod npm pack
+
+   npm install
+
+   hugo server
+   ```
+
+## 更新主题模块
 
 ```bash
-# 清除本地模块缓存
 hugo mod clean
-```
-
-```bash
 hugo mod get
-```
-
-```bash
 hugo mod tidy
 ```
 
-## 更新package.json
+## 更新 package.json
 
-当主题依赖的`npm`包有更新时，需要更新`package.json`文件中的版本号。
-
-先删除 `package-lock.json`、`package.json` 文件。
+> 先删除 `package-lock.json`、`package.json`。
 
 ```bash
 hugo mod npm pack
-```
-
-```bash
 npm install
 ```
 
@@ -140,9 +116,9 @@ npm install
 
 请参考 [Hugo 部署文档](https://gohugo.io/hosting-and-deployment/)
 
-### 部署到 `Netlify` 为例：
+### 部署到 `Netlify` 例子：
 
-1. 复制 Demo 仓库中的 `netlify.toml` 到自己站点及推送到 Github 上
+1. 复制示例代码的 [`netlify.toml`](https://github.com/mrhelloboy/hugo-theme-seven-demo/blob/main/netlify.toml) 到自己站点及推送到 Github 上
 
 2. 注册并登录 Netlify
 

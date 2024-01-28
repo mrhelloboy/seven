@@ -18,135 +18,111 @@ English | [中文](./README_zh-CN.md)
 
 <img alt="Seven screenshot" src="https://seven-demo.supcat.cn/images/screenshot/xdr.webp" width="500">
 
-## Example
+## Examples
 
-Link: [Demo](https://snazzy-jelly-839142.netlify.app/)
+→ [Example Website](https://snazzy-jelly-839142.netlify.app/)
 
-The Demo code is in another GitHub repository: [hugo-theme-seven-demo](https://github.com/mrhelloboy/hugo-theme-seven-demo)
+→ [Example Code Repository](https://github.com/mrhelloboy/hugo-theme-seven-demo)
 
 ## Prerequisites
 
-1. The Hugo Modules feature is required. So you need to download Go locally. Please refer to the document [Hugo Modules Prerequisite](https://gohugo.io/hugo-modules/use-modules/#prerequisite) for details.
-2. Hugo version should be at least `v0.112.0`. **It is recommended to use the latest version of Go and Hugo**. Reference documentation [configure-cache-busters](https://gohugo.io/getting-started/configuration/#configure-cache-busters)
+Before using this Hugo theme, ensure that you meet the following requirements:
 
-## Usage
+1. Install [Go](https://go.dev/dl/). Refer to the documentation on [Hugo Modules Prerequisite](https://gohugo.io/hugo-modules/use-modules/#prerequisite).
+2. Ensure that your Hugo version is **v0.112.0** or later. Refer to the documentation for [configure-cache-busters](https://gohugo.io/getting-started/configuration/#configure-cache-busters).
 
-1. There are already Hugo sites using this theme, you need to delete the themes directory and related files (if any)
+## Quick Start
 
-2. Initialize the site to module and execute the command in the root directory of your site:
-
-   ```bash
-   hugo mod init github.com/[username]/[sitename]
+1. Clone the [example code](https://github.com/mrhelloboy/hugo-theme-seven-demo).
+   ```sh
+   git clone https://github.com/mrhelloboy/hugo-theme-seven-demo.git
    ```
+2. Execute the commands:
 
-   Replace `username` and `sitename` above with your own
+   ```sh
+   cd hugo-theme-seven-demo
 
-3. It is recommended to copy the `hugo.toml` file from the [hugo-theme-seven-demo repository](https://github.com/mrhelloboy/hugo-theme-seven-demo) to the root of your site.
-
-   If you are not using Demo's `hugo.toml` file, please copy the following configuration to your own `hugo.toml` file:
-
-   ```toml
-   [module]
-    # Recommend Chinese users to use this proxy configuration
-    # proxy = 'https://goproxy.cn,direct'
-    [[module.imports]]
-      path = 'github.com/mrhelloboy/seven'
-    [module.hugoVersion]
-      extended = false
-      min      = "0.112.0"
-    [[module.mounts]]
-      source = "assets"
-      target = "assets"
-    [[module.mounts]]
-      source = "hugo_stats.json"
-      target = "assets/watching/hugo_stats.json"
-
-   [build]
-    writeStats = true
-    [[build.cachebusters]]
-      source = "assets/watching/hugo_stats\\.json"
-      target = "styles\\.css"
-    [[build.cachebusters]]
-      source = "(postcss|tailwind)\\.config\\.js"
-      target = "css"
-    [[build.cachebusters]]
-      source = "assets/.*\\.(js|ts|jsx|tsx)"
-      target = "js"
-    [[build.cachebusters]]
-      source = "assets/.*\\.(.*)$"
-      target = "$1"
-   ```
-
-   Please refer to `hugo.toml` in the Demo for other configuration parameters required by the theme
-
-4. Execute the command
-
-   ```bash
    hugo mod npm pack
-   ```
 
-   will generate the files `package.json` and `package.hugo.json` and import the module and update the `go.mod` and `go.sum` files, etc.
-
-5. Execute the command to download the required dependencies
-
-   ```bash
    npm install
-   ```
 
-6. Start local services
-
-   ```bash
    hugo server
    ```
 
-   Or:
+## Starting from Scratch
 
-   ```bash
-   hugo server --disableLiveReload --minify --gc -D
+0. Install Go and Hugo.
+
+1. Create a new site.
+
+   ```sh
+   hugo new site [sitename]
+   cd [sitename]
+   # Remove the themes directory in the site
+   rm -rf themes
    ```
 
-## Update Theme Version
+2. Initialize Hugo module.
 
-When there is an update to the theme version, you need to update the version number in the `go.mod` file:
+   ```sh
+   hugo mod init github.com/[username]/[sitename]
+   ```
+
+3. Import the theme module.
+
+   In the `hugo.toml` file, configure the theme:
+
+   ```toml
+   [module]
+   [[module.imports]]
+     path = 'github.com/mrhelloboy/seven'
+   ```
+
+   > As the theme requires additional configuration parameters, to avoid errors, it's recommended to first use the example's [hugo.toml](https://github.com/mrhelloboy/hugo-theme-seven-demo/blob/main/hugo.toml) and then customize as needed.
+
+   **Note:**
+   If using the example `hugo.toml`, comment out `customSocial = "extra_social.html"` to prevent an error during startup.
+
+   > For more information about Hugo modules and their usage, please refer to [Hugo Modules](https://gohugo.io/hugo-modules/).
+
+4. Install dependencies and start the server.
+
+   ```sh
+   hugo mod npm pack
+
+   npm install
+
+   hugo server
+   ```
+
+## Updating Theme Module
 
 ```bash
-# Clear local module cache
 hugo mod clean
-```
-
-```bash
 hugo mod get
-```
-
-```bash
 hugo mod tidy
 ```
 
-## Update package.json
+## Updating package.json
 
-When there is an update to the `npm packages` that the theme depends on, you need to update the version number in the `package.json` file.
-
-Delete the `package-lock.json`, `package.json` files first.
+> First delete `package-lock.json` and `package.json`.
 
 ```bash
 hugo mod npm pack
-```
-
-```bash
 npm install
 ```
 
 ## Deployment
 
-Please refer to [Hugo Deployment Documentation](https://gohugo.io/hosting-and-deployment/)
+Refer to the [Hugo Deployment Documentation](https://gohugo.io/hosting-and-deployment/) for details.
 
-### Deploy to `Netlify` as an example:
+### Deploying to `Netlify` Example:
 
-1. Copy `netlify.toml` from the Demo repository to your own site and push it to Github
+1. Copy the example's [`netlify.toml`](https://github.com/mrhelloboy/hugo-theme-seven-demo/blob/main/netlify.toml) to your own site and push the changes to GitHub.
 
-2. Register and login to Netlify
+2. Register and log in to Netlify.
 
-3. Import the GitHub project, Netlify will read the `netlify.toml` file and build it automatically
+3. Import your GitHub project; Netlify will automatically build based on the `netlify.toml` file.
 
 ## Maintainers
 
