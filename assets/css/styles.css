@@ -162,6 +162,10 @@ body {
   @apply h-8 w-8 !important;
 }
 
+.wl-power {
+  @apply px-2;
+}
+
 /* Code copy button */
 div.highlight,
 pre {
