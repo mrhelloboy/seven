@@ -5,15 +5,13 @@ let mask = null; // 蒙层
 let currentScrollTop = 0; // 当前滚动条位置
 
 document.addEventListener('DOMContentLoaded', () => {
-  Array.from(document.getElementsByClassName('data-image-info')).forEach((element) => {
+  Array.from(document.getElementsByClassName('data-image')).forEach((element) => {
     element.addEventListener('click', function (e) {
       e.preventDefault();
-      if (e.target.classList.contains('data-image')) {
-        originalEl = e.target;
-        cloneEl = originalEl.cloneNode(true);
-        originalEl.style.opacity = 0.3;
-        openPreview();
-      }
+      originalEl = e.target;
+      cloneEl = originalEl.cloneNode(true);
+      originalEl.style.opacity = 0.3;
+      openPreview();
     });
   });
 });
@@ -43,7 +41,9 @@ function openPreview() {
   ]);
   mask.appendChild(cloneEl);
 
-  moveAndScaleImg();
+  cloneEl.onload = () => {
+    moveAndScaleImg();
+  };
 
   // 记录滚动条位置
   currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -70,13 +70,18 @@ function moveAndScaleImg() {
   const translateY = (screenHeight - imageRect.height) / 2 - imageRect.top;
 
   // 移动及缩放
-  changeStyle(cloneEl, [`transform: translate(${translateX}px, ${translateY}px) scale(${scale})`]);
+  changeStyle(cloneEl, [`transform: translate(${translateX}px, ${translateY}px) scale(${scale - 0.1})`]);
 }
 
 // 取消缩放
 function cancelScaleImg() {
   const { top, left } = originalEl.getBoundingClientRect();
-  changeStyle(cloneEl, [`left: ${left}px`, `top: ${top}px`, `transform: translate(0,0)`]);
+  changeStyle(cloneEl, [
+    'transition: transform 0.5s ease;',
+    `left: ${left}px`,
+    `top: ${top}px`,
+    `transform: translate(0,0)`,
+  ]);
 
   setTimeout(() => {
     if (mask.parentNode) {
@@ -85,7 +90,7 @@ function cancelScaleImg() {
     originalEl.style.opacity = 1;
     mask.removeEventListener('click', cancelScaleImg);
     isPreview = false;
-  }, 300);
+  }, 500);
 }
 
 // 跟随屏幕宽度改变图片位置及大小

@@ -8,5 +8,9 @@
     <figcaption>{{ with .Title | safeHTML }}{{ . }}{{ end }}</figcaption>
   </figure>
 {{ else }}
-  <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" loading="lazy" />
+  <img
+    class="data-image"
+    src="{{ .Destination | safeURL }}"
+    alt="{{ .Text }}"
+    loading="lazy" />
 {{ end }}
