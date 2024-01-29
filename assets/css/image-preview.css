@@ -4,7 +4,7 @@
 
 /* 图片预览 */
 .modal {
-  @apply fixed left-0 top-0 z-[99] h-full w-full touch-none select-none bg-black/75 backdrop-blur-md;
+  @apply fixed left-0 top-0 z-[99] h-full w-full touch-none select-none bg-white/50 backdrop-blur-lg dark:bg-black/75;
 }
 
 .modal > img {
