@@ -254,3 +254,38 @@ pre {
   )::after {
   content: "" !important;
 }
+
+.format :where(blockquote):not(:where([class~="not-format"] *))::before {
+  display: none !important;
+  background-image: none !important;
+}
+
+.format
+  :where(blockquote):not(
+    :where([class~="not-format"], [class~="not-format"] *)
+  ) {
+  font-weight: 500;
+  font-style: italic;
+  color: var(--tw-format-quotes);
+  border-left-width: 0.25rem;
+  border-left-color: var(--tw-format-quote-borders);
+  quotes: "\201C" "\201D" "\2018" "\2019";
+  margin-top: 1.6em;
+  margin-bottom: 1.6em;
+  padding-left: 1em;
+}
+
+.format :where(a):not(:where([class~="not-format"] *)) {
+  color: var(--tw-format-links);
+  text-decoration: underline;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 2px;
+  font-weight: 500;
+}
+
+.format :where(a):not(:where([class~="not-format"] *)):hover {
+  color: rgb(29 78 216);
+  text-decoration: underline !important;
+  text-decoration-color: rgb(29 78 216) !important;
+  text-decoration-thickness: 2px !important;
+}

@@ -54,7 +54,7 @@
           data-popover-placement="bottom"
           class="flex flex-col py-5 pl-0 pr-1 md:py-8 md:pl-1 md:pr-3 lg:py-10 lg:pl-7 lg:pr-10">
           <div
-            class="flex flex-row flex-wrap space-x-1 border-l-4 border-blue-700 pb-2 pl-2 pt-1 font-Oswald text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
+            class="flex flex-row flex-wrap space-x-1 border-l-8 border-blue-700 pb-2 pl-2 pt-1 font-Oswald text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
             <span>Posted by {{ .Date.Format "January 2 2006" }}</span>
 
             {{ $categories := (.GetTerms "categories") }}
@@ -74,12 +74,12 @@
 
           </div>
           <div
-            class="border-l-4 border-blue-700 py-1 pl-2 text-start text-3xl font-bold tracking-wide text-black lg:text-4xl dark:text-white">
+            class="border-l-8 border-blue-700 py-1 pl-2 text-start text-3xl font-bold tracking-wide text-black lg:text-4xl dark:text-white">
             {{ .Title }}
           </div>
 
           <div
-            class="flex flex-row flex-wrap items-center space-x-1 border-l-4 border-blue-700 pb-1 pl-2 pt-3.5 font-Oswald text-xs font-extralight tracking-wide text-gray-500/90 dark:text-gray-600">
+            class="flex flex-row flex-wrap items-center space-x-1 border-l-8 border-blue-700 pb-1 pl-2 pt-3.5 font-Oswald text-xs font-extralight tracking-wide text-gray-500/90 dark:text-gray-600">
             <span>Updated on {{ .Lastmod.Format "January 2 2006" }}</span>
             <div
               class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
