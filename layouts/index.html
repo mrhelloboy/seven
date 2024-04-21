@@ -47,9 +47,9 @@
           class="h-80 w-96 px-4 py-2 sm:w-[30rem] md:w-[32rem] lg:h-96 lg:w-[40rem]">
           <a href="{{ .Permalink }}" class="group relative block h-full w-full">
             <span
-              class="absolute inset-0 border-2 border-dashed border-black dark:border-gray-400"></span>
+              class="absolute inset-0 rounded-lg border-2 border-dashed border-black dark:border-gray-400"></span>
             <div
-              class="relative flex h-full transform items-end border-2 border-black bg-white/85 backdrop-blur-md transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 dark:border-gray-400 dark:bg-gray-800/70">
+              class="relative flex h-full transform items-end rounded-lg border border-black bg-white/85 backdrop-blur-md transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 dark:border-gray-400 dark:bg-gray-800/70">
               <div
                 class="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8">
                 <svg
@@ -77,12 +77,12 @@
                   {{ .Date.Format "2006/01/02" }}
                 </p>
                 <h3
-                  class="mt-4 text-balance text-xl font-medium sm:text-2xl dark:text-gray-400">
+                  class="mt-4 text-balance text-xl font-medium sm:text-2xl dark:text-gray-100">
                   {{ .Title }}
                 </h3>
 
                 <p
-                  class="font-serif mt-4 line-clamp-1 text-pretty text-sm tracking-wider sm:text-base md:line-clamp-2 lg:line-clamp-3 xl:line-clamp-4 dark:text-gray-400">
+                  class="font-serif mt-4 line-clamp-1 text-pretty text-sm italic tracking-wider sm:text-base md:line-clamp-2 lg:line-clamp-3 xl:line-clamp-4 dark:text-gray-400">
                   {{ .Description }}
                 </p>
 
