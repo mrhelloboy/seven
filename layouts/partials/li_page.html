@@ -1,31 +1,50 @@
-<li
-  class="relative pl-6 before:absolute before:left-0 before:top-2 before:z-10 before:h-2 before:w-2 before:-translate-x-1/2 before:rounded-full before:bg-emerald-500 before:ring-2 before:ring-white lg:flex lg:gap-12 lg:pl-0 lg:before:left-[8.5rem]">
-  <h4
-    class="hidden font-Oswald text-base font-light leading-7 text-gray-500 lg:block lg:w-28 lg:text-right dark:text-gray-100">
-    {{ .Date.Format "2006-01-02" }}
-  </h4>
-  <div
-    class="flex flex-1 flex-col gap-2 rounded-lg border p-4 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800">
-    <span
-      class="font-Oswald font-light text-gray-500 lg:hidden dark:text-gray-100"
-      >{{ .Date.Format "2006-01-02" }}</span
-    >
-    <a
-      href="{{ .Permalink }}"
-      class="text-base font-medium leading-7 text-gray-800 hover:text-blue-600 dark:text-gray-50 dark:hover:text-blue-500"
-      >{{ .Title }}</a
-    >
-
-    {{ with .Description }}
-      <p class="line-clamp-3 flex-wrap text-gray-500 dark:text-gray-400">
-        {{- . -}}
-      </p>
-    {{ else }}
+<li>
+  <div class="h-80 w-[23rem] p-4 md:w-80">
+    <a href="{{ .Permalink }}" class="group relative block h-full w-full">
+      <span
+        class="absolute inset-0 rounded-lg border-2 border-dashed border-black dark:border-gray-400"></span>
       <div
-        class="line-clamp-3 flex-wrap text-gray-500 dark:format-invert dark:text-gray-400">
-        {{- .Summary -}}
-      </div>
-    {{ end }}
+        class="relative flex h-full transform items-end rounded-lg border border-black bg-white/85 backdrop-blur-md transition-transform hover:scale-110 hover:shadow-xl focus:outline-none focus:ring dark:border-gray-400 dark:bg-gray-800/70">
+        <div
+          class="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="size-10 sm:size-12 dark:text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
 
+          <h2 class="mt-4 text-xl font-medium sm:text-2xl dark:text-gray-400">
+            {{ .Title }}
+          </h2>
+        </div>
+
+        <div
+          class="absolute p-4 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6 lg:p-8">
+          <p class="font-serif mt-8 dark:text-gray-400">
+            {{ .Date.Format "2006/01/02" }}
+          </p>
+          <p
+            class="font-serif mt-4 line-clamp-4 text-pretty text-sm italic tracking-wider sm:text-base dark:text-gray-400">
+            {{ .Description }}
+          </p>
+
+          <ul class="mt-4 flex flex-wrap space-x-2">
+            {{ range .Params.categories }}
+              <li
+                class="rounded-full border border-black px-3 py-2 text-base sm:text-sm dark:border-gray-400 dark:text-gray-400">
+                {{ . }}
+              </li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+    </a>
   </div>
 </li>

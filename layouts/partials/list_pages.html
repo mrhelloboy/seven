@@ -1,19 +1,5 @@
-<div class="mx-auto flex w-full flex-col p-4 md:max-w-screen-md">
-  {{ if eq .Kind "term" }}
-    <div
-      class="flew-row mb-1 flex flex-wrap items-center space-x-2 rounded-lg border p-4 text-2xl font-bold text-neutral-700 dark:border-gray-700 dark:text-neutral-300">
-      <p>{{ .Data.Singular | title }}</p>
-      <div class="h-2 w-2 rounded-full bg-green-600"></div>
-      <p>{{ .Title | title }}</p>
-    </div>
-  {{ else }}
-    <p
-      class="mb-1 flex-wrap rounded-lg border p-4 text-2xl font-bold text-neutral-700 dark:border-gray-700 dark:text-neutral-300">
-      {{ .Title }}
-    </p>
-  {{ end }}
-  <ul
-    class="relative flex flex-col gap-12 py-12 pl-6 text-sm before:absolute before:left-6 before:top-0 before:h-full before:-translate-x-1/2 before:border before:border-dashed before:border-slate-200 after:absolute after:bottom-6 after:left-6 after:top-6 after:-translate-x-1/2 after:border after:border-slate-200 lg:pl-0 lg:before:left-[8.5rem] lg:after:left-[8.5rem]">
+<div class="mx-auto flex w-full flex-col p-4">
+  <ul class="mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
     {{ range .Paginator.Pages }}
       {{ partial "li_page.html" . }}
     {{ end }}
