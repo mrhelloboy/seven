@@ -1,168 +1,97 @@
 {{ define "main" }}
-  <section class="mt-22 flex w-full grow md:mt-38">
+  <section class="mt-38 flex w-full flex-col space-y-5">
+    {{/* Hero Sections */}}
+    <div
+      class="mt-4 flex flex-col items-center justify-center space-y-5 p-4 lg:mt-12 lg:space-y-10">
+      {{/* Logo & Name */}}
+      <div x-data="{ isHeroName: false }" @click="isHeroName = !isHeroName">
+        <div x-show="!isHeroName" class="h-32">
+          <img
+            x-show="!$store.darkMode.on"
+            :class="{ 'hidden': $store.darkMode.on, 'block': !$store.darkMode.on }"
+            class="hidden h-32"
+            src="{{ .Site.Params.home.heroLogo }}"
+            alt="" />
+          <img
+            x-show="$store.darkMode.on"
+            :class="{ 'hidden': !$store.darkMode.on, 'block': $store.darkMode.on }"
+            class="hidden h-32"
+            src="{{ .Site.Params.home.heroDarkLogo }}"
+            alt="" />
+        </div>
+        <div
+          x-show="isHeroName"
+          class="flex h-32 items-center rounded-full text-4xl font-bold dark:text-white">
+          {{ .Site.Title }}
+        </div>
+      </div>
+      {{/* Description */}}
+      <div
+        class="flex-wrap text-pretty text-center font-Oswald text-xl dark:text-gray-400">
+        {{ .Site.Params.Description }}
+      </div>
+      {{/* Social Links */}}
+      <div class="flex justify-center space-x-5">
+        {{ partial "social_links.html" . }}
+      </div>
+    </div>
+    {{/* Recent Posts */}}
     {{ $allPages := .Site.Pages }}
     {{ with .Site.Params.home.showContentTypes }}
       {{ $allPages = where $allPages "Type" "in" . }}
     {{ end }}
-    {{ $lastestPosts := first 4 (where $allPages "IsPage" true) }}
-    {{ $lastestPostsNums := len $lastestPosts }}
-
-
-    <div
-      class="mx-auto flex max-w-screen-xl flex-col space-y-6 bg-white px-2 pb-5 md:grow md:flex-row md:space-y-0 md:p-0 dark:bg-gray-900">
-      {{/* Tabs */}}
-      <div
-        id="home-tabs-container"
-        class="hidden md:flex md:max-h-full md:w-1/6 md:justify-center">
-        <ul
-          id="home-tabs"
-          class="flex flex-col items-center justify-center space-y-4">
-          {{ range seq 1 $lastestPostsNums }}
-            <li>
-              <button
-                id="home-{{ . }}"
-                class="inline-block rounded-t-lg border-b-2 border-gray-100 p-4 font-Oswald text-lg font-medium text-gray-500
-                 hover:border-gray-300 
-                 hover:text-gray-600 
-                 aria-selected:border-blue-600 
-                 aria-selected:text-blue-600 
-                 aria-selected:hover:text-blue-600 
-                 dark:border-gray-700 
-                 dark:border-transparent 
-                 dark:text-gray-400 
-                 dark:hover:text-gray-300 
-                 aria-selected:dark:border-blue-500 
-                 aria-selected:dark:text-blue-500 
-                 aria-selected:dark:hover:text-blue-500"
-                data-tab-target="content-home-{{ . }}"
-                aria-controls="content-home-{{ . }}"
-                aria-selected="false">
-                0{{ . }}
-              </button>
-            </li>
-          {{ end }}
-        </ul>
-      </div>
-
-      {{/* Content */}}
-      {{ range $idx, $post := $lastestPosts }}
-        {{ $idx = add $idx 1 }}
+    {{ $lastestPosts := first 5 (where $allPages "IsPage" true) }}
+    <div class="mx-auto flex flex-col space-y-1">
+      {{ range $lastestPosts }}
         <div
-          id="content-home-{{ $idx }}"
-          aria-labelledby="content-home-{{ $idx }}"
-          class="mx-3 flex flex-col rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:mx-0 md:hidden md:w-5/6 md:flex-row md:border md:border-none md:border-gray-200 md:shadow-none dark:border-gray-600 dark:bg-gray-800/70 md:dark:bg-gray-900">
-          <div
-            class="flex h-full flex-col-reverse md:w-2/3 md:flex-col md:justify-center md:border-r md:border-gray-200 md:p-2 md:dark:border-gray-700">
-            <p
-              class="mt-6 hidden py-3 font-Oswald text-sm font-medium tracking-wide text-gray-500/90 md:block dark:text-gray-500">
-              {{ $post.Date.Format "January 2 2006" }}
-              <span class="text-red-700">/</span>
-              {{ index $post.Params.categories 0 }}
-            </p>
-
+          class="h-80 w-96 px-4 py-2 sm:w-[30rem] md:w-[32rem] lg:h-96 lg:w-[40rem]">
+          <a href="{{ .Permalink }}" class="group relative block h-full w-full">
+            <span
+              class="absolute inset-0 border-2 border-dashed border-black dark:border-gray-400"></span>
             <div
-              class="px-6 pt-6 text-2xl font-extrabold tracking-wide hover:text-blue-700 md:px-0 md:py-8 lg:text-6xl dark:text-white">
-              <a href="{{ $post.Permalink }}">{{ $post.Title }}</a>
-            </div>
+              class="relative flex h-full transform items-end border-2 border-black bg-white/85 backdrop-blur-md transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 dark:border-gray-400 dark:bg-gray-800/70">
+              <div
+                class="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="size-10 sm:size-12 dark:text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
 
-            <div class="shrink-0 overflow-hidden md:mt-1">
-              {{ $image := resources.Get $post.Params.image }}
-              {{ with $image }}
-                <img
-                  class="h-60 w-full rounded-t-lg object-cover md:h-80 md:rounded-none md:hover:scale-110 md:hover:brightness-75 md:hover:transition-transform md:hover:duration-700"
-                  src="{{ .Permalink }}"
-                  alt="preview image"
-                  srcset="" />
-              {{ else }}
-                <div class="h-60 w-full md:h-80">
-                  {{- partial "random_feature_img.html" . -}}
-                </div>
-              {{ end }}
-            </div>
-          </div>
-          <div
-            class="h-full p-6 md:flex md:w-1/3 md:flex-col md:justify-center md:space-y-4 lg:p-9">
-            <div class="relative hidden items-center md:flex">
-              <div class="h-8 w-8 bg-blue-700 dark:bg-blue-600"></div>
-              <span
-                class="absolute inset-0 left-0 font-Oswald text-lg font-bold tracking-wide text-gray-900/90 dark:text-gray-400">
-                <span class="text-white">Sum</span>mary
-              </span>
-            </div>
+                <h2
+                  class="mt-4 text-xl font-medium sm:text-2xl dark:text-gray-400">
+                  {{ .Title }}
+                </h2>
+              </div>
 
-            <div
-              class="format line-clamp-5 whitespace-pre-wrap text-pretty text-gray-500/90 dark:format-invert lg:line-clamp-[10] dark:text-gray-500">
-              {{ with $post.Description }}
-                <p>{{- . -}}</p>
-              {{ else }}
-                {{- .Summary -}}
-              {{ end }}
+              <div
+                class="absolute p-4 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6 lg:p-8">
+                <p class="font-serif mt-8 dark:text-gray-400">
+                  {{ .Date.Format "2006/01/02" }}
+                </p>
+                <h3
+                  class="mt-4 text-balance text-xl font-medium sm:text-2xl dark:text-gray-400">
+                  {{ .Title }}
+                </h3>
+
+                <p
+                  class="font-serif mt-4 line-clamp-1 text-pretty text-sm tracking-wider sm:text-base md:line-clamp-2 lg:line-clamp-3 xl:line-clamp-4 dark:text-gray-400">
+                  {{ .Description }}
+                </p>
+
+                <p class="mt-8 font-bold dark:text-gray-400">Read more</p>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       {{ end }}
     </div>
   </section>
-{{ end }}
-
-{{ define "script" }}
-  <script>
-    let tabs = document.querySelectorAll("[data-tab-target]");
-    let activedTab = getActivedTab();
-    let oldContentId = null;
-
-    init();
-
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", function () {
-        activedTab = getActivedTab();
-        if (activedTab === this.id) return;
-
-        // 隐藏旧tab的内容
-        setTabAriaSelected(activedTab, "false");
-        oldContentId = document.getElementById(activedTab).dataset.tabTarget;
-        addHiddenClass(oldContentId);
-
-        // 显示新tab的内容
-        setActivedTab(this.id);
-        setTabAriaSelected(this.id, "true");
-        removeHiddenClass(this.dataset.tabTarget);
-      });
-    });
-
-    function init() {
-      if (!activedTab) {
-        activedTab = "home-1";
-        setActivedTab(activedTab);
-      }
-
-      setTabAriaSelected(activedTab, "true");
-      removeHiddenClass(document.getElementById(activedTab).dataset.tabTarget);
-    }
-
-    // 获取activedTab值
-    function getActivedTab() {
-      return localStorage.getItem("activedTab");
-    }
-
-    // 设置activedTab值
-    function setActivedTab(tabId) {
-      localStorage.setItem("activedTab", tabId);
-    }
-
-    // 设置tab的aria-selected
-    function setTabAriaSelected(tabId, value) {
-      document.getElementById(tabId).setAttribute("aria-selected", value);
-    }
-
-    // 隐藏内容
-    function addHiddenClass(contentID) {
-      document.getElementById(contentID).classList.add("md:hidden");
-    }
-
-    // 显示内容
-    function removeHiddenClass(contentID) {
-      document.getElementById(contentID).classList.remove("md:hidden");
-    }
-  </script>
 {{ end }}

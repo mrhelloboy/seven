@@ -4,11 +4,11 @@ module.exports = {
   darkMode: 'class',
   content: ['./hugo_stats.json'],
   theme: {
-    fontFamily: {
-      Oswald: ['Oswald'],
-      Montserrat: ['Montserrat'],
-    },
     extend: {
+      fontFamily: {
+        Oswald: ['Oswald'],
+        Montserrat: ['Montserrat'],
+      },
       typography: {
         DEFAULT: {
           css: {
