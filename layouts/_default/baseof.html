@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="scroll-smooth" lang="{{ .Site.LanguageCode }}">
+<html lang="{{ .Site.LanguageCode }}">
   <head>
     <meta charset="utf-8" />
     <meta
@@ -24,7 +24,7 @@
     {{- partial "head/script.html" . -}}
     {{- block "extra_script". }}{{- end }}
   </head>
-  <body class="flex h-screen flex-col bg-white dark:bg-gray-900">
+  <body class="flex h-screen flex-col scroll-auto bg-white dark:bg-gray-900">
     {{- partial "header.html" . -}}
 
     {{- block "main" . }}{{- end }}

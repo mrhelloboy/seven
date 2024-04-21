@@ -1,0 +1,84 @@
+{{ range .Site.Menus.main }}
+  {{ if .HasChildren }}
+    <div x-data="{ subMenuOpen: false }" class="-mx-3">
+      <button
+        @click="subMenuOpen = !subMenuOpen"
+        type="button"
+        class="group flex w-full items-center justify-center rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:text-blue-700 dark:text-white"
+        aria-controls="disclosure-1"
+        aria-expanded="false">
+        <span>{{ .Name | safeHTML }}</span>
+        <svg
+          :class="{ 'rotate-180': subMenuOpen }"
+          class="h-5 w-5 flex-none group-hover:text-blue-700"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true">
+          <path
+            fill-rule="evenodd"
+            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+            clip-rule="evenodd" />
+        </svg>
+      </button>
+      <div
+        x-show="subMenuOpen"
+        :class="{ 'flex': subMenuOpen, 'hidden': !subMenuOpen }"
+        class="mt-2 hidden flex-col space-y-2"
+        id="disclosure-1">
+        {{ range .Children }}
+          <a
+            href="{{ .URL }}"
+            class="w-full rounded-lg py-2 pl-6 pr-3 text-center text-sm font-semibold leading-7 text-gray-900 hover:text-blue-700 dark:text-white"
+            >{{ .Name | safeHTML }}</a
+          >
+        {{ end }}
+
+      </div>
+    </div>
+  {{ else }}
+    <a
+      href="{{ .URL }}"
+      class="w-full rounded-lg px-3 py-2 text-center text-base font-semibold leading-7 text-gray-900 hover:text-blue-700 dark:text-white"
+      >{{ .Name | safeHTML }}</a
+    >
+  {{ end }}
+{{ end }}
+
+{{ if not .Site.Params.omitCategoryOnMenu }}
+  <div x-data="{ subMenuOpen: false }" class="-mx-3">
+    <button
+      @click="subMenuOpen = !subMenuOpen"
+      type="button"
+      class="group flex w-full items-center justify-center rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:text-blue-700 dark:text-white"
+      aria-controls="disclosure-1"
+      aria-expanded="false">
+      {{ .Site.Params.categoryName | safeHTML }}
+      <svg
+        :class="{ 'rotate-180': subMenuOpen }"
+        class="h-5 w-5 flex-none group-hover:text-blue-700"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        aria-hidden="true">
+        <path
+          fill-rule="evenodd"
+          d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+          clip-rule="evenodd" />
+      </svg>
+    </button>
+
+    <div
+      x-show="subMenuOpen"
+      :class="{ 'flex': subMenuOpen, 'hidden': !subMenuOpen }"
+      class="mt-2 hidden flex-col space-y-2"
+      id="disclosure-1">
+      {{ range .Site.Taxonomies.categories }}
+        <a
+          href="{{ .Page.Permalink }}"
+          class="block rounded-lg py-2 pl-6 pr-3 text-center text-sm font-semibold leading-7 text-gray-900 hover:text-blue-700 dark:text-white"
+          >{{ .Page.Title | safeHTML }}</a
+        >
+      {{ end }}
+
+    </div>
+  </div>
+{{ end }}

@@ -1,14 +1,33 @@
 {{ $flowbiteJS := resources.Get "js/third-party/flowbite/v2.2.1/flowbite.min.js" }}
 <script src="{{ $flowbiteJS.RelPermalink }}" defer></script>
+
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.8/dist/cdn.min.js"></script>
 <script>
-  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-  if (
-    localStorage.getItem("color-theme") === "dark" ||
-    (!("color-theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
+  document.addEventListener("alpine:init", () => {
+    Alpine.store("darkMode", {
+      init() {
+        this.on =
+          localStorage.getItem("color-theme") === "dark" ||
+          (!("color-theme" in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+        this.on
+          ? document.documentElement.classList.add("dark")
+          : document.documentElement.classList.remove("dark");
+      },
+      on: false,
+      toggle() {
+        this.on = !this.on;
+        if (this.on) {
+          document.documentElement.classList.add("dark");
+          localStorage.setItem("color-theme", "dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+          localStorage.setItem("color-theme", "light");
+        }
+      },
+    });
+  });
 </script>
