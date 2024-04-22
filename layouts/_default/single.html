@@ -24,7 +24,7 @@
   {{ if not $metaInfo.disableHero }}
     {{ $image := resources.Get .Params.image }}
     {{ with $image }}
-      <div id="post-feature" class="mt-22 w-full md:mt-[151px]">
+      <div id="post-feature" class="mt-38 w-full">
         <img
           class="h-60 w-full object-cover md:h-120"
           src="{{ $image.Permalink }}"
@@ -32,12 +32,12 @@
           srcset="" />
       </div>
     {{ else }}
-      <div id="post-feature" class="mt-22 h-60 w-full md:mt-[151px] md:h-120">
+      <div id="post-feature" class="mt-38 h-60 w-full md:h-120">
         {{- partial "random_feature_img.html" . -}}
       </div>
     {{ end }}
   {{ else }}
-    <div id="post-feature" class="mt-22 md:mt-[151px]"></div>
+    <div id="post-feature" class="mt-38"></div>
   {{ end }}
 
 
@@ -52,35 +52,29 @@
           data-popover-target="popover-animation"
           data-popover-offset="0"
           data-popover-placement="bottom"
-          class="flex flex-col py-5 pl-0 pr-1 md:py-8 md:pl-1 md:pr-3 lg:py-10 lg:pl-7 lg:pr-10">
+          class="flex flex-col py-5 md:px-1 lg:px-7">
           <div
-            class="flex flex-row flex-wrap space-x-1 border-l-8 border-blue-700 pb-2 pl-2 pt-1 font-Oswald text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
-            <span>Posted by {{ .Date.Format "January 2 2006" }}</span>
-
+            class="flex flex-row flex-wrap space-x-1 pb-2 pl-2 pt-1 font-Oswald text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
             {{ $categories := (.GetTerms "categories") }}
-            {{ $cateNums := len $categories }}
-            {{ if ge $cateNums 1 }}
-              <span class="flex flex-row space-x-1">
-                {{ range $categories }}
-                  <span class="text-red-700"> / </span>
-                  <a
-                    class="border-b-2 border-transparent hover:border-b-2 hover:border-blue-600 hover:text-blue-600"
-                    href="{{ .Permalink }}"
-                    >{{- .LinkTitle -}}</a
-                  >
-                {{ end }}
-              </span>
-            {{ end }}
-
+            <span class="flex flex-row gap-1">
+              {{ range $categories }}
+                <span class="italic text-red-700"> > </span>
+                <a
+                  class="border-b-2 border-transparent hover:border-b-2 hover:border-blue-600 hover:text-blue-600"
+                  href="{{ .Permalink }}"
+                  >{{- .LinkTitle -}}</a
+                >
+              {{ end }}
+            </span>
           </div>
           <div
-            class="border-l-8 border-blue-700 py-1 pl-2 text-start text-3xl font-bold tracking-wide text-black lg:text-4xl dark:text-white">
+            class="py-1 pl-2 text-start text-3xl font-bold tracking-wide text-black lg:text-4xl dark:text-white">
             {{ .Title }}
           </div>
 
           <div
-            class="flex flex-row flex-wrap items-center space-x-1 border-l-8 border-blue-700 pb-1 pl-2 pt-3.5 font-Oswald text-xs font-extralight tracking-wide text-gray-500/90 dark:text-gray-600">
-            <span>Updated on {{ .Lastmod.Format "January 2 2006" }}</span>
+            class="flex flex-row flex-wrap items-center space-x-1 pb-1 pl-2 pt-3.5 font-serif text-xs font-extralight tracking-wide text-gray-500/90 dark:text-gray-600">
+            <span>{{ .Date.Format "2006/01/02" }}</span>
             <div
               class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
             <span>{{- .WordCount | printf "%d words" -}}</span>
@@ -111,22 +105,20 @@
         </div>
 
         {{/* tags */}}
-        <div
-          class="flex flex-col justify-start px-1 pb-5 pt-1 md:px-3 lg:flex-row lg:justify-between lg:px-10">
+        <div class="px-1 pb-5 pt-1  md:px-3 lg:px-10">
           {{ $tags := (.GetTerms "tags") }}
-          {{ $tagsNums := len $tags }}
-          {{ if ge $tagsNums 1 }}
-            <div class="flex flex-row flex-wrap items-center">
-              {{ range $tags }}
-                <a
-                  class="mx-1 my-0.5 rounded-lg border border-gray-200 px-1.5 py-1 text-center text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-600"
-                  href="{{ .Permalink }}"
-                  >{{ .LinkTitle }}</a
-                >
-              {{ end }}
-            </div>
-          {{ end }}
-
+          <span
+            class="flex flex-row flex-wrap justify-start gap-2 pl-1 font-serif text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
+            {{ range $tags }}
+              <a class="text-center hover:text-blue-600" href="{{ .Permalink }}"
+                ><span class="text-red-700 ">#</span
+                ><span
+                  class="border-b-2 border-transparent hover:border-b-2 hover:border-blue-600"
+                  >{{- .LinkTitle -}}</span
+                ></a
+              >
+            {{ end }}
+          </span>
         </div>
       </div>
     </div>
