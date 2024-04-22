@@ -1,9 +1,10 @@
-<footer class="mx-auto mt-5 flex flex-col-reverse items-center gap-y-3 py-6">
+<footer
+  class="mx-auto mt-5 flex flex-col-reverse items-center gap-y-3 py-6 font-serif italic">
   <!-- Social & Theme & Copy Container -->
   <div
     class="flex flex-col items-center justify-between space-y-3 text-xs dark:text-gray-500">
     {{/* Copy */}}
-    <div class="items-center font-Montserrat">
+    <div class="items-center">
       &copy;
       {{ $startYear := .Site.Params.copyright.start_year }}
       {{ $currentYear := now.Format "2006" }}
@@ -19,9 +20,7 @@
   </div>
 
   {{/* Theme Info */}}
-  <div
-    x-data
-    class="flex flex-row items-center font-Montserrat text-xs dark:text-gray-500">
+  <div x-data class="flex flex-row items-center text-xs dark:text-gray-500">
     <span>Powered By</span>
     <a href="https://gohugo.io/" aria-label="hugo link">
       <img
@@ -29,7 +28,7 @@
         alt="Hugo"
         class="mx-1 h-3" />
     </a>
-    <span> &#8739; Based on Theme</span>
+    <span>&</span>
     <a
       href="https://github.com/mrhelloboy/seven"
       aria-label="The github address of seven theme">
@@ -51,5 +50,5 @@
     </a>
   </div>
 
-  <span class="h-px w-12 bg-black md:w-40 dark:bg-gray-400"></span>
+  <span class="h-px w-full max-w-4xl bg-gray-700 dark:bg-gray-600"></span>
 </footer>
