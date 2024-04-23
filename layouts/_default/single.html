@@ -48,12 +48,7 @@
       {{/* Content */}}
       <div id="post-container" class="mx-auto w-full md:max-w-3xl lg:w-2/3">
         {{/* Title */}}
-        <div
-          id="post-title"
-          data-popover-target="popover-animation"
-          data-popover-offset="0"
-          data-popover-placement="bottom"
-          class="flex w-full flex-col py-5 md:px-1 lg:px-7">
+        <div id="post-title" class="flex w-full flex-col py-5 md:px-1 lg:px-7">
           <div
             class="flex flex-row flex-wrap space-x-1 pb-2 pl-2 pt-1 font-Oswald text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
             {{ $categories := (.GetTerms "categories") }}
@@ -81,7 +76,7 @@
             <span>{{- .WordCount | printf "%d words" -}}</span>
             <div
               class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
-            <span>{{- .ReadingTime| printf "%d minutes read" -}}</span>
+            <span>{{- .ReadingTime| printf "%d mins" -}}</span>
             {{ if .Site.Params.articleMeta.enablePageView }}
               <div
                 class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
@@ -94,6 +89,24 @@
                 >
                 visits
               </p>
+            {{ end }}
+            {{ if and (not .Params.disableComment) .Site.Params.comment.enable }}
+              {{ if and .Site.Params.comment.enableCounts .Site.Params.comment.waline.enable }}
+                <div
+                  class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
+                <button
+                  x-data
+                  @click="toComment()"
+                  id="speed-comment-count-id"
+                  class="whitespace-nowrap hover:text-blue-700 hover:underline hover:decoration-blue-700">
+                  <span
+                    class="waline-comment-count"
+                    data-path="{{ .RelPermalink }}"
+                    >...</span
+                  >
+                  comments
+                </button>
+              {{ end }}
             {{ end }}
           </div>
         </div>
@@ -128,7 +141,9 @@
 
     {{/* comments */}}
     {{ if and (not .Params.disableComment) .Site.Params.comment.enable }}
-      <div id="post-comment">{{- partial "comments.html" . -}}</div>
+      <div id="post-comment">
+        {{- partial "comments.html" . -}}
+      </div>
     {{ end }}
 
     {{- partial "speed_dial.html" . -}}
@@ -182,51 +197,11 @@
 
 
   <script>
-    console.log("aaaaaaa helo");
-    document.addEventListener("alpine:init", () => {
-      Alpine.data("toc", () => ({
-        links: document.querySelectorAll("#single-toc a"),
-        activeIndex: null,
-        count: 0,
-        init() {
-          this.count = this.links.length;
-          this.findActiveLink();
-          console.log("activeIndex:", this.activeIndex, "count:", this.count);
-        },
-        findActiveLink() {
-          this.links.forEach((link, index) => {
-            if (link.classList.contains("theme-toc-active")) {
-              this.activeIndex = index + 1; // 1-based index
-            }
-          });
-        },
-      }));
-    });
-
-    var testA = "abcdecdev";
-    function testABC() {
-      console.log(testA);
-    }
-
-    var observerTest = new MutationObserver(function (mutationsList, observer) {
-      for (var mutation of mutationsList) {
-        if (
-          mutation.type === "attributes" &&
-          mutation.attributeName === "class"
-        ) {
-          console.log("class属性已改变!");
-          console.log(mutation);
-        }
-      }
-    });
-
-    allTocEles = document.querySelectorAll("#single-toc a");
-    allTocEles.forEach((ele) => {
-      observerTest.observe(ele, {
-        characterData: true,
-        attributeOldValue: true,
-        attributeFilter: ["class"],
+    function toComment() {
+      window.scrollTo({
+        top: document.getElementById("post-comment").offsetTop - 100,
+        behavior: "smooth",
       });
-    });
+    }
   </script>
 {{ end }}
