@@ -37,47 +37,6 @@ more info: https://flowbite.com/docs/components/speed-dial/
     {{ end }}
 
     {{ if and ( .IsPage ) ( eq .Kind "page") }}
-      <!-- Catelog -->
-      <button
-        type="button"
-        data-tooltip-target="tooltip-toc"
-        data-tooltip-placement="left"
-        data-drawer-target="drawer-body-scrolling-toc"
-        data-drawer-show="drawer-body-scrolling-toc"
-        data-drawer-body-scrolling="true"
-        aria-controls="drawer-body-scrolling-toc"
-        class="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400">
-        <svg
-          class="h-5 w-5"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="currentColor"
-          viewBox="0 0 1024 1024"
-          version="1.1">
-          <path
-            d="M901.8 313.5H354.4c-32 0-58.2-26.2-58.2-58.2v-18.1c0-32 26.2-58.2 58.2-58.2h547.4c32 0 58.2 26.2 58.2 58.2v18.1c0 32-26.2 58.2-58.2 58.2z"></path>
-          <path
-            d="M131.3 246.2m-67.3 0a67.3 67.3 0 1 0 134.6 0 67.3 67.3 0 1 0-134.6 0Z"></path>
-          <path
-            d="M901.8 579.3H354.4c-32 0-58.2-26.2-58.2-58.2V503c0-32 26.2-58.2 58.2-58.2h547.4c32 0 58.2 26.2 58.2 58.2v18.1c0 32-26.2 58.2-58.2 58.2z"></path>
-          <path
-            d="M131.3 512m-67.3 0a67.3 67.3 0 1 0 134.6 0 67.3 67.3 0 1 0-134.6 0Z"></path>
-          <path
-            d="M901.8 845.1H354.4c-32 0-58.2-26.2-58.2-58.2v-18.1c0-32 26.2-58.2 58.2-58.2h547.4c32 0 58.2 26.2 58.2 58.2v18.1c0 32-26.2 58.2-58.2 58.2z"></path>
-          <path
-            d="M131.3 777.8m-67.3 0a67.3 67.3 0 1 0 134.6 0 67.3 67.3 0 1 0-134.6 0Z"></path>
-        </svg>
-
-        <span class="sr-only">Catelog</span>
-      </button>
-      <div
-        id="tooltip-toc"
-        role="tooltip"
-        class="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
-        Catelog
-        <div class="tooltip-arrow" data-popper-arrow></div>
-      </div>
-
       <!-- Go to comment -->
       {{ if and (not .Params.disableComment) .Site.Params.comment.enable }}
         <button
@@ -203,7 +162,6 @@ more info: https://flowbite.com/docs/components/speed-dial/
 </div>
 
 {{- partial "drawer_tags.html" . -}}
-{{- partial "drawer_toc.html" . -}}
 {{- partial "to_top_or_bottom.html" . -}}
 
 {{ if and (not .Params.disableComment) .Site.Params.comment.enable }}

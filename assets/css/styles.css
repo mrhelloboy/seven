@@ -2,34 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-.theme-aside {
-  @apply px-2 py-0.5 text-sm hover:rounded-lg hover:border-0 hover:bg-gray-100 hover:text-blue-700;
-}
-
 .theme-toc {
-  @apply my-0.5 block truncate rounded-lg border border-white px-2 py-2 text-xs text-gray-800 hover:rounded-lg hover:border-gray-200 hover:text-blue-700 dark:border-gray-800 dark:text-gray-200 dark:hover:border-gray-700 dark:hover:text-blue-500;
+  @apply flex border-s-[3px] border-gray-100 p-2 text-xs text-gray-500 hover:border-gray-600 hover:bg-gray-50 hover:text-gray-700 dark:border-gray-600 dark:text-gray-500 dark:hover:bg-gray-800/85 dark:hover:text-gray-300;
 }
 
 .theme-toc-active {
-  @apply my-0.5 block truncate rounded-lg border bg-gray-100 px-2 py-2 text-xs text-blue-700 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-200 dark:hover:text-blue-500;
+  @apply flex w-full border-s-[3px] border-blue-500 bg-blue-50 p-2 text-xs font-medium text-blue-700 dark:bg-gray-800/85 dark:text-blue-300;
 }
 
 .theme-toc-nest-1 {
-  @apply pl-3;
-}
-
-.theme-toc-nest-2 {
   @apply pl-4;
 }
 
-.theme-toc-nest-3 {
+.theme-toc-nest-2 {
   @apply pl-5;
 }
 
-.theme-toc-nest-1::before,
-.theme-toc-nest-2::before,
-.theme-toc-nest-3::before {
-  content: "- ";
+.theme-toc-nest-3 {
+  @apply pl-6;
 }
 
 /* Scrollbar */

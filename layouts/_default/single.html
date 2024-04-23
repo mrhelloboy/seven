@@ -41,18 +41,19 @@
   {{ end }}
 
 
-  <div
-    id="single-page-container"
-    class="mx-auto my-5 w-full rounded-b-lg px-5 md:max-w-4xl">
-    <div class="flex w-full justify-between">
-      <div id="post-container" class="w-full">
+  <div id="single-page-container" class="my-5 w-full rounded-b-lg px-5">
+    <div class="mx-auto flex max-w-screen-xl">
+      {{/* Left side */}}
+      {{ partial "content_left_section.html" . }}
+      {{/* Content */}}
+      <div id="post-container" class="mx-auto w-full md:max-w-3xl lg:w-2/3">
         {{/* Title */}}
         <div
           id="post-title"
           data-popover-target="popover-animation"
           data-popover-offset="0"
           data-popover-placement="bottom"
-          class="flex flex-col py-5 md:px-1 lg:px-7">
+          class="flex w-full flex-col py-5 md:px-1 lg:px-7">
           <div
             class="flex flex-row flex-wrap space-x-1 pb-2 pl-2 pt-1 font-Oswald text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
             {{ $categories := (.GetTerms "categories") }}
@@ -121,20 +122,22 @@
           </span>
         </div>
       </div>
+      {{/* Right side */}}
+      {{ partial "content_right_section.html" . }}
     </div>
 
     {{/* comments */}}
     {{ if and (not .Params.disableComment) .Site.Params.comment.enable }}
       <div id="post-comment">{{- partial "comments.html" . -}}</div>
     {{ end }}
+
+    {{- partial "speed_dial.html" . -}}
+
+    {{ if .Site.Params.enableToTop }}
+      {{- partial "to_top.html" . -}}
+    {{ end }}
+
   </div>
-
-  {{- partial "speed_dial.html" . -}}
-
-  {{ if .Site.Params.enableToTop }}
-    {{- partial "to_top.html" . -}}
-  {{ end }}
-
 {{ end }}
 
 {{ define "script" }}
@@ -176,4 +179,54 @@
     {{ end }}
     <script src="{{ $codeCopyJS.RelPermalink }}" defer></script>
   {{ end }}
+
+
+  <script>
+    console.log("aaaaaaa helo");
+    document.addEventListener("alpine:init", () => {
+      Alpine.data("toc", () => ({
+        links: document.querySelectorAll("#single-toc a"),
+        activeIndex: null,
+        count: 0,
+        init() {
+          this.count = this.links.length;
+          this.findActiveLink();
+          console.log("activeIndex:", this.activeIndex, "count:", this.count);
+        },
+        findActiveLink() {
+          this.links.forEach((link, index) => {
+            if (link.classList.contains("theme-toc-active")) {
+              this.activeIndex = index + 1; // 1-based index
+            }
+          });
+        },
+      }));
+    });
+
+    var testA = "abcdecdev";
+    function testABC() {
+      console.log(testA);
+    }
+
+    var observerTest = new MutationObserver(function (mutationsList, observer) {
+      for (var mutation of mutationsList) {
+        if (
+          mutation.type === "attributes" &&
+          mutation.attributeName === "class"
+        ) {
+          console.log("class属性已改变!");
+          console.log(mutation);
+        }
+      }
+    });
+
+    allTocEles = document.querySelectorAll("#single-toc a");
+    allTocEles.forEach((ele) => {
+      observerTest.observe(ele, {
+        characterData: true,
+        attributeOldValue: true,
+        attributeFilter: ["class"],
+      });
+    });
+  </script>
 {{ end }}

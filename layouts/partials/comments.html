@@ -2,7 +2,7 @@
 {{ if .Site.Params.comment.waline.enable }}
   <div
     id="waline"
-    class="w-full px-0.5 py-5 md:px-2 lg:max-w-5xl lg:px-8 dark:text-gray-400"></div>
+    class="mx-auto w-full px-0.5 py-5 md:px-2 lg:max-w-3xl lg:px-8 dark:text-gray-400"></div>
 
   {{ $walineJS := resources.Get "js/third-party/waline/v2/waline.js" }}
   <script src="{{ $walineJS.RelPermalink }}" defer></script>
