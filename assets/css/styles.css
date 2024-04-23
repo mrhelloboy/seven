@@ -22,6 +22,11 @@
   @apply pl-6;
 }
 
+/* 圆形按钮特效 */
+.buttom-circle {
+  @apply rounded-full shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] hover:scale-105 active:scale-[.95];
+}
+
 /* Scrollbar */
 /* 整个滚动条，可以设置任意的尺寸大小，包括 0，也就是滚动条不可见 */
 *::-webkit-scrollbar {

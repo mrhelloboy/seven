@@ -1,8 +1,0 @@
-<div class="mx-auto flex w-full flex-col p-4">
-  <ul class="mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-    {{ range .Paginator.Pages }}
-      {{ partial "li_page.html" . }}
-    {{ end }}
-  </ul>
-  {{ partial "pagination.html" . }}
-</div>

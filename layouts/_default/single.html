@@ -181,13 +181,39 @@
       </div>
     {{ end }}
 
-    {{- partial "speed_dial.html" . -}}
-
-    {{ if .Site.Params.enableToTop }}
-      {{- partial "to_top.html" . -}}
-    {{ end }}
-
   </div>
+
+  {{/* To top button */}}
+  {{ if not .Site.Params.disableToTop }}
+    <button
+      x-data="{
+        show: false,
+        init() {
+          window.addEventListener('scroll', () => {
+            this.show = window.scrollY > 100
+          })
+        }
+      }"
+      x-show="show"
+      @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      :class="{
+        'hidden': !show,
+        'flex': show,
+      }"
+      type="button"
+      class="buttom-circle fixed bottom-24 end-8 hidden h-14 w-14 items-center justify-center bg-white/85 text-gray-500 backdrop-blur-md md:end-20 dark:bg-gray-800/85 dark:text-gray-500">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="size-6"
+        fill="currentColor"
+        viewBox="0 -960 960 960">
+        <path
+          d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z" />
+      </svg>
+      <span class="sr-only">Go to Top</span>
+    </button>
+  {{ end }}
+
 {{ end }}
 
 {{ define "script" }}

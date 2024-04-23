@@ -1,3 +1,10 @@
 {{ define "main" }}
-  {{- partial "section.html" . -}}
+  <div class="mx-auto mt-38 flex w-full grow flex-col p-4">
+    <ul class="mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      {{ range .Paginator.Pages }}
+        {{ partial "li_page.html" . }}
+      {{ end }}
+    </ul>
+    {{ partial "pagination.html" . }}
+  </div>
 {{ end }}
