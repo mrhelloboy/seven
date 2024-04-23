@@ -111,6 +111,41 @@
           </div>
         </div>
 
+        {{/* Mobile toc */}}
+        <div x-data="{ open: false }" class="mt-1 md:px-1 lg:hidden lg:px-7">
+          <button
+            type="button"
+            x-on:click="open = !open"
+            class="flex w-full cursor-pointer items-center justify-between rounded-lg px-2 py-2 text-gray-500/90 hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-800 dark:hover:text-gray-300">
+            <span class="text-sm font-medium"> Table of Contents </span>
+
+            <span
+              class="shrink-0 transition duration-300 group-open:-rotate-180">
+              <svg
+                :class="{ 'rotate-180': open }"
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor">
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd" />
+              </svg>
+            </span>
+          </button>
+
+          <div
+            x-cloak
+            x-show="open"
+            x-transition.duration.500ms
+            :class="{ 'block': open, 'hidden': !open }"
+            x-on:keydown.escape.window="open = false"
+            class="mt-1 hidden space-y-1 px-2.5">
+            {{ .TableOfContents }}
+          </div>
+        </div>
+
         {{/* Content */}}
         <div
           id="single-content"
