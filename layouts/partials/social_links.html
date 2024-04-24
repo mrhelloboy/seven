@@ -2,7 +2,7 @@
   {{ if and (eq $name "email") (eq $value.enable true) }}
     <a
       href="mailto:{{ $value.url }}"
-      class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+      class="text-gray-900 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white">
       <svg
         class="h-5 w-5"
         aria-hidden="true"
@@ -24,7 +24,7 @@
   {{ if and (eq $name "x") (eq $value.enable true) }}
     <a
       href="{{ $value.url }}"
-      class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+      class="text-gray-900 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white">
       <svg
         class="h-5 w-5"
         aria-hidden="true"
@@ -43,7 +43,7 @@
   {{ if and (eq $name "github") (eq $value.enable true) }}
     <a
       href="{{ $value.url }}"
-      class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+      class="text-gray-900 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white">
       <svg
         class="h-5 w-5"
         aria-hidden="true"
@@ -60,22 +60,58 @@
   {{ end }}
 
   {{ if and (eq $name "wechat") (eq $value.enable true) }}
-    <button
-      data-popover-target="wechat-popover-no-arrow"
-      type="button"
-      class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
-      <svg
-        class="h-5 w-5"
-        viewBox="0 0 1184 1024"
-        fill="currentColor"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        p-id="1495">
-        <path
-          d="M331.424 263.424q0-23.424-14.272-37.728t-37.728-14.272q-24.576 0-43.424 14.56t-18.848 37.44q0 22.272 18.848 36.864t43.424 14.56q23.424 0 37.728-14.016t14.272-37.44zM756 553.152q0-16-14.56-28.576t-37.44-12.576q-15.424 0-28.288 12.864t-12.864 28.288q0 16 12.864 28.864t28.288 12.864q22.848 0 37.44-12.576t14.56-29.152zM621.152 263.424q0-23.424-14.016-37.728t-37.44-14.272q-24.576 0-43.424 14.56t-18.848 37.44q0 22.272 18.848 36.864t43.424 14.56q23.424 0 37.44-14.016t14.016-37.44zM984 553.152q0-16-14.848-28.576t-37.152-12.576q-15.424 0-28.288 12.864t-12.864 28.288q0 16 12.864 28.864t28.288 12.864q22.272 0 37.152-12.576t14.848-29.152zM832 326.272q-17.728-2.272-40-2.272-96.576 0-177.728 44t-127.712 119.136-46.56 164.288q0 44.576 13.152 86.848-20 1.728-38.848 1.728-14.848 0-28.576-0.864t-31.424-3.712-25.44-4-31.136-6.016-28.576-6.016l-144.576 72.576 41.152-124.576q-165.728-116-165.728-280 0-96.576 55.712-177.728t150.848-127.712 207.712-46.56q100.576 0 190.016 37.728t149.728 104.288 78.016 148.864zM1170.272 646.848q0 66.848-39.136 127.712t-106.016 110.56l31.424 103.424-113.728-62.272q-85.728 21.152-124.576 21.152-96.576 0-177.728-40.288t-127.712-109.44-46.56-150.848 46.56-150.848 127.712-109.44 177.728-40.288q92 0 173.152 40.288t130.016 109.728 48.864 150.56z"
-          p-id="1496"></path>
-      </svg>
-    </button>
+    <div x-data="{ openQC: false }">
+      <button
+        @click="openQC = !openQC; scrollY = window.scrollY; document.body.style.overflow = 'hidden';"
+        class="group relative block text-gray-900 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white">
+        <div
+          class="items-endtransition-transform relative flex h-full transform">
+          <div
+            class="transition-opacity group-hover:absolute group-hover:opacity-0">
+            <svg
+              class="h-5 w-5"
+              viewBox="0 0 1184 1024"
+              fill="currentColor"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              p-id="1495">
+              <path
+                d="M331.424 263.424q0-23.424-14.272-37.728t-37.728-14.272q-24.576 0-43.424 14.56t-18.848 37.44q0 22.272 18.848 36.864t43.424 14.56q23.424 0 37.728-14.016t14.272-37.44zM756 553.152q0-16-14.56-28.576t-37.44-12.576q-15.424 0-28.288 12.864t-12.864 28.288q0 16 12.864 28.864t28.288 12.864q22.848 0 37.44-12.576t14.56-29.152zM621.152 263.424q0-23.424-14.016-37.728t-37.44-14.272q-24.576 0-43.424 14.56t-18.848 37.44q0 22.272 18.848 36.864t43.424 14.56q23.424 0 37.44-14.016t14.016-37.44zM984 553.152q0-16-14.848-28.576t-37.152-12.576q-15.424 0-28.288 12.864t-12.864 28.288q0 16 12.864 28.864t28.288 12.864q22.272 0 37.152-12.576t14.848-29.152zM832 326.272q-17.728-2.272-40-2.272-96.576 0-177.728 44t-127.712 119.136-46.56 164.288q0 44.576 13.152 86.848-20 1.728-38.848 1.728-14.848 0-28.576-0.864t-31.424-3.712-25.44-4-31.136-6.016-28.576-6.016l-144.576 72.576 41.152-124.576q-165.728-116-165.728-280 0-96.576 55.712-177.728t150.848-127.712 207.712-46.56q100.576 0 190.016 37.728t149.728 104.288 78.016 148.864zM1170.272 646.848q0 66.848-39.136 127.712t-106.016 110.56l31.424 103.424-113.728-62.272q-85.728 21.152-124.576 21.152-96.576 0-177.728-40.288t-127.712-109.44-46.56-150.848 46.56-150.848 127.712-109.44 177.728-40.288q92 0 173.152 40.288t130.016 109.728 48.864 150.56z"
+                p-id="1496"></path>
+            </svg>
+          </div>
+
+          <div
+            class="absolute opacity-0 transition-opacity group-hover:relative group-hover:opacity-100">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="currentColor"
+              viewBox="0 -960 960 960">
+              <path
+                d="M520-120v-80h80v80h-80Zm-80-80v-200h80v200h-80Zm320-120v-160h80v160h-80Zm-80-160v-80h80v80h-80Zm-480 80v-80h80v80h-80Zm-80-80v-80h80v80h-80Zm360-280v-80h80v80h-80ZM180-660h120v-120H180v120Zm-60 60v-240h240v240H120Zm60 420h120v-120H180v120Zm-60 60v-240h240v240H120Zm540-540h120v-120H660v120Zm-60 60v-240h240v240H600Zm80 480v-120h-80v-80h160v120h80v80H680ZM520-400v-80h160v80H520Zm-160 0v-80h-80v-80h240v80h-80v80h-80Zm40-200v-160h80v80h80v80H400Zm-190-90v-60h60v60h-60Zm0 480v-60h60v60h-60Zm480-480v-60h60v60h-60Z" />
+            </svg>
+          </div>
+        </div>
+      </button>
+      <div
+        x-show="openQC"
+        @keydown.window.escape="openQC = false"
+        x-cloak
+        role="dialog"
+        aria-modal="true">
+        <div class="fixed inset-0 z-50"></div>
+        <div class="fixed inset-0 z-50 w-full bg-gray-900/85 backdrop-blur-md">
+          <div class="mx-auto flex h-full w-full items-center justify-center">
+            <img
+              @click.away="openQC = false"
+              class="object-cover"
+              src="{{ $value.QRCodeUrl }}"
+              alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
   {{ end }}
 {{ end }}
 
