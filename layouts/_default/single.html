@@ -139,9 +139,8 @@
             x-cloak
             x-show="open"
             x-transition.duration.500ms
-            :class="{ 'block': open, 'hidden': !open }"
             x-on:keydown.escape.window="open = false"
-            class="mt-1 hidden space-y-1 px-2.5">
+            class="mt-1 space-y-1 px-2.5">
             {{ .TableOfContents }}
           </div>
         </div>
@@ -196,12 +195,9 @@
       }"
       x-show="show"
       @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
-      :class="{
-        'hidden': !show,
-        'flex': show,
-      }"
+      x-cloak
       type="button"
-      class="buttom-circle fixed bottom-24 end-8 hidden h-14 w-14 items-center justify-center bg-white/85 text-gray-500 backdrop-blur-md md:end-20 dark:bg-gray-800/85 dark:text-gray-500">
+      class="buttom-circle fixed bottom-24 end-8 flex h-14 w-14 items-center justify-center bg-white/85 text-gray-500 backdrop-blur-md md:end-20 dark:bg-gray-800/85 dark:text-gray-500">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="size-6"

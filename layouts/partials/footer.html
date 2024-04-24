@@ -34,19 +34,19 @@
       aria-label="The github address of seven theme">
       <img
         x-show="!$store.darkMode.on"
-        :class="{ 'hidden': $store.darkMode.on, 'block': !$store.darkMode.on }"
+        x-cloak
         id="footer-theme-light-logo"
         src="/images/default/seven-logo.svg"
         alt="seven theme logo"
-        class="mx-1 hidden h-5" />
+        class="mx-1 h-5" />
 
       <img
         x-show="$store.darkMode.on"
-        :class="{ 'hidden': !$store.darkMode.on, 'block': $store.darkMode.on }"
+        x-cloak
         id="footer-theme-dark-logo"
         src="/images/default/seven-logo-dark.svg"
         alt="seven theme logo"
-        class="mx-1 hidden h-5" />
+        class="mx-1 h-5" />
     </a>
   </div>
 

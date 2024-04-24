@@ -20,17 +20,17 @@
           <div class="w-[{{ $logoW }}px]">
             {{/* Light logo */}}
             <img
+              x-cloak
               x-show="!$store.darkMode.on"
-              :class="{ 'hidden': $store.darkMode.on, 'block': !$store.darkMode.on }"
               src="{{ $logoInfo.img }}"
-              class="hidden h-[{{ $logoH }}px]"
+              class="h-[{{ $logoH }}px]"
               alt="Logo" />
             {{/* Dark logo */}}
             <img
+              x-cloak
               x-show="$store.darkMode.on"
-              :class="{ 'hidden': !$store.darkMode.on, 'block': $store.darkMode.on }"
               src="{{ $logoInfo.img_dark }}"
-              class="hidden h-[{{ $logoH }}px]"
+              class="h-[{{ $logoH }}px]"
               alt="Logo" />
           </div>
 
@@ -57,8 +57,8 @@
             <svg
               id="theme-toggle-dark-icon"
               x-show="!$store.darkMode.on"
-              :class="{ 'block': !$store.darkMode.on, 'hidden': $store.darkMode.on }"
-              class="hidden h-5 w-5 group-hover:text-blue-700"
+              x-cloak
+              class="h-5 w-5 group-hover:text-blue-700"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg">
@@ -68,8 +68,8 @@
 
             <svg
               x-show="$store.darkMode.on"
-              :class="{ 'block': $store.darkMode.on, 'hidden': !$store.darkMode.on }"
-              class="hidden h-5 w-5 group-hover:text-blue-700"
+              x-cloak
+              class="h-5 w-5 group-hover:text-blue-700"
               fill="currentColor"
               viewBox="0 0 1024 1024"
               version="1.1"
@@ -125,12 +125,7 @@
   </nav>
 
   {{/* Mobile menu */}}
-  <div
-    x-show="isMobile"
-    :class="{ 'block': isMobile, 'hidden': !isMobile }"
-    class="hidden"
-    role="dialog"
-    aria-modal="true">
+  <div x-show="isMobile" x-cloak role="dialog" aria-modal="true">
     <!-- Background backdrop, show/hide based on slide-over state. -->
     <div class="fixed inset-0 z-10"></div>
     <div
@@ -149,16 +144,16 @@
           {{/* Light logo */}}
           <img
             x-show="!$store.darkMode.on"
-            :class="{ 'hidden': $store.darkMode.on, 'block': !$store.darkMode.on }"
+            x-cloak
             src="{{ $logoInfo.img }}"
-            class="hidden h-[{{ $logoH }}px]"
+            class="h-[{{ $logoH }}px]"
             alt="Logo" />
           {{/* Dark logo */}}
           <img
             x-show="$store.darkMode.on"
-            :class="{ 'hidden': !$store.darkMode.on, 'block': $store.darkMode.on }"
+            x-cloak
             src="{{ $logoInfo.img_dark }}"
-            class="hidden h-[{{ $logoH }}px]"
+            class="h-[{{ $logoH }}px]"
             alt="Logo" />
         </div>
 

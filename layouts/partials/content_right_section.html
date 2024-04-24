@@ -3,14 +3,14 @@
   class="hidden lg:sticky lg:top-28 lg:flex lg:h-dvh lg:w-1/3 lg:max-w-60">
   <div
     x-show="!open"
-    :class="{ 'hidden': open, 'flex': !open }"
+    x-cloak
     x-transition:enter="ease-in-out duration-500"
     x-transition:enter-start="opacity-0"
     x-transition:enter-end="opacity-100"
     x-transition:leave="ease-in-out duration-500"
     x-transition:leave-start="opacity-100"
     x-transition:leave-end="opacity-0"
-    class="hidden">
+    class="flex">
     <button
       type="button"
       @click="open = true"

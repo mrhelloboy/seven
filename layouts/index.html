@@ -5,22 +5,23 @@
       class="mt-4 flex flex-col items-center justify-center space-y-5 p-4 lg:mt-12 lg:space-y-10">
       {{/* Logo & Name */}}
       <div x-data="{ isHeroName: false }" @click="isHeroName = !isHeroName">
-        <div x-show="!isHeroName" class="h-32">
+        <div x-show="!isHeroName" x-cloak class="h-32">
           <img
             x-show="!$store.darkMode.on"
-            :class="{ 'hidden': $store.darkMode.on, 'block': !$store.darkMode.on }"
-            class="hidden h-32"
+            class="h-32"
+            x-cloak
             src="{{ .Site.Params.home.heroLogo }}"
             alt="" />
           <img
             x-show="$store.darkMode.on"
-            :class="{ 'hidden': !$store.darkMode.on, 'block': $store.darkMode.on }"
-            class="hidden h-32"
+            class="h-32"
+            x-cloak
             src="{{ .Site.Params.home.heroDarkLogo }}"
             alt="" />
         </div>
         <div
           x-show="isHeroName"
+          x-cloak
           class="flex h-32 items-center rounded-full text-4xl font-bold dark:text-white">
           {{ .Site.Title }}
         </div>
@@ -73,7 +74,7 @@
 
               <div
                 class="absolute p-4 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6 lg:p-8">
-                <p class="font-serif mt-8 dark:text-gray-400">
+                <p class="mt-8 font-serif dark:text-gray-400">
                   {{ .Date.Format "2006/01/02" }}
                 </p>
                 <h3
@@ -82,7 +83,7 @@
                 </h3>
 
                 <p
-                  class="font-serif mt-4 line-clamp-1 text-pretty text-sm italic tracking-wider sm:text-base md:line-clamp-2 lg:line-clamp-3 xl:line-clamp-4 dark:text-gray-400">
+                  class="mt-4 line-clamp-1 text-pretty font-serif text-sm italic tracking-wider sm:text-base md:line-clamp-2 lg:line-clamp-3 xl:line-clamp-4 dark:text-gray-400">
                   {{ .Description }}
                 </p>
 
