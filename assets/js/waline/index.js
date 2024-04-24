@@ -1,23 +1,23 @@
+import { init, commentCount, pageviewCount } from '@waline/client';
 import * as params from '@params';
-import * as data from 'data/waline.json';
 
-let locale = data.locale;
-
-Waline.init({
+init({
   el: '#waline',
   lang: params.lang,
   reaction: params.reaction,
+  reaction: ['https://unpkg.com/@waline/emojis/tieba/tieba_agree.png'],
   search: params.search,
   serverURL: params.serverURL,
   path: window.location.pathname,
   dark: '.dark',
-  meta: data.meta || [],
-  locale,
+  meta: [],
+  login: 'force',
+  locale: { reactionTitle: '' },
 });
 
 // 评论数统计
 if (params.enableCounts) {
-  Waline.commentCount({
+  commentCount({
     serverURL: params.serverURL,
     path: window.location.pathname,
     lang: params.lang,
@@ -26,8 +26,7 @@ if (params.enableCounts) {
 
 // page view
 if (params.enablePageView) {
-  console.log('page view');
-  Waline.pageviewCount({
+  pageviewCount({
     serverURL: params.serverURL,
     selector: '.page-info-pageview-count',
     path: window.location.pathname,

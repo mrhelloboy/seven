@@ -3,6 +3,7 @@
   "comments": {
     "dependencies": {},
     "devDependencies": {
+      "@waline/client": "project",
       "autoprefixer": "project",
       "flowbite-typography": "project",
       "postcss": "project",
@@ -13,6 +14,7 @@
   "dependencies": {},
   "description": "Personal blog theme of Hugo",
   "devDependencies": {
+    "@waline/client": "^3.1.3",
     "autoprefixer": "^10.4.14",
     "flowbite-typography": "^1.0.3",
     "postcss": "^8.4.24",

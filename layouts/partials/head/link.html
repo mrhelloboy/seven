@@ -16,13 +16,6 @@
   {{- end -}}
 {{- end -}}
 
-
-<!-- flowbite css -->
-{{/* <link
-  href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"
-  rel="stylesheet" />
-*/}}
-
 {{ $options := dict "inlineImports" true }}
 {{ if and .Site.Params.enableSearch .Site.Params.algolia.app_id }}
   <!-- algoria css -->
@@ -43,9 +36,12 @@
 
 <!-- comments -->
 {{ if and .Site.Params.comment.enable .Site.Params.comment.waline.enable }}
-  <link
-    href="https://unpkg.com/@waline/client@v2/dist/waline.css"
-    rel="stylesheet" />
+  {{ $waline_styles := resources.Get "css/waline.css" }}
+  {{ $waline_styles = $waline_styles | resources.PostCSS $options }}
+  {{ if hugo.IsProduction }}
+    {{ $waline_styles = $waline_styles | minify | fingerprint | resources.PostProcess }}
+  {{ end }}
+  <link href="{{ $waline_styles.RelPermalink }}" rel="stylesheet" />
 {{ end }}
 
 

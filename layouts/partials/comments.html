@@ -4,9 +4,6 @@
     id="waline"
     class="mx-auto w-full px-0.5 py-5 md:px-2 lg:max-w-3xl lg:px-8 dark:text-gray-400"></div>
 
-  {{ $walineJS := resources.Get "js/third-party/waline/v2/waline.js" }}
-  <script src="{{ $walineJS.RelPermalink }}" defer></script>
-
   {{ $enableCounts := .Site.Params.comment.enableCounts }}
   {{ $enablePageView := .Site.Params.articleMeta.enablePageView }}
 
@@ -15,7 +12,7 @@
   {{ $reaction := .Site.Params.comment.waline.reaction }}
   {{ $search := .Site.Params.comment.waline.search }}
   {{ $walineInfo := dict "serverURL" $serverURL "lang" $lang "reaction" $reaction "search" $search "enableCounts" $enableCounts "enablePageView" $enablePageView }}
-  {{ $commentWalineJS := resources.Get "/js/comment-waline.js" | js.Build (dict "params" $walineInfo) }}
+  {{ $commentWalineJS := resources.Get "/js/waline/index.js" | js.Build (dict "params" $walineInfo) }}
   {{ if hugo.IsProduction }}
     {{ $commentWalineJS = $commentWalineJS | minify | fingerprint }}
   {{ end }}

@@ -64,19 +64,10 @@ html {
 :root {
   overflow-y: auto;
   overflow-x: hidden;
-
-  /* waline */
-  --waline-bgcolor-light: #ffff;
 }
 
 :root body {
   position: absolute;
-}
-
-.dark {
-  --waline-bgcolor: rgb(17 24 39) !important;
-  --waline-info-bgcolor: rgb(31 41 55 / 0.5) !important;
-  --waline-bgcolor-light: rgb(55 65 81 / 0.2) !important;
 }
 
 body {
@@ -93,61 +84,6 @@ body {
   font-family: "Montserrat";
   src: url("/font/Montserrat-VariableFont_wght.woff2");
   font-display: swap;
-}
-
-/* waline */
-.wl-panel {
-  @apply rounded-md border dark:border-gray-700;
-}
-
-.wl-header {
-  @apply rounded-tr-md border-b border-solid p-0 dark:border-gray-700;
-}
-
-.wl-meta-head {
-  @apply px-2;
-}
-
-.wl-cards {
-  @apply px-1;
-}
-
-.wl-header-item {
-  @apply border-solid border-r-[#ddd] p-0 last:border-r-0 md:border-r dark:border-r-gray-700;
-}
-
-@media (max-width: 580px) {
-  .wl-header-item:not(:last-child) {
-    @apply border-b border-solid dark:border-b-gray-700;
-  }
-}
-
-.wl-actions > a {
-  @apply hidden;
-}
-
-.wl-text-number {
-  @apply hidden;
-}
-
-.wl-editor {
-  @apply min-h-16 rounded-none transition-none;
-}
-
-.wl-input {
-  @apply transition-none;
-}
-
-.wl-panel > textarea {
-  @apply border-transparent ring-transparent placeholder:text-[#999] dark:placeholder:text-[#666];
-}
-
-.wl-reaction-img {
-  @apply h-8 w-8 !important;
-}
-
-.wl-power {
-  @apply px-2;
 }
 
 /* Code copy button */
