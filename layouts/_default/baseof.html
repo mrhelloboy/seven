@@ -11,8 +11,13 @@
         {{- if .IsHome -}}
           {{ .Site.Title }}
         {{- else -}}
-          {{ .Type }} |
-          {{ .Site.Title }}
+          {{ if .Data.Plural }}
+            {{ .Title }} - {{ .Data.Plural }} |
+            {{ .Site.Title }}
+          {{ else }}
+            {{ .Type }} |
+            {{ .Site.Title }}
+          {{ end }}
         {{- end -}}
       {{ end }}
     </title>
