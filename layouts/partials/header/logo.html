@@ -1,0 +1,31 @@
+<a x-data href="{{ .Site.BaseURL }}" class="p-1.5">
+  <span class="sr-only">{{ .Site.Title }}</span>
+  {{ $logoInfo := .Site.Params.logo }}
+  {{ $logoW := $logoInfo.customLogoWidth | default 130 }}
+  {{ $logoH := math.Min ($logoInfo.customLogoHeight | default 56) 56 }}
+
+
+  <div class="w-[{{ $logoW }}px]">
+    {{/* Light logo */}}
+    <img
+      x-cloak
+      x-show="!$store.darkMode.on"
+      src="{{ $logoInfo.img }}"
+      class="h-[{{ $logoH }}px]"
+      alt="Logo" />
+    {{/* Dark logo */}}
+    <img
+      x-cloak
+      x-show="$store.darkMode.on"
+      src="{{ $logoInfo.img_dark }}"
+      class="h-[{{ $logoH }}px]"
+      alt="Logo" />
+  </div>
+
+  {{- with $logoInfo.text -}}
+    <span
+      class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white"
+      >{{ . }}</span
+    >
+  {{- end -}}
+</a>

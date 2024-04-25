@@ -1,0 +1,92 @@
+<header
+  x-data="{ isMobile: false, shrink: false, scrollY: 0 }"
+  class="z-40 w-full"
+  @scroll.window="shrink = (window.scrollY > 10 ? true : false)">
+  <nav
+    :class="{ 'h-24': shrink, 'h-38': !shrink, 'shadow-md': shrink}"
+    class="fixed inset-0 mx-auto flex h-38 items-center justify-between bg-white/85 py-4 backdrop-blur-md transition-all duration-500 ease-in-out dark:bg-gray-900/85"
+    aria-label="Global">
+    <div
+      class="mx-auto flex w-[1000px] flex-wrap items-center justify-between place-self-center object-center p-4">
+      <div class="flex lg:flex-1">
+        {{- partial "header/logo.html" . -}}
+      </div>
+
+      <div class="hidden lg:flex lg:gap-x-6">
+        {{ partial "header/menu.html" . }}
+      </div>
+
+      <div class="flex flex-1 items-center justify-end lg:space-x-1">
+        {{- partial "header/i18n_menu.html" . -}}
+
+        {{- partial "header/dark_mode.html" . -}}
+
+        {{- partial "header/search.html" . -}}
+
+
+        <div class="flex lg:hidden">
+          <button
+            type="button"
+            @click="isMobile = true; scrollY = window.scrollY; document.body.style.overflow = 'hidden';"
+            class="group inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 dark:text-gray-400">
+            <span class="sr-only">Open main menu</span>
+            <svg
+              class="h-5 w-5 group-hover:text-blue-700"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14">
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div x-show="isMobile" x-cloak role="dialog" aria-modal="true">
+    <div class="fixed inset-0 z-10"></div>
+    <div
+      class="fixed inset-0 z-10 w-full overflow-y-auto bg-white/85 p-4 backdrop-blur-md sm:ring-1 sm:ring-gray-900/10 dark:bg-gray-900/85">
+      <div class="mx-auto mt-10 flex w-full items-center justify-center">
+        {{- partial "header/logo.html" . -}}
+      </div>
+
+      <div class="mt-6 flow-root">
+        <div class="-my-6 divide-y divide-gray-500/10">
+          <div class="flex flex-col space-y-2 py-6">
+            {{ partial "header/mobile_menu.html" . }}
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-14 flex h-12 w-full flex-col items-center justify-center">
+        <button
+          @click="isMobile = false; document.body.style.overflow = ''; window.scrollTo(0, scrollY);"
+          class="buttom-circle flex h-12 w-12 items-center justify-center rounded-full bg-white/85 p-3 text-gray-900 backdrop-blur-md  hover:text-gray-500 dark:bg-gray-800/85 dark:text-gray-200">
+          <span class="sr-only">Close mobile menu</span>
+          <svg
+            fill="currentColor"
+            class="h-4 w-4"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            p-id="5967">
+            <path
+              d="M143.616 47.104l830.08 830.08c26.24 26.24 26.24 69.888 0 96.128-26.24 26.24-69.888 26.24-96.128 0L47.488 143.232c-17.536-26.24-17.536-69.888 0-96.128 26.24-26.24 69.888-26.24 96.128 0z m0 0"
+              p-id="5968"></path>
+            <path
+              d="M982.528 143.232L152.32 973.312c-26.24 26.24-69.888 26.24-96.128 0-26.24-26.24-26.24-69.888 0-96.128L886.4 47.104c26.24-26.24 69.888-26.24 96.128 0 17.408 26.24 17.408 69.888 0 96.128z m0 0"
+              p-id="5969"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
