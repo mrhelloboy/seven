@@ -221,17 +221,6 @@
     <script src="{{ $tocJS.RelPermalink }}"></script>
   {{ end }}
 
-  {{ if and .Site.Params.waline.serverURL .Site.Params.waline.alonePageview }}
-    <script src="https://unpkg.com/@waline/client@v2/dist/pageview.js"></script>
-    {{ $serverURL := .Site.Params.waline.serverURL }}
-    {{ $walineInfo := dict "serverURL" $serverURL }}
-    {{ $walinePageViewJS := resources.Get "/js/waline-pageview.js" | js.Build (dict "params" $walineInfo) }}
-    {{ if hugo.IsProduction }}
-      {{ $walinePageViewJS = $walinePageViewJS | minify | fingerprint }}
-    {{ end }}
-    <script src="{{ $walinePageViewJS.RelPermalink }}" defer></script>
-  {{ end }}
-
   {{ $zoomJS := resources.Get "/js/zoom-img.js" }}
   {{ if hugo.IsProduction }}
     {{ $zoomJS = $zoomJS| minify | fingerprint }}
