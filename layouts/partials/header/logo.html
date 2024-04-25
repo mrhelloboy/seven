@@ -1,4 +1,4 @@
-<a x-data href="{{ .Site.BaseURL }}" class="p-1.5">
+<a x-data href="{{ "" | relLangURL }}" class="p-1.5">
   <span class="sr-only">{{ .Site.Title }}</span>
   {{ $logoInfo := .Site.Params.logo }}
   {{ $logoW := $logoInfo.customLogoWidth | default 130 }}

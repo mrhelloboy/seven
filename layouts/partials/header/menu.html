@@ -36,7 +36,7 @@
             <div
               class="relative rounded-lg px-4 py-2.5 text-sm leading-6 hover:bg-gray-300/30 hover:backdrop-blur-md">
               <a
-                href="{{ .URL }}"
+                href="{{ .URL | relLangURL }}"
                 class="block font-semibold text-gray-900 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white">
                 {{ .Name | safeHTML }}
                 <span class="absolute inset-0"></span>
@@ -48,7 +48,7 @@
     </div>
   {{ else }}
     <a
-      href="{{ .URL }}"
+      href="{{ .URL | relLangURL }}"
       class="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-700 dark:text-white"
       >{{ .Name | safeHTML }}</a
     >

@@ -27,7 +27,7 @@
         id="disclosure-1">
         {{ range .Children }}
           <a
-            href="{{ .URL }}"
+            href="{{ .URL | relLangURL }}"
             class="w-full rounded-lg py-2 pl-6 pr-3 text-center text-sm font-semibold leading-7 text-gray-900 hover:text-blue-700 dark:text-white"
             >{{ .Name | safeHTML }}</a
           >
@@ -37,7 +37,7 @@
     </div>
   {{ else }}
     <a
-      href="{{ .URL }}"
+      href="{{ .URL | relLangURL }}"
       class="w-full rounded-lg px-3 py-2 text-center text-base font-semibold leading-7 text-gray-900 hover:text-blue-700 dark:text-white"
       >{{ .Name | safeHTML }}</a
     >
