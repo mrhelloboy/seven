@@ -81,7 +81,7 @@ search.addWidgets([
   }),
   searchBox({
     container: '#searchBox',
-    placeholder: ' Search for content',
+    placeholder: ' ' + params.placeholder,
     showReset: false,
     showLoadingIndicator: true,
     showSubmit: true,

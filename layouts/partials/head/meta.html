@@ -1,5 +1,9 @@
-<meta name="application-name" content="{{ .Site.Params.app.title | default .Site.Title }}" />
-<meta name="apple-mobile-web-app-title" content="{{ .Site.Params.app.title | default .Site.Title }}" />
+<meta
+  name="application-name"
+  content="{{ .Site.Params.app.title | default .Site.Title }}" />
+<meta
+  name="apple-mobile-web-app-title"
+  content="{{ .Site.Params.app.title | default .Site.Title }}" />
 
 {{ if .Params.title }}
   <meta name="title" content="{{ .Params.title }}" />
@@ -10,7 +14,7 @@
 {{ if .Params.description }}
   <meta name="description" content="{{ .Params.description }}" />
 {{ else }}
-  <meta name="description" content="{{ .Site.Params.Description }}" />
+  <meta name="description" content="{{ .Site.Params.description }}" />
 {{ end }}
 
 {{- with .Site.Params.app.themeColor -}}

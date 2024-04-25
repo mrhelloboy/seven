@@ -1,54 +1,53 @@
 <footer
-  class="mx-auto mt-5 flex flex-col-reverse items-center gap-y-3 py-6 font-serif italic">
-  <!-- Social & Theme & Copy Container -->
-  <div
-    class="flex flex-col items-center justify-between space-y-3 text-xs dark:text-gray-500">
-    {{/* Copy */}}
-    <div class="items-center">
-      &copy;
-      {{ $startYear := .Site.Params.copyright.start_year }}
-      {{ $currentYear := now.Format "2006" }}
-      {{ with eq $startYear $currentYear }}
-        {{ $currentYear }}
-      {{ else }}
-        {{ $startYear }} -
-        {{ $currentYear }}
-      {{ end }}
-
-      {{ .Site.Params.copyright.owner }}. All Rights Reserved
-    </div>
-  </div>
-
-  {{/* Theme Info */}}
-  <div x-data class="flex flex-row items-center text-xs dark:text-gray-500">
-    <span>Powered By</span>
-    <a href="https://gohugo.io/" aria-label="hugo link">
-      <img
-        src="/images/default/hugo-logo-wide.svg"
-        alt="Hugo"
-        class="mx-1 h-3" />
-    </a>
-    <span>&</span>
-    <a
-      href="https://github.com/mrhelloboy/seven"
-      aria-label="The github address of seven theme">
-      <img
-        x-show="!$store.darkMode.on"
-        x-cloak
-        id="footer-theme-light-logo"
-        src="/images/default/seven-logo.svg"
-        alt="seven theme logo"
-        class="mx-1 h-5" />
-
-      <img
-        x-show="$store.darkMode.on"
-        x-cloak
-        id="footer-theme-dark-logo"
-        src="/images/default/seven-logo-dark.svg"
-        alt="seven theme logo"
-        class="mx-1 h-5" />
-    </a>
-  </div>
-
+  class="mx-auto mt-5 flex flex-col items-center gap-y-3 py-6 font-serif italic">
   <span class="h-px w-full max-w-4xl bg-gray-700 dark:bg-gray-600"></span>
+
+  {{ $hugo := printf `<a href="https://gohugo.io/" aria-label="hugo link">
+    <img
+    src="/images/default/hugo-logo-wide.svg"
+    alt="Hugo"
+    class="mx-1 h-3" />
+    </a>`
+  }}
+  {{ $seven := printf `<a
+    href="https://github.com/mrhelloboy/seven"
+    aria-label="The github address of seven theme">
+    <img
+    x-show="!$store.darkMode.on"
+    x-cloak
+    id="footer-theme-light-logo"
+    src="/images/default/seven-logo.svg"
+    alt="seven theme logo"
+    class="mx-1 h-5" />
+
+    <img
+    x-show="$store.darkMode.on"
+    x-cloak
+    id="footer-theme-dark-logo"
+    src="/images/default/seven-logo-dark.svg"
+    alt="seven theme logo"
+    class="mx-1 h-5" />
+    </a>`
+  }}
+  <span
+    x-data
+    class="flex flex-row items-center justify-center text-xs dark:text-gray-500"
+    >{{ T "footer.powered_by" (dict "Hugo" $hugo "Theme" $seven) | safeHTML }}</span
+  >
+
+  <span
+    class="flex flex-col items-center justify-between space-y-3 text-xs dark:text-gray-500">
+    &copy;
+    {{ $startYear := .Site.Params.copyright.start_year }}
+    {{ $currentYear := now.Format "2006" }}
+    {{ with eq $startYear $currentYear }}
+      {{ $currentYear }}
+    {{ else }}
+      {{ $startYear }} -
+      {{ $currentYear }}
+    {{ end }}
+
+    {{ .Site.Params.copyright.owner }}
+    {{ T "copyright" }}
+  </span>
 </footer>

@@ -20,14 +20,14 @@
         id="NotSearchResults"
         class="hidden flex-col items-center justify-around space-y-4 px-6 py-10">
         <p class="font-Oswald text-lg font-bold tracking-wide text-gray-500">
-          No search content
+          {{ T "search.no_result" }}
         </p>
       </div>
       <div
         id="searchError"
         class="hidden flex-col items-center justify-around space-y-4 px-6 py-10 text-center ">
         <p class="font-Oswald text-lg font-bold text-red-500">
-          Oop ! Error occur ...
+          {{ T "search.error " }}
         </p>
       </div>
       <div
@@ -54,10 +54,10 @@
   {{/* logo */}}
   <div
     class="bottom-0 flex flex-col items-center justify-center space-y-2 py-8 font-Oswald text-xs font-bold text-gray-600">
-    <div class="hidden md:block">Press ESC to cancle</div>
-    <div class="flex items-center">
-      <span class="">Powered by &nbsp;</span>
-      <img src="/images/default/algolia-logo.svg" alt="" class="h-4" />
+    <div class="hidden md:block">{{ T "search.cancel" }}</div>
+    <div class="flex items-center justify-center">
+      {{ $algolia := printf `<img src="/images/default/algolia-logo.svg" alt="" class="h-4" />` }}
+      {{ T "search.powered_by" (dict "Name" $algolia) | safeHTML }}
     </div>
   </div>
 </section>
@@ -70,12 +70,13 @@
   src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.56.3/dist/instantsearch.production.min.js"
   integrity="sha256-mWvjWAfZylKMOg+S3HLq+wng1HHRnl2Idr2r8NsUzIU="
   crossorigin="anonymous"></script>
+{{ $placeholder := (T "search.placeholder") }}
 {{ $app_id := .Site.Params.algolia.app_id }}
 {{ $api_key := .Site.Params.algolia.api_key }}
 {{ $index := .Site.Params.algolia.index }}
 {{ $snippet := .Site.Params.algolia.snippet_attr }}
 {{ $highlight := .Site.Params.algolia.highlight_attr }}
-{{ $algoliaInfo := dict "api_id" $app_id "api_key" $api_key "index" $index "snippet" $snippet "highlight" $highlight }}
+{{ $algoliaInfo := dict "placeholder" $placeholder "api_id" $app_id "api_key" $api_key "index" $index "snippet" $snippet "highlight" $highlight }}
 {{ $searchJS := resources.Get "/js/search.js" | js.Build (dict "params" $algoliaInfo) }}
 {{ if hugo.IsProduction }}
   {{ $searchJS = $searchJS | minify | fingerprint }}
