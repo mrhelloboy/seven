@@ -73,10 +73,10 @@
             <span>{{ .Date.Format "2006/01/02" }}</span>
             <div
               class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
-            <span>{{- .WordCount | printf "%d words" -}}</span>
+            <span>{{- .WordCount -}}&nbsp;{{ T "article.words" }}</span>
             <div
               class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
-            <span>{{- .ReadingTime| printf "%d mins" -}}</span>
+            <span>{{- .ReadingTime -}}&nbsp;{{ T "article.minutes" }}</span>
             {{ if .Site.Params.articleMeta.enablePageView }}
               <div
                 class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
@@ -87,7 +87,7 @@
                   data-path="{{ .RelPermalink }}"
                   >...</span
                 >
-                visits
+                &nbsp;{{ T "article.visits" }}
               </p>
             {{ end }}
             {{ if and (not .Params.disableComment) .Site.Params.comment.enable }}
@@ -104,7 +104,7 @@
                     data-path="{{ .RelPermalink }}"
                     >...</span
                   >
-                  comments
+                  &nbsp;{{ T "article.comments" }}
                 </button>
               {{ end }}
             {{ end }}
@@ -117,7 +117,9 @@
             type="button"
             x-on:click="open = !open"
             class="flex w-full cursor-pointer items-center justify-between rounded-lg px-2 py-2 text-gray-500/90 hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-800 dark:hover:text-gray-300">
-            <span class="text-sm font-medium"> Table of Contents </span>
+            <span class="text-sm font-medium">
+              {{ T "toc.mobile_title" }}
+            </span>
 
             <span
               class="shrink-0 transition duration-300 group-open:-rotate-180">

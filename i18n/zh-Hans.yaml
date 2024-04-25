@@ -1,3 +1,13 @@
+article:
+  words: "字数"
+  minutes: "分钟"
+  visits: "阅读量"
+  comments: "评论数"
+
+toc:
+  title: "目录"
+  mobile_title: "目录"
+
 search:
   placeholder: "请搜索内容"
   no_result: "找不到搜索内容"

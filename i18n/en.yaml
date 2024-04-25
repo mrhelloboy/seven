@@ -1,3 +1,13 @@
+article:
+  words: "words"
+  minutes: "mins"
+  visits: "visits"
+  comments: "comments"
+
+toc:
+  title: "In this article"
+  mobile_title: "Table of Contents"
+
 search:
   placeholder: "Search for content"
   no_result: "No search content"
