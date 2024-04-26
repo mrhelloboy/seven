@@ -45,7 +45,7 @@
             x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
             x-transition:leave-start="translate-x-0"
             x-transition:leave-end="translate-x-full"
-            class="pointer-events-auto relative max-w-60">
+            class="pointer-events-auto relative w-screen max-w-60">
             <div class="flex h-full flex-col py-6 shadow-xl">
               <div class="flex items-center justify-between pr-2">
                 <h2
@@ -67,7 +67,6 @@
                     type="button"
                     @click="open = false"
                     class="text-gray-300 hover:text-black focus:outline-none dark:text-gray-400 dark:hover:text-gray-100">
-                    {{/* <span class="absolute -inset-2.5"></span> */}}
                     <span class="sr-only">Close panel</span>
                     <svg
                       class="h-6 w-6"
@@ -82,7 +81,6 @@
                 </div>
               </div>
               <div class="relative mt-6 h-128 flex-1">
-                <!-- Your content -->
                 <div id="single-toc">
                   {{ .TableOfContents }}
                 </div>
