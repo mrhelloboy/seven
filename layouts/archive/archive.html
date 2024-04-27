@@ -1,11 +1,11 @@
 {{ define "main" }}
-  <section class="mx-auto mt-22 w-full grow bg-white md:mt-38 dark:bg-gray-900">
+  <section class="mx-auto mt-22 w-full grow md:mt-38">
     <div class="mx-auto flex w-full flex-col p-4 md:max-w-screen-md">
       {{ $pages := (where .Site.Pages "IsPage" true) }}
       {{ range ($pages.GroupByDate "2006") }}
         {{ if gt .Key 1 }}
           <div
-            class="mb-4 rounded-lg border border-gray-600 p-5 dark:border-gray-600 dark:bg-gray-900">
+            class="mb-4 rounded-lg border border-gray-600 p-5 dark:border-gray-600">
             {{ $.Scratch.Set "count" 1 }}
             {{ range .Pages }}
               {{ if (eq ($.Scratch.Get "count") 1) }}

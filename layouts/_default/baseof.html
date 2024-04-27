@@ -36,7 +36,49 @@
       }
     </style>
   </head>
-  <body class="flex h-screen flex-col scroll-auto bg-white dark:bg-gray-900">
+
+  <body
+    x-cloak
+    x-data="{ 
+      bgOpen: {{ .Site.Params.background.enable }},
+      newbgImg: '',
+      bgImg: '',
+
+      init() {
+        if (this.bgOpen && $store.darkMode.on) {
+          bgImg = '{{ .Site.Params.background.darkImg }}'
+        } else if (this.bgOpen && !$store.darkMode.on) {
+          bgImg = '{{ .Site.Params.background.lightImg }}'
+        } else {
+          bgImg = ''
+        }
+      },
+
+      get bgImg () {
+        return bgImg
+      },
+
+      set bgImg(v) {
+        console.log('set bgImg: ', v)
+        bgImg = v;
+      },
+
+      getNewBgImg() {
+        return bgImg;
+      },
+    }"
+    x-init="$watch('$store.darkMode.on', (value) => {
+      if (value && bgOpen) {
+        bgImg = '{{ .Site.Params.background.darkImg }}'
+      } else if (!value && bgOpen) {
+        bgImg = '{{ .Site.Params.background.lightImg }}'
+      } 
+    })"
+    @click="newbgImg = getNewBgImg()"
+    x-effect="$el.style.backgroundImage = 'url(' + bgImg + ')'"
+    :style="'background-image: ' + 'url(' + newbgImg + ')'"
+    :class="{'bg-white': !bgOpen, 'dark:bg-gray-900': !bgOpen, 'bg-cover': bgOpen, 'bg-fixed': bgOpen}"
+    class="flex h-screen flex-col scroll-auto">
     {{- partial "header/header.html" . -}}
 
     {{- block "main" . }}{{- end }}
