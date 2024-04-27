@@ -41,134 +41,138 @@
   {{ end }}
 
 
-  <div id="single-page-container" class="my-5 w-full rounded-b-lg px-5">
-    <div class="mx-auto flex max-w-screen-xl">
+  <div
+    id="single-page-container"
+    class="my-5 w-full rounded-b-lg px-5 md:px-10 lg:px-1">
+    <div
+      class="mx-auto flex max-w-screen-xl lg:grid lg:grid-flow-col lg:grid-cols-4 xl:grid-cols-5">
       {{/* Left side */}}
       {{ partial "content_left_section.html" . }}
       {{/* Content */}}
-      <div id="post-container" class="mx-auto w-full md:max-w-3xl lg:w-2/3">
-        {{/* Title */}}
-        <div id="post-title" class="flex w-full flex-col py-5 md:px-1 lg:px-7">
-          <div
-            class="flex flex-row flex-wrap space-x-1 pb-2 pl-2 pt-1 font-Oswald text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
-            {{ $categories := (.GetTerms "categories") }}
-            <span class="flex flex-row gap-1">
-              {{ range $categories }}
-                <span class="italic text-red-700"> > </span>
-                <a
-                  class="border-b-2 border-transparent hover:border-b-2 hover:border-blue-600 hover:text-blue-600"
-                  href="{{ .Permalink }}"
-                  >{{- .LinkTitle -}}</a
-                >
-              {{ end }}
-            </span>
-          </div>
-          <div
-            class="py-1 pl-2 text-start text-3xl font-bold tracking-wide text-black lg:text-4xl dark:text-white">
-            {{ .Title }}
-          </div>
+      <div
+        id="post-container"
+        class="mx-auto w-full lg:col-span-2 xl:col-span-3">
+        <div class="py-5 md:px-1 lg:px-5">
+          <div id="post-title" class="flex w-full flex-col">
+            <div
+              class="flex flex-row flex-wrap space-x-1 pb-2 pt-1 font-Oswald text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
+              {{ $categories := (.GetTerms "categories") }}
+              <span class="flex flex-row gap-1">
+                {{ range $categories }}
+                  <span class="italic text-red-700"> > </span>
+                  <a
+                    class="border-b-2 border-transparent hover:border-b-2 hover:border-blue-600 hover:text-blue-600"
+                    href="{{ .Permalink }}"
+                    >{{- .LinkTitle -}}</a
+                  >
+                {{ end }}
+              </span>
+            </div>
+            <div
+              class="py-1 text-start text-3xl font-bold tracking-wide text-black lg:text-4xl dark:text-white">
+              {{ .Title }}
+            </div>
 
-          <div
-            class="flex flex-row flex-wrap items-center space-x-1 pb-1 pl-2 pt-3.5 font-serif text-xs font-extralight tracking-wide text-gray-500/90 dark:text-gray-600">
-            <span>{{ .Date.Format "2006/01/02" }}</span>
             <div
-              class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
-            <span>{{- .WordCount -}}&nbsp;{{ T "article.words" }}</span>
-            <div
-              class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
-            <span>{{- .ReadingTime -}}&nbsp;{{ T "article.minutes" }}</span>
-            {{ if .Site.Params.articleMeta.enablePageView }}
+              class="flex flex-row flex-wrap items-center space-x-1 pb-1 pt-3.5 font-serif text-xs font-extralight tracking-wide text-gray-500/90 dark:text-gray-600">
+              <span>{{ .Date.Format "2006/01/02" }}</span>
               <div
                 class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
-              <p>
-                <span
-                  id="twikoo_visitors"
-                  class="page-info-pageview-count"
-                  data-path="{{ .RelPermalink }}"
-                  >...</span
-                >
-                &nbsp;{{ T "article.visits" }}
-              </p>
-            {{ end }}
-            {{ if and (not .Params.disableComment) .Site.Params.comment.enable }}
-              {{ if and .Site.Params.comment.enableCounts .Site.Params.comment.waline.enable }}
+              <span>{{- .WordCount -}}&nbsp;{{ T "article.words" }}</span>
+              <div
+                class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
+              <span>{{- .ReadingTime -}}&nbsp;{{ T "article.minutes" }}</span>
+              {{ if .Site.Params.articleMeta.enablePageView }}
                 <div
                   class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
-                <button
-                  x-data
-                  @click="toComment()"
-                  id="speed-comment-count-id"
-                  class="whitespace-nowrap hover:text-blue-700 hover:underline hover:decoration-blue-700">
+                <p>
                   <span
-                    class="waline-comment-count"
+                    id="twikoo_visitors"
+                    class="page-info-pageview-count"
                     data-path="{{ .RelPermalink }}"
                     >...</span
                   >
-                  &nbsp;{{ T "article.comments" }}
-                </button>
+                  &nbsp;{{ T "article.visits" }}
+                </p>
               {{ end }}
-            {{ end }}
+              {{ if and (not .Params.disableComment) .Site.Params.comment.enable }}
+                {{ if and .Site.Params.comment.enableCounts .Site.Params.comment.waline.enable }}
+                  <div
+                    class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
+                  <button
+                    x-data
+                    @click="toComment()"
+                    id="speed-comment-count-id"
+                    class="whitespace-nowrap hover:text-blue-700 hover:underline hover:decoration-blue-700">
+                    <span
+                      class="waline-comment-count"
+                      data-path="{{ .RelPermalink }}"
+                      >...</span
+                    >
+                    &nbsp;{{ T "article.comments" }}
+                  </button>
+                {{ end }}
+              {{ end }}
+            </div>
           </div>
-        </div>
+          <div x-data="{ open: false }" class="mt-5 lg:hidden">
+            <button
+              type="button"
+              x-on:click="open = !open"
+              class="flex w-full cursor-pointer items-center justify-between rounded-lg py-2 text-gray-500/90 hover:text-gray-700 dark:hover:text-gray-300">
+              <span class="text-sm font-medium">
+                {{ T "toc.mobile_title" }}
+              </span>
 
-        {{/* Mobile toc */}}
-        <div x-data="{ open: false }" class="mt-1 md:px-1 lg:hidden lg:px-7">
-          <button
-            type="button"
-            x-on:click="open = !open"
-            class="flex w-full cursor-pointer items-center justify-between rounded-lg px-2 py-2 text-gray-500/90 hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-800 dark:hover:text-gray-300">
-            <span class="text-sm font-medium">
-              {{ T "toc.mobile_title" }}
-            </span>
+              <span
+                class="shrink-0 transition duration-300 group-open:-rotate-180">
+                <svg
+                  :class="{ 'rotate-180': open }"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor">
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd" />
+                </svg>
+              </span>
+            </button>
 
-            <span
-              class="shrink-0 transition duration-300 group-open:-rotate-180">
-              <svg
-                :class="{ 'rotate-180': open }"
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor">
-                <path
-                  fill-rule="evenodd"
-                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                  clip-rule="evenodd" />
-              </svg>
-            </span>
-          </button>
+            <div
+              x-cloak
+              x-show="open"
+              x-transition.duration.500ms
+              x-on:keydown.escape.window="open = false"
+              class="mt-1 space-y-1 px-0.5">
+              {{ .TableOfContents }}
+            </div>
+          </div>
 
           <div
-            x-cloak
-            x-show="open"
-            x-transition.duration.500ms
-            x-on:keydown.escape.window="open = false"
-            class="mt-1 space-y-1 px-2.5">
-            {{ .TableOfContents }}
+            id="single-content"
+            class="format mx-auto mt-2 max-w-none md:format-base dark:format-invert format-figure:flex format-figure:flex-col format-figure:items-center format-img:cursor-zoom-in lg:mt-11 dark:text-gray-300">
+            {{ .Content }}
           </div>
-        </div>
 
-        {{/* Content */}}
-        <div
-          id="single-content"
-          class="format mx-auto max-w-none px-1 py-5 md:format-base dark:format-invert format-figure:flex format-figure:flex-col format-figure:items-center format-img:cursor-zoom-in md:px-3 lg:px-10 dark:text-gray-300">
-          {{ .Content }}
-        </div>
-
-        {{/* tags */}}
-        <div class="px-1 pb-5 pt-1  md:px-3 lg:px-10">
-          {{ $tags := (.GetTerms "tags") }}
-          <span
-            class="flex flex-row flex-wrap justify-start gap-2 pl-1 font-serif text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
-            {{ range $tags }}
-              <a class="text-center hover:text-blue-600" href="{{ .Permalink }}"
-                ><span class="text-red-700 ">#</span
-                ><span
-                  class="border-b-2 border-transparent hover:border-b-2 hover:border-blue-600"
-                  >{{- .LinkTitle -}}</span
-                ></a
-              >
-            {{ end }}
-          </span>
+          <div class=" pb-5 pt-1">
+            {{ $tags := (.GetTerms "tags") }}
+            <span
+              class="flex flex-row flex-wrap justify-start gap-2 pl-1 font-serif text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
+              {{ range $tags }}
+                <a
+                  class="text-center hover:text-blue-600"
+                  href="{{ .Permalink }}"
+                  ><span class="text-red-700 ">#</span
+                  ><span
+                    class="border-b-2 border-transparent hover:border-b-2 hover:border-blue-600"
+                    >{{- .LinkTitle -}}</span
+                  ></a
+                >
+              {{ end }}
+            </span>
+          </div>
         </div>
       </div>
       {{/* Right side */}}

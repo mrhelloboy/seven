@@ -1,6 +1,6 @@
 <div
   x-data="{ open: true }"
-  class="hidden lg:sticky lg:top-28 lg:flex lg:h-dvh lg:w-1/3 lg:max-w-60">
+  class="hidden lg:sticky lg:top-28 lg:flex lg:h-full lg:min-w-60">
   <div
     x-show="!open"
     x-cloak
@@ -45,8 +45,8 @@
             x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
             x-transition:leave-start="translate-x-0"
             x-transition:leave-end="translate-x-full"
-            class="pointer-events-auto relative w-screen max-w-60">
-            <div class="flex h-full flex-col py-6 shadow-xl">
+            class="pointer-events-auto relative">
+            <div class="flex h-full flex-col py-6 shadow-xl lg:min-w-60">
               <div class="flex items-center justify-between pr-2">
                 <h2
                   class="text-base font-bold leading-6 text-gray-700 dark:text-gray-400"
