@@ -96,7 +96,7 @@
       </button>
       <div
         x-show="openQC"
-        @keydown.window.escape="openQC = false"
+        @keydown.window.escape="openQC = false; document.body.style.overflow = ''; window.scrollTo(0, scrollY);"
         x-cloak
         role="dialog"
         aria-modal="true">
@@ -104,7 +104,7 @@
         <div class="fixed inset-0 z-50 w-full bg-gray-900/85 backdrop-blur-md">
           <div class="mx-auto flex h-full w-full items-center justify-center">
             <img
-              @click.away="openQC = false"
+              @click.away="openQC = false; document.body.style.overflow = ''; window.scrollTo(0, scrollY);"
               class="object-cover"
               src="{{ $value.QRCodeUrl }}"
               alt="" />
