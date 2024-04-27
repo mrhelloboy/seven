@@ -3,8 +3,8 @@
   class="z-40 w-full"
   @scroll.window="shrink = (window.scrollY > 10 ? true : false)">
   <nav
-    :class="{ 'h-24': shrink, 'h-38': !shrink, 'shadow-md': shrink}"
-    class="fixed inset-0 mx-auto flex h-38 items-center justify-between bg-white/85 py-4 backdrop-blur-md transition-all duration-500 ease-in-out dark:bg-gray-900/85"
+    :class="{ 'h-24': shrink, 'h-38': !shrink, 'shadow-md': shrink, 'bg-white/85': shrink, 'dark:bg-gray-900/85': shrink, 'backdrop-blur-md': shrink}"
+    class="fixed inset-0 mx-auto flex h-38 items-center justify-between py-4 transition-all duration-500 ease-in-out"
     aria-label="Global">
     <div
       class="mx-auto flex w-[1000px] flex-wrap items-center justify-between place-self-center object-center p-4">
