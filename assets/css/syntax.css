@@ -1,10 +1,12 @@
 /* Background */
 .bg {
-  background-color: #f8f8f8;
+  /* background-color: #f8f8f8; */
+  background-color: rgb(168 168 168 / 0.16);
 }
 /* PreWrapper */
 .chroma {
-  background-color: #f8f8f8;
+  /* background-color: #f8f8f8; */
+  background-color: rgb(168 168 168 / 0.16);
 }
 /* Other */
 .chroma .x {
