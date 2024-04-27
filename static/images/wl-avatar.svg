@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 800 800"><defs><radialGradient id="ccclaymoji-grad-dark" r="93%" cx="20%" cy="20%">
+      <stop offset="70%" stop-color="hsl(50, 98%, 50%)" stop-opacity="0"></stop>
+      <stop offset="97%" stop-color="#c4a200" stop-opacity="1"></stop>
+    </radialGradient><radialGradient id="ccclaymoji-grad-light" r="65%" cx="28%" cy="20%">
+    <stop offset="0%" stop-color="#ffff52" stop-opacity="0.75"></stop>
+    <stop offset="100%" stop-color="hsl(50, 98%, 50%)" stop-opacity="0"></stop>
+  </radialGradient><filter id="inner-blur" x="-100%" y="-100%" width="400%" height="400%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+	<feGaussianBlur stdDeviation="2" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" edgeMode="none" result="blur"></feGaussianBlur></filter><filter id="eye-shadow" x="-100%" y="-100%" width="400%" height="400%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+	<feDropShadow stdDeviation="10" dx="10" dy="10" flood-color="#000000" flood-opacity="0.2" x="0%" y="0%" width="100%" height="100%" result="dropShadow"></feDropShadow>
+</filter><linearGradient gradientTransform="rotate(-25)" id="eye-light" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="20%" stop-color="#555555" stop-opacity="1"></stop>
+      <stop offset="100%" stop-color="black" stop-opacity="0"></stop>
+    </linearGradient><linearGradient id="mouth-light" x1="50%" y1="0%" x2="50%" y2="100%">
+    <stop offset="0%" stop-color="#ff9667" stop-opacity="1"></stop>
+    <stop offset="100%" stop-color="hsl(3, 100%, 51%)" stop-opacity="0"></stop>
+  </linearGradient><filter id="mouth-shadow" x="-100%" y="-100%" width="400%" height="400%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+	<feDropShadow stdDeviation="10" dx="10" dy="10" flood-color="#c20000" flood-opacity="0.2" x="0%" y="0%" width="100%" height="100%" result="dropShadow"></feDropShadow>
+</filter></defs><g stroke-linecap="round"><circle r="350" cx="400" cy="400" fill="hsl(50, 98%, 50%)"></circle><circle r="350" cx="400" cy="400" fill="url(#ccclaymoji-grad-dark)"></circle><circle r="350" cx="400" cy="400" fill="url(#ccclaymoji-grad-light)"></circle><ellipse rx="44" ry="42.5" cx="301" cy="260" fill="black" filter="url(#eye-shadow)"></ellipse><ellipse rx="44" ry="42.5" cx="301" cy="260" fill="url(#eye-light)" filter="url(#inner-blur)"></ellipse><ellipse rx="45" ry="43.5" cx="494" cy="224" fill="black" filter="url(#eye-shadow)"></ellipse><ellipse rx="45" ry="43.5" cx="494" cy="224" fill="url(#eye-light)" filter="url(#inner-blur)"></ellipse><path d="M358 413Q438 473 516 413 " stroke-width="32" stroke="hsl(3, 100%, 51%)" fill="none" filter="url(#mouth-shadow)" transform="rotate(346, 400, 400)"></path><path d="M358 413Q438 473 516 413 " stroke-width="10.666666666666666" stroke="url(#mouth-light)" fill="none" filter="url(#inner-blur)" transform="rotate(346, 400, 400)"></path></g></svg>

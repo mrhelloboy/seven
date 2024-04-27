@@ -138,7 +138,8 @@
 }
 .dark {
   --waline-color: #fff !important;
-  --waline-bg-color: #000 !important;
+  --waline-bg-color: #131a25 !important;
+  --waline-bg-color-light: #101218 !important;
   --waline-border-color: #292c32 !important;
   --waline-dark-grey: #9ca3af !important;
   --waline-theme-color: #fff !important;
@@ -1073,6 +1074,11 @@
   width: var(--waline-user-avatar-size, 48px);
   height: var(--waline-user-avatar-size, 48px);
 }
+
+.wl-user-avatar {
+  content: url("/images/wl-avatar.svg") !important;
+}
+
 .wl-user-list .wl-user-badge {
   position: absolute;
   bottom: 0;
