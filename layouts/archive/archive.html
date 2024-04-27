@@ -1,5 +1,5 @@
 {{ define "main" }}
-  <section class="mx-auto mt-22 w-full grow md:mt-38">
+  <section class="mx-auto mt-38 w-full grow">
     <div class="mx-auto flex w-full flex-col p-4 md:max-w-screen-md">
       {{ $pages := (where .Site.Pages "IsPage" true) }}
       {{ range ($pages.GroupByDate "2006") }}
@@ -22,7 +22,6 @@
               {{ range .Pages }}
                 <li
                   class="group flex flex-col flex-wrap justify-start p-3 hover:rounded-lg hover:bg-gray-50 md:flex-row md:items-center dark:hover:bg-gray-800">
-                  {{/* date and title */}}
                   <span class="font-serif text-gray-500 dark:text-gray-300"
                     >{{ .Date.Format "01/02" }}</span
                   >
