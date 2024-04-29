@@ -16,8 +16,7 @@
     },
     {
       "files": [
-        "*.js",
-        "*.ts"
+        "*.js"
       ],
       "options": {
         "useTabs": false,
