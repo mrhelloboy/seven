@@ -1,10 +1,10 @@
 {{ range .Site.Menus.main }}
   {{ if .HasChildren }}
-    <div x-data="{ subMenuOpen: false }" class="-mx-3">
+    <div x-data="{ subMenuOpen: false }">
       <button
         @click="subMenuOpen = !subMenuOpen"
         type="button"
-        class="group flex w-full items-center justify-center rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:text-blue-700 dark:text-white"
+        class="group flex w-full items-center justify-center rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:text-blue-700 dark:text-white"
         aria-controls="disclosure-1"
         aria-expanded="false">
         <span>{{ .Name | safeHTML }}</span>
@@ -28,7 +28,7 @@
         {{ range .Children }}
           <a
             href="{{ .URL | relLangURL }}"
-            class="w-full rounded-lg py-2 pl-6 pr-3 text-center text-sm font-semibold leading-7 text-gray-900 hover:text-blue-700 dark:text-white"
+            class="w-full rounded-lg px-3 py-2 text-center text-sm font-semibold leading-7 text-gray-900 hover:text-blue-700 dark:text-white"
             >{{ .Name | safeHTML }}</a
           >
         {{ end }}
@@ -45,7 +45,7 @@
 {{ end }}
 
 {{ if not .Site.Params.omitCategoryOnMenu }}
-  <div x-data="{ subMenuOpen: false }" class="-mx-3">
+  <div x-data="{ subMenuOpen: false }">
     <button
       @click="subMenuOpen = !subMenuOpen"
       type="button"
@@ -74,7 +74,7 @@
       {{ range .Site.Taxonomies.categories }}
         <a
           href="{{ .Page.Permalink }}"
-          class="block rounded-lg py-2 pl-6 pr-3 text-center text-sm font-semibold leading-7 text-gray-900 hover:text-blue-700 dark:text-white"
+          class="block rounded-lg px-3 py-2 text-center text-sm font-semibold leading-7 text-gray-900 hover:text-blue-700 dark:text-white"
           >{{ .Page.Title | safeHTML }}</a
         >
       {{ end }}
