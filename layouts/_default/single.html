@@ -219,13 +219,11 @@
 {{ end }}
 
 {{ define "script" }}
-  {{ if not .Site.Params.articleMeta.disableToc }}
-    {{ $tocJS := resources.Get "/js/toc.js" }}
-    {{ if hugo.IsProduction }}
-      {{ $tocJS = $tocJS | minify | fingerprint }}
-    {{ end }}
-    <script src="{{ $tocJS.RelPermalink }}"></script>
+  {{ $tocJS := resources.Get "/js/toc.js" }}
+  {{ if hugo.IsProduction }}
+    {{ $tocJS = $tocJS | minify | fingerprint }}
   {{ end }}
+  <script src="{{ $tocJS.RelPermalink }}"></script>
 
   {{ $zoomJS := resources.Get "/js/zoom-img.js" }}
   {{ if hugo.IsProduction }}
