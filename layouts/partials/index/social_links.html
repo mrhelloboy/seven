@@ -115,7 +115,4 @@
   {{ end }}
 {{ end }}
 
-{{ $customSocialUrl :=.Site.Params.society.customSocial }}
-{{ if $customSocialUrl }}
-  {{ partial $customSocialUrl . }}
-{{ end }}
+{{ partial "index/hook_social_links.html" . }}

@@ -16,7 +16,18 @@
   {{- end -}}
 {{- end -}}
 
-{{ $options := dict "inlineImports" true }}
+
+<!-- hook before css -->
+{{ with resources.Get "css/hook_before.css" }}
+  {{ if hugo.IsDevelopment }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" />
+  {{ else }}
+    {{ with . | postCSS | minify | fingerprint | resources.PostProcess }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" />
+    {{ end }}
+  {{ end }}
+{{ end }}
+
 {{ if and .Site.Params.enableSearch .Site.Params.algolia.app_id }}
   <!-- algoria css -->
   <link
@@ -25,42 +36,54 @@
     integrity="sha256-2AeJLzExpZvqLUxMfcs+4DWcMwNfpnjUeAAvEtPr0wU="
     crossorigin="anonymous" />
 
-  {{ $search_styles := resources.Get "/css/search.css" }}
-  {{ $search_styles = $search_styles | resources.PostCSS $options }}
-  {{ if hugo.IsProduction }}
-    {{ $search_styles = $search_styles | minify | fingerprint | resources.PostProcess }}
+  {{ $opts := dict "inlineImports" true }}
+  {{ with resources.Get "css/search.css" | postCSS $opts }}
+    {{ if hugo.IsDevelopment }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" />
+    {{ else }}
+      {{ with . | minify | fingerprint | resources.PostProcess }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" />
+      {{ end }}
+    {{ end }}
+
   {{ end }}
-  <link href="{{ $search_styles.RelPermalink }}" rel="stylesheet" />
+
 {{ end }}
 
 
 <!-- comments -->
 {{ if and .Site.Params.comment.enable .Site.Params.comment.waline.enable }}
-  {{ $waline_styles := resources.Get "css/waline.css" }}
-  {{ $waline_styles = $waline_styles | resources.PostCSS $options }}
-  {{ if hugo.IsProduction }}
-    {{ $waline_styles = $waline_styles | minify | fingerprint | resources.PostProcess }}
+  {{ with resources.Get "css/waline.css" }}
+    {{ if hugo.IsDevelopment }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" />
+    {{ else }}
+      {{ with . | postCSS | minify | fingerprint | resources.PostProcess }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" />
+      {{ end }}
+    {{ end }}
   {{ end }}
-  <link href="{{ $waline_styles.RelPermalink }}" rel="stylesheet" />
 {{ end }}
 
 
 <!-- theme css -->
-{{ $styles := resources.Get "css/styles.css" }}
-{{ $styles = $styles | resources.PostCSS $options }}
-{{ if hugo.IsProduction }}
-  {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
+{{ with resources.Get "css/styles.css" }}
+  {{ if hugo.IsDevelopment }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" />
+  {{ else }}
+    {{ with . | postCSS | minify | fingerprint | resources.PostProcess }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" />
+    {{ end }}
+  {{ end }}
 {{ end }}
-<link href="{{ $styles.RelPermalink }}" rel="stylesheet" />
 
-<!-- custom css -->
-{{- with .Site.Params.head.customCSS -}}
-  {{- $customCSS := resources.GetMatch . -}}
-  {{- if $customCSS -}}
-    {{- $customCSS = $customCSS | resources.PostCSS $options -}}
-    {{- if hugo.IsProduction -}}
-      {{- $customCSS = $customCSS | minify | fingerprint | resources.PostProcess -}}
-    {{- end -}}
-    <link href="{{ $customCSS.RelPermalink }}" rel="stylesheet" />
-  {{- end -}}
-{{- end -}}
+
+<!-- hook after css -->
+{{ with resources.Get "css/hook_after.css" }}
+  {{ if hugo.IsDevelopment }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" />
+  {{ else }}
+    {{ with . | postCSS | minify | fingerprint | resources.PostProcess }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" />
+    {{ end }}
+  {{ end }}
+{{ end }}
