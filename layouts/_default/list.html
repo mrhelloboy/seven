@@ -1,6 +1,32 @@
 {{ define "main" }}
-  <div class="mx-auto mt-38 flex w-full grow flex-col p-4">
-    <ul class="mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+  <div class="mx-auto mt-38 flex max-w-[1000px] grow flex-col p-4">
+    <ul
+      class="mx-auto grid grid-cols-1 place-items-stretch md:grid-cols-2 lg:grid-cols-3">
+      {{ if and .Title .Content }}
+        <div
+          class="col-span-1 mb-5 flex max-w-prose flex-col px-4 md:col-span-2 lg:col-span-3">
+          <div
+            class="flex items-center justify-start space-x-2 text-gray-800 dark:text-gray-400">
+            {{ if not .Params.disableImg }}
+              <svg
+                class="size-7"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 -960 960 960"
+                fill="currentColor">
+                <path
+                  d="M240-500v-220h220v220H240Zm0 260v-220h220v220H240Zm260-260v-220h220v220H500Zm0 260v-220h220v220H500ZM320-580h60v-60h-60v60Zm260 0h60v-60h-60v60ZM320-320h60v-60h-60v60Zm260 0h60v-60h-60v60ZM380-580Zm200 0Zm0 200Zm-200 0ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Z" />
+              </svg>
+            {{ end }}
+            <p class="text-2xl font-bold">{{ .Title }}</p>
+          </div>
+
+          <div class="format py-5 dark:format-invert format-a:text-blue-700">
+            {{ .Content }}
+          </div>
+          <span
+            class="h-px w-full max-w-4xl bg-gray-300 dark:bg-gray-600"></span>
+        </div>
+      {{ end }}
       {{ range .Paginator.Pages }}
         {{ partial "li_page.html" . }}
       {{ end }}
