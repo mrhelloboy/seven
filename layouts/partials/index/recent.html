@@ -5,9 +5,10 @@
 {{ $lastestPosts := first 6 (where $allPages "IsPage" true) }}
 
 
-<div class="mx-auto grid grid-cols-1 gap-1 md:grid-cols-2 lg:grid-cols-3">
+<div
+  class="mx-auto grid w-full grid-cols-1 gap-1 md:grid-cols-2 lg:grid-cols-3">
   {{ range $lastestPosts }}
-    <div class="h-80 w-full px-8 py-2 md:w-80 md:px-4">
+    <div class="h-80 w-full items-stretch px-8 py-2 md:px-4">
       <a href="{{ .Permalink }}" class="group relative block h-full w-full">
         <span
           class="absolute inset-0 rounded-lg border-2 border-dashed border-black dark:border-gray-400"></span>
