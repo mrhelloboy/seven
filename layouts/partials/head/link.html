@@ -28,6 +28,7 @@
   {{ end }}
 {{ end }}
 
+{{ $opts := dict "inlineImports" true }}
 {{ if and .Site.Params.enableSearch .Site.Params.algolia.app_id }}
   <!-- algoria css -->
   <link
@@ -36,7 +37,6 @@
     integrity="sha256-2AeJLzExpZvqLUxMfcs+4DWcMwNfpnjUeAAvEtPr0wU="
     crossorigin="anonymous" />
 
-  {{ $opts := dict "inlineImports" true }}
   {{ with resources.Get "css/search.css" | postCSS $opts }}
     {{ if hugo.IsDevelopment }}
       <link rel="stylesheet" href="{{ .RelPermalink }}" />
@@ -53,11 +53,11 @@
 
 <!-- comments -->
 {{ if and .Site.Params.comment.enable .Site.Params.comment.waline.enable }}
-  {{ with resources.Get "css/waline.css" }}
+  {{ with resources.Get "css/waline.css" | postCSS $opts }}
     {{ if hugo.IsDevelopment }}
       <link rel="stylesheet" href="{{ .RelPermalink }}" />
     {{ else }}
-      {{ with . | postCSS | minify | fingerprint | resources.PostProcess }}
+      {{ with . | minify | fingerprint | resources.PostProcess }}
         <link rel="stylesheet" href="{{ .RelPermalink }}" />
       {{ end }}
     {{ end }}
@@ -66,11 +66,11 @@
 
 
 <!-- theme css -->
-{{ with resources.Get "css/styles.css" }}
+{{ with resources.Get "css/styles.css" | postCSS $opts }}
   {{ if hugo.IsDevelopment }}
     <link rel="stylesheet" href="{{ .RelPermalink }}" />
   {{ else }}
-    {{ with . | postCSS | minify | fingerprint | resources.PostProcess }}
+    {{ with . | minify | fingerprint | resources.PostProcess }}
       <link rel="stylesheet" href="{{ .RelPermalink }}" />
     {{ end }}
   {{ end }}
