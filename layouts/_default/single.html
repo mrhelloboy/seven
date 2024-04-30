@@ -181,8 +181,13 @@
 
     {{/* comments */}}
     {{ if and (not .Params.disableComment) .Site.Params.comment.enable }}
-      <div id="post-comment">
-        {{- partial "comments.html" . -}}
+      <div
+        id="post-comment"
+        class="mx-auto max-w-screen-xl lg:grid lg:grid-cols-4 xl:grid-cols-5">
+        <span class="hidden lg:block"></span>
+        <div class="items-stretch lg:col-span-2 lg:col-start-2 xl:col-span-3">
+          {{- partial "comments.html" . -}}
+        </div>
       </div>
     {{ end }}
 

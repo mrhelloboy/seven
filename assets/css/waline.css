@@ -320,8 +320,8 @@
 .wl-input {
   max-width: 100%;
   border: none;
-  /* color: var(--waline-color); */
-  color: rgb(29 78 216);
+  color: var(--waline-color);
+  /* color: rgb(29 78 216); */
   outline: none;
   transition: all 0.25s ease;
 }
@@ -807,6 +807,7 @@
   flex: 1;
   font-weight: bold;
   font-size: 1.25em;
+  color: var(--waline-dark-grey);
 }
 .wl-empty {
   overflow: auto;
