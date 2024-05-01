@@ -115,40 +115,43 @@
               {{ end }}
             </div>
           </div>
-          <div x-data="{ open: false }" class="mt-5 lg:hidden">
-            <button
-              type="button"
-              x-on:click="open = !open"
-              class="flex w-full cursor-pointer items-center justify-between rounded-lg py-2 text-gray-500/90 hover:text-gray-700 dark:hover:text-gray-300">
-              <span class="text-sm font-medium">
-                {{ T "toc.mobile_title" }}
-              </span>
 
-              <span
-                class="shrink-0 transition duration-300 group-open:-rotate-180">
-                <svg
-                  :class="{ 'rotate-180': open }"
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor">
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd" />
-                </svg>
-              </span>
-            </button>
+          {{ if and (gt .WordCount 300 ) (not .Params.disableToc) }}
+            <div x-data="{ open: false }" class="mt-5 lg:hidden">
+              <button
+                type="button"
+                x-on:click="open = !open"
+                class="flex w-full cursor-pointer items-center justify-between rounded-lg py-2 text-gray-500/90 hover:text-gray-700 dark:hover:text-gray-300">
+                <span class="text-sm font-medium">
+                  {{ T "toc.mobile_title" }}
+                </span>
 
-            <div
-              x-cloak
-              x-show="open"
-              x-transition.duration.500ms
-              x-on:keydown.escape.window="open = false"
-              class="mt-1 space-y-1 px-0.5">
-              {{ .TableOfContents }}
+                <span
+                  class="shrink-0 transition duration-300 group-open:-rotate-180">
+                  <svg
+                    :class="{ 'rotate-180': open }"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor">
+                    <path
+                      fill-rule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </span>
+              </button>
+              <div
+                x-cloak
+                x-show="open"
+                x-transition.duration.500ms
+                x-on:keydown.escape.window="open = false"
+                class="mt-1 space-y-1 px-0.5">
+                {{ .TableOfContents }}
+              </div>
             </div>
-          </div>
+          {{ end }}
+
 
           <div
             id="single-content"
