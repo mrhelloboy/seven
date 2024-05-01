@@ -96,7 +96,7 @@
                 </p>
               {{ end }}
               {{ if and (not .Params.disableComment) .Site.Params.comment.enable }}
-                {{ if and .Site.Params.comment.enableCounts .Site.Params.comment.waline.enable }}
+                {{ if and .Site.Params.comment.enableCounts }}
                   <div
                     class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
                   <button
@@ -156,7 +156,7 @@
             {{ .Content }}
           </div>
 
-          <div class=" pb-5 pt-1">
+          <div class="pb-5 pt-3">
             {{ $tags := (.GetTerms "tags") }}
             <span
               class="flex flex-row flex-wrap justify-start gap-2 pl-1 font-serif text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
