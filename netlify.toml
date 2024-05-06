@@ -3,10 +3,10 @@
 
 [build]
   publish = "exampleSite/public"
-  command = "hugo --gc -s exampleSite --minify"
+  command = "cd exampleSite && hugo --gc --minify"
 
 [context.deploy-preview]
-  command = "hugo -s exampleSite --minify -D -F -b $DEPLOY_PRIME_URL"
+  command = "cd exampleSite && hugo --minify -D -F -b $DEPLOY_PRIME_URL"
 
 [context.branch-deploy]
-  command = "hugo -s exampleSite --minify --gc -b $DEPLOY_PRIME_URL"
+  command = "cd exampleSite && hugo --minify --gc -b $DEPLOY_PRIME_URL"
