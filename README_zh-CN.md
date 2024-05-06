@@ -16,11 +16,7 @@
 
 [English](./README.md) | 中文
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="exampleSite/static/images/screenshot/xdr.dark.webp">
-  <source media="(prefers-color-scheme: light)" srcset="exampleSite/static/images/screenshot/xdr.webp">
-  <img alt="Hugo theme Seven" src="exampleSite/static/images/screenshot/xdr.webp" width="500">
-</picture>
+<img alt="Hugo theme Seven" src="exampleSite/static/images/screenshot/xdr.webp" width="500">
 
 ## 示例
 
