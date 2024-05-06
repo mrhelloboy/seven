@@ -1,9 +1,9 @@
 <p align="center">
-  <a href="https://seven-demo.supcat.cn/" target="_blank">
+  <a href="https://hugoseven.netlify.app/" target="_blank">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://seven-demo.supcat.cn/images/logo-footer.svg">
-      <source media="(prefers-color-scheme: light)" srcset="https://seven-demo.supcat.cn/images/logo.svg">
-      <img alt="Hugo theme Seven" src="https://seven-demo.supcat.cn/images/logo.svg" width="350" height="70" style="max-width: 100%;">
+      <source media="(prefers-color-scheme: dark)" srcset="exampleSite/static/images/logo-footer.svg">
+      <source media="(prefers-color-scheme: light)" srcset="exampleSite/static/images/logo.svg">
+      <img alt="Hugo theme Seven" src="exampleSite/static/images/logo.svg" width="350" height="70" style="max-width: 100%;">
     </picture>
   </a>
 </p>
@@ -16,90 +16,100 @@
 
 [English](./README.md) | 中文
 
-<img alt="Seven screenshot" src="https://seven-demo.supcat.cn/images/screenshot/xdr.webp" width="500">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="exampleSite/static/images/screenshot/xdr.dark.webp">
+  <source media="(prefers-color-scheme: light)" srcset="exampleSite/static/images/screenshot/xdr.webp">
+  <img alt="Hugo theme Seven" src="exampleSite/static/images/screenshot/xdr.webp" width="500">
+</picture>
 
 ## 示例
 
-→ [示例网站](https://seven-demo.supcat.cn/)
-
-→ [示例代码仓库](https://github.com/mrhelloboy/hugo-theme-seven-demo)
+→ [示例网站](https://hugoseven.netlify.app/)
 
 ## 前提条件
 
 在开始使用本Hugo主题之前，请确保符合以下要求：
 
-1. 安装了 [Go](https://go.dev/dl/)。参考文档 [Hugo Modules Prerequisite](https://gohugo.io/hugo-modules/use-modules/#prerequisite)
-2. 确保 Hugo 版本为 **v0.112.0** 或更新版本。参考文档 [configure-cache-busters](https://gohugo.io/getting-started/configuration/#configure-cache-busters)
+1. 已经安装 [Go](https://go.dev/dl/)
+2. 确保 `Hugo >= v0.124.0`
 
 ## 快速体验
 
-1. 克隆 [示例代码](https://github.com/mrhelloboy/hugo-theme-seven-demo)
-   ```sh
-   git clone https://github.com/mrhelloboy/hugo-theme-seven-demo.git
-   ```
-2. 执行命令
+### 1. 克隆本仓库
 
-   ```sh
-   cd hugo-theme-seven-demo
+```sh
+git clone https://github.com/mrhelloboy/seven.git
+```
 
-   hugo mod npm pack
+### 2. 进入 exampleSite 目录
 
-   npm install
+```sh
+cd exampleSite
+```
 
-   hugo server
-   ```
+### 3. 执行命令
+
+```sh
+cd hugo-theme-seven-demo
+
+hugo mod npm pack
+
+npm install
+
+hugo server
+```
 
 ## 从零开始
 
-0. 安装 Go 和 Hugo
+### 1. 安装 Go 和 Hugo
 
-1. 创建站点
+### 2. 创建站点
 
-   ```sh
-   hugo new site [sitename]
-   cd [sitename]
-   # 删除站点的 themes 目录
-   rm -rf themes
-   ```
+```sh
+hugo new site [sitename]
 
-2. 初始化 Hugo 模块
+cd [sitename]
 
-   ```sh
-   hugo mod init github.com/[username]/[sitename]
-   ```
+rm -rf themes
+```
 
-3. 导入主题模块
+### 3. 初始化 Hugo 模块
 
-   在 hugo.toml 中配置主题
+```sh
+hugo mod init github.com/[username]/[sitename]
+```
 
-   ```toml
-   [module]
-   [[module.imports]]
-     path = 'github.com/mrhelloboy/seven'
-   ```
+### 4. 导入主题模块
 
-   > 因为主题需要额外的配置参数，为了避免出错，建议先使用示例的 [hugo.toml](https://github.com/mrhelloboy/hugo-theme-seven-demo/blob/main/hugo.toml) ，再按需修改。
+在 hugo.toml 中配置主题
 
-   **注意：**
-   如使用了示例的 hugo.toml。需注释掉 `customSocial = "extra_social.html"`，否则启动时将会出错。
+```toml
+[module]
+[[module.imports]]
+   path = 'github.com/mrhelloboy/seven'
+```
 
-   > 更多 hugo 模块的说明及使用，请参考 [Hugo Modules](https://gohugo.io/hugo-modules/)
+> 因为主题需要额外的配置参数，为了避免出错，建议先使用 exampleSite 的配置文件，然后再按需修改。
+>
+> 更多 hugo 模块的说明及使用，请参考 [Hugo Modules](https://gohugo.io/hugo-modules/)
 
-4. 安装依赖及启动
+### 5. 安装依赖及启动
 
-   ```sh
-   hugo mod npm pack
+```sh
+hugo mod npm pack
 
-   npm install
+npm install
 
-   hugo server
-   ```
+hugo server
+```
 
 ## 更新主题模块
 
 ```bash
 hugo mod clean
+
 hugo mod get
+
 hugo mod tidy
 ```
 
@@ -109,6 +119,7 @@ hugo mod tidy
 
 ```bash
 hugo mod npm pack
+
 npm install
 ```
 
@@ -118,7 +129,22 @@ npm install
 
 ### 部署到 `Netlify` 例子：
 
-1. 复制示例代码的 [`netlify.toml`](https://github.com/mrhelloboy/hugo-theme-seven-demo/blob/main/netlify.toml) 到自己站点及推送到 Github 上
+1. 在站点上创建 `netlify.toml` 文件，并赋值以下内容：
+
+   ```toml
+   [build.environment]
+   HUGO_VERSION = "0.124.0"
+
+   [build]
+   publish = "public"
+   command = "hugo --gc --minify"
+
+   [context.deploy-preview]
+   command = "hugo --minify -D -F -b $DEPLOY_PRIME_URL"
+
+   [context.branch-deploy]
+   command = "hugo --minify --gc -b $DEPLOY_PRIME_URL"
+   ```
 
 2. 注册并登录 Netlify
 

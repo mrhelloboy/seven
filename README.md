@@ -1,9 +1,9 @@
 <p align="center">
-  <a href="https://seven-demo.supcat.cn/" target="_blank">
+  <a href="https://hugoseven.netlify.app/" target="_blank">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://seven-demo.supcat.cn/images/logo-footer.svg">
-      <source media="(prefers-color-scheme: light)" srcset="https://seven-demo.supcat.cn/images/logo.svg">
-      <img alt="Hugo theme Seven" src="https://seven-demo.supcat.cn/images/logo.svg" width="350" height="70" style="max-width: 100%;">
+      <source media="(prefers-color-scheme: dark)" srcset="exampleSite/static/images/logo-footer.svg">
+      <source media="(prefers-color-scheme: light)" srcset="exampleSite/static/images/logo.svg">
+      <img alt="Hugo theme Seven" src="exampleSite/static/images/logo.svg" width="350" height="70" style="max-width: 100%;">
     </picture>
   </a>
 </p>
@@ -16,90 +16,100 @@
 
 English | [中文](./README_zh-CN.md)
 
-<img alt="Seven screenshot" src="https://seven-demo.supcat.cn/images/screenshot/xdr.webp" width="500">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="exampleSite/static/images/screenshot/xdr.dark.en.webp">
+  <source media="(prefers-color-scheme: light)" srcset="exampleSite/static/images/screenshot/xdr.en.webp">
+  <img alt="Hugo theme Seven" src="exampleSite/static/images/screenshot/xdr.en.webp" width="500">
+</picture>
 
 ## Examples
 
-→ [Example Website](https://seven-demo.supcat.cn/)
-
-→ [Example Code Repository](https://github.com/mrhelloboy/hugo-theme-seven-demo)
+→ [Example Website](https://hugoseven.netlify.app/en)
 
 ## Prerequisites
 
-Before using this Hugo theme, ensure that you meet the following requirements:
+Before starting to use this Hugo theme, please ensure the following requirements are met:
 
-1. Install [Go](https://go.dev/dl/). Refer to the documentation on [Hugo Modules Prerequisite](https://gohugo.io/hugo-modules/use-modules/#prerequisite).
-2. Ensure that your Hugo version is **v0.112.0** or later. Refer to the documentation for [configure-cache-busters](https://gohugo.io/getting-started/configuration/#configure-cache-busters).
+1. [Go](https://go.dev/dl/) is installed
+2. Ensure `Hugo >= v0.124.0`
 
 ## Quick Start
 
-1. Clone the [example code](https://github.com/mrhelloboy/hugo-theme-seven-demo).
-   ```sh
-   git clone https://github.com/mrhelloboy/hugo-theme-seven-demo.git
-   ```
-2. Execute the commands:
+### 1. Clone this repository
 
-   ```sh
-   cd hugo-theme-seven-demo
+```sh
+git clone https://github.com/mrhelloboy/seven.git
+```
 
-   hugo mod npm pack
+### 2. Navigate to the exampleSite directory
 
-   npm install
+```sh
+cd exampleSite
+```
 
-   hugo server
-   ```
+### 3. Run the following commands
+
+```sh
+cd hugo-theme-seven-demo
+
+hugo mod npm pack
+
+npm install
+
+hugo server
+```
 
 ## Starting from Scratch
 
-0. Install Go and Hugo.
+### 1. Install Go and Hugo
 
-1. Create a new site.
+### 2. Create a Site
 
-   ```sh
-   hugo new site [sitename]
-   cd [sitename]
-   # Remove the themes directory in the site
-   rm -rf themes
-   ```
+```sh
+hugo new site [sitename]
 
-2. Initialize Hugo module.
+cd [sitename]
 
-   ```sh
-   hugo mod init github.com/[username]/[sitename]
-   ```
+rm -rf themes
+```
 
-3. Import the theme module.
+### 3. Initialize Hugo Modules
 
-   In the `hugo.toml` file, configure the theme:
+```sh
+hugo mod init github.com/[username]/[sitename]
+```
 
-   ```toml
-   [module]
-   [[module.imports]]
-     path = 'github.com/mrhelloboy/seven'
-   ```
+### 4. Import the Theme Module
 
-   > As the theme requires additional configuration parameters, to avoid errors, it's recommended to first use the example's [hugo.toml](https://github.com/mrhelloboy/hugo-theme-seven-demo/blob/main/hugo.toml) and then customize as needed.
+Configure the theme in hugo.toml
 
-   **Note:**
-   If using the example `hugo.toml`, comment out `customSocial = "extra_social.html"` to prevent an error during startup.
+```toml
+[module]
+[[module.imports]]
+   path = 'github.com/mrhelloboy/seven'
+```
 
-   > For more information about Hugo modules and their usage, please refer to [Hugo Modules](https://gohugo.io/hugo-modules/).
+> Because the theme requires additional configuration parameters, it's recommended to use the configuration file provided in exampleSite first, and then modify it as needed.
+>
+> For more information on Hugo Modules and their usage, please refer to [Hugo Modules](https://gohugo.io/hugo-modules/)
 
-4. Install dependencies and start the server.
+### 5. Install Dependencies and Start
 
-   ```sh
-   hugo mod npm pack
+```sh
+hugo mod npm pack
 
-   npm install
+npm install
 
-   hugo server
-   ```
+hugo server
+```
 
 ## Updating Theme Module
 
 ```bash
 hugo mod clean
+
 hugo mod get
+
 hugo mod tidy
 ```
 
@@ -109,20 +119,36 @@ hugo mod tidy
 
 ```bash
 hugo mod npm pack
+
 npm install
 ```
 
 ## Deployment
 
-Refer to the [Hugo Deployment Documentation](https://gohugo.io/hosting-and-deployment/) for details.
+Please refer to the [Hugo Deployment Documentation](https://gohugo.io/hosting-and-deployment/)
 
-### Deploying to `Netlify` Example:
+### Example of deploying to `Netlify`:
 
-1. Copy the example's [`netlify.toml`](https://github.com/mrhelloboy/hugo-theme-seven-demo/blob/main/netlify.toml) to your own site and push the changes to GitHub.
+1. Create a `netlify.toml` file in your site with the following content:
 
-2. Register and log in to Netlify.
+   ```toml
+   [build.environment]
+   HUGO_VERSION = "0.124.0"
 
-3. Import your GitHub project; Netlify will automatically build based on the `netlify.toml` file.
+   [build]
+   publish = "public"
+   command = "hugo --gc --minify"
+
+   [context.deploy-preview]
+   command = "hugo --minify -D -F -b $DEPLOY_PRIME_URL"
+
+   [context.branch-deploy]
+   command = "hugo --minify --gc -b $DEPLOY_PRIME_URL"
+   ```
+
+2. Register and log in to Netlify
+
+3. Import your GitHub project, and Netlify will automatically build it based on the `netlify.toml` file.
 
 ## Maintainers
 
