@@ -1,4 +1,4 @@
-baseURL = "http://localhost:1313"
+baseURL = "https://hugoseven.netlify.app"
 
 hasCJKLanguage = true
 defaultContentLanguage = "zh-hans"

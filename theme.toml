@@ -6,7 +6,7 @@ license = "MIT"
 licenselink = "https://github.com/mrhelloboy/seven/blob/main/LICENSE"
 description = "A clean and beautiful Hugo theme, which built using Tailwind CSS."
 homepage = "https://github.com/mrhelloboy/seven"
-demosite = "https://seven-demo.supcat.cn"
+demosite = "https://hugoseven.netlify.app/"
 
 tags = [
   "archive",
