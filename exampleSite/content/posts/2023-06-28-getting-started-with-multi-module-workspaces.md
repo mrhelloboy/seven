@@ -4,7 +4,7 @@ title: "Getting Started With Multi Module Workspaces"
 date: 2023-06-28
 draft: false
 image: "/images/posts/go-module.jpg"
-categories: ["Go tutorial", "编程技术"]
+categories: ["Go tutorial"]
 tags: ["go", "go.work", "multi module"]
 disableComment: false
 emoji: 🍄
