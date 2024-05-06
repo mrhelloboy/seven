@@ -1,0 +1,116 @@
+{
+  "good": [
+      {
+          "image": "./af105.webp",
+          "title": "迪卡侬 EDR AF 105",
+          "summary": "锻炼身体的借口，实则抵惑不住这外观的颜值。大全套的禧玛诺 105 R7000 骑起来确实很顺畅。",
+          "more_button": "败入过程",
+          "more_link":"https://www.bilibili.com/video/BV12Q4y1n7Qo"
+      },
+      {
+          "image": "./leklek.webp",
+          "title": "乐扣乐扣吨吨杯",
+          "summary": "对于不大爱去倒水喝的人，早上一次性灌满一天的量，非常爽，从此告别结晶结石。"
+      },
+      {
+          "image": "fengshan.webp",
+          "title": "米家智能直流变频循环扇",
+          "summary": "好用，想怎么转都行，南方五六月份天气吹起来特舒服。"
+      },
+      {
+          "image": "./misuo.webp",
+          "title": "小米全自动智能门锁",
+          "summary": "很方便，唯一问题开门不自动执行场景设置，时有时无，没搞明白什么原因。",
+          "more_button": "智能家居",
+          "more_link":"/smart_home_xiaomi"
+      },
+      {
+          "image": "./shitou.webp",
+          "title": "石头扫地机器人G10",
+          "summary": "家庭必备，特别是有女生在家的。之前用S55型号，21年换了这个，换水频率大大降低。"
+      },
+      {
+          "image": "./appletv4.webp",
+          "title": "Apple TV 4K (第 2 代)",
+          "summary": "之前使用的是Google TV，体验下来不管是流畅度、美观度都不是一个量级的。",
+          "more_button": "使用体验",
+          "more_link":"/apple_tv"
+      },
+      {
+          "image": "./s920.webp",
+          "title": "群晖 DS920+",
+          "summary": "配置过程相对麻烦，但调教好之后，它就是安全、娱乐之利器。就是硬盘太贵了。",
+          "more_button": "使用体验",
+          "more_link":"/synology_ds920"
+      },
+      {
+          "image": "./macbook.webp",
+          "title": "MacBook Pro 16 2019",
+          "summary": "上一台还是2014年买的港版15寸，没什么说的，纯生产力工具。"
+      },
+      {
+          "image": "./r2s.webp",
+          "title": "友善 R2s",
+          "summary": "主要做为旁路由给 Apple TV 使用，运行半年以来非常稳定。旁路由优点就是不破坏现有网络。"
+      },
+      {
+          "image": "./airPods.webp",
+          "title": "AirPods Pro (第一代)",
+          "summary": "使用了一年之后，在售后免费更换过一对，使用场景主要在出差路上或运动时。"
+      },
+      {
+          "image": "./applewatch.webp",
+          "title": "Apple Watch Series 5",
+          "summary": "长时间佩戴感觉手不舒服，现在主要就是运动时佩戴当作数据记录，日常很少佩戴了。"
+      },
+      {
+          "image": "./ergotron.webp",
+          "title": "爱格升 MXV",
+          "summary": "显示器支架，买它一是因为让桌面更简洁，二是为了能升降。"
+      },
+      {
+          "image": "./benq.webp",
+          "title": "明基 ScreenBar Plus",
+          "summary": "显示器挂灯，除了控制器是有线外，其他都很好，既不占桌面，也不反光。",
+          "more_button": "桌面搭配",
+          "more_link": "/workbench"
+      },
+      {
+          "image": "./mx3.webp",
+          "title": "罗技 MX Master 3",
+          "summary": "用了很多年了，除了表面脱皮及起泡外，确实很顺手。"
+      },
+      {
+          "image": "./black65.webp",
+          "title": "ZOOM 65",
+          "summary": "第一把真正意义上的客制化键盘，就是贵了点。",
+          "more_button": "键盘路程",
+          "more_link": "/mechanical_keyboard"
+      },
+      {
+          "image": "./misound.webp",
+          "title": "小米 Sound",
+          "summary": "晚上工作时，听杭州的“钱塘夜色”广播，工作起来很带感～"
+      },
+      {
+          "image": "./279C9.webp",
+          "title": "飞利浦 279C9 4K27寸",
+          "summary": "主要外接MacBook使用，自带反向充电，屏占比也很高，推荐。"
+      },
+      {
+          "image": "./dayinji.webp",
+          "title": "小米激光打印一体机",
+          "summary": "主要职责是打印娃的作业，无线非常方便，性价比不错。"
+      },
+      {
+          "image": "./iphone11.webp",
+          "title": "iPhone 11 Pro Max",
+          "summary": "使用最久的一款手机，目前依然很流畅。近几年的新款，手感太差，可能因为穷。"
+      },
+      {
+          "image": "./sonyz9f.webp",
+          "title": "索尼HT-Z9F",
+          "summary": "电视Soundbar，用了很多年，看影视之利器，仿佛置身于其中。"
+      }
+  ]
+}

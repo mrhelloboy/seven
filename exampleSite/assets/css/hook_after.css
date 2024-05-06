@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "Harmony";
+  src: url("/font/HarmonyOS_Sans_Regular.ttf");
+  font-display: swap;
+}
+
+#single-content {
+  font-family: "Harmony";
+}

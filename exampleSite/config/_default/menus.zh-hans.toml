@@ -1,0 +1,30 @@
+[[main]]
+  name = "文档"
+  pageRef = "docs"
+  weight = 10
+
+[[main]]
+  name = "博文"
+  pageRef = "posts"
+  weight = 20
+
+[[main]]
+  name = "归档"
+  pageRef = "archive"
+  weight = 30
+
+[[main]]
+  name = "其他"
+  weight = 40
+[[main]]
+  identifier = "goods"
+  name = "好物"
+  pageRef = "goods"
+  parent = '其他'
+  weight = 10
+[[main]]
+  identifier = "comments-with-twikoo"
+  name = "Twikoo评论版"
+  url = "https://seven-demo-with-twikoo.netlify.app/"
+  parent = '其他'
+  weight = 20

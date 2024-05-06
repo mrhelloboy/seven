@@ -1,0 +1,9 @@
+languageCode = "en"
+languageName = "English"
+title = "Seven Theme"
+weight = 2
+
+[params]
+  description = "A Simple And Beautiful Blog Theme For Hugo"
+  omitCategoryOnMenu = false
+  categoryName = "Category"

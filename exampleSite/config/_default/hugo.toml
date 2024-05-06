@@ -1,0 +1,69 @@
+baseURL = "http://localhost:1313"
+
+hasCJKLanguage = true
+defaultContentLanguage = "zh-hans"
+
+paginate = 18
+
+enableGitInfo = true
+enableEmoji = true
+      
+[mediaTypes.'application/x-ndjson']
+  suffixes = ["ndjson"]
+
+[outputs]
+  home = ["HTML", "Algolia"]
+
+[outputFormats]
+  [outputFormats.Algolia]
+    baseName = "algolia"
+    isPlainText = true
+    notAlternative = true
+    mediaType = "application/x-ndjson"
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+  [markup.goldmark]
+    [markup.goldmark.parser]
+      wrapStandAloneImageWithinParagraph = false
+      [markup.goldmark.parser.attribute]
+        block = false
+
+  [markup.tableOfContents]
+    endLevel = 3
+    startLevel = 2
+
+[module]
+  [[module.imports]]
+    path = "github.com/mrhelloboy/seven"
+  [module.hugoVersion]
+    extended = false
+    min      = "0.124.0"
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "hugo_stats.json"
+    target = "assets/watching/hugo_stats.json"
+
+[build]
+  noJSConfigInAssets = true
+  writeStats = true
+  [[build.cachebusters]]
+    source = "assets/watching/hugo_stats\\.json"
+    target = "styles\\.css"
+  [[build.cachebusters]]
+    source = "(postcss|tailwind)\\.config\\.js"
+    target = "css"
+  [[build.cachebusters]]
+    source = "assets/.*\\.(js|ts|jsx|tsx)"
+    target = "js"
+  [[build.cachebusters]]
+    source = "assets/.*\\.(.*)$"
+    target = "$1"
+
+[services]
+  [services.disqus]
+    shortname = ""  # "seven-demo"  
+

@@ -1,0 +1,103 @@
+showCodeCopyButton = true
+disableToTop = false
+enableSearch = true
+enableHighlight = true
+
+[app]
+  # optional site title override for the app when added to an iOS home screen or Android launcher
+  title = "Seven Demo"
+  # whether to omit favicon resource links
+  noFavicon = false
+  # modern SVG favicon to use in place of older style .png and .ico files
+  svgFavicon = "/favicon.svg"
+  # Safari mask icon color
+  iconColor = "#ffffff"
+  # Android browser theme color
+  themeColor = "#ffffff"
+
+[background]
+  enable = true
+  lightImg = "/images/bg-light.webp"
+  darkImg = "/images/bg-dark.webp"
+
+[logo]
+  # Image logo or Text logo
+  # Recommended to set image as logo. (prefer)
+  img = "/images/logo.svg"
+  img_dark = "/images/logo-footer.svg"
+
+  # max height not greater than 56 (px). default: 56 (px)
+  customLogoHeight = "56"
+  customLogoWidth = "120"
+  text = ""
+
+[home]
+  heroLogo = "/images/hero-logo.svg"
+  heroDarkLogo = "/images/hero-logo-dark.svg"
+
+  # Customize the type of content to display up-to-date, 
+  # and display all content with 'IsPage=true' if not.
+  # eg: showContentTypes = ["posts", "blogs"]
+  showContentTypes = ["docs", "posts"]
+
+[society]
+  [society.email]
+    enable = true
+    url = "linzhanqi123@gmail.com"
+  [society.github]
+    enable = true
+    url = "https://github.com/mrhelloboy/seven"
+  [society.x]  # old twitter
+    enable = true
+    url = ""
+  [society.wechat]
+    enable = true
+    QRCodeUrl = "/images/society/wechat/wechat.jpg"
+
+[copyright]
+  owner = "Seven"
+  start_year = "2023"
+
+[articleMeta]
+  disableHero = false
+
+  # Note: only works if waline or twikoo is enabled.
+  enablePageView = true
+
+[comment]
+  enable = true
+  enableCounts = true  # Note: only works if waline or twikoo is enabled.
+  [comment.waline]
+    enable = true
+    serverURL = "https://seven-demo.comment.supcat.cn/.netlify/functions/comment"
+    lang = "en"
+    reaction = true
+    search = true
+  [comment.twikoo]
+    enable = false
+    envID = "https://celebrated-youtiao-8a8d79.netlify.app/.netlify/functions/twikoo"
+    path = ""
+    lang = "en"
+    region = ""
+
+[algolia]
+  # Type of content. see: https://gohugo.io/content-management/types/
+  type = ["posts", "docs"]
+  # like pages variables. see: https://gohugo.io/variables/page/
+  vars = ["title", "description", "permalink"]
+  # Front Matter Variables. 
+  # see: https://gohugo.io/content-management/front-matter/#front-matter-variables
+  params = ["tags"]
+
+  app_id = "995JRM5ZAU"
+  api_key = "4a1095e4b8c96d2baee42d4c64b16afa"
+  index = "hugo_theme_seven_demo"
+  # see: https://www.algolia.com/doc/api-reference/widgets/snippet/js/#about
+  snippet_attr = "description"
+  # see: https://www.algolia.com/doc/api-reference/widgets/highlight/js/#examples
+  highlight_attr = "title"
+
+[analytics]
+  [analytics.goatcounter]
+    enable = true
+    code = "seven-demo"  
