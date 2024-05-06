@@ -1,12 +1,10 @@
 <li class="items-stretch">
   <div class="h-80 p-4">
     <a href="{{ .Permalink }}" class="group relative block h-full w-full">
-      <span
-        class="absolute inset-0 rounded-lg border-2 border-dashed border-black dark:border-gray-400"></span>
       <div
-        class="relative flex h-full transform items-end rounded-lg border border-black bg-white/50 backdrop-blur-sm transition duration-300 hover:scale-110 hover:shadow-xl hover:backdrop-blur-md focus:outline-none focus:ring dark:border-gray-400 dark:bg-gray-800/70">
+        class="relative flex h-full transform items-end rounded-lg border border-gray-200 bg-white/50 shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] backdrop-blur-md transition duration-300 hover:scale-110 focus:outline-none focus:ring dark:border-gray-800 dark:bg-gray-800/70 dark:shadow-[0_5px_15px_rgba(0,0,0,0.35)]">
         <div
-          class="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8">
+          class="p-6 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 lg:p-8">
           {{ if .Params.emoji }}
             <p class="text-4xl sm:text-5xl">
               {{ .Params.emoji | .RenderString }}
@@ -27,13 +25,13 @@
           {{ end }}
 
 
-          <h2 class="mt-4 text-xl font-medium sm:text-2xl dark:text-gray-400">
+          <h2 class="mt-4 text-2xl font-medium dark:text-gray-400">
             {{ .Title }}
           </h2>
         </div>
 
         <div
-          class="absolute p-4 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6 lg:p-8">
+          class="absolute p-6 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 lg:p-8">
           <p class="mt-8 font-serif dark:text-gray-400">
             {{ .Date.Format "2006/01/02" }}
           </p>
@@ -45,7 +43,7 @@
           <ul class="mt-4 flex flex-wrap space-x-2">
             {{ range .Params.categories }}
               <li
-                class="rounded-full border border-black px-3 py-2 text-base sm:text-sm dark:border-gray-400 dark:text-gray-400">
+                class="rounded-full border border-black px-2 py-1 text-sm dark:border-gray-400 dark:text-gray-400">
                 {{ . }}
               </li>
             {{ end }}
