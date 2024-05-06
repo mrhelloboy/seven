@@ -209,3 +209,12 @@ pre {
   text-decoration-color: rgb(29 78 216) !important;
   text-decoration-thickness: 2px !important;
 }
+
+/* 图片预览 */
+.modal {
+  @apply fixed left-0 top-0 z-[99] h-full w-full cursor-zoom-out touch-none select-none bg-white/75 backdrop-blur-lg dark:bg-black/75;
+}
+
+.modal > img {
+  @apply absolute m-0 p-0;
+}

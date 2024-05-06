@@ -1,12 +1,5 @@
 {{- define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end -}}
 {{- define "extra_link" }}
-  {{ $image_preview_styles := resources.Get "/css/image-preview.css" }}
-  {{ $image_preview_styles = $image_preview_styles | resources.PostCSS (dict "inlineImports" true) }}
-  {{ if hugo.IsProduction }}
-    {{ $image_preview_styles = $image_preview_styles | minify | fingerprint | resources.PostProcess }}
-  {{ end }}
-  <link href="{{ $image_preview_styles.RelPermalink }}" rel="stylesheet" />
-
   {{ if .Site.Params.enableHighlight }}
     {{ $syntax := resources.Get "/css/syntax.css" }}
     {{ $syntax = $syntax | resources.PostCSS (dict "inlineImports" true) }}
