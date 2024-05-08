@@ -2,7 +2,7 @@
 title: "快速体验主题"
 date: 2024-04-25
 draft: false
-weight: 1
+weight: 2
 categories: ["文档"]
 tags: ["seven", "体验", "github"]
 layout: "docs"

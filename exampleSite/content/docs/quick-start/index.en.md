@@ -2,7 +2,7 @@
 title: "Quickly Experience the Theme"
 date: 2024-04-25
 draft: false
-weight: 1
+weight: 2
 categories: ["Documents"]
 tags: ["seven", "demo", "github"]
 layout: "docs"

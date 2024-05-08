@@ -42,8 +42,8 @@ enableHighlight = true
 
 [society]
   [society.email]
-    enable = true
-    url = "linzhanqi123@gmail.com"
+    enable = false
+    url = ""
   [society.github]
     enable = true
     url = "https://github.com/mrhelloboy/seven"
