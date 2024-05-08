@@ -2,9 +2,9 @@
   {{ if and (eq $name "email") (eq $value.enable true) }}
     <a
       href="mailto:{{ $value.url }}"
-      class="text-gray-900 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white">
+      class="text-gray-600 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white">
       <svg
-        class="h-5 w-5"
+        class="size-4"
         aria-hidden="true"
         fill="currentColor"
         viewBox="0 0 1024 1024"
@@ -24,9 +24,9 @@
   {{ if and (eq $name "x") (eq $value.enable true) }}
     <a
       href="{{ $value.url }}"
-      class="text-gray-900 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white">
+      class="text-gray-600 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white">
       <svg
-        class="h-5 w-5"
+        class="size-4"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
@@ -43,9 +43,9 @@
   {{ if and (eq $name "github") (eq $value.enable true) }}
     <a
       href="{{ $value.url }}"
-      class="text-gray-900 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white">
+      class="text-gray-600 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white">
       <svg
-        class="h-5 w-5"
+        class="size-4"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
@@ -63,13 +63,13 @@
     <div x-data="{ openQC: false }">
       <button
         @click="openQC = !openQC; scrollY = window.scrollY; document.body.style.overflow = 'hidden';"
-        class="group relative block text-gray-900 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white">
+        class="group relative block text-gray-600 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white">
         <div
           class="items-endtransition-transform relative flex h-full transform">
           <div
             class="transition-opacity group-hover:absolute group-hover:opacity-0">
             <svg
-              class="h-5 w-5"
+              class="size-4"
               viewBox="0 0 1184 1024"
               fill="currentColor"
               version="1.1"
@@ -85,7 +85,7 @@
             class="absolute opacity-0 transition-opacity group-hover:relative group-hover:opacity-100">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
+              class="size-4"
               fill="currentColor"
               viewBox="0 -960 960 960">
               <path
@@ -115,4 +115,4 @@
   {{ end }}
 {{ end }}
 
-{{ partial "index/hook_social_links.html" . }}
+{{ partial "footer/hook_social_links.html" . }}

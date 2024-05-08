@@ -1,6 +1,12 @@
 <footer
+  id="footer"
+  x-ref="footer"
   class="mx-auto mt-5 flex flex-col items-center gap-y-3 py-6 font-serif italic">
   <span class="h-px w-full max-w-4xl bg-gray-700 dark:bg-gray-600"></span>
+
+  <div class="flex h-5 space-x-3">
+    {{ partial "footer/follow_me.html" . }}
+  </div>
 
   {{ $hugo := printf `<a href="https://gohugo.io/" aria-label="hugo link">
     <img

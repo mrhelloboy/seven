@@ -86,6 +86,12 @@ body {
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Antonio";
+  src: url("/font/Antonio-VariableFont_wght.woff2");
+  font-display: swap;
+}
+
 /* Code copy button */
 div.highlight,
 pre {
@@ -106,7 +112,7 @@ pre {
 
 /* Twikoo comment */
 .twikoo {
-  @apply w-full px-0.5 py-5 md:px-2 lg:max-w-5xl lg:px-8 dark:text-gray-400;
+  @apply w-full px-0.5 py-5 dark:text-gray-400 md:px-2 lg:max-w-5xl lg:px-8;
 }
 
 .tk-submit .tk-row .tk-avatar {

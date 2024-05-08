@@ -1,7 +1,116 @@
 {{ define "main" }}
+  {{ $allPages := .Site.Pages }}
+  {{ with .Site.Params.home.showContentTypes }}
+    {{ $allPages = where $allPages "Type" "in" . }}
+  {{ end }}
+  {{ $lastestPosts := first 5 (where $allPages "IsPage" true) }}
+  {{ $lastestPostsLen := len $lastestPosts }}
+
+
   <section
-    class="mx-auto mt-38 flex w-full max-w-[1000px] flex-col items-center justify-center space-y-10 md:px-10 lg:px-5">
-    {{ partial "index/hero.html" . }}
-    {{ partial "index/recent.html" . }}
+    x-data="{ loadNum: 1 }"
+    class="mx-auto mt-38 flex w-full max-w-[1000px]">
+    <div class="flex w-full space-x-3 px-5">
+      <!-- Posts Index -->
+      <div
+        id="tags-container"
+        x-data="{ divHeight: 0, windowHeight: window.innerHeight }"
+        x-init="$nextTick(()=>{ divHeight = windowHeight - $refs.myDiv.getBoundingClientRect().top - $refs.footer.offsetHeight - 20;})"
+        @resize.window="windowHeight = window.innerHeight;"
+        x-effect="divHeight = windowHeight - $refs.myDiv.getBoundingClientRect().top - $refs.footer.offsetHeight - 20;"
+        class="h-full w-1/5">
+        <div class="sticky top-[152px] flex w-full">
+          <div
+            x-ref="myDiv"
+            :style="{ height: divHeight >= 540 ? divHeight + 'px' : '540px'}"
+            class="font-IndexNumb flex w-full flex-col items-start justify-center space-y-10 p-6 text-3xl">
+            <!-- <p><strong x-text="divHeight"></strong> px</p> -->
+            {{ range seq 1 (len $lastestPosts) }}
+              <p
+                class="pl-3"
+                :class="{
+                  'text-blue-800': loadNum == {{ . }}, 
+                  'text-blue-800': loadNum == {{ . }}, 
+                  'text-gray-400': loadNum != {{ . }},
+                  'dark:text-gray-600': loadNum != {{ . }},
+                }">
+                0{{ . }}
+              </p>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Posts -->
+      <div class="w-4/5">
+        {{ range $idx, $post := $lastestPosts }}
+          <div
+            x-intersect.margin.-50%.0="loadNum = {{ $idx | add 1 }}"
+            class="mt-10 flex space-x-7 p-4">
+            <!-- Date & Title & Image  -->
+            <div
+              x-data="{ isLoaded: false }"
+              class="group flex w-2/3 flex-col space-y-7">
+              <div
+                class="flex items-center justify-start space-x-2 font-serif text-sm text-gray-700 dark:text-gray-400">
+                <p>{{ $post.Date.Format "2006/01/02" }}</p>
+                <div class="size-1 rounded-full bg-red-800"></div>
+                <p>{{ index .Params.categories 0 }}</p>
+              </div>
+              <a
+                href="{{ $post.Permalink }}"
+                class="hook-post-title text-4xl font-bold group-hover:text-blue-700 dark:text-gray-300"
+                >{{ $post.Title }}</a
+              >
+
+              <div
+                class="h-60 w-full"
+                x-intersect.threshold.70="isLoaded = true;">
+                {{ with resources.Get $post.Params.image }}
+                  <div
+                    x-show="!isLoaded"
+                    x-cloak
+                    class="flex h-full w-full animate-pulse items-center justify-center rounded-md bg-gray-300 dark:bg-gray-700">
+                    <svg
+                      class="h-10 w-10 text-gray-200 dark:text-gray-600"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 20 18">
+                      <path
+                        d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
+                    </svg>
+                  </div>
+                  <img
+                    x-show="isLoaded"
+                    x-cloak
+                    :src="'{{ .Permalink }}'"
+                    :alt="'{{ $post.Title }}'"
+                    loading="lazy"
+                    decoding="async"
+                    class="animate-slideTop h-full w-full rounded-md shadow-[0_5px_15px_rgba(0,0,0,0.35)]" />
+                {{ end }}
+              </div>
+            </div>
+            <!-- Summary -->
+            <div
+              class="flex w-1/3 flex-col justify-center space-y-3 border-l-[1px] border-l-gray-200 p-6 text-start font-serif">
+              <p
+                class="font-Oswald text-xl font-bold text-gray-800 underline decoration-blue-700 decoration-4 underline-offset-4 dark:text-gray-400">
+                {{ T "summary" }}
+              </p>
+              <div
+                class="line-clamp-[10] text-pretty tracking-wide text-gray-700 dark:text-gray-500">
+                {{ with $post.Description }}
+                  <p>{{- . -}}</p>
+                {{ else }}
+                  {{- $post.Summary -}}
+                {{ end }}
+              </div>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+    </div>
   </section>
 {{ end }}

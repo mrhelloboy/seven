@@ -8,6 +8,7 @@ module.exports = {
       fontFamily: {
         Oswald: ['Oswald'],
         Montserrat: ['Montserrat'],
+        IndexNumb: ['Antonio'],
       },
       typography: {
         DEFAULT: {
@@ -26,6 +27,15 @@ module.exports = {
         // '18': '4.5rem',
         22: '5.5rem',
         38: '9.5rem',
+      },
+      keyframes: {
+        slideTop: {
+          '0%': { transform: 'translateY(70px)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        slideTop: 'slideTop 0.5s linear both',
       },
     },
   },
