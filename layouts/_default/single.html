@@ -48,13 +48,13 @@
         <div class="py-5 md:px-1 lg:px-5">
           <div id="post-title" class="flex w-full flex-col">
             <div
-              class="flex flex-row flex-wrap space-x-1 pb-2 pt-1 font-Oswald text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
+              class="flex flex-row flex-wrap items-center space-x-1 pb-2 pt-1 text-xs font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
               {{ $categories := (.GetTerms "categories") }}
               <span class="flex flex-row gap-1">
                 {{ range $categories }}
                   <span class="italic text-red-700"> > </span>
                   <a
-                    class="border-b-2 border-transparent hover:border-b-2 hover:border-blue-600 hover:text-blue-600"
+                    class="font-serif hover:text-blue-600 hover:underline hover:decoration-blue-600 hover:underline-offset-4"
                     href="{{ .Permalink }}"
                     >{{- .LinkTitle -}}</a
                   >
@@ -62,7 +62,7 @@
               </span>
             </div>
             <div
-              class="py-1 text-start text-3xl font-bold tracking-wide text-black lg:text-4xl dark:text-white">
+              class="py-1 text-start text-3xl font-bold tracking-wide text-black dark:text-white lg:text-4xl">
               {{ .Title }}
             </div>
 
@@ -96,7 +96,7 @@
                     x-data
                     @click="toComment()"
                     id="speed-comment-count-id"
-                    class="whitespace-nowrap hover:text-blue-700 hover:underline hover:decoration-blue-700">
+                    class="whitespace-nowrap hover:text-blue-700 hover:underline hover:decoration-blue-700 hover:underline-offset-4">
                     <span
                       class="waline-comment-count"
                       data-path="{{ .RelPermalink }}"
@@ -148,7 +148,7 @@
 
           <div
             id="single-content"
-            class="format mx-auto mt-2 max-w-none md:format-base dark:format-invert format-figure:flex format-figure:flex-col format-figure:items-center format-img:cursor-zoom-in lg:mt-11 dark:text-gray-300">
+            class="format mx-auto mt-2 max-w-none dark:format-invert md:format-base format-figure:flex format-figure:flex-col format-figure:items-center format-img:cursor-zoom-in dark:text-gray-300 lg:mt-11">
             {{ .Content }}
           </div>
 
@@ -204,7 +204,7 @@
       @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
       x-cloak
       type="button"
-      class="buttom-circle fixed bottom-24 end-8 flex h-14 w-14 items-center justify-center bg-white/85 text-gray-500 backdrop-blur-md md:end-20 dark:bg-gray-800/85 dark:text-gray-500">
+      class="buttom-circle fixed bottom-24 end-8 flex h-14 w-14 items-center justify-center bg-white/85 text-gray-500 backdrop-blur-md dark:bg-gray-800/85 dark:text-gray-500 md:end-20">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="size-6"
