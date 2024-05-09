@@ -12,19 +12,3 @@
   name = "Archive"
   pageRef = "archive"
   weight = 30
-
-[[main]]
-  name = "Others"
-  weight = 40
-[[main]]
-  identifier = "goods"
-  name = "Goods"
-  pageRef = "goods"
-  parent = 'Others'
-  weight = 10
-[[main]]
-  identifier = "comments-with-twikoo"
-  name = "Twikoo comments version"
-  url = "https://seven-demo-with-twikoo.netlify.app/"
-  parent = 'Others'
-  weight = 20

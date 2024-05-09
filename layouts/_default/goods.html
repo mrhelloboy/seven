@@ -1,16 +1,15 @@
 {{ define "main" }}
-  <section
-    class="mx-auto mt-22 w-full grow bg-white md:mt-38 md:max-w-5xl dark:bg-gray-900">
+  <section class="mx-auto mt-22 w-full grow md:mt-38 md:w-[1000px]">
     <div class="px-8 pb-1 pt-6">
       <div
         id="goods-title"
-        class="py-2 text-3xl text-gray-800 md:text-4xl dark:text-gray-100">
-        <div class="border-l-4 border-blue-700 pl-2">{{ .Params.title }}</div>
+        class="py-2 text-3xl text-gray-800 dark:text-gray-100 md:text-4xl">
+        <div class="border-l-4 border-blue-700 pl-2">{{ .Title }}</div>
       </div>
       <div
         id="goods-summary"
-        class="whitespace-pre-wrap text-pretty pt-4 text-lg text-gray-500 dark:text-gray-400">
-        {{ .Params.description }}
+        class="format py-5 dark:format-invert format-a:text-blue-700 dark:text-gray-400">
+        {{ .Content }}
       </div>
     </div>
 
@@ -21,7 +20,7 @@
 
       {{ range $goods.good }}
         <div
-          class="goods-item goods-item-hidden mx-3 mt-6 flex flex-col rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] sm:shrink-0 sm:grow sm:basis-0 dark:bg-gray-800/70">
+          class="goods-item goods-item-hidden mx-3 mt-6 flex flex-col rounded-lg bg-white/75 p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] backdrop-blur-md dark:bg-gray-800/70 sm:shrink-0 sm:grow sm:basis-0">
           <div class="flex justify-center">
             <img
               loading="lazy"
@@ -53,7 +52,7 @@
     {{/* comments */}}
     {{ if and (not .Params.disableComment) .Site.Params.comment.enable }}
       <div
-        class="mx-auto mt-3 border-t border-gray-200 md:max-w-5xl dark:border-gray-700"
+        class="mx-auto mt-3 border-t border-gray-200 dark:border-gray-700 md:max-w-5xl"
         id="post-comment">
         {{- partial "comments.html" . -}}
       </div>
