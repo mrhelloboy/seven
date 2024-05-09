@@ -47,7 +47,7 @@
         {{ range $idx, $post := $lastestPosts }}
           <div
             x-intersect.margin.-50%.0="loadNum = {{ $idx | add 1 }}"
-            class="mt-4 flex space-x-7 p-4 md:mt-10">
+            class="mt-4 flex space-x-7 p-1 md:mt-10 md:p-4">
             <!-- Date & Title & Image  -->
             <div
               x-data="{ isLoaded: false }"
