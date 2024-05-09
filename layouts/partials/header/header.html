@@ -16,7 +16,7 @@
         {{ partial "header/menu.html" . }}
       </div>
 
-      <div class="flex flex-1 items-center justify-end lg:space-x-1">
+      <div class="flex flex-1 items-center justify-end">
         {{- partial "header/i18n_menu.html" . -}}
 
         {{- partial "header/dark_mode.html" . -}}
@@ -28,20 +28,18 @@
           <button
             type="button"
             @click="isMobile = true; scrollY = window.scrollY; document.body.style.overflow = 'hidden';"
-            class="group inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 dark:text-gray-400">
+            class="group inline-flex items-center justify-center rounded-full p-2.5 text-center text-black transition hover:bg-white hover:shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:shadow-[0_5px_15px_rgba(0,0,0,0.35)]">
             <span class="sr-only">Open main menu</span>
             <svg
-              class="h-5 w-5 group-hover:text-blue-700"
-              aria-hidden="true"
+              class="size-5"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+              fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 17 14">
+              p-id="9670">
               <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M1 1h15M1 7h15M1 13h15" />
+                d="M904 160H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zM904 784H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zM904 472H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8z"
+                p-id="9671"></path>
             </svg>
           </button>
         </div>
@@ -53,7 +51,7 @@
   <div x-show="isMobile" x-cloak role="dialog" aria-modal="true">
     <div class="fixed inset-0 z-10"></div>
     <div
-      class="fixed inset-0 z-10 w-full overflow-y-auto bg-white/85 p-4 backdrop-blur-md sm:ring-1 sm:ring-gray-900/10 dark:bg-gray-900/85">
+      class="fixed inset-0 z-10 w-full overflow-y-auto bg-white/85 p-4 backdrop-blur-md dark:bg-gray-900/85 sm:ring-1 sm:ring-gray-900/10">
       <div class="mx-auto mt-10 flex w-full items-center justify-center">
         {{- partial "header/logo.html" . -}}
       </div>
