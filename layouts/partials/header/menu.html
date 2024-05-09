@@ -4,11 +4,12 @@
       <button
         type="button"
         @click="isOpen = !isOpen"
-        class="group flex items-center gap-x-1  text-sm font-semibold leading-6 text-gray-900 hover:text-blue-700 dark:text-white"
+        class="group flex items-center text-sm font-semibold leading-6 text-gray-900 hover:text-blue-700 dark:text-white"
         aria-expanded="false">
         {{ .Name | safeHTML }}
         <svg
-          class="h-5 w-5 flex-none text-gray-400 group-hover:text-red-700"
+          class="size-4 flex-none text-gray-400 transition group-hover:text-blue-700"
+          :class="{ 'rotate-180': isOpen }"
           viewBox="0 0 20 20"
           fill="currentColor"
           aria-hidden="true">
@@ -60,11 +61,12 @@
     <button
       type="button"
       @click="isOpen = !isOpen"
-      class="group flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 hover:text-blue-700 dark:text-white"
+      class="group flex items-center text-sm font-semibold leading-6 text-gray-900 hover:text-blue-700 dark:text-white"
       aria-expanded="false">
       {{ .Site.Params.categoryName | safeHTML }}
       <svg
-        class="h-5 w-5 flex-none text-gray-400 group-hover:text-red-700"
+        class="size-4 flex-none text-gray-400 transition group-hover:text-blue-700"
+        :class="{ 'rotate-180': isOpen }"
         viewBox="0 0 20 20"
         fill="currentColor"
         aria-hidden="true">

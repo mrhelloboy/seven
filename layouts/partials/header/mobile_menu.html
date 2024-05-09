@@ -4,13 +4,14 @@
       <button
         @click="subMenuOpen = !subMenuOpen"
         type="button"
-        class="group flex w-full items-center justify-center rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:text-blue-700 dark:text-white"
+        :class="{ 'text-blue-600': subMenuOpen, 'text-gray-900': !subMenuOpen, 'dark:text-blue-600': subMenuOpen, 'dark:text-white': !subMenuOpen }"
+        class="group flex w-full flex-col items-center justify-center rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:text-blue-700"
         aria-controls="disclosure-1"
         aria-expanded="false">
         <span>{{ .Name | safeHTML }}</span>
         <svg
           :class="{ 'rotate-180': subMenuOpen }"
-          class="h-5 w-5 flex-none group-hover:text-blue-700"
+          class="size-4 flex-none transition"
           viewBox="0 0 20 20"
           fill="currentColor"
           aria-hidden="true">
@@ -24,7 +25,7 @@
         x-show="subMenuOpen"
         x-cloak
         x-collapse
-        class="mt-2 flex flex-col space-y-2"
+        class="flex flex-col space-y-1"
         id="disclosure-1">
         {{ range .Children }}
           <a
@@ -50,13 +51,14 @@
     <button
       @click="subMenuOpen = !subMenuOpen"
       type="button"
-      class="group flex w-full items-center justify-center rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:text-blue-700 dark:text-white"
+      :class="{ 'text-blue-600': subMenuOpen, 'text-gray-900': !subMenuOpen, 'dark:text-blue-600': subMenuOpen, 'dark:text-white': !subMenuOpen }"
+      class="group flex w-full flex-col items-center justify-center rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:text-blue-700 dark:text-white"
       aria-controls="disclosure-1"
       aria-expanded="false">
       {{ .Site.Params.categoryName | safeHTML }}
       <svg
         :class="{ 'rotate-180': subMenuOpen }"
-        class="h-5 w-5 flex-none group-hover:text-blue-700"
+        class="size-4 flex-none transition"
         viewBox="0 0 20 20"
         fill="currentColor"
         aria-hidden="true">
@@ -71,7 +73,7 @@
       x-show="subMenuOpen"
       x-cloak
       x-collapse
-      class="mt-2 flex flex-col space-y-2"
+      class="flex flex-col space-y-1"
       id="disclosure-1">
       {{ range .Site.Taxonomies.categories }}
         <a
