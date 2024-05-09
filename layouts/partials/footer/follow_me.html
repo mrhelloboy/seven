@@ -96,16 +96,24 @@
       </button>
       <div
         x-show="openQC"
+        x-transition:leave="ease-in duration-500"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
         @keydown.window.escape="openQC = false; document.body.style.overflow = ''; window.scrollTo(0, scrollY);"
         x-cloak
         role="dialog"
         aria-modal="true">
-        <div class="fixed inset-0 z-50"></div>
-        <div class="fixed inset-0 z-50 w-full bg-gray-900/85 backdrop-blur-md">
+        <div
+          class="fixed inset-0 z-50 bg-gray-900/85 backdrop-blur-md transition-opacity"></div>
+        <div class="fixed inset-0 z-50 w-full">
           <div class="mx-auto flex h-full w-full items-center justify-center">
             <img
               @click.away="openQC = false; document.body.style.overflow = ''; window.scrollTo(0, scrollY);"
               class="object-cover"
+              x-transition:leave="ease-in duration-500"
+              x-transition:leave-start="opacity-100"
+              x-transition:leave-end="opacity-0"
+              :class="openQC ? 'animate-scaleInCenter' : 'animate-scaleOutCenter'"
               src="{{ $value.QRCodeUrl }}"
               alt="" />
           </div>
@@ -115,4 +123,4 @@
   {{ end }}
 {{ end }}
 
-{{ partial "footer/hook_social_links.html" . }}
+{{ partial "footer/hook_follow_me.html" . }}

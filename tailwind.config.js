@@ -51,11 +51,33 @@ module.exports = {
             opacity: 1,
           },
         },
+        scaleInCenter: {
+          '0%': {
+            transform: 'scale(0)',
+            opacity: 1,
+          },
+          '100%': {
+            transform: 'scale(1)',
+            opacity: 1,
+          },
+        },
+        scaleOutCenter: {
+          '0%': {
+            transform: 'scale(1)',
+            opacity: 1,
+          },
+          '100%': {
+            transform: 'scale(0)',
+            opacity: 1,
+          },
+        },
       },
       animation: {
         slideTop: 'slideTop 0.5s linear both',
         pingOnce: 'pingOnce 0.5s ease-in-out both',
         scaleInVerBottom: 'scaleInVerBottom 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both',
+        scaleInCenter: 'scaleInCenter 0.5s linear both',
+        scaleOutCenter: 'scaleOutCenter 0.5s linear both',
       },
     },
   },
