@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 .theme-toc {
-  @apply flex border-s-[3px] border-gray-100 p-2 text-xs text-gray-500 hover:border-gray-600 hover:bg-gray-50 hover:text-gray-700 dark:border-gray-600 dark:text-gray-500 dark:hover:bg-gray-800/85 dark:hover:text-gray-300;
+  @apply flex border-s-[3px] border-gray-300 p-2 text-sm text-gray-500 hover:border-gray-600 hover:bg-gray-50 hover:text-gray-700 dark:border-gray-600 dark:text-gray-500 dark:hover:bg-gray-800/85 dark:hover:text-gray-300 lg:border-gray-100 lg:text-xs;
 }
 
 .theme-toc-active {
-  @apply flex w-full border-s-[3px] border-blue-500 bg-blue-50 p-2 text-xs font-medium text-blue-700 dark:bg-gray-800/85 dark:text-blue-300;
+  @apply flex w-full border-s-[3px] border-blue-500 bg-blue-50 p-2 text-sm font-medium text-blue-700 dark:bg-gray-800/85 dark:text-blue-300 lg:text-xs;
 }
 
 .theme-toc-nest-1 {

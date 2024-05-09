@@ -22,8 +22,9 @@
       </button>
       <div
         x-show="subMenuOpen"
-        :class="{ 'flex': subMenuOpen, 'hidden': !subMenuOpen }"
-        class="mt-2 hidden flex-col space-y-2"
+        x-cloak
+        x-collapse
+        class="mt-2 flex flex-col space-y-2"
         id="disclosure-1">
         {{ range .Children }}
           <a
@@ -68,8 +69,9 @@
 
     <div
       x-show="subMenuOpen"
-      :class="{ 'flex': subMenuOpen, 'hidden': !subMenuOpen }"
-      class="mt-2 hidden flex-col space-y-2"
+      x-cloak
+      x-collapse
+      class="mt-2 flex flex-col space-y-2"
       id="disclosure-1">
       {{ range .Site.Taxonomies.categories }}
         <a

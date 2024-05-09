@@ -114,32 +114,29 @@
               <button
                 type="button"
                 x-on:click="open = !open"
-                class="flex w-full cursor-pointer items-center justify-between rounded-lg py-2 text-gray-500/90 hover:text-gray-700 dark:hover:text-gray-300">
-                <span class="text-sm font-medium">
-                  {{ T "toc.mobile_title" }}
-                </span>
-
+                class="flex w-full cursor-pointer items-center justify-start rounded-lg py-2 text-gray-500/90 hover:text-gray-700 dark:hover:text-gray-300">
                 <span
                   class="shrink-0 transition duration-300 group-open:-rotate-180">
                   <svg
-                    :class="{ 'rotate-180': open }"
+                    :class="{ 'rotate-90': open }"
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor">
-                    <path
-                      fill-rule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clip-rule="evenodd" />
+                    class="size-6"
+                    fill="currentColor"
+                    viewBox="0 -960 960 960">
+                    <path d="M400-280v-400l200 200-200 200Z" />
                   </svg>
+                </span>
+
+                <span class="text-sm font-medium">
+                  {{ T "toc.mobile_title" }}
                 </span>
               </button>
               <div
                 x-cloak
                 x-show="open"
-                x-transition.duration.500ms
+                x-collapse.duration.1000ms
                 x-on:keydown.escape.window="open = false"
-                class="mt-1 space-y-1 px-0.5">
+                class="mb-3 mt-1 space-y-1 px-2">
                 {{ .TableOfContents }}
               </div>
             </div>
