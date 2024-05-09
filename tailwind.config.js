@@ -33,9 +33,15 @@ module.exports = {
           '0%': { transform: 'translateY(70px)' },
           '100%': { transform: 'translateY(0)' },
         },
+        pingOnce: {
+          '0%': { transform: 'scale(0.4)', opacity: 0.2 },
+          '80%': { transform: 'scale(1.3)' },
+          '100%': { transform: 'scale(1)', opacity: 1 },
+        },
       },
       animation: {
         slideTop: 'slideTop 0.5s linear both',
+        pingOnce: 'pingOnce 0.5s ease-in-out both',
       },
     },
   },
