@@ -16,7 +16,7 @@
 
 [English](./README.md) | 中文
 
-<img alt="Hugo theme Seven" src="exampleSite/static/images/screenshot/xdr.webp" width="500">
+<img alt="Hugo theme Seven" src="images/screenshot.png" width="600">
 
 ## 示例
 

@@ -16,7 +16,7 @@
 
 English | [中文](./README_zh-CN.md)
 
-<img alt="Hugo theme Seven" src="exampleSite/static/images/screenshot/xdr.en.webp" width="500">
+<img alt="Hugo theme Seven" src="images/screenshot.png" width="600">
 
 ## Examples
 
