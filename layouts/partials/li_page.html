@@ -1,22 +1,18 @@
 <li
-  class="items-stretch overflow-hidden rounded-md bg-white/50 shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] backdrop-blur-md transition hover:shadow-md dark:bg-gray-800/70 dark:shadow-[0_5px_15px_rgba(0,0,0,0.35)]">
-  <a x-data="{ isLoaded: false }" href="{{ .Permalink }}" class="group ">
-    <div class="h-48 w-full" x-intersect.threshold.70="isLoaded = true;">
+  x-data="{ isLoaded: false }"
+  class="items-stretch"
+  x-intersect.threshold.30="isLoaded = true">
+  <div x-show="!isLoaded" x-cloak class="h-56 w-full bg-transparent"></div>
+  <div
+    x-show="isLoaded"
+    x-cloak
+    class="animate-slideTop group h-full overflow-hidden rounded-md bg-white/50 shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] backdrop-blur-md transition hover:shadow-md dark:bg-gray-800/70 dark:shadow-[0_5px_15px_rgba(0,0,0,0.35)]">
+    <div class="h-64 w-full md:h-48">
       {{ with resources.Get .Params.image }}
         <div
           x-show="!isLoaded"
           x-cloak
-          class="flex h-full w-full animate-pulse items-center justify-center bg-gray-300 dark:bg-gray-700">
-          <svg
-            class="h-10 w-10 text-gray-200 dark:text-gray-600"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 20 18">
-            <path
-              d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
-          </svg>
-        </div>
+          class="h-full w-full bg-transparent"></div>
         <img
           x-show="isLoaded"
           x-cloak
@@ -24,19 +20,21 @@
           :alt="'{{ .Title }}'"
           loading="lazy"
           decoding="async"
-          class="animate-scaleInVerBottom h-full w-full object-cover" />
+          class="h-full w-full object-cover" />
       {{ end }}
     </div>
 
-    <div class="p-4 sm:p-6">
+    <div class="px-4 py-6 sm:p-6">
       <p class="block font-serif text-xs text-gray-600 dark:text-gray-400">
         {{ .Date.Format "2006/01/02" }}
       </p>
 
-      <div
-        class="mt-2 text-lg text-gray-900 group-hover:text-blue-700 dark:text-gray-300">
-        {{ .Title }}
-      </div>
+      <a href="{{ .Permalink }}">
+        <p
+          class="mt-2 text-lg text-gray-900 group-hover:text-blue-700 dark:text-gray-300">
+          {{ .Title }}
+        </p>
+      </a>
     </div>
-  </a>
+  </div>
 </li>
