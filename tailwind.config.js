@@ -38,10 +38,24 @@ module.exports = {
           '80%': { transform: 'scale(1.3)' },
           '100%': { transform: 'scale(1)', opacity: 1 },
         },
+        scaleInVerBottom: {
+          '0%': {
+            transform: 'scaleY(0)',
+
+            'transform-origin': '0% 100%',
+            opacity: 1,
+          },
+          '100%': {
+            transform: 'scaleY(1)',
+            'transform-origin': '0% 100%',
+            opacity: 1,
+          },
+        },
       },
       animation: {
         slideTop: 'slideTop 0.5s linear both',
         pingOnce: 'pingOnce 0.5s ease-in-out both',
+        scaleInVerBottom: 'scaleInVerBottom 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both',
       },
     },
   },

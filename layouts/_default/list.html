@@ -1,10 +1,11 @@
 {{ define "main" }}
-  <div class="mx-auto mt-38 flex w-full max-w-[1000px] grow flex-col p-4">
+  <div
+    class="mx-auto mt-38 flex w-full max-w-[1000px] grow flex-col p-6 lg:px-8">
     <ul
-      class="mx-auto grid w-full grid-cols-1 place-items-stretch md:grid-cols-2 lg:grid-cols-3">
+      class="mx-auto grid w-full grid-cols-1 gap-x-4 gap-y-6 md:grid-cols-2 lg:grid-cols-3">
       {{ if and .Title .Content }}
         <div
-          class="col-span-1 mb-5 flex max-w-prose flex-col px-4 md:col-span-2 lg:col-span-3">
+          class="col-span-1 mb-5 flex max-w-prose flex-col md:col-span-2 lg:col-span-3">
           <div
             class="flex items-center justify-start space-x-2 text-gray-800 dark:text-gray-400">
             {{ if not .Params.disableImg }}
