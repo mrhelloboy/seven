@@ -23,6 +23,9 @@ module.exports = {
         120: '30rem',
         128: '32rem',
       },
+      maxWidth: {
+        250: '62.5rem', // 1000px
+      },
       margin: {
         // '18': '4.5rem',
         22: '5.5rem',

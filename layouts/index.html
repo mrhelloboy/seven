@@ -7,9 +7,7 @@
   {{ $lastestPostsLen := len $lastestPosts }}
 
 
-  <section
-    x-data="{ loadNum: 1 }"
-    class="mx-auto mt-38 flex w-full max-w-[1000px]">
+  <section x-data="{ loadNum: 1 }" class="max-w-250 mx-auto mt-38 flex w-full">
     <div class="flex w-full px-5 md:space-x-3">
       <!-- Posts Index -->
       <div
@@ -23,7 +21,7 @@
           <div
             x-ref="myDiv"
             :style="{ height: divHeight >= 540 ? divHeight + 'px' : '540px'}"
-            class="font-IndexNumb flex w-full flex-col items-start justify-center space-y-10 p-6 text-3xl">
+            class="flex w-full flex-col items-start justify-center space-y-10 p-6 font-IndexNumb text-3xl">
             <!-- <p><strong x-text="divHeight"></strong> px</p> -->
             {{ range seq 1 (len $lastestPosts) }}
               <p
@@ -89,7 +87,7 @@
                     :alt="'{{ $post.Title }}'"
                     loading="lazy"
                     decoding="async"
-                    class="animate-slideTop h-full w-full rounded-md shadow-[0_5px_15px_rgba(0,0,0,0.35)]" />
+                    class="h-full w-full animate-slideTop rounded-md shadow-[0_5px_15px_rgba(0,0,0,0.35)]" />
                 {{ end }}
               </div>
             </div>
