@@ -81,7 +81,7 @@
     x-effect="$el.style.backgroundImage = 'url(' + bgImg + ')'"
     :style="'background-image: ' + 'url(' + newbgImg + ')'"
     :class="{'bg-white': !bgOpen, 'dark:bg-gray-900': !bgOpen, 'bg-cover': bgOpen, 'bg-fixed': bgOpen}"
-    class="flex flex-col scroll-auto">
+    class="flex h-screen flex-col scroll-auto">
     {{- partial "header/header.html" . -}}
 
     {{- block "main" . }}{{- end }}
