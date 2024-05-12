@@ -17,7 +17,7 @@
   {{ if not $metaInfo.disableHero }}
     {{ $image := resources.Get .Params.image }}
     {{ with $image }}
-      <div id="post-feature" class="mt-38 w-full">
+      <div id="post-feature" class="w-full">
         <img
           class="h-60 w-full object-cover md:h-120"
           src="{{ $image.Permalink }}"
@@ -25,7 +25,7 @@
           srcset="" />
       </div>
     {{ else }}
-      <div id="post-feature" class="mt-38 h-60 w-full md:h-120">
+      <div id="post-feature" class="h-60 w-full md:h-120">
         {{- partial "random_feature_img.html" . -}}
       </div>
     {{ end }}

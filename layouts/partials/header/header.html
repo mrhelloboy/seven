@@ -1,13 +1,11 @@
-<header
-  x-data="{ isMobile: false, shrink: false, scrollY: 0 }"
-  class="z-40 w-full"
-  @scroll.window="shrink = (window.scrollY > 10 ? true : false)">
+<header x-data="{ isMobile: false }" class="relative z-40 h-38 w-full">
   <nav
-    :class="{ 'h-24': shrink, 'h-38': !shrink, 'shadow-md': shrink, 'bg-white/85': shrink, 'dark:bg-gray-900/85': shrink, 'backdrop-blur-md': shrink}"
-    class="fixed inset-0 mx-auto flex h-38 items-center justify-between py-4 transition-all duration-500 ease-in-out"
+    id="nav"
+    :class="{ 'h-25': shrink, 'h-38': !shrink, 'shadow-md': shrink, 'bg-white/85': shrink, 'dark:bg-gray-900/85': shrink, 'backdrop-blur-md': shrink}"
+    class="fixed inset-0 mx-auto flex items-center justify-between px-4 transition-all duration-500 ease-in-out"
     aria-label="Global">
     <div
-      class="mx-auto flex w-screen flex-wrap items-center justify-between place-self-center object-center p-4 md:w-[1000px]">
+      class="mx-auto flex w-screen flex-wrap items-center justify-between place-self-center object-center px-1 md:w-[1000px] md:px-4">
       <div class="flex lg:flex-1">
         {{- partial "header/logo.html" . -}}
       </div>

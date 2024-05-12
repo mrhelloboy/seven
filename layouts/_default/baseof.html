@@ -40,6 +40,8 @@
   <body
     x-cloak
     x-data="{ 
+      shrink: false,
+      scrollY: 0,
       bgOpen: {{ .Site.Params.background.enable }},
       newbgImg: '',
       bgImg: '',
@@ -75,10 +77,11 @@
       } 
     })"
     @click="newbgImg = getNewBgImg()"
+    @scroll.window="shrink = (window.scrollY > 10 ? true : false)"
     x-effect="$el.style.backgroundImage = 'url(' + bgImg + ')'"
     :style="'background-image: ' + 'url(' + newbgImg + ')'"
     :class="{'bg-white': !bgOpen, 'dark:bg-gray-900': !bgOpen, 'bg-cover': bgOpen, 'bg-fixed': bgOpen}"
-    class="flex h-screen flex-col scroll-auto">
+    class="flex flex-col scroll-auto">
     {{- partial "header/header.html" . -}}
 
     {{- block "main" . }}{{- end }}
