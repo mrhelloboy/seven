@@ -5,7 +5,7 @@
 {{- $validParams := $.Param "algolia.params" | default slice -}}
 {{- $pageType := $.Param "algolia.type" | default slice -}}
 {{/* Include type of content? */}}
-{{- range $i, $hit := where (where .Site.Pages "Type" "in" $pageType) "IsPage" true -}}
+{{- range $i, $hit := where (where .Site.AllPages "Type" "in" $pageType) "IsPage" true -}}
   {{- $dot := . -}}
   {{- if or (and ($hit.IsDescendant $section) (and (not $hit.Draft) (not $hit.Params.private))) $section.IsHome -}}
     {{/* We need objectID as something unique for Algolia */}}
@@ -24,7 +24,7 @@
     {{- .Scratch.SetInMap "temp" "kind" $hit.Kind -}}
     {{- .Scratch.SetInMap "temp" "lang" $hit.Lang -}}
     {{- .Scratch.SetInMap "temp" "lastmod" $hit.Lastmod.UTC.Unix -}}
-    {{- .Scratch.SetInMap "temp" "permalink" $hit.Permalink -}}
+    {{- .Scratch.SetInMap "temp" "permalink" ($hit.Permalink | relLangURL) -}}
     {{- .Scratch.SetInMap "temp" "publishdate" $hit.PublishDate -}}
     {{- .Scratch.SetInMap "temp" "readingtime" $hit.ReadingTime -}}
     {{- .Scratch.SetInMap "temp" "relpermalink" $hit.RelPermalink -}}
