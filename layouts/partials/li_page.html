@@ -6,7 +6,7 @@
   <div
     x-show="isLoaded"
     x-cloak
-    class="animate-slideTop group h-full overflow-hidden rounded-md bg-white/50 shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] backdrop-blur-md transition hover:shadow-md dark:bg-gray-800/70 dark:shadow-[0_5px_15px_rgba(0,0,0,0.35)]">
+    class="group h-full animate-slideTop overflow-hidden rounded-md bg-white/50 shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] backdrop-blur-md transition hover:shadow-md dark:bg-gray-800/70 dark:shadow-[0_5px_15px_rgba(0,0,0,0.35)]">
     <div class="h-64 w-full md:h-48">
       {{ with resources.Get .Params.image }}
         <div
@@ -31,7 +31,7 @@
 
       <a href="{{ .Permalink }}">
         <p
-          class="mt-2 text-lg text-gray-900 group-hover:text-blue-700 dark:text-gray-300">
+          class="mt-2 text-lg text-gray-900 group-hover:text-[--seven-text-color-hover] dark:text-gray-300">
           {{ .Title }}
         </p>
       </a>

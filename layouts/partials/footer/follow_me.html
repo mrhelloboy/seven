@@ -2,7 +2,7 @@
   {{ if and (eq $name "email") (eq $value.enable true) }}
     <a
       href="mailto:{{ $value.url }}"
-      class="text-gray-600 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white">
+      class="text-gray-600 hover:text-[--seven-text-color-hover] dark:text-gray-400 dark:hover:text-white">
       <svg
         class="size-4"
         aria-hidden="true"
@@ -24,7 +24,7 @@
   {{ if and (eq $name "x") (eq $value.enable true) }}
     <a
       href="{{ $value.url }}"
-      class="text-gray-600 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white">
+      class="text-gray-600 hover:text-[--seven-text-color-hover] dark:text-gray-400 dark:hover:text-white">
       <svg
         class="size-4"
         aria-hidden="true"
@@ -43,7 +43,7 @@
   {{ if and (eq $name "github") (eq $value.enable true) }}
     <a
       href="{{ $value.url }}"
-      class="text-gray-600 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white">
+      class="text-gray-600 hover:text-[--seven-text-color-hover] dark:text-gray-400 dark:hover:text-white">
       <svg
         class="size-4"
         aria-hidden="true"
@@ -63,7 +63,7 @@
     <div x-data="{ openQC: false }">
       <button
         @click="openQC = !openQC; scrollY = window.scrollY; document.body.style.overflow = 'hidden';"
-        class="group relative block text-gray-600 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white">
+        class="group relative block text-gray-600 hover:text-[--seven-text-color-hover] dark:text-gray-400 dark:hover:text-white">
         <div
           class="items-endtransition-transform relative flex h-full transform">
           <div

@@ -2,31 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.theme-toc {
-  @apply flex border-s-[3px] border-gray-300 p-2 text-sm text-gray-500 hover:border-gray-600 hover:bg-gray-50 hover:text-gray-700 dark:border-gray-600 dark:text-gray-500 dark:hover:bg-gray-800/85 dark:hover:text-gray-300 lg:border-gray-100 lg:text-xs;
-}
-
-.theme-toc-active {
-  @apply flex w-full border-s-[3px] border-blue-500 bg-blue-50 p-2 text-sm font-medium text-blue-700 dark:bg-gray-800/85 dark:text-blue-300 lg:text-xs;
-}
-
-.theme-toc-nest-1 {
-  @apply pl-4;
-}
-
-.theme-toc-nest-2 {
-  @apply pl-5;
-}
-
-.theme-toc-nest-3 {
-  @apply pl-6;
-}
-
-/* 圆形按钮特效 */
-.buttom-circle {
-  @apply rounded-full shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] hover:scale-105 active:scale-[.95];
-}
-
 /* Scrollbar */
 /* 整个滚动条，可以设置任意的尺寸大小，包括 0，也就是滚动条不可见 */
 *::-webkit-scrollbar {
@@ -62,6 +37,13 @@ html {
 }
 
 :root {
+  /* 主题相关变量 */
+  --seven-border-color: theme(colors.blue.700);
+  --seven-decoration-color: theme(colors.blue.700);
+  --seven-text-color-hover: theme(colors.blue.700);
+  --seven-text-color-hover-dark: theme(colors.blue.500);
+  --seven-link-color: theme(colors.blue.700);
+
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -90,6 +72,31 @@ body {
   font-family: "Antonio";
   src: url("/font/Antonio-VariableFont_wght.woff2");
   font-display: swap;
+}
+
+.theme-toc {
+  @apply flex border-s-[3px] border-gray-300 p-2 text-sm text-gray-500 hover:border-gray-600 hover:bg-gray-50 hover:text-gray-700 dark:border-gray-600 dark:text-gray-500 dark:hover:bg-gray-800/85 dark:hover:text-gray-300 lg:border-gray-100 lg:text-xs;
+}
+
+.theme-toc-active {
+  @apply flex w-full border-s-[3px] border-blue-500 bg-blue-50 p-2 text-sm font-medium text-blue-700 dark:bg-gray-800/85 dark:text-blue-300 lg:text-xs;
+}
+
+.theme-toc-nest-1 {
+  @apply pl-4;
+}
+
+.theme-toc-nest-2 {
+  @apply pl-5;
+}
+
+.theme-toc-nest-3 {
+  @apply pl-6;
+}
+
+/* 圆形按钮特效 */
+.buttom-circle {
+  @apply rounded-full shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] hover:scale-105 active:scale-[.95];
 }
 
 /* Code copy button */
@@ -210,9 +217,9 @@ pre {
 }
 
 .format :where(a):not(:where([class~="not-format"] *)):hover {
-  color: rgb(29 78 216);
+  color: var(--seven-link-color);
   text-decoration: underline !important;
-  text-decoration-color: rgb(29 78 216) !important;
+  text-decoration-color: var(--seven-decoration-color) !important;
   text-decoration-thickness: 2px !important;
 }
 
