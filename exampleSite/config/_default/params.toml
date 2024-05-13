@@ -17,8 +17,8 @@ enableHighlight = true
 
 [background]
   enable = true
-  lightImg = "/images/bg-light.webp"
-  darkImg = "/images/bg-dark.webp"
+  lightImg = "/images/bg.svg"
+  darkImg = "/images/bg-dark.svg"
 
 [logo]
   # Image logo or Text logo
@@ -60,6 +60,7 @@ enableHighlight = true
 
 [articleMeta]
   disableHero = false
+  disableImgGradient = false
 
   # Note: only works if waline or twikoo is enabled.
   enablePageView = true
