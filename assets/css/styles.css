@@ -65,6 +65,9 @@ body {
 }
 
 @layer components {
+  .image-gradient {
+    mask: linear-gradient(#000, transparent);
+  }
   .hs-index-number {
     @apply font-IndexNumb;
   }

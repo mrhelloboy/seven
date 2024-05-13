@@ -17,11 +17,14 @@
   {{ if not $metaInfo.disableHero }}
     {{ $image := resources.Get .Params.image }}
     {{ with $image }}
-      <div id="hs-feature" class="w-full">
+      <div id="hs-feature" class="h-60 w-full md:h-120">
         <img
+          x-data="{ isGradient: {{ $metaInfo.disableImgGradient | default false }} }"
+          :class="{ 'image-gradient': !isGradient }"
           class="h-60 w-full object-cover md:h-120"
           src="{{ $image.Permalink }}"
           alt="preview image"
+          style="mask-type: alpha;"
           srcset="" />
       </div>
     {{ else }}
@@ -30,7 +33,7 @@
       </div>
     {{ end }}
   {{ else }}
-    <div id="hs-feature" class="mt-38"></div>
+    <div id="hs-feature"></div>
   {{ end }}
 
 
