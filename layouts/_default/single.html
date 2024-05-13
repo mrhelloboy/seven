@@ -52,7 +52,7 @@
                 {{ range $categories }}
                   <span class="italic text-red-700"> > </span>
                   <a
-                    class="hover:text-[--seven-text-color-hover] hover:underline hover:decoration-[--decoration-color] hover:underline-offset-4"
+                    class="hover:text-[--hs-text-color-hover] hover:underline hover:decoration-[--decoration-color] hover:underline-offset-4"
                     href="{{ .Permalink }}"
                     >{{- .LinkTitle -}}</a
                   >
@@ -95,7 +95,7 @@
                     x-data
                     @click="toComment()"
                     id="speed-comment-count-id"
-                    class="whitespace-nowrap hover:text-[--seven-text-color-hover] hover:underline hover:decoration-[--seven-decoration-color] hover:underline-offset-4">
+                    class="whitespace-nowrap hover:text-[--hs-text-color-hover] hover:underline hover:decoration-[--hs-decoration-color] hover:underline-offset-4">
                     <span
                       class="waline-comment-count"
                       data-path="{{ .RelPermalink }}"
@@ -153,11 +153,11 @@
               class="hs-content-tag flex flex-row flex-wrap justify-start gap-2 pl-1 text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
               {{ range $tags }}
                 <a
-                  class="text-center hover:text-[--seven-text-color-hover]"
+                  class="text-center hover:text-[--hs-text-color-hover]"
                   href="{{ .Permalink }}"
                   ><span class="text-red-700 ">#</span
                   ><span
-                    class="hover:text-[--seven-text-color-hover] hover:underline hover:decoration-[--decoration-color] hover:underline-offset-4"
+                    class="hover:text-[--hs-text-color-hover] hover:underline hover:decoration-[--decoration-color] hover:underline-offset-4"
                     >{{- .LinkTitle -}}</span
                   ></a
                 >

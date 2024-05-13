@@ -4,8 +4,8 @@
       <button
         @click="subMenuOpen = !subMenuOpen"
         type="button"
-        :class="{ 'text-[--seven-text-color-hover]': subMenuOpen, 'text-gray-900': !subMenuOpen, 'dark:text-[--seven-text-color-hover]': subMenuOpen, 'dark:text-white': !subMenuOpen }"
-        class="group flex w-full flex-col items-center justify-center rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:text-[--seven-text-color-hover]"
+        :class="{ 'text-[--hs-text-color-hover]': subMenuOpen, 'text-gray-900': !subMenuOpen, 'dark:text-[--hs-text-color-hover]': subMenuOpen, 'dark:text-white': !subMenuOpen }"
+        class="group flex w-full flex-col items-center justify-center rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:text-[--hs-text-color-hover]"
         aria-controls="disclosure-1"
         aria-expanded="false">
         <span>{{ .Name | safeHTML }}</span>
@@ -30,7 +30,7 @@
         {{ range .Children }}
           <a
             href="{{ .URL | relLangURL }}"
-            class="w-full rounded-lg px-3 py-2 text-center text-sm font-semibold leading-7 text-gray-900 hover:text-[--seven-text-color-hover] dark:text-white"
+            class="w-full rounded-lg px-3 py-2 text-center text-sm font-semibold leading-7 text-gray-900 hover:text-[--hs-text-color-hover] dark:text-white"
             >{{ .Name | safeHTML }}</a
           >
         {{ end }}
@@ -40,7 +40,7 @@
   {{ else }}
     <a
       href="{{ .URL | relLangURL }}"
-      class="hs-menus w-full rounded-lg px-3 py-2 text-center text-base font-semibold leading-7 text-gray-900 hover:text-[--seven-text-color-hover] dark:text-white"
+      class="hs-menus w-full rounded-lg px-3 py-2 text-center text-base font-semibold leading-7 text-gray-900 hover:text-[--hs-text-color-hover] dark:text-white"
       >{{ .Name | safeHTML }}</a
     >
   {{ end }}
@@ -51,8 +51,8 @@
     <button
       @click="subMenuOpen = !subMenuOpen"
       type="button"
-      :class="{ 'text-[--seven-text-color-hover]': subMenuOpen, 'text-gray-900': !subMenuOpen, 'dark:text-[--seven-text-color-hover]': subMenuOpen, 'dark:text-white': !subMenuOpen }"
-      class="group flex w-full flex-col items-center justify-center rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:text-[--seven-text-color-hover] dark:text-white"
+      :class="{ 'text-[--hs-text-color-hover]': subMenuOpen, 'text-gray-900': !subMenuOpen, 'dark:text-[--hs-text-color-hover]': subMenuOpen, 'dark:text-white': !subMenuOpen }"
+      class="group flex w-full flex-col items-center justify-center rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:text-[--hs-text-color-hover] dark:text-white"
       aria-controls="disclosure-1"
       aria-expanded="false">
       {{ .Site.Params.categoryName | safeHTML }}
@@ -78,7 +78,7 @@
       {{ range .Site.Taxonomies.categories }}
         <a
           href="{{ .Page.Permalink }}"
-          class="block rounded-lg px-3 py-2 text-center text-sm font-semibold leading-7 text-gray-900 hover:text-[--seven-text-color-hover] dark:text-white"
+          class="block rounded-lg px-3 py-2 text-center text-sm font-semibold leading-7 text-gray-900 hover:text-[--hs-text-color-hover] dark:text-white"
           >{{ .Page.Title | safeHTML }}</a
         >
       {{ end }}

@@ -38,11 +38,11 @@ html {
 
 :root {
   /* 主题相关变量 */
-  --seven-border-color: theme(colors.blue.700);
-  --seven-decoration-color: theme(colors.blue.700);
-  --seven-text-color-hover: theme(colors.blue.700);
-  --seven-text-color-hover-dark: theme(colors.blue.500);
-  --seven-link-color: theme(colors.blue.700);
+  --hs-border-color: theme(colors.blue.700);
+  --hs-decoration-color: theme(colors.blue.700);
+  --hs-text-color-hover: theme(colors.blue.700);
+  --hs-text-color-hover-dark: theme(colors.blue.500);
+  --hs-link-color: theme(colors.blue.700);
 
   overflow-y: auto;
   overflow-x: hidden;
@@ -224,9 +224,9 @@ pre {
 }
 
 .format :where(a):not(:where([class~="not-format"] *)):hover {
-  color: var(--seven-link-color);
+  color: var(--hs-link-color);
   text-decoration: underline !important;
-  text-decoration-color: var(--seven-decoration-color) !important;
+  text-decoration-color: var(--hs-decoration-color) !important;
   text-decoration-thickness: 2px !important;
 }
 

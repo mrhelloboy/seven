@@ -4,7 +4,7 @@
       <button
         type="button"
         @click="isOpen = !isOpen"
-        class="group flex items-center text-sm font-semibold leading-6 text-gray-900 hover:text-[--seven-text-color-hover] dark:text-white"
+        class="group flex items-center text-sm font-semibold leading-6 text-gray-900 hover:text-[--hs-text-color-hover] dark:text-white"
         aria-expanded="false">
         {{ .Name | safeHTML }}
         <svg
@@ -38,7 +38,7 @@
               class="relative rounded-lg px-4 py-2.5 text-sm leading-6 hover:bg-gray-300/30 hover:backdrop-blur-md">
               <a
                 href="{{ .URL | relLangURL }}"
-                class="block font-semibold text-gray-900 hover:text-[--seven-text-color-hover] dark:text-gray-400 dark:hover:text-white">
+                class="block font-semibold text-gray-900 hover:text-[--hs-text-color-hover] dark:text-gray-400 dark:hover:text-white">
                 {{ .Name | safeHTML }}
                 <span class="absolute inset-0"></span>
               </a>
@@ -50,7 +50,7 @@
   {{ else }}
     <a
       href="{{ .URL | relLangURL }}"
-      class="hs-menus text-sm font-semibold leading-6 text-gray-900 hover:text-[--seven-text-color-hover] dark:text-white"
+      class="hs-menus text-sm font-semibold leading-6 text-gray-900 hover:text-[--hs-text-color-hover] dark:text-white"
       >{{ .Name | safeHTML }}</a
     >
   {{ end }}
@@ -61,7 +61,7 @@
     <button
       type="button"
       @click="isOpen = !isOpen"
-      class="group flex items-center text-sm font-semibold leading-6 text-gray-900 hover:text-[--seven-text-color-hover] dark:text-white"
+      class="group flex items-center text-sm font-semibold leading-6 text-gray-900 hover:text-[--hs-text-color-hover] dark:text-white"
       aria-expanded="false">
       {{ .Site.Params.categoryName | safeHTML }}
       <svg
@@ -95,7 +95,7 @@
             class="relative rounded-lg px-4 py-2.5 text-sm leading-6 hover:bg-gray-300/30 hover:backdrop-blur-md">
             <a
               href="{{ .Page.Permalink }}"
-              class="block font-semibold text-gray-900 hover:text-[--seven-text-color-hover] dark:text-gray-400 dark:hover:text-white">
+              class="block font-semibold text-gray-900 hover:text-[--hs-text-color-hover] dark:text-gray-400 dark:hover:text-white">
               {{ .Page.Title }}
               <span class="absolute inset-0"></span>
             </a>
