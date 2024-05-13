@@ -7,7 +7,7 @@
 
   <div class="mt-5 flex flex-col items-center">
     <!-- Help text -->
-    <span class="text-sm text-gray-700 dark:text-gray-400">
+    <span class="hs-pagination-info text-sm text-gray-700 dark:text-gray-400">
       Showing
       <span class="font-semibold text-gray-900 dark:text-white"
         >{{ add 1 $hadTotleOfEles }}</span
@@ -22,13 +22,13 @@
       >
       Entries
     </span>
-    <div class="inline-flex mt-2 xs:mt-0">
+    <div class="hs-pagination xs:mt-0 mt-2 inline-flex">
       <!-- Buttons -->
       <a
         href="{{ if $pag.HasPrev }}{{ $pag.Prev.URL }}{{ end }}"
-        class="flex items-center justify-center px-4 h-10 text-base font-Oswald font-medium text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+        class="flex h-10 items-center justify-center rounded-l-lg border border-gray-300 bg-white px-4 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
         <svg
-          class="w-3.5 h-3.5 me-2 rtl:rotate-180"
+          class="me-2 h-3.5 w-3.5 rtl:rotate-180"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -44,10 +44,10 @@
       </a>
       <a
         href="{{ if $pag.HasNext }}{{ $pag.Next.URL }}{{ end }}"
-        class="flex items-center justify-center px-4 h-10 text-base font-Oswald font-medium text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+        class="flex h-10 items-center justify-center rounded-r-lg border border-gray-300 bg-white px-4 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
         Next
         <svg
-          class="w-3.5 h-3.5 ms-2 rtl:rotate-180"
+          class="ms-2 h-3.5 w-3.5 rtl:rotate-180"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

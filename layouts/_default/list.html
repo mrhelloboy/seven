@@ -1,5 +1,5 @@
 {{ define "main" }}
-  <div class="max-w-250 mx-auto flex w-full grow flex-col p-6 lg:px-8">
+  <div class="mx-auto flex w-full max-w-250 grow flex-col p-6 lg:px-8">
     <ul
       class="mx-auto grid w-full grid-cols-1 gap-x-4 gap-y-6 md:grid-cols-2 lg:grid-cols-3">
       {{ if and .Title .Content }}
@@ -17,11 +17,11 @@
                   d="M240-500v-220h220v220H240Zm0 260v-220h220v220H240Zm260-260v-220h220v220H500Zm0 260v-220h220v220H500ZM320-580h60v-60h-60v60Zm260 0h60v-60h-60v60ZM320-320h60v-60h-60v60Zm260 0h60v-60h-60v60ZM380-580Zm200 0Zm0 200Zm-200 0ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Z" />
               </svg>
             {{ end }}
-            <p class="text-2xl font-bold">{{ .Title }}</p>
+            <p class="hs-instruction-title text-2xl font-bold">{{ .Title }}</p>
           </div>
 
           <div
-            class="format py-5 dark:format-invert format-a:text-[--seven-text-color-hover] dark:text-gray-400">
+            class="hs-instruction format py-5 dark:format-invert format-a:text-[--seven-text-color-hover] dark:text-gray-400">
             {{ .Content }}
           </div>
           <span

@@ -7,7 +7,6 @@ module.exports = {
     extend: {
       fontFamily: {
         Oswald: ['Oswald'],
-        Montserrat: ['Montserrat'],
         IndexNumb: ['Antonio'],
       },
       typography: {

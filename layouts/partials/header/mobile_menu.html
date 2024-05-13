@@ -1,6 +1,6 @@
 {{ range .Site.Menus.main }}
   {{ if .HasChildren }}
-    <div x-data="{ subMenuOpen: false }">
+    <div x-data="{ subMenuOpen: false }" class="hs-menus">
       <button
         @click="subMenuOpen = !subMenuOpen"
         type="button"
@@ -40,14 +40,14 @@
   {{ else }}
     <a
       href="{{ .URL | relLangURL }}"
-      class="w-full rounded-lg px-3 py-2 text-center text-base font-semibold leading-7 text-gray-900 hover:text-[--seven-text-color-hover] dark:text-white"
+      class="hs-menus w-full rounded-lg px-3 py-2 text-center text-base font-semibold leading-7 text-gray-900 hover:text-[--seven-text-color-hover] dark:text-white"
       >{{ .Name | safeHTML }}</a
     >
   {{ end }}
 {{ end }}
 
 {{ if not .Site.Params.omitCategoryOnMenu }}
-  <div x-data="{ subMenuOpen: false }">
+  <div x-data="{ subMenuOpen: false }" class="hs-menus">
     <button
       @click="subMenuOpen = !subMenuOpen"
       type="button"

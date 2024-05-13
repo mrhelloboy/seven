@@ -11,7 +11,7 @@
               {{ if (eq ($.Scratch.Get "count") 1) }}
                 {{ $.Scratch.Set "count" 0 }}
                 <span
-                  class="p-3 font-Oswald text-lg font-semibold text-gray-900 dark:text-white"
+                  class="hs-archive-year p-3 text-lg font-semibold text-gray-900 dark:text-white"
                   >{{ .Date.Format "2006" }}</span
                 >
               {{ end }}
@@ -22,12 +22,12 @@
               {{ range .Pages }}
                 <li
                   class="group flex flex-col flex-wrap justify-start p-3 hover:rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 md:flex-row md:items-center">
-                  <span class="font-serif text-gray-500 dark:text-gray-300"
+                  <span class="hs-archive-date text-gray-500 dark:text-gray-300"
                     >{{ .Date.Format "01/02" }}</span
                   >
                   <a
                     href="{{ .RelPermalink }}"
-                    class="text-gray-800 group-hover:text-[--seven-text-color-hover] dark:text-gray-100 dark:group-hover:text-[--seven-text-color-hover-dark] md:pl-3">
+                    class="hs-content-title hs-archive-title text-gray-800 group-hover:text-[--seven-text-color-hover] dark:text-gray-100 dark:group-hover:text-[--seven-text-color-hover-dark] md:pl-3">
                     {{ .Title }}
                   </a>
                 </li>

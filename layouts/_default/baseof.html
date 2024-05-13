@@ -24,8 +24,11 @@
 
     {{- partial "head/meta.html" . -}}
     {{- block "extra_meta" . }}{{- end }}
+    {{- partial "head/hook_before_link.html" . -}}
     {{- partial "head/link.html" . -}}
+    {{- partial "head/font_link.html" . -}}
     {{- block "extra_link" . }}{{- end }}
+    {{- partial "head/hook_after_link.html" . -}}
     {{- partial "head/script.html" . -}}
     {{- block "extra_script". }}{{- end }}
 

@@ -56,30 +56,37 @@ body {
   width: 100vw;
 }
 
-@font-face {
-  font-family: "Oswald";
-  src: url("/font/Oswald-VariableFont_wght.woff2");
-  font-display: swap;
+@layer base {
+  @font-face {
+    font-family: "Antonio";
+    font-display: swap;
+    src: url(/font/Antonio-subset.woff2) format("woff2");
+  }
 }
 
-@font-face {
-  font-family: "Montserrat";
-  src: url("/font/Montserrat-VariableFont_wght.woff2");
-  font-display: swap;
-}
+@layer components {
+  .hs-index-number {
+    @apply font-IndexNumb;
+  }
 
-@font-face {
-  font-family: "Antonio";
-  src: url("/font/Antonio-VariableFont_wght.woff2");
-  font-display: swap;
+  .hs-archive-year {
+    @apply font-Oswald;
+  }
+  .hs-archive-date {
+    @apply font-Oswald font-extralight;
+  }
+
+  .hs-search-other {
+    @apply font-Oswald;
+  }
 }
 
 .theme-toc {
-  @apply flex border-s-[3px] border-gray-300 p-2 text-sm text-gray-500 hover:border-gray-600 hover:bg-gray-50 hover:text-gray-700 dark:border-gray-600 dark:text-gray-500 dark:hover:bg-gray-800/85 dark:hover:text-gray-300 lg:border-gray-100 lg:text-xs;
+  @apply flex border-s-[3px] border-gray-300 p-2 text-gray-500 hover:border-gray-600 hover:bg-gray-50 hover:text-gray-700 dark:border-gray-600 dark:text-gray-500 dark:hover:bg-gray-800/85 dark:hover:text-gray-300 lg:border-gray-100;
 }
 
 .theme-toc-active {
-  @apply flex w-full border-s-[3px] border-blue-500 bg-blue-50 p-2 text-sm font-medium text-blue-700 dark:bg-gray-800/85 dark:text-blue-300 lg:text-xs;
+  @apply flex border-s-[3px] border-blue-500 bg-blue-50 p-2 text-blue-700 dark:bg-gray-800/85 dark:text-blue-300;
 }
 
 .theme-toc-nest-1 {

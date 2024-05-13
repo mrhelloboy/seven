@@ -1,6 +1,6 @@
 {{ range .Site.Menus.main }}
   {{ if .HasChildren }}
-    <div x-data="{ isOpen: false }" class="relative">
+    <div x-data="{ isOpen: false }" class="hs-menus relative">
       <button
         type="button"
         @click="isOpen = !isOpen"
@@ -50,14 +50,14 @@
   {{ else }}
     <a
       href="{{ .URL | relLangURL }}"
-      class="text-sm font-semibold leading-6 text-gray-900 hover:text-[--seven-text-color-hover] dark:text-white"
+      class="hs-menus text-sm font-semibold leading-6 text-gray-900 hover:text-[--seven-text-color-hover] dark:text-white"
       >{{ .Name | safeHTML }}</a
     >
   {{ end }}
 {{ end }}
 
 {{ if not .Site.Params.omitCategoryOnMenu }}
-  <div x-data="{ isOpen: false }" class="relative">
+  <div x-data="{ isOpen: false }" class="hs-menus relative">
     <button
       type="button"
       @click="isOpen = !isOpen"
