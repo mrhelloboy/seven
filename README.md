@@ -1,9 +1,9 @@
 <p align="center">
   <a href="https://hugoseven.netlify.app/" target="_blank">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="exampleSite/static/images/logo-footer.svg">
-      <source media="(prefers-color-scheme: light)" srcset="exampleSite/static/images/logo.svg">
-      <img alt="Hugo theme Seven" src="exampleSite/static/images/logo.svg" width="350" height="70" style="max-width: 100%;">
+      <source media="(prefers-color-scheme: dark)" srcset="https://hugoseven.netlify.app/images/logo-footer.svg">
+      <source media="(prefers-color-scheme: light)" srcset="https://hugoseven.netlify.app/images/logo.svg">
+      <img alt="Hugo theme Seven" src="https://hugoseven.netlify.app/images/logo.svg" width="350" height="70" style="max-width: 100%;">
     </picture>
   </a>
 </p>
@@ -16,7 +16,7 @@
 
 English | [中文](./README_zh-CN.md)
 
-<img alt="Hugo theme Seven" src="images/screenshot.png" width="600">
+<img alt="Hugo theme Seven" src="https://hugoseven.netlify.app/images/screenshot.webp" width="600">
 
 ## Examples
 
