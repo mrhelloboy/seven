@@ -44,22 +44,23 @@
     x-cloak
     x-data="{ 
       shrink: false,
-      enableBgAni: {{ .Site.Params.background.enableBgAnimate | default true }},
+      bgAni: $store.darkMode.on && {{ .Site.Params.background.enableBgAnimate | default true }},
       scrollY: 0,
-      bgOpen: {{ .Site.Params.background.enable }},
       darkImg: '{{ .Site.Params.background.darkImg }}',
-      lightImg: '{{ .Site.Params.background.lightImg }}',
+      bgOpen: {{ .Site.Params.background.enable }},
       newbgImg: '',
       bgImg: '',
 
       init() {
         if (this.bgOpen && $store.darkMode.on) {
-          bgImg = this.darkImg
+          bgImg = '{{ .Site.Params.background.darkImg }}'
         } else if (this.bgOpen && !$store.darkMode.on) {
-          bgImg = this.lightImg
+          bgImg = '{{ .Site.Params.background.lightImg }}'
         } else {
           bgImg = ''
         }
+
+        console.log('init dark mode: ' + $store.darkMode.on)
       },
 
       get bgImg () {
@@ -79,17 +80,20 @@
         bgImg = '{{ .Site.Params.background.darkImg }}'
       } else if (!value && bgOpen) {
         bgImg = '{{ .Site.Params.background.lightImg }}'
-      } 
+      }
+
+      bgAni = value && {{ .Site.Params.background.enableBgAnimate | default true }}
     })"
     @click="newbgImg = getNewBgImg()"
     @scroll.window="shrink = (window.scrollY > 10 ? true : false)"
     x-effect="$el.style.backgroundImage = 'url(' + bgImg + ')'"
     :style="'background-image: ' + 'url(' + newbgImg + ')'"
-    :class="{'bg-white': !bgOpen, 'dark:bg-gray-900': !bgOpen, 'bg-cover': bgOpen, 'bg-fixed': bgOpen, 'dark:delay-300': enableBgAni }"
+    :class="{'bg-white': !bgOpen, 'dark:bg-gray-900': !bgOpen, 'bg-cover': bgOpen, 'bg-fixed': bgOpen, 'dark:delay-300': bgAni }"
     class="flex h-screen flex-col scroll-auto">
     <div
-      x-show="$store.darkMode.on && enableBgAni"
+      x-show="bgAni"
       x-cloak
+      x-effect="console.log('dark ani: ' + bgAni)"
       x-transition:enter="animate-bgScaleInTr"
       x-transition:leave="animate-bgScaleOutTr"
       :style="'background-image: ' + 'url(' + darkImg + ')'"
