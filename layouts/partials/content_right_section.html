@@ -15,7 +15,7 @@
       <button
         type="button"
         @click="open = true"
-        class="absolute top-5 text-gray-300 hover:text-blue-700 dark:text-gray-700 dark:hover:text-gray-300">
+        class="absolute top-5 text-gray-300 hover:text-[--hs-text-color-hover] dark:text-gray-700 dark:hover:text-gray-300">
         <span class="sr-only">Open sidebar</span>
         <svg
           class="h-7 w-7"
@@ -50,7 +50,7 @@
               <div class="flex h-full flex-col py-6 shadow-xl lg:min-w-60">
                 <div class="flex items-center justify-between pr-2">
                   <h2
-                    class="text-base font-bold leading-6 text-gray-700 dark:text-gray-400"
+                    class="hs-toc-title text-base font-bold leading-6 text-gray-700 dark:text-gray-400"
                     id="slide-over-title">
                     {{ T "toc.title" }}
                   </h2>
@@ -82,7 +82,7 @@
                   </div>
                 </div>
                 <div class="relative mt-6 h-128 flex-1">
-                  <div id="single-toc">
+                  <div id="hs-toc" class="hs-toc text-sm lg:text-xs">
                     {{ .TableOfContents }}
                   </div>
                 </div>

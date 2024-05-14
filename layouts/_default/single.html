@@ -17,44 +17,45 @@
   {{ if not $metaInfo.disableHero }}
     {{ $image := resources.Get .Params.image }}
     {{ with $image }}
-      <div id="post-feature" class="mt-38 w-full">
+      <div id="hs-feature" class="h-60 w-full md:h-120">
         <img
+          x-data="{ isGradient: {{ $metaInfo.disableImgGradient | default false }} }"
+          :class="{ 'image-gradient': !isGradient }"
           class="h-60 w-full object-cover md:h-120"
           src="{{ $image.Permalink }}"
           alt="preview image"
+          style="mask-type: alpha;"
           srcset="" />
       </div>
     {{ else }}
-      <div id="post-feature" class="mt-38 h-60 w-full md:h-120">
+      <div id="hs-feature" class="h-60 w-full md:h-120">
         {{- partial "random_feature_img.html" . -}}
       </div>
     {{ end }}
   {{ else }}
-    <div id="post-feature" class="mt-38"></div>
+    <div id="hs-feature"></div>
   {{ end }}
 
 
   <div
-    id="single-page-container"
+    id="hs-content-container"
     class="my-5 w-full rounded-b-lg px-5 md:px-10 lg:px-1">
     <div
       class="mx-auto flex max-w-screen-xl lg:grid lg:grid-flow-col lg:grid-cols-4 xl:grid-cols-5">
       {{/* Left side */}}
       {{ partial "content_left_section.html" . }}
       {{/* Content */}}
-      <div
-        id="post-container"
-        class="mx-auto w-full lg:col-span-2 xl:col-span-3">
+      <div id="hs-container" class="mx-auto w-full lg:col-span-2 xl:col-span-3">
         <div class="py-5 md:px-1 lg:px-5">
-          <div id="post-title" class="flex w-full flex-col">
+          <div class="flex w-full flex-col">
             <div
-              class="flex flex-row flex-wrap items-center space-x-1 pb-2 pt-1 text-xs font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
+              class="hs-content-meta flex flex-row flex-wrap items-center space-x-1 pb-2 pt-1 text-xs font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
               {{ $categories := (.GetTerms "categories") }}
-              <span class="flex flex-row gap-1">
+              <span class="hs-content-category flex flex-row gap-1">
                 {{ range $categories }}
                   <span class="italic text-red-700"> > </span>
                   <a
-                    class="font-serif hover:text-blue-600 hover:underline hover:decoration-blue-600 hover:underline-offset-4"
+                    class="hover:text-[--hs-text-color-hover] hover:underline hover:decoration-[--decoration-color] hover:underline-offset-4"
                     href="{{ .Permalink }}"
                     >{{- .LinkTitle -}}</a
                   >
@@ -62,12 +63,13 @@
               </span>
             </div>
             <div
-              class="py-1 text-start text-3xl font-bold tracking-wide text-black dark:text-white lg:text-4xl">
+              id="hs-content-title"
+              class="hs-content-title py-1 text-start text-3xl font-bold tracking-wide text-black dark:text-white lg:text-4xl">
               {{ .Title }}
             </div>
 
             <div
-              class="flex flex-row flex-wrap items-center space-x-1 pb-1 pt-3.5 font-serif text-xs font-extralight tracking-wide text-gray-500/90 dark:text-gray-600">
+              class="hs-content-meta flex flex-row flex-wrap items-center space-x-1 pb-1 pt-3.5 text-xs font-extralight tracking-wide text-gray-500/90 dark:text-gray-600">
               <span>{{ .Date.Format "2006/01/02" }}</span>
               <div
                 class="h-1 w-1 rounded-full bg-red-700 dark:bg-red-700/50"></div>
@@ -96,7 +98,7 @@
                     x-data
                     @click="toComment()"
                     id="speed-comment-count-id"
-                    class="whitespace-nowrap hover:text-blue-700 hover:underline hover:decoration-blue-700 hover:underline-offset-4">
+                    class="whitespace-nowrap hover:text-[--hs-text-color-hover] hover:underline hover:decoration-[--hs-decoration-color] hover:underline-offset-4">
                     <span
                       class="waline-comment-count"
                       data-path="{{ .RelPermalink }}"
@@ -126,7 +128,7 @@
                   </svg>
                 </span>
 
-                <span class="text-sm font-medium">
+                <span class="hs-toc-title text-sm font-medium">
                   {{ T "toc.mobile_title" }}
                 </span>
               </button>
@@ -135,7 +137,7 @@
                 x-show="open"
                 x-collapse.duration.1000ms
                 x-on:keydown.escape.window="open = false"
-                class="mb-3 mt-1 space-y-1 px-2">
+                class="hs-toc mb-3 mt-1 space-y-1 px-2">
                 {{ .TableOfContents }}
               </div>
             </div>
@@ -143,22 +145,22 @@
 
 
           <div
-            id="single-content"
-            class="format mx-auto mt-2 max-w-none dark:format-invert md:format-base format-figure:flex format-figure:flex-col format-figure:items-center format-img:cursor-zoom-in dark:text-gray-300 lg:mt-11">
+            id="hs-content"
+            class="hs-content format mx-auto mt-2 max-w-none dark:format-invert md:format-base format-figure:flex format-figure:flex-col format-figure:items-center format-img:cursor-zoom-in dark:text-gray-300 lg:mt-11">
             {{ .Content }}
           </div>
 
-          <div class="pb-5 pt-3">
+          <div class="hs-content-meta pb-5 pt-3">
             {{ $tags := (.GetTerms "tags") }}
             <span
-              class="flex flex-row flex-wrap justify-start gap-2 pl-1 font-serif text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
+              class="hs-content-tag flex flex-row flex-wrap justify-start gap-2 pl-1 text-sm font-normal tracking-wide text-gray-500/90 dark:text-gray-500">
               {{ range $tags }}
                 <a
-                  class="text-center hover:text-blue-600"
+                  class="text-center hover:text-[--hs-text-color-hover]"
                   href="{{ .Permalink }}"
                   ><span class="text-red-700 ">#</span
                   ><span
-                    class="border-b-2 border-transparent hover:border-b-2 hover:border-blue-600"
+                    class="hover:text-[--hs-text-color-hover] hover:underline hover:decoration-[--decoration-color] hover:underline-offset-4"
                     >{{- .LinkTitle -}}</span
                   ></a
                 >
@@ -174,7 +176,7 @@
     {{/* comments */}}
     {{ if and (not .Params.disableComment) .Site.Params.comment.enable }}
       <div
-        id="post-comment"
+        id="hs-comment"
         class="mx-auto max-w-screen-xl lg:grid lg:grid-cols-4 xl:grid-cols-5">
         <span class="hidden lg:block"></span>
         <div class="items-stretch lg:col-span-2 lg:col-start-2 xl:col-span-3">
@@ -246,7 +248,7 @@
   <script>
     function toComment() {
       window.scrollTo({
-        top: document.getElementById("post-comment").offsetTop - 100,
+        top: document.getElementById("hs-comment").offsetTop - 100,
         behavior: "smooth",
       });
     }

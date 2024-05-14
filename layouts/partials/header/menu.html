@@ -1,14 +1,14 @@
 {{ range .Site.Menus.main }}
   {{ if .HasChildren }}
-    <div x-data="{ isOpen: false }" class="relative">
+    <div x-data="{ isOpen: false }" class="hs-menus relative">
       <button
         type="button"
         @click="isOpen = !isOpen"
-        class="group flex items-center text-sm font-semibold leading-6 text-gray-900 hover:text-blue-700 dark:text-white"
+        class="group flex items-center text-sm font-semibold leading-6 text-gray-900 hover:text-[--hs-text-color-hover] dark:text-white"
         aria-expanded="false">
         {{ .Name | safeHTML }}
         <svg
-          class="size-4 flex-none text-gray-400 transition group-hover:text-blue-700"
+          class="size-4 flex-none transition"
           :class="{ 'rotate-180': isOpen }"
           viewBox="0 0 20 20"
           fill="currentColor"
@@ -38,7 +38,7 @@
               class="relative rounded-lg px-4 py-2.5 text-sm leading-6 hover:bg-gray-300/30 hover:backdrop-blur-md">
               <a
                 href="{{ .URL | relLangURL }}"
-                class="block font-semibold text-gray-900 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white">
+                class="block font-semibold text-gray-900 hover:text-[--hs-text-color-hover] dark:text-gray-400 dark:hover:text-white">
                 {{ .Name | safeHTML }}
                 <span class="absolute inset-0"></span>
               </a>
@@ -50,22 +50,22 @@
   {{ else }}
     <a
       href="{{ .URL | relLangURL }}"
-      class="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-700 dark:text-white"
+      class="hs-menus text-sm font-semibold leading-6 text-gray-900 hover:text-[--hs-text-color-hover] dark:text-white"
       >{{ .Name | safeHTML }}</a
     >
   {{ end }}
 {{ end }}
 
 {{ if not .Site.Params.omitCategoryOnMenu }}
-  <div x-data="{ isOpen: false }" class="relative">
+  <div x-data="{ isOpen: false }" class="hs-menus relative">
     <button
       type="button"
       @click="isOpen = !isOpen"
-      class="group flex items-center text-sm font-semibold leading-6 text-gray-900 hover:text-blue-700 dark:text-white"
+      class="group flex items-center text-sm font-semibold leading-6 text-gray-900 hover:text-[--hs-text-color-hover] dark:text-white"
       aria-expanded="false">
       {{ .Site.Params.categoryName | safeHTML }}
       <svg
-        class="size-4 flex-none text-gray-400 transition group-hover:text-blue-700"
+        class="size-4 flex-none transition"
         :class="{ 'rotate-180': isOpen }"
         viewBox="0 0 20 20"
         fill="currentColor"
@@ -95,7 +95,7 @@
             class="relative rounded-lg px-4 py-2.5 text-sm leading-6 hover:bg-gray-300/30 hover:backdrop-blur-md">
             <a
               href="{{ .Page.Permalink }}"
-              class="block font-semibold text-gray-900 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white">
+              class="block font-semibold text-gray-900 hover:text-[--hs-text-color-hover] dark:text-gray-400 dark:hover:text-white">
               {{ .Page.Title }}
               <span class="absolute inset-0"></span>
             </a>

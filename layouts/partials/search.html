@@ -2,31 +2,34 @@
 <div
   id="search-overlay"
   class="fixed inset-0 z-50 hidden bg-gray-900/90 backdrop-blur-lg dark:bg-gray-900/80"></div>
-<section id="search-section" class="z-50 flex hidden h-dvh w-full flex-col">
+<section
+  id="search-section"
+  class="hs-search z-50 flex hidden h-dvh w-full flex-col">
   {{/* Search div */}}
   <div
     class="flex h-dvh w-full flex-col overflow-auto md:mx-auto md:w-2/3 lg:max-w-2xl">
     {{/* Search input */}}
     <div
       id="searchBoxDiv"
-      class="sticky top-[-88px] z-50 flex flex-row justify-between px-8 pt-[88px]">
+      class="hs-search-input-wrapper sticky top-[-88px] z-50 flex flex-row justify-between px-8 pt-[88px]">
       <div id="searchBox" class="my-6 flex w-full flex-row items-center"></div>
     </div>
 
     {{/* Search result */}}
-    <div class="h-[30rem] overflow-auto">
-      <div id="searchResults" class="my-3 px-6"></div>
+    <div class="hs-search-results-wrapper h-[30rem] overflow-auto">
+      <div id="searchResults" class="hs-search-results my-3 px-6"></div>
       <div
         id="NotSearchResults"
         class="hidden flex-col items-center justify-around space-y-4 px-6 py-10">
-        <p class="font-Oswald text-lg font-bold tracking-wide text-gray-500">
+        <p
+          class="hs-search-no-results text-lg font-bold tracking-wide text-gray-500">
           {{ T "search.no_result" }}
         </p>
       </div>
       <div
         id="searchError"
         class="hidden flex-col items-center justify-around space-y-4 px-6 py-10 text-center ">
-        <p class="font-Oswald text-lg font-bold text-red-500">
+        <p class="hs-search-error text-lg font-bold text-red-500">
           {{ T "search.error " }}
         </p>
       </div>
@@ -53,9 +56,11 @@
   </div>
   {{/* logo */}}
   <div
-    class="bottom-0 flex flex-col items-center justify-center space-y-2 py-8 font-Oswald text-xs font-bold text-gray-600">
-    <div class="hidden md:block">{{ T "search.cancel" }}</div>
-    <div class="flex items-center justify-center">
+    class="hs-search-other bottom-0 flex flex-col items-center justify-center space-y-2 py-8 text-xs font-bold text-gray-600">
+    <div class="hs-search-cancel hidden md:block">
+      {{ T "search.cancel" }}
+    </div>
+    <div class="hs-search-powered_by flex items-center justify-center">
       {{ $algolia := printf `<img src="/images/default/algolia-logo.svg" alt="" class="h-4" />` }}
       {{ T "search.powered_by" (dict "Name" $algolia) | safeHTML }}
     </div>

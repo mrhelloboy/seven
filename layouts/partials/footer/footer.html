@@ -1,7 +1,7 @@
 <footer
   id="footer"
   x-ref="footer"
-  class="mx-auto mt-5 flex flex-col items-center gap-y-3 py-6 font-serif italic">
+  class="hs-footer mx-auto mt-5 flex flex-col items-center gap-y-3 py-6 text-xs text-gray-700 dark:text-gray-500">
   <span class="h-px w-full max-w-4xl bg-gray-700 dark:bg-gray-600"></span>
 
   <div class="flex h-5 space-x-3">
@@ -35,14 +35,11 @@
     class="mx-1 h-5" />
     </a>`
   }}
-  <span
-    x-data
-    class="flex flex-row items-center justify-center text-xs dark:text-gray-500"
+  <span x-data class="flex flex-row items-center justify-center"
     >{{ T "footer.powered_by" (dict "Hugo" $hugo "Theme" $seven) | safeHTML }}</span
   >
 
-  <span
-    class="flex flex-col items-center justify-between space-y-3 text-xs dark:text-gray-500">
+  <span class="flex flex-col items-center justify-between space-y-3">
     &copy;
     {{ $startYear := .Site.Params.copyright.start_year }}
     {{ $currentYear := now.Format "2006" }}

@@ -24,8 +24,11 @@
 
     {{- partial "head/meta.html" . -}}
     {{- block "extra_meta" . }}{{- end }}
+    {{- partial "head/hook_before_link.html" . -}}
     {{- partial "head/link.html" . -}}
+    {{- partial "head/font_link.html" . -}}
     {{- block "extra_link" . }}{{- end }}
+    {{- partial "head/hook_after_link.html" . -}}
     {{- partial "head/script.html" . -}}
     {{- block "extra_script". }}{{- end }}
 
@@ -40,15 +43,20 @@
   <body
     x-cloak
     x-data="{ 
+      shrink: false,
+      enableBgAni: {{ .Site.Params.background.enableBgAnimate | default true }},
+      scrollY: 0,
       bgOpen: {{ .Site.Params.background.enable }},
+      darkImg: '{{ .Site.Params.background.darkImg }}',
+      lightImg: '{{ .Site.Params.background.lightImg }}',
       newbgImg: '',
       bgImg: '',
 
       init() {
         if (this.bgOpen && $store.darkMode.on) {
-          bgImg = '{{ .Site.Params.background.darkImg }}'
+          bgImg = this.darkImg
         } else if (this.bgOpen && !$store.darkMode.on) {
-          bgImg = '{{ .Site.Params.background.lightImg }}'
+          bgImg = this.lightImg
         } else {
           bgImg = ''
         }
@@ -59,7 +67,6 @@
       },
 
       set bgImg(v) {
-        console.log('set bgImg: ', v)
         bgImg = v;
       },
 
@@ -75,10 +82,20 @@
       } 
     })"
     @click="newbgImg = getNewBgImg()"
+    @scroll.window="shrink = (window.scrollY > 10 ? true : false)"
     x-effect="$el.style.backgroundImage = 'url(' + bgImg + ')'"
     :style="'background-image: ' + 'url(' + newbgImg + ')'"
-    :class="{'bg-white': !bgOpen, 'dark:bg-gray-900': !bgOpen, 'bg-cover': bgOpen, 'bg-fixed': bgOpen}"
+    :class="{'bg-white': !bgOpen, 'dark:bg-gray-900': !bgOpen, 'bg-cover': bgOpen, 'bg-fixed': bgOpen, 'dark:delay-300': enableBgAni }"
     class="flex h-screen flex-col scroll-auto">
+    <div
+      x-show="$store.darkMode.on && enableBgAni"
+      x-cloak
+      x-transition:enter="animate-bgScaleInTr"
+      x-transition:leave="animate-bgScaleOutTr"
+      :style="'background-image: ' + 'url(' + darkImg + ')'"
+      :class="{'bg-gray-900': !bgOpen,'dark:bg-gray-900': !bgOpen, 'bg-cover': bgOpen, 'bg-fixed': bgOpen}"
+      class="fixed left-0 top-0 -z-10 h-full w-full"></div>
+
     {{- partial "header/header.html" . -}}
 
     {{- block "main" . }}{{- end }}

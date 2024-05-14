@@ -27,7 +27,7 @@
 }
 
 .ais-SearchBox-input {
-  @apply block w-full rounded-lg border-none bg-transparent p-2 pl-10 font-bold text-gray-400 caret-blue-500 outline-none placeholder:font-Montserrat placeholder:font-normal placeholder:italic placeholder:text-gray-600;
+  @apply block w-full rounded-lg border-none bg-transparent p-2 pl-10 font-bold text-gray-400 caret-blue-500 outline-none placeholder:font-normal placeholder:italic placeholder:text-gray-600;
 }
 
 .ais-SearchBox-submitIcon {
@@ -71,5 +71,5 @@
 }
 
 .ais-Hits.ais-Hits--empty {
-  @apply mx-auto flex justify-center font-Oswald text-lg tracking-wide text-gray-500;
+  @apply mx-auto flex justify-center text-lg tracking-wide text-gray-500;
 }

@@ -6,7 +6,6 @@ weight: 6
 categories: ["Docments"]
 tags: ["installation"]
 layout: "docs"
-emoji: 🌵
 url: "docs/installation"
 image: "/images/docs/installation.webp"
 description: "Installing the Theme from Scratch"

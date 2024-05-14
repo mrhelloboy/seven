@@ -9,12 +9,12 @@
   --waline-bg-color: #fff;
   --waline-bg-color-light: #f8f8f8;
   --waline-bg-color-hover: #f0f0f0;
-  --waline-border-color: #ddd;
+  --waline-border-color: #f2f4f7;
   --waline-disable-bg-color: #f8f8f8;
   --waline-disable-color: #000;
   --waline-code-bg-color: #282c34;
   --waline-bq-color: #f0f0f0;
-  --waline-avatar-size: 3.25rem;
+  --waline-avatar-size: 3rem;
   --waline-m-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
   --waline-badge-color: #3498db;
   --waline-badge-font-size: 0.75em;
@@ -760,9 +760,9 @@
   border-inline-start: 0;
   border-radius: 0 0.5em 0.5em 0;
 }
-.wl-card .wl-quote {
-  border-inline-start: 1px dashed rgba(237, 237, 237, 0.5);
-}
+/* .wl-card .wl-quote {
+  border-inline-start: 1px solid rgba(237, 237, 237, 0.5);
+} */
 .wl-card .wl-quote .wl-user {
   --avatar-size: var(--waline-m-avatar-size);
 }
@@ -1075,11 +1075,6 @@
   width: var(--waline-user-avatar-size, 48px);
   height: var(--waline-user-avatar-size, 48px);
 }
-
-.wl-user-avatar {
-  content: url("/images/wl-avatar.svg") !important;
-}
-
 .wl-user-list .wl-user-badge {
   position: absolute;
   bottom: 0;

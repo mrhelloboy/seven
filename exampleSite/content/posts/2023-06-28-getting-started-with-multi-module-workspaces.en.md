@@ -3,12 +3,10 @@ layout: posts
 title: "Getting Started With Multi Module Workspaces"
 date: 2023-06-28T22:02:42+08:00
 draft: false
-weight: 1
 image: "/images/posts/go-module.jpg"
 categories: ["Go tutorial"]
 tags: ["go", "go.work", "multi module"]
 disableComment: false
-emoji: 🍄
 description: |-
   This tutorial introduces the basics of multi-module workspaces in Go.
 

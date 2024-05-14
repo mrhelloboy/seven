@@ -6,7 +6,6 @@ weight: 2
 categories: ["文档"]
 tags: ["seven", "体验", "github"]
 layout: "docs"
-emoji: 🐳
 url: "docs/quick-start"
 image: "/images/docs/quick-start.webp"
 description: "介绍了快速体验 seven 主题的步骤。"

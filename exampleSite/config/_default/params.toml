@@ -17,8 +17,12 @@ enableHighlight = true
 
 [background]
   enable = true
-  lightImg = "/images/bg-light.webp"
-  darkImg = "/images/bg-dark.webp"
+  lightImg = "/images/bg.svg"
+  darkImg = "/images/bg-dark.svg"
+
+  # There's a transition animation in the background when you turn on dark mode.
+  # default is true
+  enableBgAnimate = true
 
 [logo]
   # Image logo or Text logo
@@ -60,6 +64,7 @@ enableHighlight = true
 
 [articleMeta]
   disableHero = false
+  disableImgGradient = false
 
   # Note: only works if waline or twikoo is enabled.
   enablePageView = true

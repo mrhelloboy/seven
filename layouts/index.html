@@ -7,9 +7,7 @@
   {{ $lastestPostsLen := len $lastestPosts }}
 
 
-  <section
-    x-data="{ loadNum: 1 }"
-    class="mx-auto mt-38 flex w-full max-w-[1000px]">
+  <section x-data="{ loadNum: 1 }" class="mx-auto flex w-full max-w-250">
     <div class="flex w-full px-5 md:space-x-3">
       <!-- Posts Index -->
       <div
@@ -23,7 +21,7 @@
           <div
             x-ref="myDiv"
             :style="{ height: divHeight >= 540 ? divHeight + 'px' : '540px'}"
-            class="font-IndexNumb flex w-full flex-col items-start justify-center space-y-10 p-6 text-3xl">
+            class="hs-index-number flex w-full flex-col items-start justify-center space-y-10 p-6 text-3xl">
             <!-- <p><strong x-text="divHeight"></strong> px</p> -->
             {{ range seq 1 (len $lastestPosts) }}
               <p
@@ -43,24 +41,25 @@
       </div>
 
       <!-- Recent Posts -->
-      <div class="w-full md:w-5/6 lg:w-4/5">
+      <div
+        class="mt-5 flex w-full flex-col space-y-12 md:w-5/6 md:space-y-10 lg:w-4/5">
         {{ range $idx, $post := $lastestPosts }}
           <div
             x-intersect.margin.-50%.0="loadNum = {{ $idx | add 1 }}"
-            class="mt-4 flex space-x-7 p-1 md:mt-10 md:p-4">
+            class="flex space-x-7 p-1 md:p-4">
             <!-- Date & Title & Image  -->
             <div
               x-data="{ isLoaded: false }"
               class="group flex w-full flex-col space-y-5 md:w-2/3 md:space-y-7">
               <div
-                class="flex items-center justify-start space-x-2 font-serif text-sm text-gray-700 dark:text-gray-400">
+                class="hs-content-meta flex items-center justify-start space-x-2 text-sm text-gray-600 dark:text-gray-500">
                 <p>{{ $post.Date.Format "2006/01/02" }}</p>
                 <div class="size-1 rounded-full bg-red-800"></div>
                 <p>{{ index .Params.categories 0 }}</p>
               </div>
               <a
                 href="{{ $post.Permalink }}"
-                class="hook-post-title text-4xl font-bold group-hover:text-blue-700 dark:text-gray-300"
+                class="hs-content-title text-4xl font-bold group-hover:text-[--hs-text-color-hover] dark:text-gray-300"
                 >{{ $post.Title }}</a
               >
 
@@ -89,19 +88,19 @@
                     :alt="'{{ $post.Title }}'"
                     loading="lazy"
                     decoding="async"
-                    class="animate-slideTop h-full w-full rounded-md shadow-[0_5px_15px_rgba(0,0,0,0.35)]" />
+                    class="h-full w-full animate-slideTop rounded-md shadow-[0_5px_15px_rgba(0,0,0,0.35)]" />
                 {{ end }}
               </div>
             </div>
             <!-- Summary -->
             <div
-              class="hidden flex-col justify-center space-y-3 border-l-[1px] border-l-gray-200 p-6 text-start font-serif dark:border-l-gray-800 md:flex md:w-1/3">
+              class="hidden flex-col justify-center space-y-3 border-l-[1px] border-l-gray-200 p-6 text-start dark:border-l-gray-800 md:flex md:w-1/3">
               <p
-                class="font-Oswald text-xl font-bold text-gray-800 underline decoration-blue-700 decoration-4 underline-offset-4 dark:text-gray-400">
+                class="hs-summary-title text-xl font-bold text-gray-800 underline decoration-[--hs-decoration-color] decoration-4 underline-offset-4 dark:text-gray-400">
                 {{ T "summary" }}
               </p>
               <div
-                class="line-clamp-[10] text-pretty tracking-wide text-gray-700 dark:text-gray-500">
+                class="hs-summary line-clamp-[10] text-pretty tracking-wide text-gray-700 dark:text-gray-500">
                 {{ with $post.Description }}
                   <p>{{- . -}}</p>
                 {{ else }}
