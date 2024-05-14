@@ -18,14 +18,30 @@
     document.documentElement.classList.remove("dark");
   }
 
+  if ("{{ .Site.Params.background.enable }}" === 'true') {
+    console.log('bg img enable')
+    let _lightbg = new Image();
+    let _darkbg = new Image();
+    _lightbg.src = "{{ .Site.Params.background.lightImg }}";
+    _darkbg.src = "{{ .Site.Params.background.darkImg }}";
+  }
+
   document.addEventListener("alpine:init", () => {
     Alpine.store("darkMode", {
-      on:
-        localStorage.getItem("color-theme") === "dark" ||
-        (!("color-theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches),
+      on: localStorage.getItem("color-theme") === "dark" || (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
+      animate: '{{ .Site.Params.enableDarkAnimate | default true }}' === 'true',
+
+      initDark: localStorage.getItem("color-theme") === "dark" || (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
+      initLight: !(localStorage.getItem("color-theme") === "dark" || (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)),
+      toDarkAnimate: false,
+      toLightAnimate: false,
+
       toggle() {
         this.on = !this.on;
+
+        this.toDarkAnimate = this.animate && this.on && this.initLight;
+        this.toLightAnimate = this.animate && !this.on && this.initDark;
+
         if (this.on) {
           document.documentElement.classList.add("dark");
           localStorage.setItem("color-theme", "dark");
@@ -33,7 +49,38 @@
           document.documentElement.classList.remove("dark");
           localStorage.setItem("color-theme", "light");
         }
+
       },
     });
+
+    Alpine.store('bgImg', {
+      on: "{{ .Site.Params.background.enable }}" === 'true',
+      light: "{{ .Site.Params.background.lightImg }}",
+      dark: "{{ .Site.Params.background.darkImg }}",
+      bgImg: Alpine.store('darkMode').on ? this.dark : this.light, // 初始值
+
+      init() {
+        console.log('bg enable: ' + this.on)
+        if (!this.on) {
+          this.light = "";
+          this.dark = "";
+        }
+        this.updateBgImg();
+        // 监听 darkMode 的变化
+        Alpine.effect(() => {
+          this.updateBgImg();
+        });
+      },
+
+      updateBgImg() {
+        if (this.on) {
+          const darkModeOn = Alpine.store('darkMode').on;
+          this.bgImg = darkModeOn ? this.dark : this.light;
+        } else {
+          this.bgImg = "";
+        }
+      }
+    });
+
   });
 </script>

@@ -3,6 +3,10 @@ disableToTop = false
 enableSearch = true
 enableHighlight = true
 
+# There's a transition animation in the background when you turn on dark mode.
+# default is true
+enableDarkAnimate = true
+
 [app]
   # optional site title override for the app when added to an iOS home screen or Android launcher
   title = "Seven Demo"
@@ -19,10 +23,6 @@ enableHighlight = true
   enable = true
   lightImg = "/images/bg.svg"
   darkImg = "/images/bg-dark.svg"
-
-  # There's a transition animation in the background when you turn on dark mode.
-  # default is true
-  enableBgAnimate = true
 
 [logo]
   # Image logo or Text logo
