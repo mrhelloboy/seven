@@ -6,7 +6,6 @@ weight: 6
 categories: ["文档"]
 tags: ["安装"]
 layout: "docs"
-emoji: 🌵
 url: "docs/installation"
 image: "/images/docs/installation.webp"
 description: "从零开始安装主题"

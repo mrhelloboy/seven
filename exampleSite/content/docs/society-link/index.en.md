@@ -6,7 +6,6 @@ weight: 5
 categories: ["Documents"]
 tags: ["social links", "Qrcode"]
 layout: "docs"
-emoji: 🦋
 url: "docs/add-social-links"
 image: "/images/docs/social-links.webp"
 description: "How to configure regular links and QR code pop-up social links tutorial"

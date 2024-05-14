@@ -6,7 +6,6 @@ weight: 4
 categories: ["文档"]
 tags: ["搜索", "algolia", "ndjson"]
 layout: "docs"
-emoji: "🐶"
 url: "docs/upload-data-to-algolia"
 image: "/images/docs/search.webp"
 description: "如何生成 ndjson 格式数据文件并上传到 Algolia"

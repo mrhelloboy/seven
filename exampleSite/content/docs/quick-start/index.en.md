@@ -6,7 +6,6 @@ weight: 2
 categories: ["Documents"]
 tags: ["seven", "demo", "github"]
 layout: "docs"
-emoji: 🐳
 url: "docs/quick-start"
 image: "/images/docs/quick-start.webp"
 description: "Introduces the steps to quickly experience the seven theme."

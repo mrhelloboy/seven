@@ -6,7 +6,6 @@ weight: 5
 categories: ["文档"]
 tags: ["社交链接", "二维码"]
 layout: "docs"
-emoji: 🦋
 url: "docs/add-social-links"
 image: "/images/docs/social-links.webp"
 description: "如何配置普通链接和二维码弹窗方式的社交链接的教程"
