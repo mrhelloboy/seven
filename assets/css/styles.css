@@ -162,23 +162,6 @@ pre {
   transform: translateY(0);
 }
 
-/* 下面的 fixed、inset-0、z-30、bg-gray-900 及 dark:bg-gray-900 是 flowbite.css 移除后兼容 drawer 的阴影效果 */
-.fixed {
-  position: fixed;
-}
-
-.inset-0 {
-  inset: 0px;
-}
-
-.z-30 {
-  z-index: 30;
-}
-
-.bg-gray-900\/50 {
-  background-color: rgb(17 24 39 / 0.5);
-}
-
 :is(:where(.dark) .dark\:bg-gray-900\/80) {
   background-color: rgb(17 24 39 / 0.8);
 }

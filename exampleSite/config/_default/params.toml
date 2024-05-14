@@ -20,6 +20,10 @@ enableHighlight = true
   lightImg = "/images/bg.svg"
   darkImg = "/images/bg-dark.svg"
 
+  # There's a transition animation in the background when you turn on dark mode.
+  # default is true
+  enableBgAnimate = true
+
 [logo]
   # Image logo or Text logo
   # Recommended to set image as logo. (prefer)

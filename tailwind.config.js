@@ -61,12 +61,62 @@ module.exports = {
             opacity: 1,
           },
         },
+        bgScaleInTr: {
+          '0%': {
+            transformOrigin: '100% 0%',
+            transform: 'scale(0)',
+            opacity: 1,
+            clipPath: 'circle(0% at top right)',
+          },
+          '30%': {
+            transform: 'scaleY(1)',
+            transformOrigin: '100% 0%',
+            opacity: 1,
+          },
+          '70%': {
+            transform: 'scaleY(1) scaleX(1)',
+            transformOrigin: '100% 0%',
+            opacity: 1,
+            clipPath: 'circle(100% at top right)',
+          },
+          '100%': {
+            clipPath: 'circle(150% at top right)',
+          },
+        },
+        bgScaleOutTr: {
+          '0%': {
+            transform: 'scale(1)',
+            transformOrigin: '100% 0%',
+            opacity: 1,
+            clipPath: 'circle(150% at top right)',
+          },
+          '30%': {
+            transform: 'scaleY(1) scaleX(1)',
+            transformOrigin: '100% 0%',
+            opacity: 1,
+            clipPath: 'circle(100% at top right)',
+          },
+          '70%': {
+            transform: 'scaleY(1)',
+            transformOrigin: '100% 0%',
+            opacity: 1,
+          },
+
+          '100%': {
+            transform: 'scale(0)',
+            transformOrigin: '100% 0%',
+            opacity: 1,
+            clipPath: 'circle(0% at top right)',
+          },
+        },
       },
       animation: {
         slideTop: 'slideTop 0.5s linear both',
         pingOnce: 'pingOnce 0.5s ease-in-out both',
         scaleInCenter: 'scaleInCenter 0.5s linear both',
         scaleOutCenter: 'scaleOutCenter 0.5s linear both',
+        bgScaleInTr: 'bgScaleInTr 300ms linear both',
+        bgScaleOutTr: 'bgScaleOutTr 300ms linear both',
       },
     },
   },
