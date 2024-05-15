@@ -59,6 +59,22 @@
       x-cloak
       x-transition:enter="animate-bgScaleInTr"
       x-transition:leave="animate-bgScaleOutTr"
+      x-init="$watch(
+        '$store.darkMode.toDarkAnimate', (value) => {
+          if (bgOpen) {
+            $el.style.backgroundImage = 'url(' + $store.bgImg.dark + ')'
+            if (value) {
+              setTimeout(() => {
+                $el.style.backgroundImage = 'url(' + $store.bgImg.dark + ')'
+              }, 300)
+            } 
+          } else {
+            $el.classList.remove('bg-white');
+            $el.classList.add('bg-gray-900')
+            $el.classList.add('dark:bg-gray-900')
+          }
+        }
+      )"
       :style="'background-image: ' + 'url(' + $store.bgImg.dark + ')'"
       :class="{'bg-gray-900': !bgOpen,'dark:bg-gray-900': !bgOpen, 'bg-cover': bgOpen, 'bg-fixed': bgOpen}"
       class="fixed left-0 top-0 -z-10 h-full w-full"></div>
