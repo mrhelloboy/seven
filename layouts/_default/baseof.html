@@ -50,7 +50,7 @@
     @scroll.window="shrink = (window.scrollY > 10 ? true : false)"
     :style="'background-image: ' + 'url(' + $store.bgImg.bgImg + ')'"
     :class="{'bg-white': !bgOpen, 'dark:bg-gray-900': !bgOpen, 'bg-cover': bgOpen, 'bg-fixed': bgOpen, 'dark:delay-300': $store.darkMode.animate}"
-    class="flex h-screen flex-col scroll-auto">
+    class="-z-10 flex h-screen flex-col scroll-auto">
     <!-- 默认为白天模式，点击🌛，白转黑 -->
     <!-- toDarkAnimate: true -> 白转黑 -->
     <!-- toDarkAnimate: false -> 黑转白 -->
