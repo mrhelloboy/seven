@@ -31,7 +31,7 @@
   document.addEventListener("alpine:init", () => {
     Alpine.store("darkMode", {
       on: _initDarkMode,
-      animate: '{{ .Site.Params.enableDarkAnimate | default true }}' === 'true',
+      animate: '{{ .Site.Params.disableDarkAnimate | default false }}' === 'false',
 
       initDark: _initDarkMode,
       initLight: !(_initDarkMode),

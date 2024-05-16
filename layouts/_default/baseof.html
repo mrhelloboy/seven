@@ -99,8 +99,10 @@
 
     {{- block "main" . }}{{- end }}
 
-    {{ if .Site.Params.enableSearch }}
-      {{- partial "search.html" . -}}
+    {{ with .Site.Params.search }}
+      {{ if .enable }}
+        {{- partial "search.html" . -}}
+      {{ end }}
     {{ end }}
 
     {{- partial "footer/footer.html" . -}}

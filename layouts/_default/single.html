@@ -1,6 +1,6 @@
 {{- define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end -}}
 {{- define "extra_link" }}
-  {{ if .Site.Params.enableHighlight }}
+  {{ if not (.Site.Params.disableHightlight | default false ) }}
     {{ $syntax := resources.Get "/css/syntax.css" }}
     {{ $syntax = $syntax | resources.PostCSS (dict "inlineImports" true) }}
     {{ if hugo.IsProduction }}
@@ -188,7 +188,7 @@
   </div>
 
   {{/* To top button */}}
-  {{ if not .Site.Params.disableToTop }}
+  {{ if not (.Site.Params.disableToTop | default false ) }}
     <button
       x-data="{
         show: false,
@@ -236,7 +236,7 @@
   {{ end }}
   <script src="{{ $linkTopJS.RelPermalink }}" defer></script>
 
-  {{ if .Site.Params.showCodeCopyButton }}
+  {{ if not (.Site.Params.disableCodeCopyButton | default false ) }}
     {{ $codeCopyJS := resources.Get "/js/code-copy.js" }}
     {{ if hugo.IsProduction }}
       {{ $codeCopyJS = $codeCopyJS | minify | fingerprint }}

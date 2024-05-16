@@ -76,11 +76,11 @@
   integrity="sha256-mWvjWAfZylKMOg+S3HLq+wng1HHRnl2Idr2r8NsUzIU="
   crossorigin="anonymous"></script>
 {{ $placeholder := (T "search.placeholder") }}
-{{ $app_id := .Site.Params.algolia.app_id }}
-{{ $api_key := .Site.Params.algolia.api_key }}
-{{ $index := .Site.Params.algolia.index }}
-{{ $snippet := .Site.Params.algolia.snippet_attr }}
-{{ $highlight := .Site.Params.algolia.highlight_attr }}
+{{ $app_id := .algolia.app_id }}
+{{ $api_key := .algolia.api_key }}
+{{ $index := .algolia.index }}
+{{ $snippet := .algolia.snippet_attr }}
+{{ $highlight := .algolia.highlight_attr }}
 {{ $algoliaInfo := dict "placeholder" $placeholder "api_id" $app_id "api_key" $api_key "index" $index "snippet" $snippet "highlight" $highlight }}
 {{ $searchJS := resources.Get "/js/search.js" | js.Build (dict "params" $algoliaInfo) }}
 {{ if hugo.IsProduction }}

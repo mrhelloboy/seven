@@ -29,7 +29,7 @@
 {{ end }}
 
 {{ $opts := dict "inlineImports" true }}
-{{ if and .Site.Params.enableSearch .Site.Params.algolia.app_id }}
+{{ if and .Site.Params.search.enable .Site.Params.search.algolia.app_id }}
   <!-- algoria css -->
   <link
     rel="stylesheet"

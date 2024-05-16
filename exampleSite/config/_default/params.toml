@@ -1,31 +1,33 @@
-showCodeCopyButton = true
-disableToTop = false
-enableSearch = true
-enableHighlight = true
+# disableCodeCopyButton = false
+# disableToTop = false
+# disableHightlight = false
 
-# There's a transition animation in the background when you turn on dark mode.
-# default is true
-enableDarkAnimate = true
+# There's a transition animation when you turn on dark mode.
+# disableDarkAnimate = false
 
 [app]
   # optional site title override for the app when added to an iOS home screen or Android launcher
-  title = "Seven Demo"
+  title = "Seven Theme"
+
   # whether to omit favicon resource links
   noFavicon = false
+
   # modern SVG favicon to use in place of older style .png and .ico files
   svgFavicon = "/favicon.svg"
+
   # Safari mask icon color
   iconColor = "#ffffff"
+
   # Android browser theme color
   themeColor = "#ffffff"
 
 # Enable background images by default
 # If you don't need a background image, set enable to false
 # If enabled but no background image is configured, use the default
-#[backgroundImage]
-#  enable = true
-#  light = ""
-#  dark = ""
+# [backgroundImage]
+#   enable = true
+#   light = ""
+#   dark = ""
 
 [logo]
   # Image logo or Text logo
@@ -33,14 +35,12 @@ enableDarkAnimate = true
   img = "/images/logo.svg"
   img_dark = "/images/logo-footer.svg"
 
-  # max height not greater than 56 (px). default: 56 (px)
+  # Max height not greater than 56 (px). default: 56 (px)
   customLogoHeight = "56"
   customLogoWidth = "120"
   text = ""
 
 [home]
-  heroLogo = "/images/hero-logo.svg"
-  heroDarkLogo = "/images/hero-logo-dark.svg"
 
   # Customize the type of content to display up-to-date, 
   # and display all content with 'IsPage=true' if not.
@@ -54,7 +54,7 @@ enableDarkAnimate = true
   [society.github]
     enable = true
     url = "https://github.com/mrhelloboy/seven"
-  [society.x]  # old twitter
+  [society.x]
     enable = true
     url = ""
   [society.wechat]
@@ -88,22 +88,31 @@ enableDarkAnimate = true
     lang = "en"
     region = ""
 
-[algolia]
-  # Type of content. see: https://gohugo.io/content-management/types/
-  type = ["posts", "docs"]
-  # like pages variables. see: https://gohugo.io/variables/page/
-  vars = ["title", "description", "permalink"]
-  # Front Matter Variables. 
-  # see: https://gohugo.io/content-management/front-matter/#front-matter-variables
-  params = ["tags"]
+[search]
+  enable = true
 
-  app_id = "995JRM5ZAU"
-  api_key = "4a1095e4b8c96d2baee42d4c64b16afa"
-  index = "hugo_theme_seven_demo"
-  # see: https://www.algolia.com/doc/api-reference/widgets/snippet/js/#about
-  snippet_attr = "description"
-  # see: https://www.algolia.com/doc/api-reference/widgets/highlight/js/#examples
-  highlight_attr = "title"
+  [search.algolia]
+    # Type of content. 
+    # see: https://gohugo.io/content-management/types/
+    type = ["posts", "docs"]
+
+    # Like pages variables. 
+    # see: https://gohugo.io/variables/page/
+    vars = ["title", "description", "permalink"]
+
+    # Front matter variables. 
+    # see: https://gohugo.io/content-management/front-matter/#front-matter-variables
+    params = ["tags"]
+
+    app_id = "995JRM5ZAU"
+    api_key = "4a1095e4b8c96d2baee42d4c64b16afa"
+    index = "hugo_theme_seven_demo"
+
+    # see: https://www.algolia.com/doc/api-reference/widgets/snippet/js/#about
+    snippet_attr = "description"
+
+    # see: https://www.algolia.com/doc/api-reference/widgets/highlight/js/#examples
+    highlight_attr = "title"
 
 [analytics]
   [analytics.goatcounter]
