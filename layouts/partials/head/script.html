@@ -8,11 +8,10 @@
   defer
   src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.10/dist/cdn.min.js"></script>
 <script>
-  if (
-    localStorage.getItem("color-theme") === "dark" ||
-    (!("color-theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
+
+  let _initDarkMode = localStorage.getItem("color-theme") === "dark" || (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+  if (_initDarkMode) {
     document.documentElement.classList.add("dark");
   } else {
     document.documentElement.classList.remove("dark");
@@ -31,11 +30,11 @@
 
   document.addEventListener("alpine:init", () => {
     Alpine.store("darkMode", {
-      on: localStorage.getItem("color-theme") === "dark" || (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
+      on: _initDarkMode,
       animate: '{{ .Site.Params.enableDarkAnimate | default true }}' === 'true',
 
-      initDark: localStorage.getItem("color-theme") === "dark" || (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
-      initLight: !(localStorage.getItem("color-theme") === "dark" || (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)),
+      initDark: _initDarkMode,
+      initLight: !(_initDarkMode),
       toDarkAnimate: false,
       toLightAnimate: false,
 
