@@ -86,40 +86,42 @@ description: "对配置主题的一些重要配置参数进行说明"
 
 ## 网站背景
 
-主题支持通过图片来配置网站背景：
+主题支持背景图片，并且默认开启及提供了默认的背景图片。
+
+如果需要自定义背景图片，可以配置如下参数：
 
 ```toml
-[background]
-  enable = true
-  lightImg = "/images/bg-light.webp"
-  darkImg = "/images/bg-dark.webp"
+[backgroundImage]
+   enable = true
+   light = ""
+   dark = ""
 ```
 
 需要存放背景图片在 `static` 目录。
 
 如果不想使用背景图片，可以配置为 `enable = false`。关闭背景图片后，背景色默认为白色、夜间模式下是深灰色。
 
-## 社交链接
+## 关注链接
 
 主题默认只支持邮箱、Github、微信 和 X（原 twitter）。并且主题支持弹出二维码方式，只需要在配置中配置 `QRCodeUrl` 参数。
 
 ```toml {hl_lines=["11-13"],linenostart=1}
-[society]
-  [society.email]
+[follow]
+  [follow.email]
     enable = false
     url = ""
-  [society.github]
+  [follow.github]
     enable = true
-    url = "https://github.com/mrhelloboy/seven"
-  [society.x]
+    url = "Your github link"
+  [follow.x]
     enable = true
-    url = ""
-  [society.wechat]
+    url = "Your x link"
+  [follow.wechat]
     enable = true
-    QRCodeUrl = "/images/society/wechat/wechat.jpg"
+    QRCodeUrl = "Your img of wechat qrcode"
 ```
 
-如果想添加其他链接，可以通过重写 `hook_social_links.html` 模板来实现。详细请阅读[自定义社交链接](docs/social-links)。
+如果想添加其他链接，可以通过重写 `hook_follow_me.html` 模板来实现。详细请阅读[自定义社交链接](docs/social-links)。
 
 ## 评论
 
@@ -167,21 +169,19 @@ Waline 或者 Kwikoo 的配置如下：
 
 ## 搜索
 
-本主题仅支持使用 [Algolia](https://www.algolia.com/) 作为搜索系统。如果需要启用搜索功能，需要将 `enableSearch` 设置为 `true`。
+本主题仅支持使用 [Algolia](https://www.algolia.com/) 作为搜索系统。如果需要启用搜索功能，需要将 `search.enable` 设置为 `true`。
 
 配置 Alogolia 时，需要用到的参数。
 
 ```toml
-[algolia]
-  type = []
-  vars = []
-  params = []
-
-  app_id = ""
-  api_key = ""
-  index = ""
-  snippet_attr = ""
-  highlight_attr = ""
+type = []
+vars = []
+params = []
+app_id = ""
+api_key = ""
+index = ""
+snippet_attr = ""
+highlight_attr = ""
 ```
 
 只有配置了 `app_id`、`api_key`、`index` 参数才能正常使用 Algolia 搜索，需要到官网上进行申请注册。

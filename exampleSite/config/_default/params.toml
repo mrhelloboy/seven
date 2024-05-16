@@ -65,7 +65,6 @@
   startYear = "2023"
 
 [articleMeta]
-  disableHero = false
   disableImgGradient = false
 
   # Note: only works if waline or twikoo is enabled.

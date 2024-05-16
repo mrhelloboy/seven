@@ -87,40 +87,42 @@ You need to store the logo images in the `static` directory.
 
 ## Website Background
 
-The theme supports configuring the website background using an image.
+The theme supports background images, which are enabled by default, and provides a default background image.
+
+To customize the background image, you can configure the following parameters:
 
 ```toml
-[background]
-  enable = true
-  lightImg = "/images/bg-light.webp"
-  darkImg = "/images/bg-dark.webp"
+[backgroundImage]
+   enable = true
+   light = ""
+   dark = ""
 ```
 
 You need to store the background image in the `static` directory.
 
 If you don't want to use a background image, you can configure it as `enable = false`. After disabling the background image, the background color defaults to white in light mode and dark gray in dark mode.
 
-## Social Links
+## Follow Links
 
 The theme defaultly supports email, Github, WeChat, and X (originally Twitter). Additionally, the theme supports a pop-up QR code feature, which only requires configuring the `QRCodeUrl` parameter in the settings.
 
 ```toml {hl_lines=["11-13"],linenostart=1}
-[society]
-  [society.email]
+[follow]
+  [follow.email]
     enable = false
     url = ""
-  [society.github]
+  [follow.github]
     enable = true
-    url = "https://github.com/mrhelloboy/seven"
-  [society.x]
+    url = "Your github link"
+  [follow.x]
     enable = true
-    url = ""
-  [society.wechat]
+    url = "Your x link"
+  [follow.wechat]
     enable = true
-    QRCodeUrl = "/images/society/wechat/wechat.jpg"
+    QRCodeUrl = "Your img of wechat qrcode"
 ```
 
-If you wish to add other links, you can achieve this by overriding the `hook_social_links.html` template. For detailed instructions, please refer to [Customizing Social Links](docs/social-links).
+If you wish to add other links, you can achieve this by overriding the `hook_follow_me.html` template. For detailed instructions, please refer to [Customizing Social Links](docs/social-links).
 
 ## Comments
 
@@ -168,21 +170,20 @@ When enabling the Disqus comment system, you need to set `comment.enable` to `fa
 
 ## Search
 
-This theme only supports using [Algolia](https://www.algolia.com/) as the search system. If you want to enable the search functionality, you need to set `enableSearch` to `true`.
+This theme only supports using [Algolia](https://www.algolia.com/) as the search system. If you want to enable the search functionality, you need to set `search.enable` to `true`.
 
 Here are the parameters required for configuring Algolia.
 
 ```toml
-[algolia]
-  type = []
-  vars = []
-  params = []
+type = []
+vars = []
+params = []
 
-  app_id = ""
-  api_key = ""
-  index = ""
-  snippet_attr = ""
-  highlight_attr = ""
+app_id = ""
+api_key = ""
+index = ""
+snippet_attr = ""
+highlight_attr = ""
 ```
 
 To enable Algolia search functionality, you need to provide the `app_id`, `api_key`, and `index` parameters. These credentials can be obtained by registering and applying on the Algolia official website.
