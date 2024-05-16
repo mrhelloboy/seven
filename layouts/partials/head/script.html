@@ -18,6 +18,14 @@
     document.documentElement.classList.remove("dark");
   }
 
+  if ("{{ .Site.Params.background.enable }}" === 'true') {
+    console.log('bg img enable')
+    let _lightbg = new Image();
+    let _darkbg = new Image();
+    _lightbg.src = "{{ .Site.Params.background.lightImg }}";
+    _darkbg.src = "{{ .Site.Params.background.darkImg }}";
+  }
+
   document.addEventListener("alpine:init", () => {
     Alpine.store("darkMode", {
       on: localStorage.getItem("color-theme") === "dark" || (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),

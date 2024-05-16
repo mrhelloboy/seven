@@ -20,7 +20,7 @@ enableDarkAnimate = true
   themeColor = "#ffffff"
 
 [background]
-  enable = false
+  enable = true
   lightImg = "/images/bg.svg"
   darkImg = "/images/bg-dark.svg"
 
