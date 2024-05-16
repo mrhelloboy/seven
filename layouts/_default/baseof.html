@@ -41,58 +41,57 @@
   </head>
 
   <body
-    x-cloak
+    x-ref="body"
     x-data="{ 
       shrink: false,
-      enableBgAni: {{ .Site.Params.background.enableBgAnimate | default true }},
       scrollY: 0,
-      bgOpen: {{ .Site.Params.background.enable }},
-      darkImg: '{{ .Site.Params.background.darkImg }}',
-      lightImg: '{{ .Site.Params.background.lightImg }}',
-      newbgImg: '',
-      bgImg: '',
-
-      init() {
-        if (this.bgOpen && $store.darkMode.on) {
-          bgImg = this.darkImg
-        } else if (this.bgOpen && !$store.darkMode.on) {
-          bgImg = this.lightImg
-        } else {
-          bgImg = ''
-        }
-      },
-
-      get bgImg () {
-        return bgImg
-      },
-
-      set bgImg(v) {
-        bgImg = v;
-      },
-
-      getNewBgImg() {
-        return bgImg;
-      },
+      bgOpen: $store.bgImg.on,
     }"
-    x-init="$watch('$store.darkMode.on', (value) => {
-      if (value && bgOpen) {
-        bgImg = '{{ .Site.Params.background.darkImg }}'
-      } else if (!value && bgOpen) {
-        bgImg = '{{ .Site.Params.background.lightImg }}'
-      } 
-    })"
-    @click="newbgImg = getNewBgImg()"
     @scroll.window="shrink = (window.scrollY > 10 ? true : false)"
-    x-effect="$el.style.backgroundImage = 'url(' + bgImg + ')'"
-    :style="'background-image: ' + 'url(' + newbgImg + ')'"
-    :class="{'bg-white': !bgOpen, 'dark:bg-gray-900': !bgOpen, 'bg-cover': bgOpen, 'bg-fixed': bgOpen, 'dark:delay-300': enableBgAni }"
-    class="flex h-screen flex-col scroll-auto">
+    :style="'background-image: ' + 'url(' + $store.bgImg.bgImg + ')'"
+    :class="{'bg-white': !bgOpen, 'dark:bg-gray-900': !bgOpen, 'bg-cover': bgOpen, 'bg-fixed': bgOpen, 'dark:delay-300': $store.darkMode.animate}"
+    class="-z-10 flex h-screen flex-col scroll-auto">
+    <!-- Default is Light，click🌛，light to dark -->
+    <!-- toDarkAnimate: true -> light to dark -->
+    <!-- toDarkAnimate: false -> dark to light -->
     <div
-      x-show="$store.darkMode.on && enableBgAni"
+      x-show="$store.darkMode.toDarkAnimate"
       x-cloak
       x-transition:enter="animate-bgScaleInTr"
       x-transition:leave="animate-bgScaleOutTr"
-      :style="'background-image: ' + 'url(' + darkImg + ')'"
+      :style="'background-image: ' + 'url(' + $store.bgImg.dark + ')'"
+      :class="{'bg-gray-900': !bgOpen,'dark:bg-gray-900': !bgOpen, 'bg-cover': bgOpen, 'bg-fixed': bgOpen}"
+      class="fixed left-0 top-0 -z-10 h-full w-full"></div>
+    <!-- Default is Dark, click 🌞，dark to light -->
+    <!-- toLightAnimate: true -> dark to light -->
+    <!-- toLightAnimate: false -> light to dark -->
+    <div
+      x-show="$store.darkMode.toLightAnimate"
+      x-cloak
+      x-transition:enter="animate-bgScaleOutTr"
+      x-transition:leave="animate-bgScaleInTr"
+      x-init="$watch(
+        '$store.darkMode.toLightAnimate', (value) => {
+          if (bgOpen) {
+            $el.style.backgroundImage = 'url(' + $store.bgImg.dark + ')'
+            if (value) {
+              setTimeout(() => {
+                $el.style.backgroundImage = 'url(' + $store.bgImg.light + ')'
+              }, 300)
+            } 
+          } else {
+            $el.classList.remove('bg-white');
+            $el.classList.add('bg-gray-900')
+            if (value) {
+              setTimeout(()=>{
+                $el.classList.remove('bg-gray-900');
+                $el.classList.add('bg-white')
+              }, 300)
+            } 
+          }
+        }
+      )"
+      :style="'background-image: ' + 'url(' + $store.bgImg.dark + ')'"
       :class="{'bg-gray-900': !bgOpen,'dark:bg-gray-900': !bgOpen, 'bg-cover': bgOpen, 'bg-fixed': bgOpen}"
       class="fixed left-0 top-0 -z-10 h-full w-full"></div>
 
@@ -100,8 +99,10 @@
 
     {{- block "main" . }}{{- end }}
 
-    {{ if .Site.Params.enableSearch }}
-      {{- partial "search.html" . -}}
+    {{ with .Site.Params.search }}
+      {{ if .enable }}
+        {{- partial "search.html" . -}}
+      {{ end }}
     {{ end }}
 
     {{- partial "footer/footer.html" . -}}

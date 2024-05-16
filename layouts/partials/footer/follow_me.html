@@ -1,4 +1,4 @@
-{{ range $name, $value :=.Site.Params.society }}
+{{ range $name, $value :=.Site.Params.follow }}
   {{ if and (eq $name "email") (eq $value.enable true) }}
     <a
       href="mailto:{{ $value.url }}"
