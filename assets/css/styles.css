@@ -11,13 +11,13 @@
 
 /* 可拖拽的那个滑杆 */
 *::-webkit-scrollbar-thumb {
-  background: rgba(60, 60, 67, 0.4);
+  background: var(--hs-scrollbar-color);
   border-radius: 8px;
   cursor: pointer;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: #425aef;
+  background: var(--hs-scrollbar-color-hover);
   opacity: 1;
   display: block !important;
 }
@@ -44,6 +44,15 @@ html {
   --hs-text-color-hover-dark: theme(colors.blue.500);
   --hs-link-color: theme(colors.blue.700);
 
+  --hs-toc-active-border-color: theme(colors.blue.700);
+  --hs-toc-active-bg-color: theme(colors.blue.50);
+  --hs-toc-active-bg-color-dark: theme(colors.gray.800/85);
+  --hs-toc-active-text-color: theme(colors.blue.700);
+  --hs-toc-active-text-color-dark: theme(colors.blue.500);
+
+  --hs-scrollbar-color: theme(colors.gray.400/40);
+  --hs-scrollbar-color-hover: theme(colors.blue.700);
+
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -68,6 +77,7 @@ body {
   .image-gradient {
     mask: linear-gradient(#000, transparent);
   }
+
   .hs-index-number {
     @apply font-IndexNumb;
   }
@@ -89,7 +99,7 @@ body {
 }
 
 .theme-toc-active {
-  @apply flex border-s-[3px] border-blue-500 bg-blue-50 p-2 text-blue-700 dark:bg-gray-800/85 dark:text-blue-300;
+  @apply flex border-s-[3px] border-[--hs-toc-active-border-color] bg-[--hs-toc-active-bg-color] p-2 text-[--hs-toc-active-text-color] dark:bg-[--hs-toc-active-bg-color-dark] dark:text-[--hs-toc-active-text-color-dark];
 }
 
 .theme-toc-nest-1 {
