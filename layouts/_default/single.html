@@ -12,28 +12,22 @@
 {{- end -}}
 {{ define "main" }}
   {{ $metaInfo := .Site.Params.articleMeta }}
+  {{ $image := resources.Get .Params.image }}
 
-  {{/* Image */}}
-  {{ if not $metaInfo.disableHero }}
-    {{ $image := resources.Get .Params.image }}
-    {{ with $image }}
-      <div id="hs-feature" class="h-60 w-full md:h-120">
-        <img
-          x-data="{ isGradient: {{ $metaInfo.disableImgGradient | default false }} }"
-          :class="{ 'image-gradient': !isGradient }"
-          class="h-60 w-full object-cover md:h-120"
-          src="{{ $image.Permalink }}"
-          alt="preview image"
-          style="mask-type: alpha;"
-          srcset="" />
-      </div>
-    {{ else }}
-      <div id="hs-feature" class="h-60 w-full md:h-120">
-        {{- partial "random_feature_img.html" . -}}
-      </div>
-    {{ end }}
+  {{ if $image }}
+    <div id="hs-feature" class="h-60 w-full md:h-120">
+      <img
+        x-data="{ isGradient: {{ $metaInfo.disableImgGradient | default false }} }"
+        :class="{ 'image-gradient': !isGradient }"
+        class="h-60 w-full object-cover md:h-120"
+        src="{{ $image.Permalink }}"
+        alt="Hero Image of content"
+        srcset="" />
+    </div>
   {{ else }}
-    <div id="hs-feature"></div>
+    <div id="hs-feature" class="h-60 w-full md:h-120">
+      {{- partial "random_feature_img.html" . -}}
+    </div>
   {{ end }}
 
 

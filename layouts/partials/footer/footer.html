@@ -41,7 +41,7 @@
 
   <span class="flex flex-col items-center justify-between space-y-3">
     &copy;
-    {{ $startYear := .Site.Params.copyright.start_year }}
+    {{ $startYear := .Site.Params.copyright.startYear }}
     {{ $currentYear := now.Format "2006" }}
     {{ with eq $startYear $currentYear }}
       {{ $currentYear }}

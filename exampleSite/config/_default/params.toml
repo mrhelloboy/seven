@@ -6,7 +6,7 @@
 # disableDarkAnimate = false
 
 [app]
-  # optional site title override for the app when added to an iOS home screen or Android launcher
+  # Optional site title override for the app when added to an iOS home screen or Android launcher
   title = "Seven Theme"
 
   # whether to omit favicon resource links
@@ -41,29 +41,28 @@
   text = ""
 
 [home]
-
   # Customize the type of content to display up-to-date, 
   # and display all content with 'IsPage=true' if not.
   # eg: showContentTypes = ["posts", "blogs"]
   showContentTypes = ["docs", "posts"]
 
-[society]
-  [society.email]
+[follow]
+  [follow.email]
     enable = false
     url = ""
-  [society.github]
+  [follow.github]
     enable = true
     url = "https://github.com/mrhelloboy/seven"
-  [society.x]
+  [follow.x]
     enable = true
     url = ""
-  [society.wechat]
+  [follow.wechat]
     enable = true
     QRCodeUrl = "/images/society/wechat/wechat.jpg"
 
 [copyright]
   owner = "Seven"
-  start_year = "2023"
+  startYear = "2023"
 
 [articleMeta]
   disableHero = false
