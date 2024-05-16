@@ -45,15 +45,15 @@
     x-data="{ 
       shrink: false,
       scrollY: 0,
-      bgOpen: {{ .Site.Params.background.enable }},
+      bgOpen: $store.bgImg.on,
     }"
     @scroll.window="shrink = (window.scrollY > 10 ? true : false)"
     :style="'background-image: ' + 'url(' + $store.bgImg.bgImg + ')'"
     :class="{'bg-white': !bgOpen, 'dark:bg-gray-900': !bgOpen, 'bg-cover': bgOpen, 'bg-fixed': bgOpen, 'dark:delay-300': $store.darkMode.animate}"
     class="-z-10 flex h-screen flex-col scroll-auto">
-    <!-- 默认为白天模式，点击🌛，白转黑 -->
-    <!-- toDarkAnimate: true -> 白转黑 -->
-    <!-- toDarkAnimate: false -> 黑转白 -->
+    <!-- Default is Light，click🌛，light to dark -->
+    <!-- toDarkAnimate: true -> light to dark -->
+    <!-- toDarkAnimate: false -> dark to light -->
     <div
       x-show="$store.darkMode.toDarkAnimate"
       x-cloak
@@ -62,9 +62,9 @@
       :style="'background-image: ' + 'url(' + $store.bgImg.dark + ')'"
       :class="{'bg-gray-900': !bgOpen,'dark:bg-gray-900': !bgOpen, 'bg-cover': bgOpen, 'bg-fixed': bgOpen}"
       class="fixed left-0 top-0 -z-10 h-full w-full"></div>
-    <!-- 默认为黑夜模式，点击🌞，黑转白 -->
-    <!-- toLightAnimate: true -> 黑转白 -->
-    <!-- toLightAnimate: false -> 白转黑 -->
+    <!-- Default is Dark, click 🌞，dark to light -->
+    <!-- toLightAnimate: true -> dark to light -->
+    <!-- toLightAnimate: false -> light to dark -->
     <div
       x-show="$store.darkMode.toLightAnimate"
       x-cloak

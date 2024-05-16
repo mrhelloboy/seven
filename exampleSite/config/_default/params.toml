@@ -19,10 +19,13 @@ enableDarkAnimate = true
   # Android browser theme color
   themeColor = "#ffffff"
 
-[background]
-  enable = true
-  lightImg = "/images/bg.svg"
-  darkImg = "/images/bg-dark.svg"
+# Enable background images by default
+# If you don't need a background image, set enable to false
+# If enabled but no background image is configured, use the default
+#[backgroundImage]
+#  enable = true
+#  light = ""
+#  dark = ""
 
 [logo]
   # Image logo or Text logo
