@@ -12,20 +12,31 @@
       <!-- Posts Index -->
       <div
         id="tags-container"
-        x-data="{ divHeight: 0, windowHeight: window.innerHeight }"
-        x-init="$nextTick(()=>{ divHeight = windowHeight - $refs.myDiv.getBoundingClientRect().top - $refs.footer.offsetHeight - 20;})"
-        @resize.window="windowHeight = window.innerHeight;"
-        x-effect="divHeight = windowHeight - $refs.myDiv.getBoundingClientRect().top - $refs.footer.offsetHeight - 20;"
         class="hidden md:block md:h-full md:w-1/6 lg:w-1/5">
         <div class="sticky top-[152px] flex w-full">
           <div
             x-ref="myDiv"
+            x-cloak
+            x-data="{ 
+              divHeight: 0,
+              windowHeight: window.innerHeight,
+              isResized: false
+            }"
+            x-init="$nextTick(()=>{ divHeight = windowHeight - $refs.myDiv.getBoundingClientRect().top - $refs.footer.offsetHeight - 20;})"
+            @resize.window="windowHeight = window.innerHeight; isResized = true;"
+            x-effect="()=> {
+              if (isResized) {
+                divHeight = windowHeight - $refs.myDiv.getBoundingClientRect().top - $refs.footer.offsetHeight - 20;
+                isResized = false;
+              }
+            }"
             :style="{ height: divHeight >= 540 ? divHeight + 'px' : '540px'}"
             class="hs-index-number flex w-full flex-col items-start justify-center space-y-10 p-6 text-3xl">
             <!-- <p><strong x-text="divHeight"></strong> px</p> -->
             {{ range seq 1 (len $lastestPosts) }}
               <p
                 class="pl-3"
+                x-cloak
                 :class="{
                   'animate-pingOnce': loadNum == {{ . }},
                   'text-gray-900': loadNum == {{ . }}, 
