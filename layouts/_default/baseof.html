@@ -43,7 +43,7 @@
   <body
     x-ref="body"
     x-data="{ 
-      shrink: false,
+      shrink: window.scrollY > 10 ? true : false,
       scrollY: 0,
       bgOpen: $store.bgImg.on,
     }"
