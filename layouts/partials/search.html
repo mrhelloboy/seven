@@ -68,10 +68,12 @@
 </section>
 
 <script
+  defer
   src="https://cdn.jsdelivr.net/npm/algoliasearch@4.17.2/dist/algoliasearch-lite.umd.js"
   integrity="sha256-X2G+vjV8i6Jj2NSGFTvy6Z4q2AlmF5aH0HiIpWJ8eU4="
   crossorigin="anonymous"></script>
 <script
+  defer
   src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.56.3/dist/instantsearch.production.min.js"
   integrity="sha256-mWvjWAfZylKMOg+S3HLq+wng1HHRnl2Idr2r8NsUzIU="
   crossorigin="anonymous"></script>
@@ -86,4 +88,4 @@
 {{ if hugo.IsProduction }}
   {{ $searchJS = $searchJS | minify | fingerprint }}
 {{ end }}
-<script src="{{ $searchJS.RelPermalink }}"></script>
+<script defer src="{{ $searchJS.RelPermalink }}"></script>
