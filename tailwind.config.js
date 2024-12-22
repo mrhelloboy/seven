@@ -68,12 +68,12 @@ module.exports = {
             opacity: 1,
             clipPath: 'circle(0% at top right)',
           },
-          '30%': {
+          '33%': {
             transform: 'scaleY(1)',
             transformOrigin: '100% 0%',
             opacity: 1,
           },
-          '70%': {
+          '66%': {
             transform: 'scaleY(1) scaleX(1)',
             transformOrigin: '100% 0%',
             opacity: 1,
@@ -90,18 +90,17 @@ module.exports = {
             opacity: 1,
             clipPath: 'circle(150% at top right)',
           },
-          '30%': {
+          '33%': {
             transform: 'scaleY(1) scaleX(1)',
             transformOrigin: '100% 0%',
             opacity: 1,
             clipPath: 'circle(100% at top right)',
           },
-          '70%': {
+          '66%': {
             transform: 'scaleY(1)',
             transformOrigin: '100% 0%',
             opacity: 1,
           },
-
           '100%': {
             transform: 'scale(0)',
             transformOrigin: '100% 0%',
