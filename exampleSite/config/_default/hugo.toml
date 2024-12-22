@@ -3,10 +3,11 @@ baseURL = "https://hugoseven.netlify.app"
 hasCJKLanguage = true
 defaultContentLanguage = "zh-hans"
 
-paginate = 18
-
 enableGitInfo = true
 enableEmoji = true
+
+[pagination]
+  pagerSize = 18
       
 [mediaTypes.'application/x-ndjson']
   suffixes = ["ndjson"]

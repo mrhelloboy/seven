@@ -2,7 +2,7 @@
 {{- define "extra_link" }}
   {{ if not (.Site.Params.disableHightlight | default false ) }}
     {{ $syntax := resources.Get "/css/syntax.css" }}
-    {{ $syntax = $syntax | resources.PostCSS (dict "inlineImports" true) }}
+    {{ $syntax = $syntax | css.PostCSS (dict "inlineImports" true) }}
     {{ if hugo.IsProduction }}
       {{ $syntax = $syntax | minify | fingerprint | resources.PostProcess }}
     {{ end }}
