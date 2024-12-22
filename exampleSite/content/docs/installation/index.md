@@ -15,7 +15,7 @@ description: "从零开始安装主题"
 
 ## 前提条件
 
-- 下载 [Hugo](https://gohugo.io/installation/), 版本要求 >= 0.124.0
+- 下载 [Hugo](https://gohugo.io/installation/), 版本要求 >= 0.128.0
 - 下载 [Go](https://go.dev/dl/)
 - 下载 [Node.js](https://nodejs.org/en)
 

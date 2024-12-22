@@ -15,7 +15,7 @@ This article describes how to quickly experience the seven theme.
 
 ## Prerequisites
 
-- Install [Hugo](https://gohugo.io/installation/), with a version requirement of >= 0.124.0.
+- Install [Hugo](https://gohugo.io/installation/), with a version requirement of >= 0.128.0.
 - Install [Go](https://go.dev/dl/).
 - Install [Node.js](https://nodejs.org/en).
 

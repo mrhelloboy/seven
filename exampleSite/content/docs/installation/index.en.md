@@ -15,7 +15,7 @@ Installing the theme from scratch.
 
 ## Prerequisites
 
-- Download [Hugo](https://gohugo.io/installation/), version required >= 0.124.0
+- Download [Hugo](https://gohugo.io/installation/), version required >= 0.128.0
 - Download [Go](https://go.dev/dl/)
 - Download [Node.js](https://nodejs.org/en)
 
