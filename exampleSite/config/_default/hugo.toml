@@ -8,19 +8,18 @@ enableEmoji = true
 
 [pagination]
   pagerSize = 18
-      
-[mediaTypes.'application/x-ndjson']
-  suffixes = ["ndjson"]
 
-[outputs]
-  home = ["HTML", "Algolia"]
+[mediaTypes]
+  [mediaTypes."application/x-ndjson"]
+    suffixes = ["ndjson"]
 
 [outputFormats]
-  [outputFormats.Algolia]
-    baseName = "algolia"
-    isPlainText = true
-    notAlternative = true
+  [outputFormats.ndjson]
     mediaType = "application/x-ndjson"
+    isPlainText = true
+
+[outputs]
+  home = ["HTML", "ndjson"]
 
 [markup]
   [markup.highlight]

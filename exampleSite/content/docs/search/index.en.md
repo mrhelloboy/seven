@@ -25,10 +25,10 @@ First, make sure you have installed the Algolia CLI.
 hugo
 ```
 
-2. Then, locate the `algolia.ndjson` file in the `public` directory and upload it to Algolia.
+2. Then, locate the `index.ndjson` file in the `public` directory and upload it to Algolia.
 
 ```bash
-algolia objects import 'your_index_name' -F ./public/algolia.ndjson -p 'your_prifile_name'
+algolia objects import 'your_index_name' -F ./public/index.ndjson -p 'your_prifile_name'
 ```
 
 ## Further Reading
