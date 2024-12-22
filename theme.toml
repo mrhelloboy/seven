@@ -33,7 +33,7 @@ features = [
   "scroll-to-top",
   "search"
 ]
-min_version = "0.124.0"
+min_version = "0.128.0"
 
 [author]
   name = "mrhelloboy"

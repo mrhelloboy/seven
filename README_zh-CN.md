@@ -27,7 +27,7 @@
 在开始使用本Hugo主题之前，请确保符合以下要求：
 
 1. 已经安装 [Go](https://go.dev/dl/)
-2. 确保 `Hugo >= v0.124.0`
+2. 确保 `Hugo >= v0.128.0`
 
 ## 快速体验
 
@@ -129,7 +129,7 @@ npm install
 
    ```toml
    [build.environment]
-   HUGO_VERSION = "0.124.0"
+   HUGO_VERSION = "0.128.0"
 
    [build]
    publish = "public"

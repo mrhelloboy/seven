@@ -3,10 +3,11 @@ baseURL = "https://hugoseven.netlify.app"
 hasCJKLanguage = true
 defaultContentLanguage = "zh-hans"
 
-paginate = 18
-
 enableGitInfo = true
 enableEmoji = true
+
+[pagination]
+  pagerSize = 18
       
 [mediaTypes.'application/x-ndjson']
   suffixes = ["ndjson"]
@@ -39,7 +40,7 @@ enableEmoji = true
     path = "github.com/mrhelloboy/seven"
   [module.hugoVersion]
     extended = false
-    min      = "0.124.0"
+    min      = "0.128.0"
   [[module.mounts]]
     source = "assets"
     target = "assets"

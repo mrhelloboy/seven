@@ -4,7 +4,7 @@ date: 2024-01-07
 draft: false
 URL: "goods"
 layout: goods
-data: "content/goods/goods.json"
+data: "goods.json"
 ---
 
 在这片小小的博客天地里，我想分享那些如繁星般点亮我生活的精选物品。

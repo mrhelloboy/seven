@@ -27,7 +27,7 @@ English | [中文](./README_zh-CN.md)
 Before starting to use this Hugo theme, please ensure the following requirements are met:
 
 1. [Go](https://go.dev/dl/) is installed
-2. Ensure `Hugo >= v0.124.0`
+2. Ensure `Hugo >= v0.128.0`
 
 ## Quick Start
 
@@ -129,7 +129,7 @@ Please refer to the [Hugo Deployment Documentation](https://gohugo.io/hosting-an
 
    ```toml
    [build.environment]
-   HUGO_VERSION = "0.124.0"
+   HUGO_VERSION = "0.128.0"
 
    [build]
    publish = "public"

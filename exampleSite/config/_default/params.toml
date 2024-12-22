@@ -75,7 +75,7 @@
   enableCounts = true  # Note: only works if waline or twikoo is enabled.
   [comment.waline]
     enable = true
-    serverURL = "https://seven-demo.comment.supcat.cn/.netlify/functions/comment"
+    serverURL = "https://hugoseven-waline.netlify.app/.netlify/functions/comment"
     lang = "en"
     reaction = true
     search = true
