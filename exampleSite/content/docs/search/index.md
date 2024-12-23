@@ -25,10 +25,10 @@ description: "如何生成 ndjson 格式数据文件并上传到 Algolia"
 hugo
 ```
 
-2. 然后在`public`目录下找到`algolia.ndjson`文件，将其上传到 Algolia。
+2. 然后在`public`目录下找到`index.ndjson`文件，将其上传到 Algolia。
 
 ```bash
-algolia objects import 'your_index_name' -F ./public/algolia.ndjson -p 'your_prifile_name'
+algolia objects import 'your_index_name' -F ./public/index.ndjson -p 'your_prifile_name'
 ```
 
 ## 扩展阅读

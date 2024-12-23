@@ -1,9 +1,10 @@
 {{/* Generates a valid Algolia search index */}}
 {{- $hits := slice -}}
 {{- $section := $.Site.GetPage "section" .Section }}
-{{- $validVars := $.Param "algolia.vars" | default slice -}}
-{{- $validParams := $.Param "algolia.params" | default slice -}}
-{{- $pageType := $.Param "algolia.type" | default slice -}}
+{{- $validVars := $.Param "search.algolia.vars" | default slice -}}
+{{- $validParams := $.Param "search.algolia.params" | default slice -}}
+{{- $pageType := $.Param "search.algolia.type" | default slice -}}
+
 {{/* Include type of content? */}}
 {{- range $i, $hit := where (where .Site.AllPages "Type" "in" $pageType) "IsPage" true -}}
   {{- $dot := . -}}
